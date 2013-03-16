@@ -1,7 +1,7 @@
 MetalApp
 ========
 
-Concurso Musical> El metalero más metalero
+Concurso Musical> El metalero más metalero.
 
 El metalero más metalero es un reallity donde una serie de concursantes con amplios
 conocimientos musicales seleccionan las canciones más perfectas del metal y hacen una

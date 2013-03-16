@@ -3,7 +3,6 @@ package hello1;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-//random comment
 
 @ManagedBean
 @RequestScoped
