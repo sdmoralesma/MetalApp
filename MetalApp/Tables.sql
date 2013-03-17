@@ -20,17 +20,27 @@ CREATE TABLE `metal`.`groups` (
 	`username` VARCHAR(50)
 ) ENGINE=InnoDB;
 
+ALTER TABLE groups ADD CONSTRAINT GroupsRealm_PK PRIMARY KEY
+(
+  username
+);
+
 CREATE TABLE `metal`.`users` (
 	`username` VARCHAR(50),
 	`password` VARCHAR(100)
 ) ENGINE=InnoDB;
 
+ALTER TABLE users ADD CONSTRAINT UsersRealm_PK PRIMARY KEY
+(
+  username
+);
+
 -- Domain Tables
 CREATE TABLE artist
-  (
-    id_artist INTEGER NOT NULL ,
+(
+	id_artist INTEGER NOT NULL ,
     name      VARCHAR (50) NOT NULL
-  ) ;
+) ;
 ALTER TABLE artist ADD CONSTRAINT Artist_PK PRIMARY KEY
 (
   id_artist

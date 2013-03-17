@@ -2,8 +2,9 @@
 
 * *Author* : [Sergio Morales](sdmoralesma@gmail.com)
 * *Level* : Intermediate
-* *Technologies* : Java EE 6 (JPA 2.0, CDI 1.0, Bean Validation 1.0, EJB Lite 3.1, JSF 2.0 (+ Primefaces), JAX-RS 1.1, JAX WS, JAAS)
+* *Technologies* : Java EE 6 (JPA 2.0, CDI 1.0, EJB Lite 3.1, JSF 2.0 (+ Primefaces), JAX-RS 1.1, JAX WS, JAAS)
 * *Application Servers* : GlassFish 3.x
+* *DataBase* : MySQL 5.x
 * *Summary* : An application for recognize the best headbanging in the history of the metal music, using Java EE 6
 
 
@@ -108,3 +109,14 @@ a. Contiene las funcionalidades de votación, es decir, 3 y 5
 a. Contiene la funcionalidad 4, 6 y 7
 ### 4. Service de consultas generales
 a. 8, 9 y 10
+
+## Licensing
+
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
+
+<div class="footer">
+    <span class="footerTitle"><span class="uc">S</span>ergio <span class="uc">M</span>orales</span>
+</div>
+
+##TODO:
+Future Releases probably will include a MongoDB fork + PAAS implementation + Instructions.
