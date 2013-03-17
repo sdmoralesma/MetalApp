@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	<persistence-unit name="MetalApp">
-		<class>model.Artist</class>
-		<class>model.Gender</class>
-		<class>model.Group</class>
-		<class>model.Jury</class>
-		<class>model.Participant</class>
-		<class>model.Presentation</class>
-		<class>model.ScoreMatrix</class>
-		<class>model.Song</class>
-		<class>model.SongMatrix</class>
-		<class>model.User</class>
+		<class>com.metal.model.Artist</class>
+		<class>com.metal.model.Gender</class>
+		<class>com.metal.model.Group</class>
+		<class>com.metal.model.Jury</class>
+		<class>com.metal.model.Participant</class>
+		<class>com.metal.model.Presentation</class>
+		<class>com.metal.model.ScoreMatrix</class>
+		<class>com.metal.model.Song</class>
+		<class>com.metal.model.SongMatrix</class>
+		<class>com.metal.model.User</class>
 	</persistence-unit>
 </persistence>
