@@ -1,5 +1,6 @@
-CREATE DATABASE IF NOT EXISTS metal;
-USE metal;
+--Precaution: First create the database from a SQL Console
+--CREATE DATABASE IF NOT EXISTS metal;
+--USE metal;
 
 DROP TABLE IF EXISTS `metal`.`jury`;
 DROP TABLE IF EXISTS `metal`.`presentation`;
