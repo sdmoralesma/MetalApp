@@ -13,21 +13,15 @@ import javax.persistence.*;
 public class Group implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="id_group")
-	private String idGroup;
-
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false, length=50)
 	private String username;
 
+	@Column(name="id_group", length=50)
+	private String idGroup;
+
 	public Group() {
-	}
-
-	public String getIdGroup() {
-		return this.idGroup;
-	}
-
-	public void setIdGroup(String idGroup) {
-		this.idGroup = idGroup;
 	}
 
 	public String getUsername() {
@@ -36,6 +30,14 @@ public class Group implements Serializable {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getIdGroup() {
+		return this.idGroup;
+	}
+
+	public void setIdGroup(String idGroup) {
+		this.idGroup = idGroup;
 	}
 
 }

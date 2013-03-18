@@ -2,6 +2,8 @@ package com.metal.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import java.util.List;
 
 
@@ -10,30 +12,41 @@ import java.util.List;
  * 
  */
 @Entity
+@Table(name="presentation")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Presentation.findAll", query = "SELECT p FROM Presentation p"),
+    @NamedQuery(name = "Presentation.findByIdPresentation", query = "SELECT p FROM Presentation p WHERE p.idPresentation = :idPresentation"),
+    @NamedQuery(name = "Presentation.findByIdParticipant", query = "SELECT p FROM Presentation p WHERE p.idParticipant = :idParticipant"),
+    @NamedQuery(name = "Presentation.findByIdSong", query = "SELECT p FROM Presentation p WHERE p.idSong = :idSong"),
+    @NamedQuery(name = "Presentation.findByIdJury", query = "SELECT p FROM Presentation p WHERE p.idJury = :idJury"),
+    @NamedQuery(name = "Presentation.findByHandScore", query = "SELECT p FROM Presentation p WHERE p.handScore = :handScore"),
+    @NamedQuery(name = "Presentation.findByHeadScore", query = "SELECT p FROM Presentation p WHERE p.headScore = :headScore"),
+    @NamedQuery(name = "Presentation.findByTotalScore", query = "SELECT p FROM Presentation p WHERE p.totalScore = :totalScore")})
 public class Presentation implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id_presentation")
+	@Column(name="id_presentation", unique=true, nullable=false)
 	private int idPresentation;
 
-	@Column(name="hand_score")
+	@Column(name="hand_score", nullable=false)
 	private float handScore;
 
-	@Column(name="head_score")
+	@Column(name="head_score", nullable=false)
 	private float headScore;
 
-	@Column(name="id_jury")
+	@Column(name="id_jury", nullable=false)
 	private int idJury;
 
-	@Column(name="id_participant")
+	@Column(name="id_participant", nullable=false)
 	private int idParticipant;
 
-	@Column(name="id_song")
+	@Column(name="id_song", nullable=false)
 	private int idSong;
 
-	@Column(name="total_score")
+	@Column(name="total_score", nullable=false)
 	private float totalScore;
 
 	//bi-directional many-to-many association to Jury

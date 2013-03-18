@@ -1,5 +1,6 @@
 package com.metal.ejb;
 
+import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
@@ -10,11 +11,20 @@ import javax.ejb.Stateless;
 @LocalBean
 public class Facade {
 
-    /**
-     * Default constructor. 
-     */
-    public Facade() {
-        // TODO Auto-generated constructor stub
-    }
+	@EJB
+	private ServiceAdmin serviceAdmin;
+	@EJB
+	private ServiceJury serviceJury;
+	@EJB
+	private ServiceScore serviceScore;
+
+	
+	/**
+	 * Default constructor.
+	 */
+	public Facade() {
+		
+	}
+	
 
 }

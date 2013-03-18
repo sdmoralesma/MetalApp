@@ -3,17 +3,19 @@ package com.metal.ejb;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
+
 /**
- * Consolidar Puntaje, Registrar Canción, Registrar Género
+ * Vota por Concursante y Vota por Cancion
  */
 @Stateless
 @LocalBean
-public class ScoreService {
-
+public class ServiceJury {
+       
     /**
-     * Default constructor. 
+     * @see Jury#Jury()
      */
-    public ScoreService() {
+    public ServiceJury() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
