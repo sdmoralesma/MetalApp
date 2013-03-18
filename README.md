@@ -100,7 +100,7 @@ Pantalla donde sale por cada concursante el historial de votación que ha tenido
 Exponerla por web Service SOAP. No exige ningún tipo de autenticación.
 
 Adicionalmente, se sugiere el uso de los siguientes services y una fachada.
-### 1. Service de administración de usuarios
+### 1. Service de administración
 a. Contiene las funcionalidades de 1 y 2, adicionalmente aquellas que tengan
 que ver con el ingreso seguro
 ### 2. Service de jurado
@@ -119,4 +119,7 @@ a. 8, 9 y 10
 </div>
 
 ##TODO:
-Future Releases probably will include a MongoDB fork + PAAS implementation + Instructions.
+Future Releases will include:
+- Twitter Bootstrap interface
+- A MongoDB fork 
+- PAAS implementation + Instructions.
