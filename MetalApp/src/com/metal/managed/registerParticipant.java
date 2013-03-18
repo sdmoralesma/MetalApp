@@ -23,7 +23,7 @@ public class registerParticipant {
 	public String doCreateParticipant(){
 		facade.registerParticipant(participant);
 		participantList = facade.findParticipants();
-		return "registerParticipant";
+		return "registerParticipant.xhtml";
 	}
 	
 	
