@@ -2,8 +2,6 @@ package com.metal.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import java.util.List;
 
 
@@ -13,23 +11,16 @@ import java.util.List;
  */
 @Entity
 @Table(name="gender")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Gender.findAll", query = "SELECT g FROM Gender g"),
-    @NamedQuery(name = "Gender.findByIdGender", query = "SELECT g FROM Gender g WHERE g.idGender = :idGender"),
-    @NamedQuery(name = "Gender.findByName", query = "SELECT g FROM Gender g WHERE g.name = :name"),
-    @NamedQuery(name = "Gender.findByHangValue", query = "SELECT g FROM Gender g WHERE g.hangValue = :hangValue"),
-    @NamedQuery(name = "Gender.findByHeadValue", query = "SELECT g FROM Gender g WHERE g.headValue = :headValue")})
 public class Gender implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_gender", unique=true, nullable=false)
 	private int idGender;
 
-	@Column(name="hang_value", nullable=false)
-	private int hangValue;
+	@Column(name="hand_value", nullable=false)
+	private int handValue;
 
 	@Column(name="head_value", nullable=false)
 	private int headValue;
@@ -52,12 +43,12 @@ public class Gender implements Serializable {
 		this.idGender = idGender;
 	}
 
-	public int getHangValue() {
-		return this.hangValue;
+	public int getHandValue() {
+		return this.handValue;
 	}
 
-	public void setHangValue(int hangValue) {
-		this.hangValue = hangValue;
+	public void setHandValue(int handValue) {
+		this.handValue = handValue;
 	}
 
 	public int getHeadValue() {

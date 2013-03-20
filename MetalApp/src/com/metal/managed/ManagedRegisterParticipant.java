@@ -12,7 +12,7 @@ import com.metal.model.Participant;
 
 @ManagedBean
 @RequestScoped
-public class registerParticipant {
+public class ManagedRegisterParticipant {
 
 	@EJB
 	private Facade facade;
@@ -26,6 +26,20 @@ public class registerParticipant {
 		return "registerParticipant.xhtml";
 	}
 	
-	
-	
+	//Getters y Setters
+	public Participant getParticipant() {
+		return participant;
+	}
+
+	public void setParticipant(Participant participant) {
+		this.participant = participant;
+	}
+
+	public List<Participant> getParticipantList() {
+		return participantList;
+	}
+
+	public void setParticipantList(List<Participant> participantList) {
+		this.participantList = participantList;
+	}
 }

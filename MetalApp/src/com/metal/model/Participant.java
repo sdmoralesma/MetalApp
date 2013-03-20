@@ -2,8 +2,6 @@ package com.metal.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import java.util.List;
 
 
@@ -13,23 +11,13 @@ import java.util.List;
  */
 @Entity
 @Table(name="participant")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Participant.findAll", query = "SELECT p FROM Participant p"),
-    @NamedQuery(name = "Participant.findByIdParticipat", query = "SELECT p FROM Participant p WHERE p.idParticipat = :idParticipat"),
-    @NamedQuery(name = "Participant.findByName", query = "SELECT p FROM Participant p WHERE p.name = :name"),
-    @NamedQuery(name = "Participant.findByPhone", query = "SELECT p FROM Participant p WHERE p.phone = :phone"),
-    @NamedQuery(name = "Participant.findByAge", query = "SELECT p FROM Participant p WHERE p.age = :age"),
-    @NamedQuery(name = "Participant.findByGender", query = "SELECT p FROM Participant p WHERE p.gender = :gender"),
-    @NamedQuery(name = "Participant.findByUsername", query = "SELECT p FROM Participant p WHERE p.username = :username"),
-    @NamedQuery(name = "Participant.findByPassword", query = "SELECT p FROM Participant p WHERE p.password = :password")})
 public class Participant implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id_participat", unique=true, nullable=false)
-	private int idParticipat;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_participant", unique=true, nullable=false)
+	private int idParticipant;
 
 	@Column(nullable=false)
 	private int age;
@@ -60,12 +48,12 @@ public class Participant implements Serializable {
 	public Participant() {
 	}
 
-	public int getIdParticipat() {
-		return this.idParticipat;
+	public int getIdParticipant() {
+		return this.idParticipant;
 	}
 
-	public void setIdParticipat(int idParticipat) {
-		this.idParticipat = idParticipat;
+	public void setIdParticipant(int idParticipant) {
+		this.idParticipant = idParticipant;
 	}
 
 	public int getAge() {

@@ -52,8 +52,7 @@ public class ServiceAdmin {
 
 	// Jury Methods
 	public List<Jury> findAllJuries() {
-		TypedQuery<Jury> query = em
-				.createNamedQuery("Jury.findAll", Jury.class);
+		TypedQuery<Jury> query = em.createNamedQuery("Jury.findAll", Jury.class);
 		return query.getResultList();
 	}
 

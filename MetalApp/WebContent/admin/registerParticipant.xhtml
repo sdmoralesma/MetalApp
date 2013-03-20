@@ -7,10 +7,37 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 <ui:composition template="/WEB-INF/template.xhtml">
-	
+
 	<ui:define name="content">
-	    Please add a user below:
+		<h3>Register Participant</h3>
+		<h:form>
+			<h:panelGrid>
+				<h:outputText value="Username" />
+				<h:inputText
+					value="#{managedRegisterParticipant.participant.username}" />
+
+				<h:outputText value="Name" />
+				<h:inputText value="#{managedRegisterParticipant.participant.name}" />
+
+				<h:outputText value="Password" />
+				<h:inputText
+					value="#{managedRegisterParticipant.participant.password}" />
+
+				<h:outputText value="Age" />
+				<h:inputText value="#{managedRegisterParticipant.participant.age}" />
+
+				<h:outputText value="Gender" />
+				<h:inputText
+					value="#{managedRegisterParticipant.participant.gender}" />
+
+				<h:outputText value="Phone" />
+				<h:inputText value="#{managedRegisterParticipant.participant.phone}" />
+
+				<h:commandButton value="New Participant"
+					action="#{managedRegisterParticipant.doCreateParticipant}" />
+			</h:panelGrid>
+		</h:form>
 	</ui:define>
-	
+
 </ui:composition>
 </html>

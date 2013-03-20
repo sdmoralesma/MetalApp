@@ -2,8 +2,6 @@ package com.metal.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import java.util.List;
 
 
@@ -13,18 +11,11 @@ import java.util.List;
  */
 @Entity
 @Table(name="song")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Song.findAll", query = "SELECT s FROM Song s"),
-    @NamedQuery(name = "Song.findByIdSong", query = "SELECT s FROM Song s WHERE s.idSong = :idSong"),
-    @NamedQuery(name = "Song.findByTitle", query = "SELECT s FROM Song s WHERE s.title = :title"),
-    @NamedQuery(name = "Song.findByIdArtist", query = "SELECT s FROM Song s WHERE s.idArtist = :idArtist"),
-    @NamedQuery(name = "Song.findByIdGender", query = "SELECT s FROM Song s WHERE s.idGender = :idGender")})
 public class Song implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_song", unique=true, nullable=false)
 	private int idSong;
 

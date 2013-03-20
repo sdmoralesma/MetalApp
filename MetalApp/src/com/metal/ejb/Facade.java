@@ -23,28 +23,23 @@ public class Facade {
 	@EJB
 	private ServiceScore serviceScore;
 
-	
-	/**
-	 * Default constructor.
-	 */
 	public Facade() {
-		
 	}
-	
-	public void registerParticipant(Participant participant){
+
+	public void registerParticipant(Participant participant) {
 		serviceAdmin.createParticipant(participant);
 	}
 
-	public void registerJury(Jury jury){
+	public void registerJury(Jury jury) {
 		serviceAdmin.createJury(jury);
 	}
-	
-	public List<Participant> findParticipants(){
-		return serviceAdmin.findAllParticipants();		
+
+	public List<Participant> findParticipants() {
+		return serviceAdmin.findAllParticipants();
 	}
 
-	public List<Jury> findJuries(){
-		return serviceAdmin.findAllJuries();		
+	public List<Jury> findJuries() {
+		return serviceAdmin.findAllJuries();
 	}
 
 }
