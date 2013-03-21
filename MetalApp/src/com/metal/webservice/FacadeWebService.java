@@ -1,19 +1,19 @@
-package com.metal.ejb;
+package com.metal.webservice;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 /**
- * Consolidar Puntaje, Registrar Canción, Registrar Género
+ * Session Bean implementation class WebServiceFacade
  */
 @Stateless
 @LocalBean
-public class ServiceScore {
+public class FacadeWebService {
 
     /**
      * Default constructor. 
      */
-    public ServiceScore() {
+    public FacadeWebService() {
         // TODO Auto-generated constructor stub
     }
 

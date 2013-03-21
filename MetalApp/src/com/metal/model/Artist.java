@@ -2,6 +2,8 @@ package com.metal.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import java.util.List;
 
 
@@ -11,6 +13,11 @@ import java.util.List;
  */
 @Entity
 @Table(name="artist")
+@XmlRootElement
+@NamedQueries({
+		@NamedQuery(name = "Artist.findAll", query = "SELECT a FROM Artist a"),
+		@NamedQuery(name = "Artist.findByIdArtist", query = "SELECT a FROM Artist a WHERE a.idArtist = :idArtist"),
+		@NamedQuery(name = "Artist.findByName", query = "SELECT a FROM Artist a WHERE a.name = :name") })
 public class Artist implements Serializable {
 	private static final long serialVersionUID = 1L;
 

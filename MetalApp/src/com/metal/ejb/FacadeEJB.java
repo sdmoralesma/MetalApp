@@ -8,24 +8,26 @@ import javax.ejb.Stateless;
 
 import com.metal.model.Jury;
 import com.metal.model.Participant;
+import com.metal.model.Song;
 
 /**
  * Session Bean implementation class Facade
  */
 @Stateless
 @LocalBean
-public class Facade {
+public class FacadeEJB {
 
 	@EJB
-	private ServiceAdmin serviceAdmin;
+	private ServiceAdminEJB serviceAdmin;
 	@EJB
-	private ServiceJury serviceJury;
+	private ServiceJuryEJB serviceJury;
 	@EJB
-	private ServiceScore serviceScore;
+	private ServiceScoreEJB serviceScore;
 
-	public Facade() {
+	public FacadeEJB() {
 	}
 
+	// SERVICE ADMIN
 	public void registerParticipant(Participant participant) {
 		serviceAdmin.createParticipant(participant);
 	}
@@ -42,4 +44,13 @@ public class Facade {
 		return serviceAdmin.findAllJuries();
 	}
 
+	// SERVICE JURY
+	public void registerVotePerParticipant(Participant participant) {
+		serviceJury.addVotePerParticipant(participant);
+	}
+	
+	public void registerVotePerSong(Song song) {
+		serviceJury.addVotePerSong(song);
+	}
+	
 }

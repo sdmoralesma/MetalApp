@@ -2,6 +2,8 @@ package com.metal.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import java.util.List;
 
 
@@ -11,6 +13,16 @@ import java.util.List;
  */
 @Entity
 @Table(name="participant")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Participant.findAll", query = "SELECT p FROM Participant p"),
+    @NamedQuery(name = "Participant.findByIdParticipant", query = "SELECT p FROM Participant p WHERE p.idParticipant = :idParticipant"),
+    @NamedQuery(name = "Participant.findByName", query = "SELECT p FROM Participant p WHERE p.name = :name"),
+    @NamedQuery(name = "Participant.findByPhone", query = "SELECT p FROM Participant p WHERE p.phone = :phone"),
+    @NamedQuery(name = "Participant.findByAge", query = "SELECT p FROM Participant p WHERE p.age = :age"),
+    @NamedQuery(name = "Participant.findByGender", query = "SELECT p FROM Participant p WHERE p.gender = :gender"),
+    @NamedQuery(name = "Participant.findByUsername", query = "SELECT p FROM Participant p WHERE p.username = :username"),
+    @NamedQuery(name = "Participant.findByPassword", query = "SELECT p FROM Participant p WHERE p.password = :password")})
 public class Participant implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -148,4 +160,10 @@ public class Participant implements Serializable {
 		return scoreMatrix;
 	}
 
+	@Override
+	public String toString() {
+		return "Participant [idParticipant=" + idParticipant + ", age=" + age + ", gender=" + gender + ", name=" + name
+				+ ", password=" + password + ", phone=" + phone + ", username=" + username + ", presentations="
+				+ presentations + ", scoreMatrixs=" + scoreMatrixs + "]";
+	}
 }

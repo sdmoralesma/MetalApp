@@ -75,7 +75,7 @@ CREATE TABLE score_matrix (
 	hand_score FLOAT,
 	head_score FLOAT,
 	total_score FLOAT,
-	id_participat INT,
+	id_participant INT,
 	PRIMARY KEY (id_participant)
 ) ENGINE=InnoDB;
 
@@ -105,7 +105,7 @@ CREATE TABLE presentation (
 	hand_score FLOAT NOT NULL,
 	head_score FLOAT NOT NULL,
 	total_score FLOAT NOT NULL,
-	id_participat INT,
+	id_participant INT,
 	id_song1 INT,
 	PRIMARY KEY (id_presentation)
 ) ENGINE=InnoDB;
@@ -138,9 +138,9 @@ CREATE INDEX song_presentation ON presentation (id_song1 ASC);
 
 CREATE INDEX song_songmatrix ON song_matrix (id_song1 ASC);
 
-CREATE INDEX participant_presentation ON presentation (id_participat ASC);
+CREATE INDEX participant_presentation ON presentation (id_participant ASC);
 
-CREATE INDEX participant_scorematrix ON score_matrix (id_participat ASC);
+CREATE INDEX participant_scorematrix ON score_matrix (id_participant ASC);
 
 CREATE INDEX artist_song ON song (id_artist1 ASC);
 
@@ -152,7 +152,7 @@ ALTER TABLE jury_presentation ADD CONSTRAINT FK_ASS_27 FOREIGN KEY (jury_id_jury
 	REFERENCES jury (id_jury)
 	ON DELETE CASCADE;
 
-ALTER TABLE presentation ADD CONSTRAINT participant_presentation FOREIGN KEY (id_participat)
+ALTER TABLE presentation ADD CONSTRAINT participant_presentation FOREIGN KEY (id_participant)
 	REFERENCES participant (id_participant);
 
 ALTER TABLE song ADD CONSTRAINT artist_song FOREIGN KEY (id_artist1)
@@ -164,7 +164,7 @@ ALTER TABLE presentation ADD CONSTRAINT song_presentation FOREIGN KEY (id_song1)
 ALTER TABLE song ADD CONSTRAINT gender_song FOREIGN KEY (id_gender1)
 	REFERENCES gender (id_gender);
 
-ALTER TABLE score_matrix ADD CONSTRAINT participant_scorematrix FOREIGN KEY (id_participat)
+ALTER TABLE score_matrix ADD CONSTRAINT participant_scorematrix FOREIGN KEY (id_participant)
 	REFERENCES participant (id_participant);
 
 ALTER TABLE song_matrix ADD CONSTRAINT song_songmatrix FOREIGN KEY (id_song1)

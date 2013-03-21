@@ -2,48 +2,55 @@ package com.metal.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import javax.xml.bind.annotation.XmlRootElement;
 
+import java.util.List;
 
 /**
  * The persistent class for the song database table.
  * 
  */
 @Entity
-@Table(name="song")
+@Table(name = "song")
+@XmlRootElement
+@NamedQueries({ @NamedQuery(name = "Song.findAll", query = "SELECT s FROM Song s"),
+		@NamedQuery(name = "Song.findByIdSong", query = "SELECT s FROM Song s WHERE s.idSong = :idSong"),
+		@NamedQuery(name = "Song.findByTitle", query = "SELECT s FROM Song s WHERE s.title = :title"),
+		@NamedQuery(name = "Song.findByIdArtist", query = "SELECT s FROM Song s WHERE s.idArtist = :idArtist"),
+		@NamedQuery(name = "Song.findByIdGender", query = "SELECT s FROM Song s WHERE s.idGender = :idGender") })
 public class Song implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_song", unique=true, nullable=false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_song", unique = true, nullable = false)
 	private int idSong;
 
-	@Column(name="id_artist", nullable=false)
+	@Column(name = "id_artist", nullable = false)
 	private int idArtist;
 
-	@Column(name="id_gender", nullable=false)
+	@Column(name = "id_gender", nullable = false)
 	private int idGender;
 
-	@Column(nullable=false, length=100)
+	@Column(nullable = false, length = 100)
 	private String title;
 
-	//bi-directional many-to-one association to Presentation
-	@OneToMany(mappedBy="song")
+	// bi-directional many-to-one association to Presentation
+	@OneToMany(mappedBy = "song")
 	private List<Presentation> presentations;
 
-	//bi-directional many-to-one association to Artist
+	// bi-directional many-to-one association to Artist
 	@ManyToOne
-	@JoinColumn(name="id_artist1")
+	@JoinColumn(name = "id_artist1")
 	private Artist artist;
 
-	//bi-directional many-to-one association to Gender
+	// bi-directional many-to-one association to Gender
 	@ManyToOne
-	@JoinColumn(name="id_gender1")
+	@JoinColumn(name = "id_gender1")
 	private Gender gender;
 
-	//bi-directional many-to-one association to SongMatrix
-	@OneToMany(mappedBy="song")
+	// bi-directional many-to-one association to SongMatrix
+	@OneToMany(mappedBy = "song")
 	private List<SongMatrix> songMatrixs;
 
 	public Song() {
@@ -140,5 +147,14 @@ public class Song implements Serializable {
 
 		return songMatrix;
 	}
+
+	@Override
+	public String toString() {
+		return "Song [idSong=" + idSong + ", idArtist=" + idArtist + ", idGender=" + idGender + ", title=" + title
+				+ ", presentations=" + presentations + ", artist=" + artist + ", gender=" + gender + ", songMatrixs="
+				+ songMatrixs + "]";
+	}
+	
+	
 
 }

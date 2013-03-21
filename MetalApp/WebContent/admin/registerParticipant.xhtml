@@ -13,28 +13,25 @@
 		<h:form>
 			<h:panelGrid>
 				<h:outputText value="Username" />
-				<h:inputText
-					value="#{managedRegisterParticipant.participant.username}" />
+				<h:inputText value="#{beanRegisterParticipant.participant.username}" />
 
 				<h:outputText value="Name" />
-				<h:inputText value="#{managedRegisterParticipant.participant.name}" />
+				<h:inputText value="#{beanRegisterParticipant.participant.name}" />
 
 				<h:outputText value="Password" />
-				<h:inputText
-					value="#{managedRegisterParticipant.participant.password}" />
+				<h:inputText value="#{beanRegisterParticipant.participant.password}" />
 
 				<h:outputText value="Age" />
-				<h:inputText value="#{managedRegisterParticipant.participant.age}" />
+				<h:inputText value="#{beanRegisterParticipant.participant.age}" />
 
 				<h:outputText value="Gender" />
-				<h:inputText
-					value="#{managedRegisterParticipant.participant.gender}" />
+				<h:inputText value="#{beanRegisterParticipant.participant.gender}" />
 
 				<h:outputText value="Phone" />
-				<h:inputText value="#{managedRegisterParticipant.participant.phone}" />
+				<h:inputText value="#{beanRegisterParticipant.participant.phone}" />
 
 				<h:commandButton value="New Participant"
-					action="#{managedRegisterParticipant.doCreateParticipant}" />
+					action="#{beanRegisterParticipant.doCreateParticipant}" />
 			</h:panelGrid>
 		</h:form>
 	</ui:define>

@@ -16,13 +16,13 @@ import com.metal.model.Participant;
  */
 @Stateless
 @LocalBean
-public class ServiceAdmin {
+public class ServiceAdminEJB {
 
 	@PersistenceContext(unitName = "MetalApp")
 	private EntityManager em;
 
 	/** Default constructor. */
-	public ServiceAdmin() {
+	public ServiceAdminEJB() {
 
 	}
 

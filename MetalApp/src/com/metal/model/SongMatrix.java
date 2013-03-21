@@ -2,23 +2,50 @@ package com.metal.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * The persistent class for the song_matrix database table.
  * 
  */
 @Entity
-@Table(name="song_matrix")
+@Table(name = "song_matrix")
+@XmlRootElement
+@NamedQueries({
+		@NamedQuery(name = "SongMatrix.findAll", query = "SELECT s FROM SongMatrix s"),
+		@NamedQuery(name = "SongMatrix.findByIdSong", query = "SELECT s FROM SongMatrix s WHERE s.idSong = :idSong"),
+		@NamedQuery(name = "SongMatrix.findByMusicality1", query = "SELECT s FROM SongMatrix s WHERE s.musicality1 = :musicality1"),
+		@NamedQuery(name = "SongMatrix.findByMusicality2", query = "SELECT s FROM SongMatrix s WHERE s.musicality2 = :musicality2"),
+		@NamedQuery(name = "SongMatrix.findByMusicality3", query = "SELECT s FROM SongMatrix s WHERE s.musicality3 = :musicality3"),
+		@NamedQuery(name = "SongMatrix.findByMusicality4", query = "SELECT s FROM SongMatrix s WHERE s.musicality4 = :musicality4"),
+		@NamedQuery(name = "SongMatrix.findByMusicality5", query = "SELECT s FROM SongMatrix s WHERE s.musicality5 = :musicality5"),
+		@NamedQuery(name = "SongMatrix.findByMusicality6", query = "SELECT s FROM SongMatrix s WHERE s.musicality6 = :musicality6"),
+		@NamedQuery(name = "SongMatrix.findByMusicality7", query = "SELECT s FROM SongMatrix s WHERE s.musicality7 = :musicality7"),
+		@NamedQuery(name = "SongMatrix.findByMusicality8", query = "SELECT s FROM SongMatrix s WHERE s.musicality8 = :musicality8"),
+		@NamedQuery(name = "SongMatrix.findByMusicality9", query = "SELECT s FROM SongMatrix s WHERE s.musicality9 = :musicality9"),
+		@NamedQuery(name = "SongMatrix.findByMusicality10", query = "SELECT s FROM SongMatrix s WHERE s.musicality10 = :musicality10"),
+		@NamedQuery(name = "SongMatrix.findByComposition1", query = "SELECT s FROM SongMatrix s WHERE s.composition1 = :composition1"),
+		@NamedQuery(name = "SongMatrix.findByComposition2", query = "SELECT s FROM SongMatrix s WHERE s.composition2 = :composition2"),
+		@NamedQuery(name = "SongMatrix.findByComposition3", query = "SELECT s FROM SongMatrix s WHERE s.composition3 = :composition3"),
+		@NamedQuery(name = "SongMatrix.findByComposition4", query = "SELECT s FROM SongMatrix s WHERE s.composition4 = :composition4"),
+		@NamedQuery(name = "SongMatrix.findByComposition5", query = "SELECT s FROM SongMatrix s WHERE s.composition5 = :composition5"),
+		@NamedQuery(name = "SongMatrix.findByComposition6", query = "SELECT s FROM SongMatrix s WHERE s.composition6 = :composition6"),
+		@NamedQuery(name = "SongMatrix.findByComposition7", query = "SELECT s FROM SongMatrix s WHERE s.composition7 = :composition7"),
+		@NamedQuery(name = "SongMatrix.findByComposition8", query = "SELECT s FROM SongMatrix s WHERE s.composition8 = :composition8"),
+		@NamedQuery(name = "SongMatrix.findByComposition9", query = "SELECT s FROM SongMatrix s WHERE s.composition9 = :composition9"),
+		@NamedQuery(name = "SongMatrix.findByComposition10", query = "SELECT s FROM SongMatrix s WHERE s.composition10 = :composition10"),
+		@NamedQuery(name = "SongMatrix.findByMusicalityScore", query = "SELECT s FROM SongMatrix s WHERE s.musicalityScore = :musicalityScore"),
+		@NamedQuery(name = "SongMatrix.findByCompositionScore", query = "SELECT s FROM SongMatrix s WHERE s.compositionScore = :compositionScore"),
+		@NamedQuery(name = "SongMatrix.findByTotalScore", query = "SELECT s FROM SongMatrix s WHERE s.totalScore = :totalScore") })
 public class SongMatrix implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_song", unique=true, nullable=false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_song", unique = true, nullable = false)
 	private int idSong;
 
-	@Column(name="composition_score")
+	@Column(name = "composition_score")
 	private float compositionScore;
 
 	private int composition1;
@@ -41,7 +68,7 @@ public class SongMatrix implements Serializable {
 
 	private int composition9;
 
-	@Column(name="musicality_score")
+	@Column(name = "musicality_score")
 	private float musicalityScore;
 
 	private int musicality1;
@@ -64,12 +91,12 @@ public class SongMatrix implements Serializable {
 
 	private int musicality9;
 
-	@Column(name="total_score")
+	@Column(name = "total_score")
 	private float totalScore;
 
-	//bi-directional many-to-one association to Song
+	// bi-directional many-to-one association to Song
 	@ManyToOne
-	@JoinColumn(name="id_song1")
+	@JoinColumn(name = "id_song1")
 	private Song song;
 
 	public SongMatrix() {

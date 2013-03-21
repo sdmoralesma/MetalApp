@@ -21,6 +21,22 @@
 		<h:messages showSummary="true" showDetail="false"
 			errorStyle="color: #d20005" infoStyle="color: blue" />
 	</div>
+
+	<div>
+		<h:link outcome="registerJury.xhtml" value="Register Jury" />
+		<br />
+		<h:link outcome="registerParticipant.xhtml"
+			value="Register Participant" />
+	</div>
+
+
+	<div>
+		<h3>JURY SECTION</h3>
+		<h:link outcome="../jury/votePerParticipant.xhtml"
+			value="Vote Participant" />
+		<br />
+		<h:link outcome="../jury/votePerSong.xhtml" value="Vote Song" />
+	</div>
 </h:body>
 </html>
 

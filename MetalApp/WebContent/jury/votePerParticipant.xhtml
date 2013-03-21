@@ -12,17 +12,11 @@
 		<h3>Register Jury</h3>
 		<h:form>
 			<h:panelGrid>
-				<h:outputText value="Username" />
-				<h:inputText value="#{beanRegisterJury.jury.username}" />
+				<h:outputText value="Username del Participante a votar" />
+				<h:inputText value="#{beanVotePerParticipant.participant.username}" />
 
-				<h:outputText value="Name" />
-				<h:inputText value="#{beanRegisterJury.jury.name}" />
-
-				<h:outputText value="Password" />
-				<h:inputText value="#{beanRegisterJury.jury.password}" />
-
-				<h:commandButton value="New Jury"
-					action="#{beanRegisterJury.doCreateJury}" />
+				<h:commandButton value="Vote per Participant!"
+					action="#{beanVotePerParticipant.doVotePerParticipant}" />
 			</h:panelGrid>
 		</h:form>
 	</ui:define>

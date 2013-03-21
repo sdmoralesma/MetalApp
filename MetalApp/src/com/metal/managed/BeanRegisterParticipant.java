@@ -7,15 +7,15 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import com.metal.ejb.Facade;
+import com.metal.ejb.FacadeEJB;
 import com.metal.model.Participant;
 
 @ManagedBean
 @RequestScoped
-public class ManagedRegisterParticipant {
+public class BeanRegisterParticipant {
 
 	@EJB
-	private Facade facade;
+	private FacadeEJB facade;
 	
 	private Participant participant = new Participant();
 	private List<Participant> participantList = new ArrayList<>();

@@ -2,6 +2,8 @@ package com.metal.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import java.util.List;
 
 
@@ -11,6 +13,16 @@ import java.util.List;
  */
 @Entity
 @Table(name="presentation")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Presentation.findAll", query = "SELECT p FROM Presentation p"),
+    @NamedQuery(name = "Presentation.findByIdPresentation", query = "SELECT p FROM Presentation p WHERE p.idPresentation = :idPresentation"),
+    @NamedQuery(name = "Presentation.findByIdParticipant", query = "SELECT p FROM Presentation p WHERE p.idParticipant = :idParticipant"),
+    @NamedQuery(name = "Presentation.findByIdSong", query = "SELECT p FROM Presentation p WHERE p.idSong = :idSong"),
+    @NamedQuery(name = "Presentation.findByIdJury", query = "SELECT p FROM Presentation p WHERE p.idJury = :idJury"),
+    @NamedQuery(name = "Presentation.findByHandScore", query = "SELECT p FROM Presentation p WHERE p.handScore = :handScore"),
+    @NamedQuery(name = "Presentation.findByHeadScore", query = "SELECT p FROM Presentation p WHERE p.headScore = :headScore"),
+    @NamedQuery(name = "Presentation.findByTotalScore", query = "SELECT p FROM Presentation p WHERE p.totalScore = :totalScore")})
 public class Presentation implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -48,7 +60,7 @@ public class Presentation implements Serializable {
 
 	//bi-directional many-to-one association to Participant
 	@ManyToOne
-	@JoinColumn(name="id_participat")
+	@JoinColumn(name="id_participant", insertable=false, updatable=false)
 	private Participant participant;
 
 	public Presentation() {

@@ -2,23 +2,50 @@ package com.metal.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * The persistent class for the score_matrix database table.
  * 
  */
 @Entity
-@Table(name="score_matrix")
+@Table(name = "score_matrix")
+@XmlRootElement
+@NamedQueries({
+		@NamedQuery(name = "ScoreMatrix.findAll", query = "SELECT s FROM ScoreMatrix s"),
+		@NamedQuery(name = "ScoreMatrix.findByIdParticipant", query = "SELECT s FROM ScoreMatrix s WHERE s.idParticipant = :idParticipant"),
+		@NamedQuery(name = "ScoreMatrix.findByHead1", query = "SELECT s FROM ScoreMatrix s WHERE s.head1 = :head1"),
+		@NamedQuery(name = "ScoreMatrix.findByHead2", query = "SELECT s FROM ScoreMatrix s WHERE s.head2 = :head2"),
+		@NamedQuery(name = "ScoreMatrix.findByHead3", query = "SELECT s FROM ScoreMatrix s WHERE s.head3 = :head3"),
+		@NamedQuery(name = "ScoreMatrix.findByHead4", query = "SELECT s FROM ScoreMatrix s WHERE s.head4 = :head4"),
+		@NamedQuery(name = "ScoreMatrix.findByHead5", query = "SELECT s FROM ScoreMatrix s WHERE s.head5 = :head5"),
+		@NamedQuery(name = "ScoreMatrix.findByHead6", query = "SELECT s FROM ScoreMatrix s WHERE s.head6 = :head6"),
+		@NamedQuery(name = "ScoreMatrix.findByHead7", query = "SELECT s FROM ScoreMatrix s WHERE s.head7 = :head7"),
+		@NamedQuery(name = "ScoreMatrix.findByHead8", query = "SELECT s FROM ScoreMatrix s WHERE s.head8 = :head8"),
+		@NamedQuery(name = "ScoreMatrix.findByHead9", query = "SELECT s FROM ScoreMatrix s WHERE s.head9 = :head9"),
+		@NamedQuery(name = "ScoreMatrix.findByHead10", query = "SELECT s FROM ScoreMatrix s WHERE s.head10 = :head10"),
+		@NamedQuery(name = "ScoreMatrix.findByHand1", query = "SELECT s FROM ScoreMatrix s WHERE s.hand1 = :hand1"),
+		@NamedQuery(name = "ScoreMatrix.findByHand2", query = "SELECT s FROM ScoreMatrix s WHERE s.hand2 = :hand2"),
+		@NamedQuery(name = "ScoreMatrix.findByHand3", query = "SELECT s FROM ScoreMatrix s WHERE s.hand3 = :hand3"),
+		@NamedQuery(name = "ScoreMatrix.findByHand4", query = "SELECT s FROM ScoreMatrix s WHERE s.hand4 = :hand4"),
+		@NamedQuery(name = "ScoreMatrix.findByHand5", query = "SELECT s FROM ScoreMatrix s WHERE s.hand5 = :hand5"),
+		@NamedQuery(name = "ScoreMatrix.findByHand6", query = "SELECT s FROM ScoreMatrix s WHERE s.hand6 = :hand6"),
+		@NamedQuery(name = "ScoreMatrix.findByHand7", query = "SELECT s FROM ScoreMatrix s WHERE s.hand7 = :hand7"),
+		@NamedQuery(name = "ScoreMatrix.findByHand8", query = "SELECT s FROM ScoreMatrix s WHERE s.hand8 = :hand8"),
+		@NamedQuery(name = "ScoreMatrix.findByHand9", query = "SELECT s FROM ScoreMatrix s WHERE s.hand9 = :hand9"),
+		@NamedQuery(name = "ScoreMatrix.findByHand10", query = "SELECT s FROM ScoreMatrix s WHERE s.hand10 = :hand10"),
+		@NamedQuery(name = "ScoreMatrix.findByHandScore", query = "SELECT s FROM ScoreMatrix s WHERE s.handScore = :handScore"),
+		@NamedQuery(name = "ScoreMatrix.findByHeadScore", query = "SELECT s FROM ScoreMatrix s WHERE s.headScore = :headScore"),
+		@NamedQuery(name = "ScoreMatrix.findByTotalScore", query = "SELECT s FROM ScoreMatrix s WHERE s.totalScore = :totalScore") })
 public class ScoreMatrix implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_participant", unique=true, nullable=false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_participant", unique = true, nullable = false)
 	private int idParticipant;
 
-	@Column(name="hand_score")
+	@Column(name = "hand_score")
 	private float handScore;
 
 	private int hand1;
@@ -41,7 +68,7 @@ public class ScoreMatrix implements Serializable {
 
 	private int hand9;
 
-	@Column(name="head_score")
+	@Column(name = "head_score")
 	private float headScore;
 
 	private int head1;
@@ -64,12 +91,12 @@ public class ScoreMatrix implements Serializable {
 
 	private int head9;
 
-	@Column(name="total_score")
+	@Column(name = "total_score")
 	private float totalScore;
 
-	//bi-directional many-to-one association to Participant
+	// bi-directional many-to-one association to Participant
 	@ManyToOne
-	@JoinColumn(name="id_participat")
+	@JoinColumn(name = "id_participant", insertable=false, updatable=false)
 	private Participant participant;
 
 	public ScoreMatrix() {
