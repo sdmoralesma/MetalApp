@@ -12,7 +12,7 @@ import com.metal.model.Song;
 
 @ManagedBean
 @RequestScoped
-public class BeanVotePerSong {
+public class BeanSong {
 
 	@EJB
 	private FacadeEJB facade;
@@ -22,8 +22,14 @@ public class BeanVotePerSong {
 
 	public String doVotePerSong() {
 		facade.registerVotePerSong(song);
-//		songList = facade.find();
+		// songList = facade.find();
 		return "votePerSong.xhtml";
+	}
+
+	public String doCreateSong() {
+		facade.registerSong(song);
+		// songList = facade.find();
+		return "registerSong.xhtml";
 	}
 
 	// Getters y Setters
@@ -42,7 +48,4 @@ public class BeanVotePerSong {
 	public void setSongList(List<Song> songList) {
 		this.songList = songList;
 	}
-
-	
-
 }

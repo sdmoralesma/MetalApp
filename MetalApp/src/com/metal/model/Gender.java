@@ -6,39 +6,37 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import java.util.List;
 
-
 /**
  * The persistent class for the gender database table.
  * 
  */
 @Entity
-@Table(name="gender")
+@Table(name = "gender")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Gender.findAll", query = "SELECT g FROM Gender g"),
-    @NamedQuery(name = "Gender.findByIdGender", query = "SELECT g FROM Gender g WHERE g.idGender = :idGender"),
-    @NamedQuery(name = "Gender.findByName", query = "SELECT g FROM Gender g WHERE g.name = :name"),
-    @NamedQuery(name = "Gender.findByHandValue", query = "SELECT g FROM Gender g WHERE g.handValue = :handValue"),
-    @NamedQuery(name = "Gender.findByHeadValue", query = "SELECT g FROM Gender g WHERE g.headValue = :headValue")})
+@NamedQueries({ @NamedQuery(name = "Gender.findAll", query = "SELECT g FROM Gender g"),
+		@NamedQuery(name = "Gender.findByIdGender", query = "SELECT g FROM Gender g WHERE g.idGender = :idGender"),
+		@NamedQuery(name = "Gender.findByName", query = "SELECT g FROM Gender g WHERE g.name = :name"),
+		@NamedQuery(name = "Gender.findByHandValue", query = "SELECT g FROM Gender g WHERE g.handValue = :handValue"),
+		@NamedQuery(name = "Gender.findByHeadValue", query = "SELECT g FROM Gender g WHERE g.headValue = :headValue") })
 public class Gender implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_gender", unique=true, nullable=false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_gender", unique = true, nullable = false)
 	private int idGender;
 
-	@Column(name="hand_value", nullable=false)
+	@Column(name = "hand_value", nullable = false)
 	private int handValue;
 
-	@Column(name="head_value", nullable=false)
+	@Column(name = "head_value", nullable = false)
 	private int headValue;
 
-	@Column(nullable=false, length=50)
+	@Column(nullable = false, length = 50)
 	private String name;
 
-	//bi-directional many-to-one association to Song
-	@OneToMany(mappedBy="gender")
+	// bi-directional many-to-one association to Song
+	@OneToMany(mappedBy = "gender")
 	private List<Song> songs;
 
 	public Gender() {

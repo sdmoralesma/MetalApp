@@ -28,8 +28,7 @@ public class ServiceAdminEJB {
 
 	// Participant Methods
 	public List<Participant> findAllParticipants() {
-		TypedQuery<Participant> query = em.createNamedQuery(
-				"Participant.findAll", Participant.class);
+		TypedQuery<Participant> query = em.createNamedQuery("Participant.findAll", Participant.class);
 		return query.getResultList();
 	}
 

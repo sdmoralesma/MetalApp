@@ -9,16 +9,24 @@
 <ui:composition template="/WEB-INF/template.xhtml">
 
 	<ui:define name="content">
-		<h3>Vote per Song</h3>
+		<h3>Register Song</h3>
 		<h:form>
 			<h:panelGrid>
-				<h:outputText value="Title of the Song" />
-				<h:inputText value="#{beanSong.song.title}" />
+				<h:outputText value="Hand Value" />
+				<h:inputText value="#{beanRegisterGender.gender.handValue}" />
 
-				<h:commandButton value="Vote per Song"
-					action="#{beanSong.doVotePerSong}" />
+				<h:outputText value="Head Value" />
+				<h:inputText value="#{beanRegisterGender.gender.headValue}" />
+
+
+				<h:outputText value="Name Gender" />
+				<h:inputText value="#{beanRegisterGender.gender.name}" />
+
+				<h:commandButton value="Add Gender"
+					action="#{beanRegisterGender.doCreateGender}" />
 			</h:panelGrid>
 		</h:form>
+
 	</ui:define>
 
 </ui:composition>
