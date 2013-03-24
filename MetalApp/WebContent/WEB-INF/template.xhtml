@@ -1,12 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
-<head>
-<title><ui:insert name="title">Default title</ui:insert></title>
-</head>
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title><ui:insert name="title">Metal App</ui:insert></title>
+</h:head>
 
-<body>
+<h:body>
 	<div id="header">
 		<ui:insert name="header">
 			<h2>Metal HeadBanging Application</h2>
@@ -15,14 +18,14 @@
 
 	<div id="content">
 		<ui:insert name="content">
-    	Content TEMPLATE
+    	Insert Your Content
   </ui:insert>
 	</div>
 
 	<div id="footer">
 		<ui:insert name="footer">
-			<h3>Powered by: Sergio Morales</h3>
+			<h2>By: Sergio Morales</h2>
 		</ui:insert>
 	</div>
-</body>
+</h:body>
 </html>

@@ -2,47 +2,40 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html">
-<h:head>
-	<title>Facelets Hello Greeting</title>
-</h:head>
-<h:body>
-	<h:form>
-		<h:graphicImage url="duke.waving.gif" alt="Duke waving his hand" />
-		<h2>Hello, my name is Duke. What's yours?</h2>
-		<h:inputText id="username" title="My name is: " value="#{hello.name}"
-			required="true" requiredMessage="Error: A name is required."
-			maxlength="25" />
-		<p></p>
-		<h:commandButton id="submit" value="Submit" action="response" />
-		<h:commandButton id="reset" value="Reset" type="reset" />
-	</h:form>
-	<div class="messagecolor">
-		<h:messages showSummary="true" showDetail="false"
-			errorStyle="color: #d20005" infoStyle="color: blue" />
-	</div>
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-	<div>
-		<h:link outcome="registerJury.xhtml" value="Register Jury" />
-		<br />
-		<h:link outcome="registerParticipant.xhtml"
-			value="Register Participant" />
-		<br />
-		<h:link outcome="registerSong.xhtml" value="Register Song" />
-		<br />
-		<h:link outcome="registerGender.xhtml" value="Register Gender" />
-	</div>
+<ui:composition template="/WEB-INF/template.xhtml">
+	<ui:define name="content">
 
+		<h:form>
+			<h:graphicImage url="duke.waving.gif" alt="Duke waving his hand" />
+			<p>Hello, my name is Duke. What's yours?</p>
+			<h:inputText id="username" title="My name is: " value="#{hello.name}"
+				required="true" requiredMessage="Error: A name is required."
+				maxlength="25" />
 
-	<div>
-		<h3>JURY SECTION</h3>
-		<h:link outcome="../jury/votePerParticipant.xhtml"
-			value="Vote Participant" />
-		<br />
-		<h:link outcome="../jury/votePerSong.xhtml" value="Vote Song" />
+			<h3>Welcome Admin</h3>
 
+			<h:commandButton id="submit" value="Submit" action="response" />
+			<h:commandButton id="reset" value="Reset" type="reset" />
+		</h:form>
+		<div class="messagecolor">
+			<h:messages showSummary="true" showDetail="false"
+				errorStyle="color: #d20005" infoStyle="color: blue" />
+		</div>
 
-	</div>
-</h:body>
+		<div>
+			<h:link outcome="registerJury.xhtml" value="Register Jury" />
+			<br />
+			<h:link outcome="registerParticipant.xhtml"
+				value="Register Participant" />
+			<br />
+			<h:link outcome="registerSong.xhtml" value="Register Song" />
+			<br />
+			<h:link outcome="registerGender.xhtml" value="Register Gender" />
+		</div>
+	</ui:define>
+</ui:composition>
 </html>
 

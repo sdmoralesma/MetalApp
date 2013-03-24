@@ -2,31 +2,31 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core">
-<h:head>
-	<title>Login Form</title>
-</h:head>
-<h:body>
 
-	<h2>Hello, please log in:</h2>
+<ui:composition template="/WEB-INF/template.xhtml">
 
-	<p:panel header="Login From">
-		<form method="post" action="j_security_check">
+	<ui:define name="content">
+		<h2>Please log in:</h2>
 
-			<p:panelGrid columns="2">
-				<p:outputLabel>Username: </p:outputLabel>
-				<input type="text" name="j_username" />
-				<p:outputLabel>Password:  </p:outputLabel>
-				<input type="password" name="j_password" />
-			</p:panelGrid>
+		<p:panel header="Login From">
+			<form method="post" action="j_security_check">
 
-			<input type="submit" value="Login" /> <input type="reset"
-				value="Reset" />
+				<p:panelGrid columns="2">
+					<p:outputLabel>Username: </p:outputLabel>
+					<input type="text" name="j_username" />
+					<p:outputLabel>Password:  </p:outputLabel>
+					<input type="password" name="j_password" />
+				</p:panelGrid>
 
-		</form>
-	</p:panel>
+				<input type="submit" value="Login" /> <input type="reset"
+					value="Reset" />
 
-</h:body>
+			</form>
+		</p:panel>
+	</ui:define>
+</ui:composition>
 </html>

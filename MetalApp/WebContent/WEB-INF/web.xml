@@ -4,6 +4,8 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	version="3.0">
 	<display-name>MetalApp</display-name>
+
+	<!-- JSF -->
 	<context-param>
 		<description>State saving method: 'client' or 'server' (=default). See JSF Specification 2.5.2</description>
 		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
@@ -32,13 +34,17 @@
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
+
 	<welcome-file-list>
 		<welcome-file>faces/index.xhtml</welcome-file>
 	</welcome-file-list>
+
 	<error-page>
 		<error-code>403</error-code>
 		<location>/faces/error.xhtml</location>
 	</error-page>
+
+
 	<login-config>
 		<auth-method>FORM</auth-method>
 		<realm-name>securityRealm</realm-name>
@@ -47,6 +53,8 @@
 			<form-error-page>/faces/error.xhtml</form-error-page>
 		</form-login-config>
 	</login-config>
+
+	<!-- SECURITY CONSTRAINTS -->
 	<security-constraint>
 		<display-name>Admin Area</display-name>
 		<web-resource-collection>
@@ -59,10 +67,13 @@
 			<role-name>admin</role-name>
 		</auth-constraint>
 	</security-constraint>
+
+	<!-- SECURITY ROLES -->
 	<security-role>
 		<role-name>admin</role-name>
 	</security-role>
 	<security-role>
 		<role-name>user</role-name>
 	</security-role>
+
 </web-app>
