@@ -1,25 +1,29 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
 
 <ui:composition template="/WEB-INF/template.xhtml">
 	<ui:define name="content">
 
 		<h:form>
-			<h:graphicImage url="duke.waving.gif" alt="Duke waving his hand" />
+			<p:graphicImage url="duke.waving.gif" alt="Duke waving his hand" />
 			<p>Hello, my name is Duke. What's yours?</p>
-			<h:inputText id="username" title="My name is: " value="#{hello.name}"
+			<p:inputText id="username" title="My name is: " value="#{hello.name}"
 				required="true" requiredMessage="Error: A name is required."
 				maxlength="25" />
 
-			<h3>Welcome Admin</h3>
-
-			<h:commandButton id="submit" value="Submit" action="response" />
-			<h:commandButton id="reset" value="Reset" type="reset" />
+			<p:commandButton id="submit" value="Submit" action="response" />
+			<p:commandButton id="reset" value="Reset" type="reset" />
 		</h:form>
+
+		<h3>Welcome Admin</h3>
 		<div class="messagecolor">
 			<h:messages showSummary="true" showDetail="false"
 				errorStyle="color: #d20005" infoStyle="color: blue" />
