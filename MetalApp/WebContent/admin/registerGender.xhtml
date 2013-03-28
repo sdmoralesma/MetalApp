@@ -4,11 +4,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/WEB-INF/template.xhtml">
 	<ui:define name="content">
-		<h3>Register Song</h3>
+		<h3>Register Gender</h3>
 		<h:form>
 			<h:panelGrid>
 				<h:outputText value="Hand Value" />
@@ -25,6 +26,30 @@
 					action="#{beanRegisterGender.doCreateGender}" />
 			</h:panelGrid>
 		</h:form>
+
+		<h2>List of Genders</h2>
+		<h:form>
+			<p:dataTable value="#{beanRegisterGender.genderList}" var="gender">
+
+				<p:column headerText="Id">
+					<h:outputText value="#{gender.idGender}" />
+				</p:column>
+
+				<p:column headerText="Name">
+					<h:outputText value="#{gender.name}" />
+				</p:column>
+
+				<p:column headerText="Hand Value">
+					<h:outputText value="#{gender.handValue}" />
+				</p:column>
+
+				<p:column headerText="Head Value">
+					<h:outputText value="#{gender.headValue}" />
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+
 	</ui:define>
 </ui:composition>
 </html>

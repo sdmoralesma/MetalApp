@@ -34,7 +34,7 @@ public class BeanRegisterParticipant {
 	public void setParticipant(Participant participant) {
 		this.participant = participant;
 	}
-
+	
 	public List<Participant> getParticipantList() {
 		return participantList;
 	}

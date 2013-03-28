@@ -22,13 +22,13 @@ public class BeanSong {
 
 	public String doVotePerSong() {
 		facade.registerVotePerSong(song);
-		// songList = facade.find();
+		songList = facade.findSongs();
 		return "votePerSong.xhtml";
 	}
 
 	public String doCreateSong() {
 		facade.registerSong(song);
-		// songList = facade.find();
+		songList = facade.findSongs();
 		return "registerSong.xhtml";
 	}
 

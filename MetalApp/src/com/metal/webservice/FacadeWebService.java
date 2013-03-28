@@ -1,32 +1,39 @@
 package com.metal.webservice;
 
-import java.util.List;
-
-import javax.ejb.LocalBean;
-import javax.ejb.Stateless;
-import javax.jws.WebParam;
-import javax.jws.WebService;
-
-import com.metal.model.Participant;
-import com.metal.model.Song;
-
 /**
  * Session Bean implementation class WebServiceFacade
  */
-@WebService
-@Stateless
-@LocalBean
+// @WebService
+// @Stateless
+// @LocalBean
 public class FacadeWebService {
 
-	public List<Participant> getRatingParticipants() {
-		return null;
+	// public List<Participant> getRatingParticipants() {
+	// System.out.println("WS RatingParticipants");
+	// return null;
+	// }
+
+	// public List<Song> getRatingSongs() {
+	// System.out.println("WS RatingSongs");
+	// return null;
+	// }
+
+	// public Participant getRatingPerParticipant(@WebParam Participant
+	// participant) {
+	// System.out.println("WS RatingPerParticipant");
+	// return null;
+	// }
+
+	public String animalType(String animal) {
+		String animalType = "";
+		if ("Lion".equals(animal)) {
+			animalType = "Wild";
+		} else if ("Dog".equals(animal)) {
+			animalType = "Domestic";
+		} else {
+			animalType = "I don't know!";
+		}
+		return animalType;
 	}
 
-	public List<Song> getRatingSongs() {
-		return null;
-	}
-
-	public Participant getRatingPerParticipant(@WebParam Participant participant) {
-		return null;
-	}
 }

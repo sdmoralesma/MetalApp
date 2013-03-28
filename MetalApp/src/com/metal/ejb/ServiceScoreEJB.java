@@ -9,7 +9,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import com.metal.model.Gender;
-import com.metal.model.Participant;
 import com.metal.model.Song;
 
 /**

@@ -4,11 +4,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/WEB-INF/template.xhtml">
 
 	<ui:define name="content">
+
 		<h3>Register Participant</h3>
 		<h:form>
 			<h:panelGrid>
@@ -34,7 +36,38 @@
 					action="#{beanRegisterParticipant.doCreateParticipant}" />
 			</h:panelGrid>
 		</h:form>
-	</ui:define>
 
+		<h2>List of the Participants</h2>
+		<h:form>
+			<p:dataTable value="#{beanRegisterParticipant.participantList}" var="participant">
+
+				<p:column headerText="Id">
+					<h:outputText value="#{participant.idParticipant}" />
+				</p:column>
+
+				<p:column headerText="Age">
+					<h:outputText value="#{participant.age}" />
+				</p:column>
+
+				<p:column headerText="Gender">
+					<h:outputText value="#{participant.gender}" />
+				</p:column>
+
+				<p:column headerText="Name">
+					<h:outputText value="#{participant.name}" />
+				</p:column>
+
+				<p:column headerText="Phone">
+					<h:outputText value="#{participant.phone}" />
+				</p:column>
+
+				<p:column headerText="UserName">
+					<h:outputText value="#{participant.username}" />
+				</p:column>			
+				
+			</p:dataTable>
+		</h:form>
+
+	</ui:define>
 </ui:composition>
 </html>

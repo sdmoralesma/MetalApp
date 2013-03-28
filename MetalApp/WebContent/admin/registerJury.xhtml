@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/WEB-INF/template.xhtml">
 
@@ -25,7 +26,25 @@
 					action="#{beanRegisterJury.doCreateJury}" />
 			</h:panelGrid>
 		</h:form>
-	</ui:define>
 
+		<h2>List of Juries</h2>
+		<h:form>
+			<p:dataTable value="#{beanRegisterJury.juryList}" var="jury">
+
+				<p:column headerText="Id">
+					<h:outputText value="#{jury.idJury}" />
+				</p:column>
+
+				<p:column headerText="Name">
+					<h:outputText value="#{jury.name}" />
+				</p:column>
+
+				<p:column headerText="UserName">
+					<h:outputText value="#{jury.username}" />
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+	</ui:define>
 </ui:composition>
 </html>

@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/WEB-INF/template.xhtml">
 
@@ -26,6 +27,29 @@
 					action="#{beanSong.doCreateSong}" />
 			</h:panelGrid>
 		</h:form>
+
+		<h2>List of Songs</h2>
+		<h:form>
+			<p:dataTable value="#{beanSong.songList}" var="song">
+
+				<p:column headerText="Id">
+					<h:outputText value="#{song.idSong}" />
+				</p:column>
+
+				<p:column headerText="IdArtist">
+					<h:outputText value="#{song.idArtist}" />
+				</p:column>
+
+				<p:column headerText="IdGender">
+					<h:outputText value="#{song.idGender}" />
+				</p:column>
+
+				<p:column headerText="Title">
+					<h:outputText value="#{song.title}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+		
 	</ui:define>
 
 </ui:composition>
