@@ -6,7 +6,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import com.metal.model.Participant;
 import com.metal.model.Song;
@@ -35,14 +35,15 @@ public class ServiceJuryEJB {
 	}
 
 	public void addVotePerParticipant(Participant participant) {
-		Query query = em.createNamedQuery("Participant.findByUsername").setParameter("username",
-				participant.getUsername());
+		TypedQuery<Participant> query = em.createNamedQuery("Participant.findByUsername", Participant.class)
+				.setParameter("username", participant.getUsername());
 		List<Participant> participants = query.getResultList();
 		System.out.println(participants.get(0));
 	}
 
 	public void addVotePerSong(Song song) {
-		Query query = em.createNamedQuery("Song.findByTitle", Song.class).setParameter("title", song.getTitle());
+		TypedQuery<Song> query = em.createNamedQuery("Song.findByTitle", Song.class).setParameter("title",
+				song.getTitle());
 		List<Song> songs = query.getResultList();
 		System.out.println(songs.get(0));
 	}
