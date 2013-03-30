@@ -3,7 +3,7 @@
 <sun-web-app error-url="">
 	<context-root>/MetalApp</context-root>
 
-	<!-- Security Roles -->
+	<!-- SECURITY ROLES CONFIG -->
 	<security-role-mapping>
 		<role-name>admin</role-name>
 		<group-name>admin</group-name>

@@ -1,18 +1,14 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core">
-
-<ui:composition template="/WEB-INF/template.xhtml">
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/WEB-INF/templates/template.xhtml">
 
 	<ui:define name="content">
 		<h2>Please log in:</h2>
 
-		<p:panel header="Login From">
+		<p:panel header="Login Form">
 			<form method="post" action="j_security_check">
 
 				<p:panelGrid columns="2">
@@ -22,14 +18,14 @@
 					<input type="password" name="j_password" />
 				</p:panelGrid>
 
-								<input type="submit" value="Login" /> 
-								<input type="reset"	value="Reset" />
+<!-- 				<input type="submit" value="Login" /> <input type="reset" -->
+<!-- 					value="Reset" /> -->
 
-<!-- 				<p:commandButton type="submit" value="Login"/> -->
-<!-- 				<p:commandButton type="reset" value="Reset"/> -->
-				
+				<p:commandButton type="submit" value="Login" />
+				<p:commandButton type="reset" value="Reset" />
+
 			</form>
 		</p:panel>
+		
 	</ui:define>
 </ui:composition>
-</html>

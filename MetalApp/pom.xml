@@ -18,6 +18,11 @@
 			<artifactId>primefaces</artifactId>
 			<version>3.5</version>
 		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+		</dependency>
 	</dependencies>
 
 	<repositories>

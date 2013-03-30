@@ -1,18 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
-
-<ui:composition template="/WEB-INF/template.xhtml">
+	template="/WEB-INF/templates/template.xhtml">
 
 	<ui:define name="content">
 		<h3>Register Jury</h3>
 		<h:form>
-			<h:panelGrid>
+			<h:panelGrid columns="2">
 				<h:outputText value="Username" />
 				<h:inputText value="#{beanRegisterJury.jury.username}" />
 
@@ -22,7 +18,7 @@
 				<h:outputText value="Password" />
 				<h:inputText value="#{beanRegisterJury.jury.password}" />
 
-				<h:commandButton value="New Jury"
+				<h:commandButton value="Add Jury"
 					action="#{beanRegisterJury.doCreateJury}" />
 			</h:panelGrid>
 		</h:form>
@@ -47,4 +43,3 @@
 		</h:form>
 	</ui:define>
 </ui:composition>
-</html>

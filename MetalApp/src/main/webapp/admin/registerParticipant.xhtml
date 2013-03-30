@@ -1,19 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
-
-<ui:composition template="/WEB-INF/template.xhtml">
+	template="/WEB-INF/templates/template.xhtml">
 
 	<ui:define name="content">
 
 		<h3>Register Participant</h3>
 		<h:form>
-			<h:panelGrid>
+			<h:panelGrid columns="2">
 				<h:outputText value="Username" />
 				<h:inputText value="#{beanRegisterParticipant.participant.username}" />
 
@@ -32,14 +28,15 @@
 				<h:outputText value="Phone" />
 				<h:inputText value="#{beanRegisterParticipant.participant.phone}" />
 
-				<h:commandButton value="New Participant"
+				<h:commandButton value="Add Participant"
 					action="#{beanRegisterParticipant.doCreateParticipant}" />
 			</h:panelGrid>
 		</h:form>
 
 		<h2>List of the Participants</h2>
 		<h:form>
-			<p:dataTable value="#{beanRegisterParticipant.participantList}" var="participant">
+			<p:dataTable value="#{beanRegisterParticipant.participantList}"
+				var="participant">
 
 				<p:column headerText="Id">
 					<h:outputText value="#{participant.idParticipant}" />
@@ -63,11 +60,10 @@
 
 				<p:column headerText="UserName">
 					<h:outputText value="#{participant.username}" />
-				</p:column>			
-				
+				</p:column>
+
 			</p:dataTable>
 		</h:form>
 
 	</ui:define>
 </ui:composition>
-</html>

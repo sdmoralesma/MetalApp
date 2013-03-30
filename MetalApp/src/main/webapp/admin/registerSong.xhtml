@@ -1,19 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
-
-<ui:composition template="/WEB-INF/template.xhtml">
+	template="/WEB-INF/templates/template.xhtml">
 
 	<ui:define name="content">
 		<h3>Register Song</h3>
 		<h:form>
-			<h:panelGrid>
-
+			<h:panelGrid columns="2">
 				<h:outputText value="id Artist" />
 				<h:inputText value="#{beanSong.song.idArtist}" />
 
@@ -23,7 +18,7 @@
 				<h:outputText value="Title of the Song" />
 				<h:inputText value="#{beanSong.song.title}" />
 
-				<h:commandButton value="Vote per Song"
+				<h:commandButton value="Add Song"
 					action="#{beanSong.doCreateSong}" />
 			</h:panelGrid>
 		</h:form>
@@ -49,8 +44,6 @@
 				</p:column>
 			</p:dataTable>
 		</h:form>
-		
-	</ui:define>
 
+	</ui:define>
 </ui:composition>
-</html>

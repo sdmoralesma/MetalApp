@@ -1,20 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/WEB-INF/templates/template.xhtml">
 
-<ui:composition template="/WEB-INF/template.xhtml">
 	<ui:define name="content">
 		<h3>Welcome Jury</h3>
 		<div>
 			<h3>JURY SECTION</h3>
-			<h:link outcome="../jury/votePerParticipant.xhtml"
+			<h:link outcome="/jury/votePerParticipant.xhtml"
 				value="Vote Participant" />
 			<br />
-			<h:link outcome="../jury/votePerSong.xhtml" value="Vote Song" />
+			<h:link outcome="/jury/votePerSong.xhtml" value="Vote Song" />
 		</div>
 	</ui:define>
 </ui:composition>
-</html>
