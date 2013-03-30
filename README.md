@@ -1,6 +1,6 @@
 ﻿# Application - Metal Music Reality
 
-* *Author* : [Sergio Morales](sdmoralesma@gmail.com)
+* *Author* : [Sergio Morales](http://www.linkedin.com/profile/view?id=199182063)
 * *Level* : Intermediate
 * *Technologies* : Java EE 6 (JPA 2.0, CDI 1.0, EJB Lite 3.1, JSF 2.0 (+ Primefaces), JAX-RS 1.1, JAX WS, JAAS)
 * *Application Servers* : GlassFish 3.x
@@ -118,7 +118,7 @@ a. 8, 9 y 10
     <span class="footerTitle"><span class="uc">S</span>ergio <span class="uc">M</span>orales</span>
 </div>
 
-##TODO:
+##TODO
 Future Releases will include:
 - Twitter Bootstrap interface
 - A MongoDB fork 
