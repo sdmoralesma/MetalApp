@@ -6,55 +6,52 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import java.util.List;
 
-
 /**
  * The persistent class for the participant database table.
- * 
  */
 @Entity
-@Table(name="participant")
+@Table(name = "participant")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Participant.findAll", query = "SELECT p FROM Participant p"),
-    @NamedQuery(name = "Participant.findByIdParticipant", query = "SELECT p FROM Participant p WHERE p.idParticipant = :idParticipant"),
-    @NamedQuery(name = "Participant.findByName", query = "SELECT p FROM Participant p WHERE p.name = :name"),
-    @NamedQuery(name = "Participant.findByPhone", query = "SELECT p FROM Participant p WHERE p.phone = :phone"),
-    @NamedQuery(name = "Participant.findByAge", query = "SELECT p FROM Participant p WHERE p.age = :age"),
-    @NamedQuery(name = "Participant.findByGender", query = "SELECT p FROM Participant p WHERE p.gender = :gender"),
-    @NamedQuery(name = "Participant.findByUsername", query = "SELECT p FROM Participant p WHERE p.username = :username"),
-    @NamedQuery(name = "Participant.findByPassword", query = "SELECT p FROM Participant p WHERE p.password = :password")})
+		@NamedQuery(name = "Participant.findAll", query = "SELECT p FROM Participant p"),
+		@NamedQuery(name = "Participant.findByIdParticipant", query = "SELECT p FROM Participant p WHERE p.idParticipant = :idParticipant"),
+		@NamedQuery(name = "Participant.findByName", query = "SELECT p FROM Participant p WHERE p.name = :name"),
+		@NamedQuery(name = "Participant.findByPhone", query = "SELECT p FROM Participant p WHERE p.phone = :phone"),
+		@NamedQuery(name = "Participant.findByAge", query = "SELECT p FROM Participant p WHERE p.age = :age"),
+		@NamedQuery(name = "Participant.findByGender", query = "SELECT p FROM Participant p WHERE p.gender = :gender"),
+		@NamedQuery(name = "Participant.findByUsername", query = "SELECT p FROM Participant p WHERE p.username = :username") })
 public class Participant implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_participant", unique=true, nullable=false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_participant", unique = true, nullable = false)
 	private int idParticipant;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private int age;
 
-	@Column(nullable=false, length=50)
+	@Column(nullable = false, length = 50)
 	private String gender;
 
-	@Column(nullable=false, length=100)
+	@Column(nullable = false, length = 100)
 	private String name;
 
-	@Column(nullable=false, length=50)
+	@Column(nullable = false, length = 50)
 	private String password;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private int phone;
 
-	@Column(nullable=false, length=50)
+	@Column(nullable = false, length = 50)
 	private String username;
 
-	//bi-directional many-to-one association to Presentation
-	@OneToMany(mappedBy="participant")
+	// bi-directional many-to-one association to Presentation
+	@OneToMany(mappedBy = "participant")
 	private List<Presentation> presentations;
 
-	//bi-directional many-to-one association to ScoreMatrix
-	@OneToMany(mappedBy="participant")
+	// bi-directional many-to-one association to ScoreMatrix
+	@OneToMany(mappedBy = "participant")
 	private List<ScoreMatrix> scoreMatrixs;
 
 	public Participant() {

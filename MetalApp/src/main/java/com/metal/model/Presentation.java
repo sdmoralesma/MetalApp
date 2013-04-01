@@ -3,62 +3,68 @@ package com.metal.model;
 import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+import org.eclipse.persistence.oxm.annotations.XmlInverseReference;
 
 import java.util.List;
-
 
 /**
  * The persistent class for the presentation database table.
  * 
  */
 @Entity
-@Table(name="presentation")
+@Table(name = "presentation")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Presentation.findAll", query = "SELECT p FROM Presentation p"),
-    @NamedQuery(name = "Presentation.findByIdPresentation", query = "SELECT p FROM Presentation p WHERE p.idPresentation = :idPresentation"),
-    @NamedQuery(name = "Presentation.findByIdParticipant", query = "SELECT p FROM Presentation p WHERE p.idParticipant = :idParticipant"),
-    @NamedQuery(name = "Presentation.findByIdSong", query = "SELECT p FROM Presentation p WHERE p.idSong = :idSong"),
-    @NamedQuery(name = "Presentation.findByIdJury", query = "SELECT p FROM Presentation p WHERE p.idJury = :idJury"),
-    @NamedQuery(name = "Presentation.findByHandScore", query = "SELECT p FROM Presentation p WHERE p.handScore = :handScore"),
-    @NamedQuery(name = "Presentation.findByHeadScore", query = "SELECT p FROM Presentation p WHERE p.headScore = :headScore"),
-    @NamedQuery(name = "Presentation.findByTotalScore", query = "SELECT p FROM Presentation p WHERE p.totalScore = :totalScore")})
+		@NamedQuery(name = "Presentation.findAll", query = "SELECT p FROM Presentation p"),
+		@NamedQuery(name = "Presentation.findByIdPresentation", query = "SELECT p FROM Presentation p WHERE p.idPresentation = :idPresentation"),
+		@NamedQuery(name = "Presentation.findByIdParticipant", query = "SELECT p FROM Presentation p WHERE p.idParticipant = :idParticipant"),
+		@NamedQuery(name = "Presentation.findByIdSong", query = "SELECT p FROM Presentation p WHERE p.idSong = :idSong"),
+		@NamedQuery(name = "Presentation.findByIdJury", query = "SELECT p FROM Presentation p WHERE p.idJury = :idJury"),
+		@NamedQuery(name = "Presentation.findByHandScore", query = "SELECT p FROM Presentation p WHERE p.handScore = :handScore"),
+		@NamedQuery(name = "Presentation.findByHeadScore", query = "SELECT p FROM Presentation p WHERE p.headScore = :headScore"),
+		@NamedQuery(name = "Presentation.findByTotalScore", query = "SELECT p FROM Presentation p WHERE p.totalScore = :totalScore") })
 public class Presentation implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_presentation", unique=true, nullable=false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_presentation", unique = true, nullable = false)
 	private int idPresentation;
 
-	@Column(name="hand_score", nullable=false)
+	@Column(name = "hand_score", nullable = false)
 	private float handScore;
 
-	@Column(name="head_score", nullable=false)
+	@Column(name = "head_score", nullable = false)
 	private float headScore;
 
-	@Column(name="id_jury", nullable=false)
+	@Column(name = "id_jury", nullable = false)
 	private int idJury;
 
-	@Column(name="id_participant", nullable=false)
+	@Column(name = "id_participant", nullable = false)
 	private int idParticipant;
 
-	@Column(name="id_song", nullable=false)
+	@Column(name = "id_song", nullable = false)
 	private int idSong;
 
-	@Column(name="total_score", nullable=false)
+	@Column(name = "total_score", nullable = false)
 	private float totalScore;
 
-	//bi-directional many-to-many association to Jury
-	@ManyToMany(mappedBy="presentations")
-	private List<Jury> juries;
+	// bi-directional many-to-many association to Jury
+	// @ManyToMany(mappedBy="presentations")
+	// @XmlTransient
+	// private List<Jury> juries;
 
-	//bi-directional many-to-one association to Song
+	// bi-directional many-to-one association to Song
 	@ManyToOne
-	@JoinColumn(name="id_song1")
+	@JoinColumn(name = "id_song1")
 	private Song song;
 
-	//bi-directional many-to-one association to Participant
+	// bi-directional many-to-one association to Participant
+	// @JoinColumn(name="id_participant", insertable=false, updatable=false)
+	// @XmlInverseReference(mappedBy = "presentations")
+	// @XmlTransient
 	@ManyToOne
 	@JoinColumn(name="id_participant", insertable=false, updatable=false)
 	private Participant participant;
@@ -122,13 +128,13 @@ public class Presentation implements Serializable {
 		this.totalScore = totalScore;
 	}
 
-	public List<Jury> getJuries() {
-		return this.juries;
-	}
-
-	public void setJuries(List<Jury> juries) {
-		this.juries = juries;
-	}
+	// public List<Jury> getJuries() {
+	// return this.juries;
+	// }
+	//
+	// public void setJuries(List<Jury> juries) {
+	// this.juries = juries;
+	// }
 
 	public Song getSong() {
 		return this.song;

@@ -23,7 +23,6 @@ public class ServiceAdminEJB {
 
 	/** Default constructor. */
 	public ServiceAdminEJB() {
-
 	}
 
 	// Participant Methods

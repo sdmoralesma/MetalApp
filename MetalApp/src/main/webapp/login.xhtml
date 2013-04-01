@@ -5,6 +5,9 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="/WEB-INF/templates/template.xhtml">
 
+	<ui:define name="metadata">
+	</ui:define>
+
 	<ui:define name="content">
 		<h2>Please log in:</h2>
 
@@ -18,14 +21,13 @@
 					<input type="password" name="j_password" />
 				</p:panelGrid>
 
-<!-- 				<input type="submit" value="Login" /> <input type="reset" -->
-<!-- 					value="Reset" /> -->
-
-				<p:commandButton type="submit" value="Login" />
-				<p:commandButton type="reset" value="Reset" />
-
+				<p:panelGrid columns="2">
+					<input type="submit" value="Login" />
+					<input type="reset" value="Reset" />
+				</p:panelGrid>
+				
 			</form>
 		</p:panel>
-		
+
 	</ui:define>
 </ui:composition>
