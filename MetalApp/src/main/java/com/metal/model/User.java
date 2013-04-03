@@ -21,14 +21,14 @@ public class User implements Serializable {
 	@Column(unique = true, nullable = false, length = 50)
 	private String username;
 
-	@Column(nullable = false, length = 50)
-	private String group;
+//	@Column(nullable = false, length = 50)
+//	private String group_name;
 
 	@Column(nullable = false, length = 50)
 	private String password;
 
-//	@Column(name = "user_type", nullable = false, length = 50)
-//	private String userType;
+	// @Column(name = "user_type", nullable = false, length = 50)
+	// private String userType;
 
 	// bi-directional one-to-one association to Admin
 	// @OneToOne(mappedBy="user")
@@ -53,13 +53,13 @@ public class User implements Serializable {
 		this.username = username;
 	}
 
-	public String getGroup() {
-		return this.group;
-	}
-
-	public void setGroup(String group) {
-		this.group = group;
-	}
+	// public String getGroup() {
+	// return this.group_name;
+	// }
+	//
+	// public void setGroup(String group_name) {
+	// this.group_name = group_name;
+	// }
 
 	public String getPassword() {
 		return this.password;

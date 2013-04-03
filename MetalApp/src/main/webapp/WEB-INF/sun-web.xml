@@ -10,8 +10,13 @@
 	</security-role-mapping>
 
 	<security-role-mapping>
-		<role-name>user</role-name>
-		<group-name>user</group-name>
+		<role-name>jury</role-name>
+		<group-name>jury</group-name>
+	</security-role-mapping>
+
+	<security-role-mapping>
+		<role-name>participant</role-name>
+		<group-name>participant</group-name>
 	</security-role-mapping>
 
 	<class-loader delegate="true" />
