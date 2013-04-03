@@ -8,28 +8,29 @@ import java.util.List;
 
 /**
  * The persistent class for the participant database table.
+ * 
  */
 @Entity
 @Table(name = "participant")
+@DiscriminatorValue("PARTICIPANT")
 @XmlRootElement
 @NamedQueries({
 		@NamedQuery(name = "Participant.findAll", query = "SELECT p FROM Participant p"),
-		@NamedQuery(name = "Participant.findByIdParticipant", query = "SELECT p FROM Participant p WHERE p.idParticipant = :idParticipant"),
 		@NamedQuery(name = "Participant.findByName", query = "SELECT p FROM Participant p WHERE p.name = :name"),
-		@NamedQuery(name = "Participant.findByPhone", query = "SELECT p FROM Participant p WHERE p.phone = :phone"),
-		@NamedQuery(name = "Participant.findByAge", query = "SELECT p FROM Participant p WHERE p.age = :age"),
-		@NamedQuery(name = "Participant.findByGender", query = "SELECT p FROM Participant p WHERE p.gender = :gender"),
 		@NamedQuery(name = "Participant.findByUsername", query = "SELECT p FROM Participant p WHERE p.username = :username") })
-public class Participant implements Serializable {
+public class Participant extends User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_participant", unique = true, nullable = false)
-	private int idParticipant;
+	// @Id
+	// @GeneratedValue(strategy=GenerationType.IDENTITY)
+	// @Column(unique=true, nullable=false, length=50)
+	// private String username;
 
 	@Column(nullable = false)
 	private int age;
+
+	@Column(nullable = false, length = 50)
+	private String country;
 
 	@Column(nullable = false, length = 50)
 	private String gender;
@@ -37,33 +38,30 @@ public class Participant implements Serializable {
 	@Column(nullable = false, length = 100)
 	private String name;
 
-	@Column(nullable = false, length = 50)
-	private String password;
-
-	@Column(nullable = false)
-	private int phone;
-
-	@Column(nullable = false, length = 50)
-	private String username;
+	// bi-directional one-to-one association to User
+	// @OneToOne
+	// @JoinColumn(name="username", nullable=false, insertable=false,
+	// updatable=false)
+	// private User user;
 
 	// bi-directional many-to-one association to Presentation
 	@OneToMany(mappedBy = "participant")
 	private List<Presentation> presentations;
 
-	// bi-directional many-to-one association to ScoreMatrix
-	@OneToMany(mappedBy = "participant")
-	private List<ScoreMatrix> scoreMatrixs;
+	// bi-directional one-to-one association to ScoreMatrix
+	@OneToOne(mappedBy = "participant")
+	private ScoreMatrix scoreMatrix;
 
 	public Participant() {
 	}
 
-	public int getIdParticipant() {
-		return this.idParticipant;
-	}
-
-	public void setIdParticipant(int idParticipant) {
-		this.idParticipant = idParticipant;
-	}
+	// public String getUsername() {
+	// return this.username;
+	// }
+	//
+	// public void setUsername(String username) {
+	// this.username = username;
+	// }
 
 	public int getAge() {
 		return this.age;
@@ -71,6 +69,14 @@ public class Participant implements Serializable {
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+	public String getCountry() {
+		return this.country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
 	}
 
 	public String getGender() {
@@ -89,29 +95,13 @@ public class Participant implements Serializable {
 		this.name = name;
 	}
 
-	public String getPassword() {
-		return this.password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public int getPhone() {
-		return this.phone;
-	}
-
-	public void setPhone(int phone) {
-		this.phone = phone;
-	}
-
-	public String getUsername() {
-		return this.username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
+	// public User getUser() {
+	// return this.user;
+	// }
+	//
+	// public void setUser(User user) {
+	// this.user = user;
+	// }
 
 	public List<Presentation> getPresentations() {
 		return this.presentations;
@@ -135,32 +125,12 @@ public class Participant implements Serializable {
 		return presentation;
 	}
 
-	public List<ScoreMatrix> getScoreMatrixs() {
-		return this.scoreMatrixs;
+	public ScoreMatrix getScoreMatrix() {
+		return this.scoreMatrix;
 	}
 
-	public void setScoreMatrixs(List<ScoreMatrix> scoreMatrixs) {
-		this.scoreMatrixs = scoreMatrixs;
+	public void setScoreMatrix(ScoreMatrix scoreMatrix) {
+		this.scoreMatrix = scoreMatrix;
 	}
 
-	public ScoreMatrix addScoreMatrix(ScoreMatrix scoreMatrix) {
-		getScoreMatrixs().add(scoreMatrix);
-		scoreMatrix.setParticipant(this);
-
-		return scoreMatrix;
-	}
-
-	public ScoreMatrix removeScoreMatrix(ScoreMatrix scoreMatrix) {
-		getScoreMatrixs().remove(scoreMatrix);
-		scoreMatrix.setParticipant(null);
-
-		return scoreMatrix;
-	}
-
-	@Override
-	public String toString() {
-		return "Participant [idParticipant=" + idParticipant + ", age=" + age + ", gender=" + gender + ", name=" + name
-				+ ", password=" + password + ", phone=" + phone + ", username=" + username + ", presentations="
-				+ presentations + ", scoreMatrixs=" + scoreMatrixs + "]";
-	}
 }

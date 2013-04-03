@@ -16,8 +16,8 @@ import java.util.List;
 @NamedQueries({ @NamedQuery(name = "Song.findAll", query = "SELECT s FROM Song s"),
 		@NamedQuery(name = "Song.findByIdSong", query = "SELECT s FROM Song s WHERE s.idSong = :idSong"),
 		@NamedQuery(name = "Song.findByTitle", query = "SELECT s FROM Song s WHERE s.title = :title"),
-		@NamedQuery(name = "Song.findByIdArtist", query = "SELECT s FROM Song s WHERE s.idArtist = :idArtist"),
-		@NamedQuery(name = "Song.findByIdGender", query = "SELECT s FROM Song s WHERE s.idGender = :idGender") })
+		@NamedQuery(name = "Song.findByIdArtist", query = "SELECT s FROM Song s WHERE s.artist = :idArtist"),
+		@NamedQuery(name = "Song.findByIdGender", query = "SELECT s FROM Song s WHERE s.gender = :idGender") })
 public class Song implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -25,12 +25,6 @@ public class Song implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_song", unique = true, nullable = false)
 	private int idSong;
-
-	@Column(name = "id_artist", nullable = false)
-	private int idArtist;
-
-	@Column(name = "id_gender", nullable = false)
-	private int idGender;
 
 	@Column(nullable = false, length = 100)
 	private String title;
@@ -41,17 +35,17 @@ public class Song implements Serializable {
 
 	// bi-directional many-to-one association to Artist
 	@ManyToOne
-	@JoinColumn(name = "id_artist1")
+	@JoinColumn(name = "id_artist", nullable = false)
 	private Artist artist;
 
 	// bi-directional many-to-one association to Gender
 	@ManyToOne
-	@JoinColumn(name = "id_gender1")
+	@JoinColumn(name = "id_gender", nullable = false)
 	private Gender gender;
 
-	// bi-directional many-to-one association to SongMatrix
-	@OneToMany(mappedBy = "song")
-	private List<SongMatrix> songMatrixs;
+	// bi-directional one-to-one association to SongMatrix
+	@OneToOne(mappedBy = "song")
+	private SongMatrix songMatrix;
 
 	public Song() {
 	}
@@ -62,22 +56,6 @@ public class Song implements Serializable {
 
 	public void setIdSong(int idSong) {
 		this.idSong = idSong;
-	}
-
-	public int getIdArtist() {
-		return this.idArtist;
-	}
-
-	public void setIdArtist(int idArtist) {
-		this.idArtist = idArtist;
-	}
-
-	public int getIdGender() {
-		return this.idGender;
-	}
-
-	public void setIdGender(int idGender) {
-		this.idGender = idGender;
 	}
 
 	public String getTitle() {
@@ -126,35 +104,12 @@ public class Song implements Serializable {
 		this.gender = gender;
 	}
 
-	public List<SongMatrix> getSongMatrixs() {
-		return this.songMatrixs;
+	public SongMatrix getSongMatrix() {
+		return this.songMatrix;
 	}
 
-	public void setSongMatrixs(List<SongMatrix> songMatrixs) {
-		this.songMatrixs = songMatrixs;
+	public void setSongMatrix(SongMatrix songMatrix) {
+		this.songMatrix = songMatrix;
 	}
-
-	public SongMatrix addSongMatrix(SongMatrix songMatrix) {
-		getSongMatrixs().add(songMatrix);
-		songMatrix.setSong(this);
-
-		return songMatrix;
-	}
-
-	public SongMatrix removeSongMatrix(SongMatrix songMatrix) {
-		getSongMatrixs().remove(songMatrix);
-		songMatrix.setSong(null);
-
-		return songMatrix;
-	}
-
-	@Override
-	public String toString() {
-		return "Song [idSong=" + idSong + ", idArtist=" + idArtist + ", idGender=" + idGender + ", title=" + title
-				+ ", presentations=" + presentations + ", artist=" + artist + ", gender=" + gender + ", songMatrixs="
-				+ songMatrixs + "]";
-	}
-	
-	
 
 }

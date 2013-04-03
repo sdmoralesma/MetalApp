@@ -5,17 +5,17 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * The persistent class for the jury database table.
+ * The persistent class for the admin database table.
  * 
  */
 @Entity
-@Table(name = "jury")
-@DiscriminatorValue("JURY")
+@Table(name = "admin")
+@DiscriminatorValue("ADMIN")
 @XmlRootElement
-@NamedQueries({ @NamedQuery(name = "Jury.findAll", query = "SELECT j FROM Jury j"),
-		@NamedQuery(name = "Jury.findByName", query = "SELECT j FROM Jury j WHERE j.name = :name"),
-		@NamedQuery(name = "Jury.findByUsername", query = "SELECT j FROM Jury j WHERE j.username = :username") })
-public class Jury extends User implements Serializable {
+@NamedQueries({ @NamedQuery(name = "Admin.findAll", query = "SELECT a FROM Admin a"),
+		@NamedQuery(name = "Admin.findByName", query = "SELECT a FROM Admin a WHERE a.name = :name"),
+		@NamedQuery(name = "Admin.findByUsername", query = "SELECT a FROM Admin a WHERE a.username = :username") })
+public class Admin extends User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	// @Id
@@ -35,7 +35,7 @@ public class Jury extends User implements Serializable {
 	// updatable=false)
 	// private User user;
 
-	public Jury() {
+	public Admin() {
 	}
 
 	// public String getUsername() {

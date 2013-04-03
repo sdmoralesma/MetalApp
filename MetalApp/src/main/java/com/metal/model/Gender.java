@@ -15,9 +15,7 @@ import java.util.List;
 @XmlRootElement
 @NamedQueries({ @NamedQuery(name = "Gender.findAll", query = "SELECT g FROM Gender g"),
 		@NamedQuery(name = "Gender.findByIdGender", query = "SELECT g FROM Gender g WHERE g.idGender = :idGender"),
-		@NamedQuery(name = "Gender.findByName", query = "SELECT g FROM Gender g WHERE g.name = :name"),
-		@NamedQuery(name = "Gender.findByHandValue", query = "SELECT g FROM Gender g WHERE g.handValue = :handValue"),
-		@NamedQuery(name = "Gender.findByHeadValue", query = "SELECT g FROM Gender g WHERE g.headValue = :headValue") })
+		@NamedQuery(name = "Gender.findByName", query = "SELECT g FROM Gender g WHERE g.name = :name") })
 public class Gender implements Serializable {
 	private static final long serialVersionUID = 1L;
 

@@ -1,176 +1,244 @@
--- Precaution: First create the database from a SQL Console
--- CREATE DATABASE IF NOT EXISTS metal;
--- USE metal;
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-CREATE TABLE song_matrix (
-	id_song INT NOT NULL AUTO_INCREMENT,
-	musicality1 INT,
-	musicality2 INT,
-	musicality3 INT,
-	musicality4 INT,
-	musicality5 INT,
-	musicality6 INT,
-	musicality7 INT,
-	musicality8 INT,
-	musicality9 INT,
-	musicality10 INT,
-	composition1 INT,
-	composition2 INT,
-	composition3 INT,
-	composition4 INT,
-	composition5 INT,
-	composition6 INT,
-	composition7 INT,
-	composition8 INT,
-	composition9 INT,
-	composition10 INT,
-	musicality_score FLOAT,
-	composition_score FLOAT,
-	total_score FLOAT,
-	id_song1 INT,
-	PRIMARY KEY (id_song)
-) ENGINE=InnoDB;
+DROP SCHEMA IF EXISTS `metal` ;
+CREATE SCHEMA IF NOT EXISTS `metal` ;
+USE `metal` ;
 
-CREATE TABLE participant (
-	id_participant INT NOT NULL AUTO_INCREMENT,
-	name VARCHAR(100) NOT NULL,
-	phone INT NOT NULL,
-	age INT NOT NULL,
-	gender VARCHAR(50) NOT NULL,
-	username VARCHAR(50) NOT NULL,
-	password VARCHAR(50) NOT NULL,
-	PRIMARY KEY (id_participant)
-) ENGINE=InnoDB;
+-- -----------------------------------------------------
+-- Table `metal`.`artist`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `metal`.`artist` ;
 
-CREATE TABLE gender (
-	id_gender INT NOT NULL AUTO_INCREMENT,
-	name VARCHAR(50) NOT NULL,
-	hand_value INT NOT NULL,
-	head_value INT NOT NULL,
-	PRIMARY KEY (id_gender)
-) ENGINE=InnoDB;
+CREATE  TABLE IF NOT EXISTS `metal`.`artist` (
+  `id_artist` INT NOT NULL AUTO_INCREMENT ,
+  `name` VARCHAR(50) NOT NULL ,
+  `description` VARCHAR(50) NOT NULL ,
+  PRIMARY KEY (`id_artist`) )
+ENGINE = InnoDB;
 
-CREATE TABLE score_matrix (
-	id_participant INT NOT NULL AUTO_INCREMENT,
-	head1 INT,
-	head2 INT,
-	head3 INT,
-	head4 INT,
-	head5 INT,
-	head6 INT,
-	head7 INT,
-	head8 INT,
-	head9 INT,
-	head10 INT,
-	hand1 INT,
-	hand2 INT,
-	hand3 INT,
-	hand4 INT,
-	hand5 INT,
-	hand6 INT,
-	hand7 INT,
-	hand8 INT,
-	hand9 INT,
-	hand10 INT,
-	hand_score FLOAT,
-	head_score FLOAT,
-	total_score FLOAT,
-	id_participant INT,
-	PRIMARY KEY (id_participant)
-) ENGINE=InnoDB;
 
-CREATE TABLE jury_presentation (
-	presentation_id_presentation INT NOT NULL AUTO_INCREMENT,
-	jury_id_jury INT NOT NULL,
-	PRIMARY KEY (presentation_id_presentation,jury_id_jury)
-) ENGINE=InnoDB;
+-- -----------------------------------------------------
+-- Table `metal`.`gender`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `metal`.`gender` ;
 
-CREATE TABLE artist (
-	id_artist INT NOT NULL AUTO_INCREMENT,
-	name VARCHAR(50) NOT NULL,
-	PRIMARY KEY (id_artist)
-) ENGINE=InnoDB;
+CREATE  TABLE IF NOT EXISTS `metal`.`gender` (
+  `id_gender` INT NOT NULL AUTO_INCREMENT ,
+  `name` VARCHAR(50) NOT NULL ,
+  `hand_value` INT NOT NULL ,
+  `head_value` INT NOT NULL ,
+  PRIMARY KEY (`id_gender`) )
+ENGINE = InnoDB;
 
-CREATE TABLE users (
-	username VARCHAR(50) NOT NULL,
-	password VARCHAR(100),
-	PRIMARY KEY (username)
-) ENGINE=InnoDB;
 
-CREATE TABLE presentation (
-	id_presentation INT NOT NULL AUTO_INCREMENT,
-	id_participant INT NOT NULL,
-	id_song INT NOT NULL,
-	id_jury INT NOT NULL,
-	hand_score FLOAT NOT NULL,
-	head_score FLOAT NOT NULL,
-	total_score FLOAT NOT NULL,
-	id_participant INT,
-	id_song1 INT,
-	PRIMARY KEY (id_presentation)
-) ENGINE=InnoDB;
+-- -----------------------------------------------------
+-- Table `metal`.`song`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `metal`.`song` ;
 
-CREATE TABLE groups (
-	id_group VARCHAR(50),
-	username VARCHAR(50) NOT NULL,
-	PRIMARY KEY (username)
-) ENGINE=InnoDB;
+CREATE  TABLE IF NOT EXISTS `metal`.`song` (
+  `id_song` INT NOT NULL AUTO_INCREMENT ,
+  `title` VARCHAR(100) NOT NULL ,
+  `id_artist` INT NOT NULL ,
+  `id_gender` INT NOT NULL ,
+  PRIMARY KEY (`id_song`) ,
+  INDEX `fk_song_artist` (`id_artist` ASC) ,
+  INDEX `fk_song_gender` (`id_gender` ASC) ,
+  CONSTRAINT `fk_song_artist`
+    FOREIGN KEY (`id_artist` )
+    REFERENCES `metal`.`artist` (`id_artist` )
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT,
+  CONSTRAINT `fk_song_gender`
+    FOREIGN KEY (`id_gender` )
+    REFERENCES `metal`.`gender` (`id_gender` )
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT)
+ENGINE = InnoDB;
 
-CREATE TABLE jury (
-	id_jury INT NOT NULL AUTO_INCREMENT,
-	name VARCHAR(100) NOT NULL,
-	username VARCHAR(50) NOT NULL,
-	password VARCHAR(50) NOT NULL,
-	PRIMARY KEY (id_jury)
-) ENGINE=InnoDB;
 
-CREATE TABLE song (
-	id_song INT NOT NULL AUTO_INCREMENT,
-	title VARCHAR(100) NOT NULL,
-	id_artist INT NOT NULL,
-	id_gender INT NOT NULL,
-	id_artist1 INT,
-	id_gender1 INT,
-	PRIMARY KEY (id_song)
-) ENGINE=InnoDB;
+-- -----------------------------------------------------
+-- Table `metal`.`song_matrix`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `metal`.`song_matrix` ;
 
-CREATE INDEX song_presentation ON presentation (id_song1 ASC);
+CREATE  TABLE IF NOT EXISTS `metal`.`song_matrix` (
+  `musicality1` INT NULL DEFAULT NULL ,
+  `musicality2` INT NULL DEFAULT NULL ,
+  `musicality3` INT NULL DEFAULT NULL ,
+  `musicality4` INT NULL DEFAULT NULL ,
+  `musicality5` INT NULL DEFAULT NULL ,
+  `musicality6` INT NULL DEFAULT NULL ,
+  `musicality7` INT NULL DEFAULT NULL ,
+  `musicality8` INT NULL DEFAULT NULL ,
+  `musicality9` INT NULL DEFAULT NULL ,
+  `musicality10` INT NULL DEFAULT NULL ,
+  `composition1` INT NULL DEFAULT NULL ,
+  `composition2` INT NULL DEFAULT NULL ,
+  `composition3` INT NULL DEFAULT NULL ,
+  `composition4` INT NULL DEFAULT NULL ,
+  `composition5` INT NULL DEFAULT NULL ,
+  `composition6` INT NULL DEFAULT NULL ,
+  `composition7` INT NULL DEFAULT NULL ,
+  `composition8` INT NULL DEFAULT NULL ,
+  `composition9` INT NULL DEFAULT NULL ,
+  `composition10` INT NULL DEFAULT NULL ,
+  `musicality_score` FLOAT NULL DEFAULT NULL ,
+  `composition_score` FLOAT NULL DEFAULT NULL ,
+  `total_score` FLOAT NULL DEFAULT NULL ,
+  `id_song` INT NOT NULL ,
+  INDEX `fk_songmatrix_song` (`id_song` ASC) ,
+  PRIMARY KEY (`id_song`) ,
+  CONSTRAINT `fk_songmatrix_song`
+    FOREIGN KEY (`id_song` )
+    REFERENCES `metal`.`song` (`id_song` )
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT)
+ENGINE = InnoDB;
 
-CREATE INDEX song_songmatrix ON song_matrix (id_song1 ASC);
 
-CREATE INDEX participant_presentation ON presentation (id_participant ASC);
+-- -----------------------------------------------------
+-- Table `metal`.`users`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `metal`.`users` ;
 
-CREATE INDEX participant_scorematrix ON score_matrix (id_participant ASC);
+CREATE  TABLE IF NOT EXISTS `metal`.`users` (
+  `username` VARCHAR(50) NOT NULL ,
+  `password` VARCHAR(50) NOT NULL ,
+  `group` VARCHAR(50) NOT NULL ,
+  `user_type` VARCHAR(50) NOT NULL ,
+  PRIMARY KEY (`username`) )
+ENGINE = InnoDB;
 
-CREATE INDEX artist_song ON song (id_artist1 ASC);
 
-CREATE INDEX FK_ASS_27 ON jury_presentation (jury_id_jury ASC);
+-- -----------------------------------------------------
+-- Table `metal`.`participant`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `metal`.`participant` ;
 
-CREATE INDEX gender_song ON song (id_gender1 ASC);
+CREATE  TABLE IF NOT EXISTS `metal`.`participant` (
+  `username` VARCHAR(50) NOT NULL ,
+  `name` VARCHAR(100) NOT NULL ,
+  `country` VARCHAR(50) NOT NULL ,
+  `age` INT NOT NULL ,
+  `gender` VARCHAR(50) NOT NULL ,
+  INDEX `fk_participant_users_idx` (`username` ASC) ,
+  PRIMARY KEY (`username`) ,
+  CONSTRAINT `fk_participant_users`
+    FOREIGN KEY (`username` )
+    REFERENCES `metal`.`users` (`username` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
-ALTER TABLE jury_presentation ADD CONSTRAINT FK_ASS_27 FOREIGN KEY (jury_id_jury)
-	REFERENCES jury (id_jury)
-	ON DELETE CASCADE;
 
-ALTER TABLE presentation ADD CONSTRAINT participant_presentation FOREIGN KEY (id_participant)
-	REFERENCES participant (id_participant);
+-- -----------------------------------------------------
+-- Table `metal`.`score_matrix`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `metal`.`score_matrix` ;
 
-ALTER TABLE song ADD CONSTRAINT artist_song FOREIGN KEY (id_artist1)
-	REFERENCES artist (id_artist);
+CREATE  TABLE IF NOT EXISTS `metal`.`score_matrix` (
+  `head1` INT NULL DEFAULT NULL ,
+  `head2` INT NULL DEFAULT NULL ,
+  `head3` INT NULL DEFAULT NULL ,
+  `head4` INT NULL DEFAULT NULL ,
+  `head5` INT NULL DEFAULT NULL ,
+  `head6` INT NULL DEFAULT NULL ,
+  `head7` INT NULL DEFAULT NULL ,
+  `head8` INT NULL DEFAULT NULL ,
+  `head9` INT NULL DEFAULT NULL ,
+  `head10` INT NULL DEFAULT NULL ,
+  `hand1` INT NULL DEFAULT NULL ,
+  `hand2` INT NULL DEFAULT NULL ,
+  `hand3` INT NULL DEFAULT NULL ,
+  `hand4` INT NULL DEFAULT NULL ,
+  `hand5` INT NULL DEFAULT NULL ,
+  `hand6` INT NULL DEFAULT NULL ,
+  `hand7` INT NULL DEFAULT NULL ,
+  `hand8` INT NULL DEFAULT NULL ,
+  `hand9` INT NULL ,
+  `hand10` INT NULL DEFAULT NULL ,
+  `total_score` FLOAT NULL DEFAULT NULL ,
+  `username` VARCHAR(50) NOT NULL ,
+  INDEX `fk_score_matrix_participant_idx` (`username` ASC) ,
+  PRIMARY KEY (`username`) ,
+  CONSTRAINT `fk_score_matrix_participant`
+    FOREIGN KEY (`username` )
+    REFERENCES `metal`.`participant` (`username` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
-ALTER TABLE presentation ADD CONSTRAINT song_presentation FOREIGN KEY (id_song1)
-	REFERENCES song (id_song);
 
-ALTER TABLE song ADD CONSTRAINT gender_song FOREIGN KEY (id_gender1)
-	REFERENCES gender (id_gender);
+-- -----------------------------------------------------
+-- Table `metal`.`presentation`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `metal`.`presentation` ;
 
-ALTER TABLE score_matrix ADD CONSTRAINT participant_scorematrix FOREIGN KEY (id_participant)
-	REFERENCES participant (id_participant);
+CREATE  TABLE IF NOT EXISTS `metal`.`presentation` (
+  `id_presentation` INT NOT NULL AUTO_INCREMENT ,
+  `hand_score` FLOAT NOT NULL ,
+  `head_score` FLOAT NOT NULL ,
+  `total_score` FLOAT NOT NULL ,
+  `id_song` INT NOT NULL ,
+  `username` VARCHAR(50) NOT NULL ,
+  PRIMARY KEY (`id_presentation`) ,
+  INDEX `fk_presentation_song` (`id_song` ASC) ,
+  INDEX `fk_presentation_participant_idx` (`username` ASC) ,
+  CONSTRAINT `fk_presentation_song`
+    FOREIGN KEY (`id_song` )
+    REFERENCES `metal`.`song` (`id_song` )
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT,
+  CONSTRAINT `fk_presentation_participant`
+    FOREIGN KEY (`username` )
+    REFERENCES `metal`.`participant` (`username` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
-ALTER TABLE song_matrix ADD CONSTRAINT song_songmatrix FOREIGN KEY (id_song1)
-	REFERENCES song (id_song);
 
-ALTER TABLE jury_presentation ADD CONSTRAINT FK_ASS_26 FOREIGN KEY (presentation_id_presentation)
-	REFERENCES presentation (id_presentation)
-	ON DELETE CASCADE;
+-- -----------------------------------------------------
+-- Table `metal`.`jury`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `metal`.`jury` ;
 
+CREATE  TABLE IF NOT EXISTS `metal`.`jury` (
+  `username` VARCHAR(50) NOT NULL ,
+  `name` VARCHAR(100) NOT NULL ,
+  `description` VARCHAR(100) NOT NULL ,
+  INDEX `fk_jury_users_idx` (`username` ASC) ,
+  PRIMARY KEY (`username`) ,
+  CONSTRAINT `fk_jury_users`
+    FOREIGN KEY (`username` )
+    REFERENCES `metal`.`users` (`username` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `metal`.`admin`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `metal`.`admin` ;
+
+CREATE  TABLE IF NOT EXISTS `metal`.`admin` (
+  `username` VARCHAR(50) NOT NULL ,
+  `name` VARCHAR(100) NOT NULL ,
+  `description` VARCHAR(100) NOT NULL ,
+  INDEX `fk_admin_users_idx` (`username` ASC) ,
+  PRIMARY KEY (`username`) ,
+  CONSTRAINT `fk_admin_users`
+    FOREIGN KEY (`username` )
+    REFERENCES `metal`.`users` (`username` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

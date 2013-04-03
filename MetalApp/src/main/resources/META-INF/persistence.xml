@@ -5,10 +5,9 @@
 	
 	<persistence-unit name="MetalApp">
 		<jta-data-source>jdbc/metal</jta-data-source>
-		
+		<class>com.metal.model.Admin</class>
 		<class>com.metal.model.Artist</class>
 		<class>com.metal.model.Gender</class>
-		<class>com.metal.model.Group</class>
 		<class>com.metal.model.Jury</class>
 		<class>com.metal.model.Participant</class>
 		<class>com.metal.model.Presentation</class>
