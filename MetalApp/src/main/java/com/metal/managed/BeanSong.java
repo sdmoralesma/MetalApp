@@ -8,6 +8,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import com.metal.ejb.FacadeEJB;
+import com.metal.model.Artist;
+import com.metal.model.Gender;
 import com.metal.model.Song;
 
 @ManagedBean
@@ -18,18 +20,22 @@ public class BeanSong {
 	private FacadeEJB facade;
 
 	private Song song = new Song();
+	private Gender gender = new Gender();
+	private Artist artist = new Artist();
 	private List<Song> songList = new ArrayList<>();
+
+	public String doCreateSong() {
+		song.setArtist(artist);
+		song.setGender(gender);
+		facade.registerSong(song);
+		songList = facade.findSongs();
+		return "registerSong.xhtml";
+	}
 
 	public String doVotePerSong() {
 		facade.registerVotePerSong(song);
 		songList = facade.findSongs();
 		return "votePerSong.xhtml";
-	}
-
-	public String doCreateSong() {
-		facade.registerSong(song);
-		songList = facade.findSongs();
-		return "registerSong.xhtml";
 	}
 
 	// Getters y Setters
@@ -48,4 +54,23 @@ public class BeanSong {
 	public void setSongList(List<Song> songList) {
 		this.songList = songList;
 	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
+	public Artist getArtist() {
+		return artist;
+	}
+
+	public void setArtist(Artist artist) {
+		this.artist = artist;
+	}
+	
+	
+	
 }

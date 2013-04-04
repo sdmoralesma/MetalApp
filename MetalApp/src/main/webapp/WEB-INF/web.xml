@@ -55,13 +55,26 @@
 	<security-constraint>
 		<display-name>Admin Area</display-name>
 		<web-resource-collection>
-			<web-resource-name>Protected Admin Area</web-resource-name>
+			<web-resource-name>Admin Area</web-resource-name>
 			<description></description>
 			<url-pattern>/admin/*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<description></description>
 			<role-name>admin</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<security-constraint>
+		<display-name>Jury Area</display-name>
+		<web-resource-collection>
+			<web-resource-name>Jury Area</web-resource-name>
+			<description></description>
+			<url-pattern>/jury/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<description></description>
+			<role-name>jury</role-name>
 		</auth-constraint>
 	</security-constraint>
 

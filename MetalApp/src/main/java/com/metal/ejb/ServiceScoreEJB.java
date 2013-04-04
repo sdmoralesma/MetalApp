@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import com.metal.model.Artist;
 import com.metal.model.Gender;
 import com.metal.model.Song;
 
@@ -28,6 +29,14 @@ public class ServiceScoreEJB {
 	}
 
 	public Song createSong(Song song) {
+		Artist artist = new Artist();
+		artist.setIdArtist(song.getArtist().getIdArtist());
+
+		Gender gender = new Gender();
+		gender.setIdGender(song.getGender().getIdGender());
+
+		song.setArtist(artist);
+		song.setGender(gender);
 		em.persist(song);
 		return song;
 	}

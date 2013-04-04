@@ -12,11 +12,14 @@
 				<h:outputText value="Username" />
 				<h:inputText value="#{beanRegisterJury.jury.username}" />
 
-				<h:outputText value="Name" />
+				<h:outputText value="Password" />
+				<h:inputSecret value="#{beanRegisterJury.jury.password}" />
+
+				<h:outputText value="Real Name" />
 				<h:inputText value="#{beanRegisterJury.jury.name}" />
 
-				<h:outputText value="Password" />
-				<h:inputText value="#{beanRegisterJury.jury.password}" />
+				<h:outputText value="Description" />
+				<h:inputText value="#{beanRegisterJury.jury.description}" />
 
 				<h:commandButton value="Add Jury"
 					action="#{beanRegisterJury.doCreateJury}" />
@@ -27,19 +30,19 @@
 		<h:form>
 			<p:dataTable value="#{beanRegisterJury.juryList}" var="jury">
 
-				<p:column headerText="Id">
-					<h:outputText value="#{jury.idJury}" />
+				<p:column headerText="Username">
+					<h:outputText value="#{jury.username}" />
 				</p:column>
 
 				<p:column headerText="Name">
 					<h:outputText value="#{jury.name}" />
 				</p:column>
 
-				<p:column headerText="UserName">
-					<h:outputText value="#{jury.username}" />
+				<p:column headerText="Description">
+					<h:outputText value="#{jury.description}" />
 				</p:column>
-
 			</p:dataTable>
 		</h:form>
+
 	</ui:define>
 </ui:composition>

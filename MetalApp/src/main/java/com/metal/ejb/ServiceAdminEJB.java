@@ -36,6 +36,7 @@ public class ServiceAdminEJB {
 	}
 
 	public Participant createParticipant(Participant participant) {
+		participant.setGroup("participant");
 		em.persist(participant);
 		return participant;
 	}
@@ -58,7 +59,8 @@ public class ServiceAdminEJB {
 		return em.find(Jury.class, id);
 	}
 
-	public Jury createJury(Jury jury) {
+	public Jury createJury(Jury jury) {		
+		jury.setGroup("jury");
 		em.persist(jury);
 		return jury;
 	}

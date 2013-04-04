@@ -17,12 +17,12 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	// @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(unique = true, nullable = false, length = 50)
 	private String username;
 
-//	@Column(nullable = false, length = 50)
-//	private String group_name;
+	@Column(nullable = false, length = 50)
+	private String group_name;
 
 	@Column(nullable = false, length = 50)
 	private String password;
@@ -53,13 +53,13 @@ public class User implements Serializable {
 		this.username = username;
 	}
 
-	// public String getGroup() {
-	// return this.group_name;
-	// }
-	//
-	// public void setGroup(String group_name) {
-	// this.group_name = group_name;
-	// }
+	public String getGroup() {
+		return this.group_name;
+	}
+
+	public void setGroup(String group_name) {
+		this.group_name = group_name;
+	}
 
 	public String getPassword() {
 		return this.password;

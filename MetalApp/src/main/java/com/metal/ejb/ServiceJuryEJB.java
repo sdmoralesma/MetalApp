@@ -38,13 +38,21 @@ public class ServiceJuryEJB {
 		TypedQuery<Participant> query = em.createNamedQuery("Participant.findByUsername", Participant.class)
 				.setParameter("username", participant.getUsername());
 		List<Participant> participants = query.getResultList();
-		System.out.println(participants.get(0));
+		if (participants.isEmpty()) {
+			System.out.println("No participants");
+		} else {
+			System.out.println(participants.get(0));
+		}
 	}
 
 	public void addVotePerSong(Song song) {
 		TypedQuery<Song> query = em.createNamedQuery("Song.findByTitle", Song.class).setParameter("title",
 				song.getTitle());
 		List<Song> songs = query.getResultList();
-		System.out.println(songs.get(0));
+		if (songs.isEmpty()) {
+			System.out.println("No songs");
+		} else {
+			System.out.println(songs.get(0));
+		}
 	}
 }

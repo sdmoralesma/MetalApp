@@ -10,10 +10,10 @@
 		<h:form>
 			<h:panelGrid columns="2">
 				<h:outputText value="id Artist" />
-				<h:inputText value="#{beanSong.song.artist}" />
+				<h:inputText value="#{beanSong.artist.idArtist}" />
 
 				<h:outputText value="id Gender" />
-				<h:inputText value="#{beanSong.song.gender}" />
+				<h:inputText value="#{beanSong.gender.idGender}" />
 
 				<h:outputText value="Title of the Song" />
 				<h:inputText value="#{beanSong.song.title}" />
@@ -31,17 +31,18 @@
 					<h:outputText value="#{song.idSong}" />
 				</p:column>
 
-				<p:column headerText="IdArtist">
-					<h:outputText value="#{song.idArtist}" />
-				</p:column>
-
-				<p:column headerText="IdGender">
-					<h:outputText value="#{song.idGender}" />
-				</p:column>
-
 				<p:column headerText="Title">
 					<h:outputText value="#{song.title}" />
 				</p:column>
+
+				<p:column headerText="IdArtist">
+					<h:outputText value="#{song.artist.idArtist}" />
+				</p:column>
+
+				<p:column headerText="IdGender">
+					<h:outputText value="#{song.gender.idGender}" />
+				</p:column>
+
 			</p:dataTable>
 		</h:form>
 

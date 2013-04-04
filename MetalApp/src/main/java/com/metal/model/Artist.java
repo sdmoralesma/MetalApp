@@ -31,7 +31,7 @@ public class Artist implements Serializable {
 	private String name;
 
 	// bi-directional many-to-one association to Song
-	@OneToMany(mappedBy = "artist")
+	@OneToMany(mappedBy = "artist", cascade=CascadeType.PERSIST)
 	private List<Song> songs;
 
 	public Artist() {

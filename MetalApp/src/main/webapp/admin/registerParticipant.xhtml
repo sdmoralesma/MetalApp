@@ -17,7 +17,8 @@
 				<h:inputText value="#{beanRegisterParticipant.participant.name}" />
 
 				<h:outputText value="Password" />
-				<h:inputText value="#{beanRegisterParticipant.participant.password}" />
+				<h:inputSecret
+					value="#{beanRegisterParticipant.participant.password}" />
 
 				<h:outputText value="Age" />
 				<h:inputText value="#{beanRegisterParticipant.participant.age}" />
@@ -38,12 +39,16 @@
 			<p:dataTable value="#{beanRegisterParticipant.participantList}"
 				var="participant">
 
-				<p:column headerText="Id">
-					<h:outputText value="#{participant.idParticipant}" />
+				<p:column headerText="UserName">
+					<h:outputText value="#{participant.username}" />
 				</p:column>
 
 				<p:column headerText="Age">
 					<h:outputText value="#{participant.age}" />
+				</p:column>
+
+				<p:column headerText="Country">
+					<h:outputText value="#{participant.country}" />
 				</p:column>
 
 				<p:column headerText="Gender">
@@ -52,14 +57,6 @@
 
 				<p:column headerText="Name">
 					<h:outputText value="#{participant.name}" />
-				</p:column>
-
-				<p:column headerText="Phone">
-					<h:outputText value="#{participant.phone}" />
-				</p:column>
-
-				<p:column headerText="UserName">
-					<h:outputText value="#{participant.username}" />
 				</p:column>
 
 			</p:dataTable>
