@@ -93,4 +93,9 @@ public class Presentation implements Serializable {
 		this.song = song;
 	}
 
+	@Override
+	public String toString() {
+		return "Presentation [idPresentation=" + idPresentation + ", handScore=" + handScore + ", headScore="
+				+ headScore + ", totalScore=" + totalScore + ", participant=" + participant + ", song=" + song + "]";
+	}
 }

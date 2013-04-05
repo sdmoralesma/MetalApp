@@ -112,4 +112,9 @@ public class Song implements Serializable {
 		this.songMatrix = songMatrix;
 	}
 
+	@Override
+	public String toString() {
+		return "Song [idSong=" + idSong + ", title=" + title + ", presentations=" + presentations + ", artist="
+				+ artist + ", gender=" + gender + ", songMatrix=" + songMatrix + "]";
+	}
 }

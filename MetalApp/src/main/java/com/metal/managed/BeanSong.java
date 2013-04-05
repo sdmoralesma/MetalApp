@@ -31,7 +31,7 @@ public class BeanSong {
 		songList = facade.findSongs();
 		return "registerSong.xhtml";
 	}
-
+	
 	public String doVotePerSong() {
 		facade.registerVotePerSong(song);
 		songList = facade.findSongs();

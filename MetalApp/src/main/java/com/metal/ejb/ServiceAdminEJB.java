@@ -10,6 +10,7 @@ import javax.persistence.TypedQuery;
 
 import com.metal.model.Jury;
 import com.metal.model.Participant;
+import com.metal.model.ScoreMatrix;
 
 /**
  * Registra Usuarios y Administradores en el sistema
@@ -37,6 +38,11 @@ public class ServiceAdminEJB {
 
 	public Participant createParticipant(Participant participant) {
 		participant.setGroup("participant");
+		
+		ScoreMatrix score = new ScoreMatrix();
+		score.setUsername(participant.getUsername());
+		//score.setParticipant(participant);
+		participant.setScoreMatrix(score);
 		em.persist(participant);
 		return participant;
 	}

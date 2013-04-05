@@ -13,12 +13,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
 		@NamedQuery(name = "ScoreMatrix.findAll", query = "SELECT s FROM ScoreMatrix s"),
-		@NamedQuery(name = "ScoreMatrix.findByIdParticipant", query = "SELECT s FROM ScoreMatrix s WHERE s.username = :username") })
+		@NamedQuery(name = "ScoreMatrix.findByUsername", query = "SELECT s FROM ScoreMatrix s WHERE s.username = :username") })
 public class ScoreMatrix implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	// @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(unique = true, nullable = false, length = 50)
 	private String username;
 
@@ -255,6 +255,16 @@ public class ScoreMatrix implements Serializable {
 
 	public void setParticipant(Participant participant) {
 		this.participant = participant;
+	}
+
+	@Override
+	public String toString() {
+		return "ScoreMatrix [username=" + username + ", hand1=" + hand1 + ", hand10=" + hand10 + ", hand2=" + hand2
+				+ ", hand3=" + hand3 + ", hand4=" + hand4 + ", hand5=" + hand5 + ", hand6=" + hand6 + ", hand7="
+				+ hand7 + ", hand8=" + hand8 + ", hand9=" + hand9 + ", head1=" + head1 + ", head10=" + head10
+				+ ", head2=" + head2 + ", head3=" + head3 + ", head4=" + head4 + ", head5=" + head5 + ", head6="
+				+ head6 + ", head7=" + head7 + ", head8=" + head8 + ", head9=" + head9 + ", totalScore=" + totalScore
+				+ ", participant=" + participant + "]";
 	}
 
 }

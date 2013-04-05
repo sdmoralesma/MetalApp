@@ -34,7 +34,7 @@ public class Gender implements Serializable {
 	private String name;
 
 	// bi-directional many-to-one association to Song
-	@OneToMany(mappedBy = "gender", cascade=CascadeType.PERSIST)
+	@OneToMany(mappedBy = "gender", cascade = CascadeType.PERSIST)
 	private List<Song> songs;
 
 	public Gender() {
@@ -94,4 +94,9 @@ public class Gender implements Serializable {
 		return song;
 	}
 
+	@Override
+	public String toString() {
+		return "Gender [idGender=" + idGender + ", handValue=" + handValue + ", headValue=" + headValue + ", name="
+				+ name + ", songs=" + songs + "]";
+	}
 }

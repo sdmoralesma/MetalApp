@@ -62,6 +62,11 @@ public class Jury extends User implements Serializable {
 		this.name = name;
 	}
 
+	@Override
+	public String toString() {
+		return "Jury [description=" + description + ", name=" + name + "]";
+	}
+
 	// public User getUser() {
 	// return this.user;
 	// }
@@ -69,5 +74,7 @@ public class Jury extends User implements Serializable {
 	// public void setUser(User user) {
 	// this.user = user;
 	// }
+	
+	
 
 }

@@ -45,11 +45,11 @@ public class Participant extends User implements Serializable {
 	// private User user;
 
 	// bi-directional many-to-one association to Presentation
-	@OneToMany(mappedBy = "participant")
+	@OneToMany(mappedBy = "participant", cascade = CascadeType.PERSIST)
 	private List<Presentation> presentations;
 
 	// bi-directional one-to-one association to ScoreMatrix
-	@OneToOne(mappedBy = "participant")
+	@OneToOne(mappedBy = "participant", cascade = CascadeType.PERSIST)
 	private ScoreMatrix scoreMatrix;
 
 	public Participant() {
@@ -133,4 +133,9 @@ public class Participant extends User implements Serializable {
 		this.scoreMatrix = scoreMatrix;
 	}
 
+	@Override
+	public String toString() {
+		return "Participant [age=" + age + ", country=" + country + ", gender=" + gender + ", name=" + name
+				+ ", presentations=" + presentations + ", scoreMatrix=" + scoreMatrix + "]";
+	}
 }

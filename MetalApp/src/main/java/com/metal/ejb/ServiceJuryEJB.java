@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import com.metal.model.Participant;
+import com.metal.model.ScoreMatrix;
 import com.metal.model.Song;
 
 /**
@@ -37,12 +38,30 @@ public class ServiceJuryEJB {
 	public void addVotePerParticipant(Participant participant) {
 		TypedQuery<Participant> query = em.createNamedQuery("Participant.findByUsername", Participant.class)
 				.setParameter("username", participant.getUsername());
-		List<Participant> participants = query.getResultList();
-		if (participants.isEmpty()) {
-			System.out.println("No participants");
+		participant = query.getResultList().get(0);
+		if (participant != null) {
+
+			System.out.println("PARTICIPANT" + participant);//
+
+			TypedQuery<ScoreMatrix> scoreQuery = em.createNamedQuery("ScoreMatrix.findByUsername",
+					ScoreMatrix.class).setParameter("username", participant.getUsername());
+
+			if (scoreQuery.getFirstResult() != 0) {
+				ScoreMatrix score = scoreQuery.getResultList().get(0);
+				System.out.println("SCORE" + score);
+
+				score.setTotalScore(score.getTotalScore() + 1);
+				participant.setScoreMatrix(score);
+				em.persist(participant);
+
+			} else {
+				System.out.println("NO EXISTE SCORE PARA EL PARTICIPANTE");
+			}
+
 		} else {
-			System.out.println(participants.get(0));
+			System.out.println("NO EXISTE EL PARTICIPANTE");
 		}
+
 	}
 
 	public void addVotePerSong(Song song) {
