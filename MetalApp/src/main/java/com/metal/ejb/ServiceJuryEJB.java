@@ -17,7 +17,7 @@ import com.metal.model.Song;
  */
 @Stateless
 @LocalBean
-public class ServiceJuryEJB {
+public class ServiceJuryEJB{
 
 	@PersistenceContext(unitName = "MetalApp")
 	private EntityManager em;

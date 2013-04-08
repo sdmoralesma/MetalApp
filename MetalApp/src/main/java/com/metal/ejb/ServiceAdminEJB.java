@@ -1,5 +1,6 @@
 package com.metal.ejb;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -17,7 +18,7 @@ import com.metal.model.ScoreMatrix;
  */
 @Stateless
 @LocalBean
-public class ServiceAdminEJB {
+public class ServiceAdminEJB{
 
 	@PersistenceContext(unitName = "MetalApp")
 	private EntityManager em;
@@ -38,10 +39,10 @@ public class ServiceAdminEJB {
 
 	public Participant createParticipant(Participant participant) {
 		participant.setGroup("participant");
-		
+
 		ScoreMatrix score = new ScoreMatrix();
 		score.setUsername(participant.getUsername());
-		//score.setParticipant(participant);
+		// score.setParticipant(participant);
 		participant.setScoreMatrix(score);
 		em.persist(participant);
 		return participant;
@@ -65,7 +66,7 @@ public class ServiceAdminEJB {
 		return em.find(Jury.class, id);
 	}
 
-	public Jury createJury(Jury jury) {		
+	public Jury createJury(Jury jury) {
 		jury.setGroup("jury");
 		em.persist(jury);
 		return jury;

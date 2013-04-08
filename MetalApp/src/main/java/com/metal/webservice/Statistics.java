@@ -18,12 +18,9 @@ public class Statistics implements StatisticsWs {
 	@EJB
 	ServiceAdminEJB adminEJB;
 
-	// public List<Participant> getRatingParticipants() {
-
 	@Override
-	public Participant getRatingParticipants() {
-		System.out.println("WS RatingParticipants");
-		return adminEJB.findAllParticipants().get(0);
+	public List<Participant> getRatingParticipants() {
+		return adminEJB.findAllParticipants();
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package com.metal.managed;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -24,6 +25,11 @@ public class BeanSong {
 	private Artist artist = new Artist();
 	private List<Song> songList = new ArrayList<>();
 
+	@PostConstruct
+	public void populateSongList() {
+		this.songList = facade.findSongs();
+	}
+	
 	public String doCreateSong() {
 		song.setArtist(artist);
 		song.setGender(gender);

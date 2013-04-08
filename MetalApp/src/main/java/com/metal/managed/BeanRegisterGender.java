@@ -3,6 +3,7 @@ package com.metal.managed;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -19,6 +20,11 @@ public class BeanRegisterGender {
 
 	private Gender gender = new Gender();
 	private List<Gender> genderList = new ArrayList<>();
+
+	@PostConstruct
+	public void populateGenderList() {
+		this.genderList = facade.findGenders();
+	}
 
 	public String doCreateGender() {
 		facade.registerGender(gender);
