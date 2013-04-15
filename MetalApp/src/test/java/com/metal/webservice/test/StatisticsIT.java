@@ -16,6 +16,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import com.metal.model.Participant;
+import com.metal.model.Song;
 import com.metal.webservice.Statistics;
 import com.metal.webservice.StatisticsWs;
 
@@ -61,12 +62,17 @@ public class StatisticsIT {
 
 		List<Participant> participants = statisticsWs.getRatingParticipants();
 		assertTrue("Invalid resultList", participants.size() > 0);
-		System.out.println("NAME: " + participants.get(0).getName());
+		System.out.println(participants.get(0));
 	}
 
 	@Test
 	public void testGetRatingSongs() {
-		fail("Not yet implemented");
+		Service service = Service.create(wsdlDocumentLocation, serviceQN);
+		StatisticsWs statisticsWs = service.getPort(portQN, StatisticsWs.class);
+
+		List<Song> songs = statisticsWs.getRatingSongs();
+		assertTrue("Invalid resultList", songs.size() > 0);
+		System.out.println(songs.get(0));
 	}
 
 	@Test

@@ -3,6 +3,7 @@ package com.metal.model;
 import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import java.util.List;
 
@@ -72,6 +73,7 @@ public class Gender implements Serializable {
 		this.name = name;
 	}
 
+	@XmlTransient
 	public List<Song> getSongs() {
 		return this.songs;
 	}

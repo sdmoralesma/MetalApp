@@ -8,6 +8,7 @@ import javax.jws.WebParam;
 import javax.jws.WebService;
 
 import com.metal.ejb.ServiceAdminEJB;
+import com.metal.ejb.ServiceScoreEJB;
 import com.metal.model.Participant;
 import com.metal.model.Song;
 
@@ -17,6 +18,9 @@ public class Statistics implements StatisticsWs {
 
 	@EJB
 	ServiceAdminEJB adminEJB;
+	
+	@EJB
+	ServiceScoreEJB scoreEJB;
 
 	@Override
 	public List<Participant> getRatingParticipants() {
@@ -25,8 +29,7 @@ public class Statistics implements StatisticsWs {
 
 	@Override
 	public List<Song> getRatingSongs() {
-		System.out.println("WS RatingSongs");
-		return null;
+		return scoreEJB.findAllSongs();
 	}
 
 	@Override

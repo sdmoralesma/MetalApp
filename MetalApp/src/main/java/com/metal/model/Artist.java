@@ -1,10 +1,20 @@
 package com.metal.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * The persistent class for the artist database table.
@@ -31,7 +41,7 @@ public class Artist implements Serializable {
 	private String name;
 
 	// bi-directional many-to-one association to Song
-	@OneToMany(mappedBy = "artist", cascade=CascadeType.PERSIST)
+	@OneToMany(mappedBy = "artist", cascade = CascadeType.ALL)
 	private List<Song> songs;
 
 	public Artist() {
@@ -61,6 +71,7 @@ public class Artist implements Serializable {
 		this.name = name;
 	}
 
+	@XmlTransient
 	public List<Song> getSongs() {
 		return this.songs;
 	}
@@ -85,10 +96,7 @@ public class Artist implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Artist [idArtist=" + idArtist + ", description=" + description + ", name=" + name + ", songs=" + songs
-				+ "]";
+		return "Artist [idArtist=" + idArtist + ", description=" + description + ", name=" + name + "]";
 	}
-	
-	
 
 }
