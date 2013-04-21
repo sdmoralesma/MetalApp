@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 
 @ManagedBean
 @SessionScoped
-public class Logout {
+public class BeanLogout {
 
 	public void doLogout() {
 		FacesContext context = FacesContext.getCurrentInstance();

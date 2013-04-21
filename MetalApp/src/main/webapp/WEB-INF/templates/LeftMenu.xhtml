@@ -14,7 +14,7 @@
 				<p:menuitem value="Users" action="/admin/UserList.xhtml?faces-redirect=true" ajax="false" icon="ui-icon-person" />
 			</c:if>
 			<c:if test="#{request.getUserPrincipal() != null}">
-				<p:menuitem value="Logout" action="#{logout.doLogout}" icon="ui-icon-power" />
+				<p:menuitem value="Logout" action="#{beanLogout.doLogout}" icon="ui-icon-power" />
 			</c:if>
 			<c:if test="#{request.getUserPrincipal() == null}">
 				<p:menuitem value="Login" action="login.xhtml?faces-redirect=true" icon="ui-icon-power" />
