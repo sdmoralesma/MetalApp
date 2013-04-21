@@ -1,33 +1,36 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core"
-	template="/WEB-INF/templates/template.xhtml">
-
-	<ui:define name="metadata">
-	</ui:define>
+<ui:composition template="/WEB-INF/templates/template.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="content">
-		<h2>Please log in:</h2>
 
-		<p:panel header="Login Form">
-			<form method="post" action="j_security_check">
+		<h:form id="login" prependId="false" onsubmit="document.login.action='j_security_check';" >
 
-				<p:panelGrid columns="2">
-					<p:outputLabel>Username: </p:outputLabel>
-					<input type="text" name="j_username" />
-					<p:outputLabel>Password:  </p:outputLabel>
-					<input type="password" name="j_password" />
-				</p:panelGrid>
+			<p:growl id="msgs" showDetail="true" sticky="false" />
 
-				<p:panelGrid columns="2">
-					<input type="submit" value="Login" />
-					<input type="reset" value="Reset" />
-				</p:panelGrid>
+			<p:panelGrid columns="2">
 
-			</form>
-		</p:panel>
+				<f:facet name="header">Login Panel</f:facet>
 
+				<h:outputLabel value="Username : " />
+				<p:inputText id="j_username" required="true" requiredMessage="Please Enter Username!"
+					message="fc">
+					<f:validateLength minimum="1" />
+				</p:inputText>
+
+				<h:outputLabel value="Password : " />
+				<p:password id="j_password" required="true" requiredMessage="Please Enter Password!">
+					<f:validateLength minimum="1" />
+				</p:password>
+
+				<f:facet name="footer">
+					<p:commandButton value="Login" id="submit" ajax="false" update="msgs" type="submit" icon="ui-icon-check"
+						style="margin:0" />
+				</f:facet>
+
+			</p:panelGrid>
+
+		</h:form>
 	</ui:define>
+
 </ui:composition>
