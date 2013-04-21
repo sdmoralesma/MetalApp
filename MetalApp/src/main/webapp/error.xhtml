@@ -1,20 +1,18 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
 	template="/WEB-INF/templates/template.xhtml">
 
 	<ui:define name="content">
 		<h2>Invalid user name or password.</h2>
 
 		<p>
-			Please enter a user name or password that is authorized to access
-			this application. For this application, this means a user that has
-			been created in the
-			<code>file</code>
-			realm and has been assigned to the <em>group</em> of
-			<code>TutorialUser</code>
+			Please enter a user name or password that is authorized to access this application. You must have a username
+			associate to either roles:
+			<code>admin</code>
+			,
+			<code>jury</code>
+			or
+			<code>participant</code>
 		</p>
 		<p>
 			<a href="../index.xhtml">Return to Login page</a>

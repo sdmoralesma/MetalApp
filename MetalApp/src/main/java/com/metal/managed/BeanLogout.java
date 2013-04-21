@@ -9,9 +9,11 @@ import javax.servlet.http.HttpSession;
 @SessionScoped
 public class BeanLogout {
 
-	public void doLogout() {
+	public String doLogout() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(false);
 		session.invalidate();
+
+		return "/login.xhtml";
 	}
 }
