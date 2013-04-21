@@ -1,34 +1,33 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core">
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title><ui:insert name="title">Metal App</ui:insert></title>
+	<title>Title</title>
+	<h:outputStylesheet library="css" name="default.css" />
 </h:head>
-
 <h:body>
+	<p:layout fullPage="true">
+		<p:layoutUnit position="north" size="75" header="Metal App" resizable="false" closable="false" collapsible="false">
+			<h:outputText value="The Best Headbanging in the History" />
+		</p:layoutUnit>
 
-	<div id="header">
-		<ui:insert name="header">
-			<h2>Metal HeadBanging Application</h2>
-		</ui:insert>
-	</div>
+		<p:layoutUnit position="south" size="30" resizable="true" closable="true" collapsible="true">
+			<h:outputText value="Powered By Java EE6, Developed By: Sergio Morales" />
+		</p:layoutUnit>
 
-	<div id="content">
-		<ui:insert name="content">
-    	Insert Your Content
-  </ui:insert>
-	</div>
+		<p:layoutUnit position="west" size="120" header="Menu" resizable="false" closable="false" collapsible="false">
+			<ui:include src="../templates/LeftMenu.xhtml" />
+		</p:layoutUnit>
 
-	<div id="footer">
-		<ui:insert name="footer">
-			<h2>By: Sergio Morales</h2>
-		</ui:insert>
-	</div>
+		<p:layoutUnit position="east" size="120" header="Help" resizable="true" closable="true" collapsible="true"
+			effect="drop">
+			<h:outputText value="Welcome , Please Login" />
+		</p:layoutUnit>
 
+		<p:layoutUnit position="center">
+			<ui:insert name="content">Default content here, if any.</ui:insert>
+		</p:layoutUnit>
+		
+	</p:layout>
 </h:body>
 </html>

@@ -62,7 +62,6 @@ public class StatisticsIT {
 
 		List<Participant> participants = statisticsWs.getRatingParticipants();
 		assertTrue("Invalid resultList", participants.size() > 0);
-		System.out.println(participants.get(0));
 	}
 
 	@Test
@@ -72,7 +71,6 @@ public class StatisticsIT {
 
 		List<Song> songs = statisticsWs.getRatingSongs();
 		assertTrue("Invalid resultList", songs.size() > 0);
-		System.out.println(songs.get(0));
 	}
 
 	@Test
