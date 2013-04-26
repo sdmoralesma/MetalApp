@@ -1,20 +1,21 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
 	template="/WEB-INF/templates/template.xhtml">
 
 	<ui:define name="content">
 
 		<h3>Select where you want to go:</h3>
 
-		<h:link outcome="/admin/index" value="To the Admin section" />
-		<br />
-		<h:link outcome="/participant/index"
-			value="To the Participant section" />
-		<br />
-		<h:link outcome="/jury/index" value="To the Jury section" />
-
+		<h:form>
+			<p:graphicImage url="resources/images/duke-sleeping.jpg" alt="Duke waving his hand" />
+			<br />
+			<br />
+			<br />
+			<h:link outcome="/admin/index" value="To the Admin section" />
+			<br />
+			<h:link outcome="/participant/index" value="To the Participant section" />
+			<br />
+			<h:link outcome="/jury/index" value="To the Jury section" />
+		</h:form>
 	</ui:define>
 </ui:composition>

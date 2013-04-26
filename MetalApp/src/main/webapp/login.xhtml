@@ -4,7 +4,7 @@
 
 	<ui:define name="content">
 
-		<h:form id="login" prependId="false" onsubmit="document.login.action='j_security_check';" >
+		<h:form id="login" styleClass="loginPanelStyle" prependId="false" onsubmit="document.login.action='j_security_check';">
 
 			<p:growl id="msgs" showDetail="true" sticky="false" />
 
@@ -13,8 +13,7 @@
 				<f:facet name="header">Login Panel</f:facet>
 
 				<h:outputLabel value="Username : " />
-				<p:inputText id="j_username" required="true" requiredMessage="Please Enter Username!"
-					message="fc">
+				<p:inputText id="j_username" required="true" requiredMessage="Please Enter Username!" message="fc">
 					<f:validateLength minimum="1" />
 				</p:inputText>
 

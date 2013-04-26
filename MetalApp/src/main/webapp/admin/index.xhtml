@@ -1,8 +1,5 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
 	template="/WEB-INF/templates/template.xhtml">
 
 	<ui:define name="content">
@@ -10,9 +7,8 @@
 		<h:form>
 			<p:graphicImage url="duke.waving.gif" alt="Duke waving his hand" />
 			<p>Hello, my name is Duke. What's yours?</p>
-			<p:inputText id="username" title="My name is: " value="#{hello.name}"
-				required="true" requiredMessage="Error: A name is required."
-				maxlength="25" />
+			<p:inputText id="username" title="My name is: " value="#{hello.name}" required="true"
+				requiredMessage="Error: A name is required." maxlength="25" />
 
 			<p:commandButton id="submit" value="Submit" action="response" />
 			<p:commandButton id="reset" value="Reset" type="reset" />
@@ -20,15 +16,13 @@
 
 		<h3>Welcome Admin</h3>
 		<div class="messagecolor">
-			<h:messages showSummary="true" showDetail="false"
-				errorStyle="color: #d20005" infoStyle="color: blue" />
+			<h:messages showSummary="true" showDetail="false" errorStyle="color: #d20005" infoStyle="color: blue" />
 		</div>
 
 		<div>
 			<h:link outcome="registerJury.xhtml" value="Register Jury" />
 			<br />
-			<h:link outcome="registerParticipant.xhtml"
-				value="Register Participant" />
+			<h:link outcome="registerParticipant.xhtml" value="Register Participant" />
 			<br />
 			<h:link outcome="registerSong.xhtml" value="Register Song" />
 			<br />
