@@ -8,7 +8,7 @@
 <h:body>
 	<h:form>
 		<p:growl id="messages" />
-		<p:menu style="width:100%">
+		<p:menu style="width:50%">
 			<c:if test="#{request.isUserInRole('admin')}">
 				<p:menuitem value="Home" action="/admin/index.xhtml?faces-redirect=true" ajax="false" icon="ui-icon-home" />
 				<p:menuitem value="Add Jury" action="/admin/registerJury.xhtml?faces-redirect=true" ajax="false"

@@ -7,21 +7,23 @@
 </h:head>
 <h:body>
 	<p:layout fullPage="true">
-		<p:layoutUnit position="north" size="75" header="Metal App" resizable="false" closable="false" collapsible="false">
-			<h:outputText value="The Best Headbanging in the History" />
+		<p:layoutUnit position="north" size="75" header="Metal App" resizable="false" closable="false" collapsible="false"
+			style="text-align: center;">
+			<h:outputText value="The Best Headbanging in the History" style="font-size: 180%;" />
 		</p:layoutUnit>
 
-		<p:layoutUnit position="south" size="30" resizable="true" closable="true" collapsible="true">
-			<h:outputText value="Powered By Java EE6, Developed By: Sergio Morales" />
+		<p:layoutUnit position="south" size="30" resizable="true" closable="true" collapsible="true"
+			style="text-align: center;">
+			<h:outputText value="Powered By Java EE6, Developed By: Sergio Morales" style="font-weight:bold" />
 		</p:layoutUnit>
 
-		<p:layoutUnit position="west" size="150" header="Menu" resizable="false" closable="false" collapsible="false">
+		<p:layoutUnit position="west" size="170" header="Menu" resizable="false" closable="false" collapsible="false">
 			<ui:include src="../templates/LeftMenu.xhtml" />
 		</p:layoutUnit>
 
 		<p:layoutUnit position="east" size="150" header="Help" resizable="true" closable="true" collapsible="true"
 			effect="drop">
-			<h:outputText value="Welcome , Please Login" />
+			<h:outputText value="Welcome, Please enjoy learning Java EE" />
 		</p:layoutUnit>
 
 		<p:layoutUnit position="center">
