@@ -8,16 +8,35 @@
 <h:body>
 	<h:form>
 		<p:growl id="messages" />
-		<p:menu style="width:95%">
+		<p:menu style="width:100%">
 			<c:if test="#{request.isUserInRole('admin')}">
-				<p:menuitem value="Home" id="home" action="/admin/AdminHome.xhtml?faces-redirect=true" ajax="false" icon="ui-icon-home" />
-				<p:menuitem value="Users" id="users" action="/admin/UserList.xhtml?faces-redirect=true" ajax="false" icon="ui-icon-person" />
-			</c:if>			
-			
+				<p:menuitem value="Home" action="/admin/index.xhtml?faces-redirect=true" ajax="false" icon="ui-icon-home" />
+				<p:menuitem value="Add Jury" action="/admin/registerJury.xhtml?faces-redirect=true" ajax="false"
+					icon="ui-icon-person" />
+				<p:menuitem value="Add Participant" action="/admin/registerParticipant.xhtml?faces-redirect=true" ajax="false"
+					icon="ui-icon-person" />
+				<p:menuitem value="Add Song" action="/admin/registerSong.xhtml?faces-redirect=true" ajax="false"
+					icon="ui-icon-volume-on" />
+				<p:menuitem value="Add Gender" action="/admin/registerGender.xhtml?faces-redirect=true" ajax="false"
+					icon="ui-icon-heart" />
+			</c:if>
+
+			<c:if test="#{request.isUserInRole('jury')}">
+				<p:menuitem value="Home" action="/jury/index.xhtml?faces-redirect=true" ajax="false" icon="ui-icon-home" />
+				<p:menuitem value="Vote Participant" action="/jury/votePerParticipant.xhtml?faces-redirect=true" ajax="false"
+					icon="ui-icon-check" />
+				<p:menuitem value="Vote Song" action="/jury/votePerSong.xhtml?faces-redirect=true" ajax="false" icon="ui-icon-check" />
+			</c:if>
+
+			<c:if test="#{request.isUserInRole('participant')}">
+				<p:menuitem value="Home" action="/participant/index.xhtml?faces-redirect=true" ajax="false" icon="ui-icon-home" />
+			</c:if>
+
 			<c:if test="#{request.getUserPrincipal() != null}">
-				<p:menuitem value="Logout" action="#{beanLogout.doLogout}"  icon="ui-icon-power" />
+				<p:menuitem value="Logout" action="#{beanLogout.doLogout}" icon="ui-icon-power" />
 			</c:if>
 			<c:if test="#{request.getUserPrincipal() == null}">
+				<p:menuitem value="Home" action="/index.xhtml?faces-redirect=true" icon="ui-icon-home" />
 				<p:menuitem value="Login" action="/login.xhtml?faces-redirect=true" icon="ui-icon-power" />
 			</c:if>
 		</p:menu>

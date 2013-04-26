@@ -14,6 +14,6 @@ public class BeanLogout {
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(false);
 		session.invalidate();
 
-		return "/login.xhtml";
+		return "/index.xhtml?faces-redirect=true";
 	}
 }
