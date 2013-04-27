@@ -3,6 +3,7 @@ package com.metal.managed;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -19,6 +20,11 @@ public class BeanVotePerParticipant {
 
 	private Participant participant = new Participant();
 	private List<Participant> participantList = new ArrayList<>();
+
+	@PostConstruct
+	public void populateParticipantList() {
+		this.participantList = facade.findParticipants();
+	}
 
 	public String doVotePerParticipant() {
 		facade.registerVotePerParticipant(participant);
