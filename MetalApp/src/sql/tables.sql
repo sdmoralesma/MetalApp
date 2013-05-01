@@ -1,5 +1,3 @@
---<ScriptOptions statementTerminator=";"/>
-
 ALTER TABLE `metal`.`users` DROP PRIMARY KEY;
 
 ALTER TABLE `metal`.`song` DROP PRIMARY KEY;

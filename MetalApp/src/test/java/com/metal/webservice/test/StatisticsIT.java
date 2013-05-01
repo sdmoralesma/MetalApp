@@ -12,7 +12,6 @@ import javax.xml.ws.Service;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.metal.model.Participant;
@@ -52,7 +51,7 @@ public class StatisticsIT {
 		Service service = Service.create(wsdlDocumentLocation, serviceQN);
 		StatisticsWs statisticsWs = service.getPort(portQN, StatisticsWs.class);
 		String cadena = statisticsWs.getCadena();
-		assertEquals("Cadena Inválida", "TEST", cadena);
+		assertEquals("Cadena Invï¿½lida", "TEST", cadena);
 	}
 
 	@Test
