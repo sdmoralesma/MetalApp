@@ -1,59 +1,42 @@
 package com.metal.ejb;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.ejb.Stateless;
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 
 import com.metal.model.Participant;
-import com.metal.model.ScoreMatrix;
 
 /**
  * Permite a un participante ver su propio perfil y modificarlo
+ * 
  * Based on the article:
  * http://www.andygibson.net/blog/article/comparing-jsf-beans-cdi-beans-and-ejbs/
  */
 @Named("participantBean")
-@RequestScoped
-//@Stateless //Agrega transaccionalidad a las operaciones
+@ApplicationScoped
 public class ServiceParticipantEJB {
 	
-	@Inject
-	private Participant participant;
-//	private List<Participant> participantList = new ArrayList<>();
-
 	@PersistenceContext(unitName = "MetalApp")
 	private EntityManager em;
-
+	
+	private Participant participant;
+	private String message;
 	/** Default constructor. */
 	public ServiceParticipantEJB() {
 	}
+	
+	@PostConstruct
+	public void populateParticipantList() {
+		this.participant = this.findParticipantById((long) 0);
 
-	// Participant Methods
-	public List<Participant> findAllParticipants() {
-		TypedQuery<Participant> query = em.createNamedQuery("Participant.findAll", Participant.class);
-		return query.getResultList();
 	}
 
 	public Participant findParticipantById(Long id) {
 		return em.find(Participant.class, id);
-	}
-
-	public Participant createParticipant(Participant participant) {
-		participant.setGroup("participant");
-
-		ScoreMatrix score = new ScoreMatrix();
-		score.setUsername(participant.getUsername());
-		// score.setParticipant(participant);
-		participant.setScoreMatrix(score);
-		em.persist(participant);
-		return participant;
 	}
 
 	public void deleteParticipant(Participant participant) {
@@ -63,4 +46,26 @@ public class ServiceParticipantEJB {
 	public Participant updateParticipant(Participant participant) {
 		return em.merge(participant);
 	}
+
+	public Participant getParticipant() {
+		return participant;
+	}
+
+	public void setParticipant(Participant participant) {
+		this.participant = participant;
+	}
+
+	public String getSomeText() {
+		return "Some Text that must be shown";
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}	
+	
+	
 }

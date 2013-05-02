@@ -4,8 +4,10 @@
 
 	<ui:define name="content">
 
-		<h3>Register Participant</h3>
+		<h3>My Profile</h3>
+		
 		<h:form>
+		#{participantBean.message} <br/>
 			<h:panelGrid columns="2">
 				<h:outputText value="Username" />
 				<h:outputText value="#{participantBean.participant.username}" />
@@ -23,7 +25,9 @@
 				<h:outputText value="#{participantBean.participant.gender}" />
 
 				<h:outputText value="Country" />
-				<h:outputText value="#{participantBean}" />
+				<h:outputText value="#{participantBean.participant.country}" />
+
+				<p:outputLabel value="Some Info: #{participantBean.message}" />
 
 <!-- 				<h:commandButton value="Add Participant" action="#{participantBean.doCreateParticipant}" /> -->
 			</h:panelGrid>
@@ -31,3 +35,6 @@
 
 	</ui:define>
 </ui:composition>
+
+
+
