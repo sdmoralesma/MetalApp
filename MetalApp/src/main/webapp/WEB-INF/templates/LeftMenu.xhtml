@@ -30,6 +30,7 @@
 
 			<c:if test="#{request.isUserInRole('participant')}">
 				<p:menuitem value="Home" action="/participant/index.xhtml?faces-redirect=true" ajax="false" icon="ui-icon-home" />
+				<p:menuitem value="My Profile" action="/participant/profile.xhtml?faces-redirect=true" ajax="false" icon="ui-icon-person" />
 			</c:if>
 
 			<c:if test="#{request.getUserPrincipal() != null}">

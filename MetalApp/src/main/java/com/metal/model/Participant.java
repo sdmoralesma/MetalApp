@@ -21,11 +21,6 @@ import java.util.List;
 public class Participant extends User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	// @Id
-	// @GeneratedValue(strategy=GenerationType.IDENTITY)
-	// @Column(unique=true, nullable=false, length=50)
-	// private String username;
-
 	@Column(nullable = false)
 	private int age;
 
@@ -37,6 +32,9 @@ public class Participant extends User implements Serializable {
 
 	@Column(nullable = false, length = 100)
 	private String name;
+
+	@Column(nullable = true, length = 100)
+	private String image_url;
 
 	// bi-directional one-to-one association to User
 	// @OneToOne
@@ -54,14 +52,6 @@ public class Participant extends User implements Serializable {
 
 	public Participant() {
 	}
-
-	// public String getUsername() {
-	// return this.username;
-	// }
-	//
-	// public void setUsername(String username) {
-	// this.username = username;
-	// }
 
 	public int getAge() {
 		return this.age;
@@ -95,14 +85,6 @@ public class Participant extends User implements Serializable {
 		this.name = name;
 	}
 
-	// public User getUser() {
-	// return this.user;
-	// }
-	//
-	// public void setUser(User user) {
-	// this.user = user;
-	// }
-
 	public List<Presentation> getPresentations() {
 		return this.presentations;
 	}
@@ -133,9 +115,19 @@ public class Participant extends User implements Serializable {
 		this.scoreMatrix = scoreMatrix;
 	}
 
+	public String getImage_url() {
+		return image_url;
+	}
+
+	public void setImage_url(String image_url) {
+		this.image_url = image_url;
+	}
+
 	@Override
 	public String toString() {
-		return "Participant [age=" + age + ", country=" + country + ", gender=" + gender + ", name=" + name
-				+ ", presentations=" + presentations + ", scoreMatrix=" + scoreMatrix + "]";
+		return "Participant [age=" + age + ", country=" + country + ", gender="
+				+ gender + ", name=" + name + ", image_url=" + image_url
+				+ ", presentations=" + presentations + ", scoreMatrix="
+				+ scoreMatrix + "]";
 	}
 }

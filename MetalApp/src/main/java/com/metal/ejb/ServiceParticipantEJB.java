@@ -1,27 +1,38 @@
 package com.metal.ejb;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import com.metal.model.Jury;
 import com.metal.model.Participant;
 import com.metal.model.ScoreMatrix;
 
 /**
- * Registra Usuarios y Administradores en el sistema
+ * Permite a un participante ver su propio perfil y modificarlo
+ * Based on the article:
+ * http://www.andygibson.net/blog/article/comparing-jsf-beans-cdi-beans-and-ejbs/
  */
-@Stateless
-public class ServiceAdminEJB{
+@Named("participantBean")
+@RequestScoped
+//@Stateless //Agrega transaccionalidad a las operaciones
+public class ServiceParticipantEJB {
+	
+	@Inject
+	private Participant participant;
+//	private List<Participant> participantList = new ArrayList<>();
 
 	@PersistenceContext(unitName = "MetalApp")
 	private EntityManager em;
 
 	/** Default constructor. */
-	public ServiceAdminEJB() {
+	public ServiceParticipantEJB() {
 	}
 
 	// Participant Methods
@@ -52,29 +63,4 @@ public class ServiceAdminEJB{
 	public Participant updateParticipant(Participant participant) {
 		return em.merge(participant);
 	}
-
-	// Jury Methods
-	public List<Jury> findAllJuries() {
-		TypedQuery<Jury> query = em.createNamedQuery("Jury.findAll", Jury.class);
-		return query.getResultList();
-	}
-
-	public Jury findJuryById(Long id) {
-		return em.find(Jury.class, id);
-	}
-
-	public Jury createJury(Jury jury) {
-		jury.setGroup("jury");
-		em.persist(jury);
-		return jury;
-	}
-
-	public void deleteJury(Jury jury) {
-		em.remove(em.merge(jury));
-	}
-
-	public Jury updateJury(Jury jury) {
-		return em.merge(jury);
-	}
-
 }

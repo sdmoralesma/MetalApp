@@ -3,7 +3,6 @@ package com.metal.ejb;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import com.metal.model.Gender;
@@ -15,7 +14,6 @@ import com.metal.model.Song;
  * Session Bean implementation class Facade
  */
 @Stateless
-@LocalBean
 public class FacadeEJB {
 
 	@EJB

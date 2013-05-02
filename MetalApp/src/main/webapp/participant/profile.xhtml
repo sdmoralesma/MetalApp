@@ -1,0 +1,33 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
+	template="/WEB-INF/templates/template.xhtml">
+
+	<ui:define name="content">
+
+		<h3>Register Participant</h3>
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:outputText value="Username" />
+				<h:outputText value="#{participantBean.participant.username}" />
+
+				<h:outputText value="Name" />
+				<h:outputText value="#{participantBean.participant.name}" />
+
+				<h:outputText value="Password" />
+				<h:outputText value="#{participantBean.participant.password}" />
+
+				<h:outputText value="Age" />
+				<h:outputText value="#{participantBean.participant.age}" />
+
+				<h:outputText value="Gender" />
+				<h:outputText value="#{participantBean.participant.gender}" />
+
+				<h:outputText value="Country" />
+				<h:outputText value="#{participantBean}" />
+
+<!-- 				<h:commandButton value="Add Participant" action="#{participantBean.doCreateParticipant}" /> -->
+			</h:panelGrid>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

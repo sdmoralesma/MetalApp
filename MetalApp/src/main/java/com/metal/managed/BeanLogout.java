@@ -1,5 +1,7 @@
 package com.metal.managed;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -7,7 +9,10 @@ import javax.servlet.http.HttpSession;
 
 @ManagedBean
 @SessionScoped
-public class BeanLogout {
+public class BeanLogout implements Serializable {
+
+	/***/
+	private static final long serialVersionUID = 1L;
 
 	public String doLogout() {
 		FacesContext context = FacesContext.getCurrentInstance();

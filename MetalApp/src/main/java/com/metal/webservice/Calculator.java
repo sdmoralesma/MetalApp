@@ -1,9 +1,7 @@
 package com.metal.webservice;
 
-import javax.ejb.Stateless;
 import javax.jws.WebService;
 
-@Stateless
 @WebService(endpointInterface = "com.metal.webservice.Calculator")
 public class Calculator implements CalculatorWs {
 
