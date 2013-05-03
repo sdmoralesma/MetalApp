@@ -5,9 +5,11 @@
 	<ui:define name="content">
 
 		<h3>My Profile</h3>
-		
+
+		<f:view>
+			<p:outputLabel value="Some Info: #{participantBean.message}" />
+		</f:view>
 		<h:form>
-		#{participantBean.message} <br/>
 			<h:panelGrid columns="2">
 				<h:outputText value="Username" />
 				<h:outputText value="#{participantBean.participant.username}" />
@@ -29,7 +31,6 @@
 
 				<p:outputLabel value="Some Info: #{participantBean.message}" />
 
-<!-- 				<h:commandButton value="Add Participant" action="#{participantBean.doCreateParticipant}" /> -->
 			</h:panelGrid>
 		</h:form>
 

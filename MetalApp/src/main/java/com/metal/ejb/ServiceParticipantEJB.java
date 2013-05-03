@@ -17,23 +17,23 @@ import com.metal.model.Participant;
  * http://www.andygibson.net/blog/article/comparing-jsf-beans-cdi-beans-and-ejbs/
  */
 @Named("participantBean")
-@ApplicationScoped
+@RequestScoped
 public class ServiceParticipantEJB {
 	
 	@PersistenceContext(unitName = "MetalApp")
 	private EntityManager em;
 	
 	private Participant participant;
-	private String message;
+	private String message = "The message";
 	/** Default constructor. */
 	public ServiceParticipantEJB() {
 	}
 	
-	@PostConstruct
-	public void populateParticipantList() {
-		this.participant = this.findParticipantById((long) 0);
-
-	}
+//	@PostConstruct
+//	public void populateParticipantList() {
+//		this.participant = this.findParticipantById((long) 0);
+//
+//	}
 
 	public Participant findParticipantById(Long id) {
 		return em.find(Participant.class, id);
@@ -60,7 +60,7 @@ public class ServiceParticipantEJB {
 	}
 
 	public String getMessage() {
-		return message;
+		return this.message;
 	}
 
 	public void setMessage(String message) {
