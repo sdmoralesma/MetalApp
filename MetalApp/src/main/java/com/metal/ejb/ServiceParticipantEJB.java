@@ -9,6 +9,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import org.primefaces.event.FileUploadEvent;
+
 import com.metal.model.Participant;
 
 /**
@@ -56,4 +58,11 @@ public class ServiceParticipantEJB {
 	public void setParticipant(Participant participant) {
 		this.participant = participant;
 	}
+	
+	public void handleFileUpload(FileUploadEvent event) {  
+        FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");  
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+        
+        
+    }  
 }
