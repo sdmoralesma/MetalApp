@@ -1,71 +1,59 @@
 package com.metal.ejb;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
+import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import com.metal.model.Participant;
 
 /**
  * Permite a un participante ver su propio perfil y modificarlo
- * 
- * Based on the article:
- * http://www.andygibson.net/blog/article/comparing-jsf-beans-cdi-beans-and-ejbs/
  */
 @Named("participantBean")
-@RequestScoped
+@Stateless
 public class ServiceParticipantEJB {
-	
+
 	@PersistenceContext(unitName = "MetalApp")
 	private EntityManager em;
-	
+
 	private Participant participant;
-	private String message = "The message";
-	/** Default constructor. */
+
 	public ServiceParticipantEJB() {
 	}
-	
-//	@PostConstruct
-//	public void populateParticipantList() {
-//		this.participant = this.findParticipantById((long) 0);
-//
-//	}
 
-	public Participant findParticipantById(Long id) {
-		return em.find(Participant.class, id);
+	@PostConstruct
+	public void populateParticipant() {
+		this.participant = this.findParticipantByPK();
 	}
 
-	public void deleteParticipant(Participant participant) {
-		em.remove(em.merge(participant));
+	public Participant findParticipantByPK() {
+		String nameLoggedUser = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+		TypedQuery<Participant> query = em.createNamedQuery("Participant.findByUsername", Participant.class);
+		query.setParameter("username", nameLoggedUser);
+		return query.getSingleResult();
 	}
 
-	public Participant updateParticipant(Participant participant) {
-		return em.merge(participant);
+	public void deleteParticipant() {
+		em.remove(em.merge(this.participant));
+	}
+
+	public Participant updateParticipant() {
+		Participant participant = em.merge(this.participant); 
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Info: ", "Updated Correctly"));
+		return participant;
 	}
 
 	public Participant getParticipant() {
-		return participant;
+		return this.participant;
 	}
 
 	public void setParticipant(Participant participant) {
 		this.participant = participant;
 	}
-
-	public String getSomeText() {
-		return "Some Text that must be shown";
-	}
-
-	public String getMessage() {
-		return this.message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}	
-	
-	
 }

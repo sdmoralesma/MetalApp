@@ -6,36 +6,54 @@
 
 		<h3>My Profile</h3>
 
-		<f:view>
-			<p:outputLabel value="Some Info: #{participantBean.message}" />
-		</f:view>
-		<h:form>
-			<h:panelGrid columns="2">
-				<h:outputText value="Username" />
-				<h:outputText value="#{participantBean.participant.username}" />
+		<h:form id="form">
 
-				<h:outputText value="Name" />
-				<h:outputText value="#{participantBean.participant.name}" />
+			<p:panel header="Modify your info and click 'Update'">
 
-				<h:outputText value="Password" />
-				<h:outputText value="#{participantBean.participant.password}" />
+				<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+				<h:panelGrid columns="3">
 
-				<h:outputText value="Age" />
-				<h:outputText value="#{participantBean.participant.age}" />
+					<h:outputText for="username" value="Username" />
+					<p:inputText id="username" value="#{participantBean.participant.username}" readonly="true" disabled="true" />
+					<p:message for="username" />
 
-				<h:outputText value="Gender" />
-				<h:outputText value="#{participantBean.participant.gender}" />
+					<h:outputText for="name" value="Name *" />
+					<p:inputText id="name" value="#{participantBean.participant.name}" required="true" label="Name">
+						<f:validateLength minimum="6" />
+					</p:inputText>
+					<p:message for="name" />
 
-				<h:outputText value="Country" />
-				<h:outputText value="#{participantBean.participant.country}" />
 
-				<p:outputLabel value="Some Info: #{participantBean.message}" />
+					<h:outputText for="age" value="Age" />
+					<p:inputText id="age" value="#{participantBean.participant.age}" required="true" label="Age">
+						<f:validateDoubleRange maximum="100" minimum="13" />
+					</p:inputText>
+					<p:message for="age" />
 
-			</h:panelGrid>
+					<h:outputText for="gender" value="Gender" />
+					<p:inputText id="gender" value="#{participantBean.participant.gender}" />
+					<p:message for="gender" />
+
+					<h:outputText for="country" value="Country" />
+					<p:inputText id="country" value="#{participantBean.participant.country}" >
+						<f:validateLength minimum="3"/>
+					</p:inputText>
+					<p:message for="country" />
+
+					<h:outputText value="Presentation" />
+					<h:graphicImage library="images/participants" name="#{participantBean.participant.image_url}" width="150"
+						height="150" />
+
+				</h:panelGrid>
+				<p:commandButton update="form" value="Update" actionListener="#{participantBean.updateParticipant}"
+					icon="ui-icon-disk" />
+			</p:panel>
+
+
+			<p:panel header="Update Your Presentation!">
+				<h:panelGrid columns="2">
+				</h:panelGrid>
+			</p:panel>
 		</h:form>
-
 	</ui:define>
 </ui:composition>
-
-
-

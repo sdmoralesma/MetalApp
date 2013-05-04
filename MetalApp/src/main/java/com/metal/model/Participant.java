@@ -36,12 +36,6 @@ public class Participant extends User implements Serializable {
 	@Column(nullable = true, length = 100)
 	private String image_url;
 
-	// bi-directional one-to-one association to User
-	// @OneToOne
-	// @JoinColumn(name="username", nullable=false, insertable=false,
-	// updatable=false)
-	// private User user;
-
 	// bi-directional many-to-one association to Presentation
 	@OneToMany(mappedBy = "participant", cascade = CascadeType.PERSIST)
 	private List<Presentation> presentations;
