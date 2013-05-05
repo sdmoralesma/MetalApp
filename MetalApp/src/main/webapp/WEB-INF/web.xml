@@ -3,6 +3,7 @@
 	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	version="3.0">
+
 	<display-name>MetalApp</display-name>
 	<context-param>
 		<description>State saving method: 'client' or 'server' (=default). See JSF Specification 2.5.2</description>
@@ -25,7 +26,9 @@
 		<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
 	</listener>
 
-	<!-- FACES CONFIG -->
+	<!-- ############################################# -->
+	<!-- # FACES CONFIG # -->
+	<!-- ############################################# -->
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -55,7 +58,10 @@
 		</form-login-config>
 	</login-config>
 
-	<!-- SECURITY CONSTRAINTS -->
+
+	<!-- ############################################# -->
+	<!-- # SECURITY CONSTRAINTS # -->
+	<!-- ############################################# -->
 	<security-constraint>
 		<display-name>Admin Area</display-name>
 		<web-resource-collection>
@@ -94,8 +100,10 @@
 			<role-name>participant</role-name>
 		</auth-constraint>
 	</security-constraint>
-	
-	<!-- SECURITY ROLES -->
+
+	<!-- ############################################# -->
+	<!-- # SECURITY ROLES # -->
+	<!-- ############################################# -->
 	<security-role>
 		<role-name>admin</role-name>
 	</security-role>
@@ -105,5 +113,39 @@
 	<security-role>
 		<role-name>participant</role-name>
 	</security-role>
+
+	<!-- ############################################# -->
+	<!-- # FILE UPLOAD # -->
+	<!-- ############################################# -->
+	<filter>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+		<init-param>
+			<param-name>thresholdSize</param-name>
+			<param-value>51200</param-value>
+		</init-param>
+		<!-- Optional -->
+		<!-- <init-param> -->
+		<!-- <param-name>uploadDirectory</param-name> -->
+		<!-- <param-value>/home/sergio/uploaded/images</param-value> -->
+		<!-- </init-param> -->
+	</filter>
+
+	<filter-mapping>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<servlet-name>Faces Servlet</servlet-name>
+	</filter-mapping>
+
+	<!-- ############################################# -->
+	<!-- # ImageServlet serving from absolute path # -->
+	<!-- ############################################# -->
+	<servlet>
+		<servlet-name>imageServlet</servlet-name>
+		<servlet-class>com.metal.util.ImageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>imageServlet</servlet-name>
+		<url-pattern>/image/*</url-pattern>
+	</servlet-mapping>
 
 </web-app>

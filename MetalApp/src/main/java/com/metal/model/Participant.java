@@ -2,13 +2,15 @@ package com.metal.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import java.util.List;
 
 /**
  * The persistent class for the participant database table.
- * 
  */
 @Entity
 @Table(name = "participant")
@@ -21,15 +23,19 @@ import java.util.List;
 public class Participant extends User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Min(15)
+	@Max(100)
 	@Column(nullable = false)
 	private int age;
 
+	@Size(min = 5, max = 50)
 	@Column(nullable = false, length = 50)
 	private String country;
 
 	@Column(nullable = false, length = 50)
 	private String gender;
 
+	@Size(min = 5, max = 50)
 	@Column(nullable = false, length = 100)
 	private String name;
 
@@ -119,9 +125,8 @@ public class Participant extends User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Participant [age=" + age + ", country=" + country + ", gender="
-				+ gender + ", name=" + name + ", image_url=" + image_url
-				+ ", presentations=" + presentations + ", scoreMatrix="
-				+ scoreMatrix + "]";
+		return "Participant [age=" + age + ", country=" + country + ", gender=" + gender + ", name=" + name
+				+ ", image_url=" + image_url + ", presentations=" + presentations + ", scoreMatrix=" + scoreMatrix
+				+ "]";
 	}
 }
