@@ -1,8 +1,5 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
 	template="/WEB-INF/templates/template.xhtml">
 
 	<ui:define name="content">
@@ -10,25 +7,24 @@
 		<h:form>
 			<h:panelGrid columns="2">
 				<h:outputText value="Username" />
-				<h:inputText value="#{beanRegisterJury.jury.username}" />
+				<h:inputText value="#{adminBean.jury.username}" />
 
 				<h:outputText value="Password" />
-				<h:inputSecret value="#{beanRegisterJury.jury.password}" />
+				<h:inputSecret value="#{adminBean.jury.password}" />
 
 				<h:outputText value="Real Name" />
-				<h:inputText value="#{beanRegisterJury.jury.name}" />
+				<h:inputText value="#{adminBean.jury.name}" />
 
 				<h:outputText value="Description" />
-				<h:inputText value="#{beanRegisterJury.jury.description}" />
+				<h:inputText value="#{adminBean.jury.description}" />
 
-				<h:commandButton value="Add Jury"
-					action="#{beanRegisterJury.doCreateJury}" />
+				<h:commandButton value="Add Jury" action="#{adminBean.registerJury}" />
 			</h:panelGrid>
 		</h:form>
 
 		<h2>List of Juries</h2>
 		<h:form>
-			<p:dataTable value="#{beanRegisterJury.juryList}" var="jury">
+			<p:dataTable value="#{adminBean.juryList}" var="jury">
 
 				<p:column headerText="Username">
 					<h:outputText value="#{jury.username}" />

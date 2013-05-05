@@ -2,8 +2,10 @@ package com.metal.ejb;
 
 import java.util.List;
 
-import javax.ejb.LocalBean;
+import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -15,18 +17,28 @@ import com.metal.model.Song;
 /**
  * Vota por Concursante y Vota por Cancion
  */
+@Named("juryBean")
 @Stateless
-@LocalBean
-public class ServiceJuryEJB{
+public class ServiceJuryEJB {
 
 	@PersistenceContext(unitName = "MetalApp")
 	private EntityManager em;
+
+	@Inject
+	private Participant participant;
+	@Inject
+	private List<Participant> participantList;
 
 	/** Default constructor. */
 	public ServiceJuryEJB() {
 		super();
 	}
 
+	@PostConstruct
+	public void populateParticipantList() {
+		
+	}
+	
 	public Participant findParticipant(Long id) {
 		return em.find(Participant.class, id);
 	}
@@ -43,8 +55,8 @@ public class ServiceJuryEJB{
 
 			System.out.println("PARTICIPANT" + participant);//
 
-			TypedQuery<ScoreMatrix> scoreQuery = em.createNamedQuery("ScoreMatrix.findByUsername",
-					ScoreMatrix.class).setParameter("username", participant.getUsername());
+			TypedQuery<ScoreMatrix> scoreQuery = em.createNamedQuery("ScoreMatrix.findByUsername", ScoreMatrix.class)
+					.setParameter("username", participant.getUsername());
 
 			if (scoreQuery.getFirstResult() != 0) {
 				ScoreMatrix score = scoreQuery.getResultList().get(0);
@@ -61,7 +73,6 @@ public class ServiceJuryEJB{
 		} else {
 			System.out.println("NO EXISTE EL PARTICIPANTE");
 		}
-
 	}
 
 	public void addVotePerSong(Song song) {

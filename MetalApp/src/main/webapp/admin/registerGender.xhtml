@@ -10,22 +10,21 @@
 		<h:form>
 			<h:panelGrid columns="2">
 				<h:outputText value="Hand Value" />
-				<h:inputText value="#{beanRegisterGender.gender.handValue}" />
+				<h:inputText value="#{scoreBean.gender.handValue}" />
 
 				<h:outputText value="Head Value" />
-				<h:inputText value="#{beanRegisterGender.gender.headValue}" />
+				<h:inputText value="#{scoreBean.gender.headValue}" />
 
 				<h:outputText value="Name Gender" />
-				<h:inputText value="#{beanRegisterGender.gender.name}" />
+				<h:inputText value="#{scoreBean.gender.name}" />
 
-				<h:commandButton value="Add Gender"
-					action="#{beanRegisterGender.doCreateGender}" />
+				<h:commandButton value="Add Gender"	action="#{scoreBean.createGender}" />
 			</h:panelGrid>
 		</h:form>
 
 		<h2>List of Genders</h2>
 		<h:form>
-			<p:dataTable value="#{beanRegisterGender.genderList}" var="gender">
+			<p:dataTable value="#{scoreBean.genderList}" var="gender">
 
 				<p:column headerText="Id">
 					<h:outputText value="#{gender.idGender}" />

@@ -1,8 +1,5 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
 	template="/WEB-INF/templates/template.xhtml">
 
 	<ui:define name="content">
@@ -11,33 +8,30 @@
 		<h:form>
 			<h:panelGrid columns="2">
 				<h:outputText value="Username" />
-				<h:inputText value="#{beanRegisterParticipant.participant.username}" />
+				<h:inputText value="#{adminBean.participant.username}" />
 
 				<h:outputText value="Name" />
-				<h:inputText value="#{beanRegisterParticipant.participant.name}" />
+				<h:inputText value="#{adminBean.participant.name}" />
 
 				<h:outputText value="Password" />
-				<h:inputSecret
-					value="#{beanRegisterParticipant.participant.password}" />
+				<h:inputSecret value="#{adminBean.participant.password}" />
 
 				<h:outputText value="Age" />
-				<h:inputText value="#{beanRegisterParticipant.participant.age}" />
+				<h:inputText value="#{adminBean.participant.age}" />
 
 				<h:outputText value="Gender" />
-				<h:inputText value="#{beanRegisterParticipant.participant.gender}" />
+				<h:inputText value="#{adminBean.participant.gender}" />
 
 				<h:outputText value="Country" />
-				<h:inputText value="#{beanRegisterParticipant.participant.country}" />
+				<h:inputText value="#{adminBean.participant.country}" />
 
-				<h:commandButton value="Add Participant"
-					action="#{beanRegisterParticipant.doCreateParticipant}" />
+				<h:commandButton value="Add Participant" action="#{adminBean.createParticipant}" />
 			</h:panelGrid>
 		</h:form>
 
 		<h2>List of the Participants</h2>
 		<h:form>
-			<p:dataTable value="#{beanRegisterParticipant.participantList}"
-				var="participant">
+			<p:dataTable value="#{adminBean.participantList}" var="participant">
 
 				<p:column headerText="UserName">
 					<h:outputText value="#{participant.username}" />
