@@ -17,9 +17,9 @@ import com.metal.model.Song;
 /**
  * Consolidar Puntaje, Registrar Cancion, Registrar Genero
  */
-@Named("scoreBean")
+@Named
 @Stateless
-public class ServiceScoreEJB {
+public class ScoreBean {
 
 	@PersistenceContext(unitName = "MetalApp")
 	private EntityManager em;
@@ -27,15 +27,14 @@ public class ServiceScoreEJB {
 	@Inject
 	private Gender gender;
 	@Inject
-	private List<Gender> genderList;
-	@Inject
 	private Song song;
 	@Inject
 	private Artist artist;
-	@Inject
-	private List<Song> songList;
 
-	public ServiceScoreEJB() {
+	private List<Song> songList;
+	private List<Gender> genderList;
+
+	public ScoreBean() {
 	}
 
 	@PostConstruct

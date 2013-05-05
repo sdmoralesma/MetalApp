@@ -6,8 +6,8 @@ import javax.ejb.EJB;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
-import com.metal.ejb.ServiceAdminEJB;
-import com.metal.ejb.ServiceScoreEJB;
+import com.metal.ejb.AdminBean;
+import com.metal.ejb.ScoreBean;
 import com.metal.model.Participant;
 import com.metal.model.Song;
 
@@ -15,10 +15,10 @@ import com.metal.model.Song;
 public class Statistics implements StatisticsWs {
 
 	@EJB
-	ServiceAdminEJB adminEJB;
+	AdminBean adminEJB;
 	
 	@EJB
-	ServiceScoreEJB scoreEJB;
+	ScoreBean scoreEJB;
 
 	@Override
 	public List<Participant> getRatingParticipants() {

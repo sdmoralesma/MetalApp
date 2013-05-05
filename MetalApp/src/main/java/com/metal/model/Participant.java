@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 /**
- * The persistent class for the participant database table.
+ * The persistent class for the Participants database table.
  */
 @Entity
 @Table(name = "participant")
@@ -23,8 +23,7 @@ import java.util.List;
 public class Participant extends User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Min(15)
-	@Max(100)
+	@Min(15) @Max(100)
 	@Column(nullable = false)
 	private int age;
 

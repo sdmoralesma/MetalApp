@@ -5,32 +5,44 @@
 	<ui:define name="content">
 
 		<h3>Register Participant</h3>
-		<h:form>
-			<h:panelGrid columns="2">
-				<h:outputText value="Username" />
-				<h:inputText value="#{adminBean.participant.username}" />
+		<h:form id="form">
 
-				<h:outputText value="Name" />
-				<h:inputText value="#{adminBean.participant.name}" />
+			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+			<h:panelGrid columns="3">
+				<h:outputText for="username" value="Username *" />
+				<h:inputText id="username" value="#{adminBean.participant.username}" />
+				<p:message for="username" />
 
-				<h:outputText value="Password" />
-				<h:inputSecret value="#{adminBean.participant.password}" />
+				<h:outputText for="name" value="Name *" />
+				<p:inputText id="name" value="#{adminBean.participant.name}" required="true" label="Name" />
+				<p:message for="name" />
 
-				<h:outputText value="Age" />
-				<h:inputText value="#{adminBean.participant.age}" />
+				<h:outputText for="password" value="Password *" />
+				<h:inputSecret id="password" value="#{adminBean.participant.password}" required="true" label="Password" />
+				<p:message for="password" />
 
-				<h:outputText value="Gender" />
-				<h:inputText value="#{adminBean.participant.gender}" />
+				<h:outputText for="age" value="Age *" />
+				<h:inputText id="age" value="#{adminBean.participant.age}" />
+				<p:message for="age" />
 
-				<h:outputText value="Country" />
-				<h:inputText value="#{adminBean.participant.country}" />
+				<h:outputText for="gender" value="Gender *" />
+				<p:selectOneMenu id="gender" value="#{adminBean.participant.gender}">
+					<f:selectItem itemLabel="Female" itemValue="Female" />
+					<f:selectItem itemLabel="Male" itemValue="Male" />
+					<f:selectItem itemLabel="LGBT" itemValue="LGBT" />
+				</p:selectOneMenu>
+				<p:message for="gender" />
 
-				<h:commandButton value="Add Participant" action="#{adminBean.createParticipant}" />
+				<h:outputText for="country" value="Country *" />
+				<h:inputText id="country" value="#{adminBean.participant.country}" />
+				<p:message for="country" />
+
+				<p:commandButton value="Register Participant" actionListener="#{adminBean.registerParticipant}" icon="ui-icon-disk" />
 			</h:panelGrid>
 		</h:form>
 
 		<h2>List of the Participants</h2>
-		<h:form>
+		<h:form id="table">
 			<p:dataTable value="#{adminBean.participantList}" var="participant">
 
 				<p:column headerText="UserName">

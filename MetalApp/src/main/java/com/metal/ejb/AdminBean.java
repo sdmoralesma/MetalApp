@@ -17,9 +17,9 @@ import com.metal.model.ScoreMatrix;
 /**
  * Registra Usuarios y Administradores en el sistema
  */
-@Named("adminBean")
+@Named
 @Stateless
-public class ServiceAdminEJB {
+public class AdminBean {
 
 	@PersistenceContext(unitName = "MetalApp")
 	private EntityManager em;
@@ -27,13 +27,12 @@ public class ServiceAdminEJB {
 	@Inject
 	private Jury jury;
 	@Inject
-	private List<Jury> juryList;
-	@Inject
 	private Participant participant;
-	@Inject
+
+	private List<Jury> juryList;
 	private List<Participant> participantList;
 
-	public ServiceAdminEJB() {
+	public AdminBean() {
 	}
 
 	@PostConstruct
@@ -42,38 +41,21 @@ public class ServiceAdminEJB {
 		this.participantList = this.findAllParticipants();
 	}
 
-	// Participant Methods
-	public List<Participant> findAllParticipants() {
-		TypedQuery<Participant> query = em.createNamedQuery("Participant.findAll", Participant.class);
-		return query.getResultList();
-	}
-
-	public Participant findParticipantById(Long id) {
-		return em.find(Participant.class, id);
-	}
-
-	public String createParticipant() {
-		participant.setGroup("participant");
-
-		ScoreMatrix score = new ScoreMatrix();
-		score.setUsername(participant.getUsername());
-		// score.setParticipant(participant);
-		participant.setScoreMatrix(score);
-		em.persist(participant);
-		return "registerParticipant.xhtml";
+	public void deleteJury(Jury jury) {
+		em.remove(em.merge(jury));
 	}
 
 	public void deleteParticipant(Participant participant) {
 		em.remove(em.merge(participant));
 	}
 
-	public Participant updateParticipant(Participant participant) {
-		return em.merge(participant);
-	}
-
-	// Jury Methods
 	public List<Jury> findAllJuries() {
 		TypedQuery<Jury> query = em.createNamedQuery("Jury.findAll", Jury.class);
+		return query.getResultList();
+	}
+
+	public List<Participant> findAllParticipants() {
+		TypedQuery<Participant> query = em.createNamedQuery("Participant.findAll", Participant.class);
 		return query.getResultList();
 	}
 
@@ -81,50 +63,65 @@ public class ServiceAdminEJB {
 		return em.find(Jury.class, id);
 	}
 
-	public String registerJury() {
-		this.jury.setGroup("jury");
-		em.persist(this.jury);
-		return "registerJury.xhtml";
-	}
-
-	public void deleteJury(Jury jury) {
-		em.remove(em.merge(jury));
-	}
-
-	public Jury updateJury(Jury jury) {
-		return em.merge(jury);
+	public Participant findParticipantById(Long id) {
+		return em.find(Participant.class, id);
 	}
 
 	public Jury getJury() {
 		return jury;
 	}
 
-	public void setJury(Jury jury) {
-		this.jury = jury;
-	}
-
 	public List<Jury> getJuryList() {
 		return juryList;
-	}
-
-	public void setJuryList(List<Jury> juryList) {
-		this.juryList = juryList;
 	}
 
 	public Participant getParticipant() {
 		return participant;
 	}
 
-	public void setParticipant(Participant participant) {
-		this.participant = participant;
-	}
-
 	public List<Participant> getParticipantList() {
 		return participantList;
 	}
 
+	public String registerJury() {
+		this.jury.setGroup("jury");
+		em.persist(this.jury);
+		juryList = this.findAllJuries();
+		return "registerJury.xhtml";
+	}
+
+	public String registerParticipant() {
+		participant.setGroup("participant");
+		ScoreMatrix score = new ScoreMatrix();
+		score.setUsername(participant.getUsername());
+		participant.setScoreMatrix(score);
+		em.persist(participant);
+		participantList = this.findAllParticipants();
+		return "registerParticipant.xhtml";
+	}
+
+	public void setJury(Jury jury) {
+		this.jury = jury;
+	}
+
+	public void setJuryList(List<Jury> juryList) {
+		this.juryList = juryList;
+	}
+
+	public void setParticipant(Participant participant) {
+		this.participant = participant;
+	}
+
 	public void setParticipantList(List<Participant> participantList) {
 		this.participantList = participantList;
+	}
+
+	public Jury updateJury(Jury jury) {
+		return em.merge(jury);
+	}
+
+	public Participant updateParticipant(Participant participant) {
+		return em.merge(participant);
 	}
 
 }

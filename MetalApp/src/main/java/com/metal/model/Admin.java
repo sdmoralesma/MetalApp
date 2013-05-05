@@ -2,11 +2,11 @@ package com.metal.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * The persistent class for the admin database table.
- * 
  */
 @Entity
 @Table(name = "admin")
@@ -18,33 +18,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Admin extends User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	// @Id
-	// @GeneratedValue(strategy=GenerationType.IDENTITY)
-	// @Column(unique=true, nullable=false, length=50)
-	// private String username;
-
+	@Size(max = 50)
 	@Column(nullable = false, length = 100)
 	private String description;
 
+	@Size(min = 5, max = 50)
 	@Column(nullable = false, length = 100)
 	private String name;
 
-	// bi-directional one-to-one association to User
-	// @OneToOne
-	// @JoinColumn(name="username", nullable=false, insertable=false,
-	// updatable=false)
-	// private User user;
-
 	public Admin() {
 	}
-
-	// public String getUsername() {
-	// return this.username;
-	// }
-	//
-	// public void setUsername(String username) {
-	// this.username = username;
-	// }
 
 	public String getDescription() {
 		return this.description;
@@ -61,13 +44,4 @@ public class Admin extends User implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	// public User getUser() {
-	// return this.user;
-	// }
-	//
-	// public void setUser(User user) {
-	// this.user = user;
-	// }
-
 }

@@ -17,28 +17,24 @@ import com.metal.model.Song;
 /**
  * Vota por Concursante y Vota por Cancion
  */
-@Named("juryBean")
+@Named
 @Stateless
-public class ServiceJuryEJB {
+public class JuryBean {
 
 	@PersistenceContext(unitName = "MetalApp")
 	private EntityManager em;
 
 	@Inject
 	private Participant participant;
-	@Inject
 	private List<Participant> participantList;
 
-	/** Default constructor. */
-	public ServiceJuryEJB() {
-		super();
+	public JuryBean() {
 	}
 
 	@PostConstruct
 	public void populateParticipantList() {
-		
 	}
-	
+
 	public Participant findParticipant(Long id) {
 		return em.find(Participant.class, id);
 	}
