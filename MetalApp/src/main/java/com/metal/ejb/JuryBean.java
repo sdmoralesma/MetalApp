@@ -81,4 +81,12 @@ public class JuryBean {
 			System.out.println(songs.get(0));
 		}
 	}
+
+	public List<Participant> getParticipantList() {
+		return participantList;
+	}
+
+	public void setParticipantList(List<Participant> participantList) {
+		this.participantList = participantList;
+	}
 }

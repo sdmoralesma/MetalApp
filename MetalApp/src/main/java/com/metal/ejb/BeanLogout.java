@@ -16,7 +16,6 @@ public class BeanLogout implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(false);
 		session.invalidate();
-
 		return "/index.xhtml?faces-redirect=true";
 	}
 }

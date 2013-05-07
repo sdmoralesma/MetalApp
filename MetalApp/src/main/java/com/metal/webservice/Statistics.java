@@ -22,7 +22,7 @@ public class Statistics implements StatisticsWs {
 
 	@Override
 	public List<Participant> getRatingParticipants() {
-		return adminEJB.findAllParticipants();
+		return adminEJB.findAllInstances("Participant.findAll", Participant.class);
 	}
 
 	@Override

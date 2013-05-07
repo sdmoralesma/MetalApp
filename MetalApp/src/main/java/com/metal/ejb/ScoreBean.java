@@ -95,4 +95,12 @@ public class ScoreBean {
 	public void setGenderList(List<Gender> genderList) {
 		this.genderList = genderList;
 	}
+
+	public List<Song> getSongList() {
+		return songList;
+	}
+
+	public void setSongList(List<Song> songList) {
+		this.songList = songList;
+	}
 }

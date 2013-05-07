@@ -9,10 +9,13 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.resource.NotSupportedException;
 
+import com.metal.model.Gender;
 import com.metal.model.Jury;
 import com.metal.model.Participant;
 import com.metal.model.ScoreMatrix;
+import com.metal.model.Song;
 
 /**
  * Registra Usuarios y Administradores en el sistema
@@ -28,65 +31,102 @@ public class AdminBean {
 	private Jury jury;
 	@Inject
 	private Participant participant;
+	@Inject
+	private Song song;
+	@Inject
+	private Gender gender;
 
+	@Named
 	private List<Jury> juryList;
+	@Named
 	private List<Participant> participantList;
+	@Named
+	private List<Song> songList;
+	@Named
+	private List<Gender> genderList;
 
 	public AdminBean() {
 	}
 
 	@PostConstruct
 	public void populateJuryList() {
-		this.juryList = this.findAllJuries();
-		this.participantList = this.findAllParticipants();
+		this.juryList = this.findAllInstances("Jury.findAll", Jury.class);
+		this.participantList = this.findAllInstances("Participant.findAll", Participant.class);
+		this.songList = this.findAllInstances("Song.findAll", Song.class);
+		this.genderList = this.findAllInstances("Gender.findAll", Gender.class);
 	}
 
-	public void deleteJury(Jury jury) {
-		em.remove(em.merge(jury));
+	public <T> void deleteInstance(T instance) {
+		em.remove(em.merge(instance));
 	}
 
-	public void deleteParticipant(Participant participant) {
-		em.remove(em.merge(participant));
+	// public void deleteJury(Jury j) {
+	// em.remove(em.merge(j));
+	// }
+	//
+	// public void deleteParticipant(Participant p) {
+	// em.remove(em.merge(p));
+	// }
+	//
+	// public void deleteSong(Song s) {
+	// em.remove(em.merge(s));
+	// }
+	//
+	// public void deleteGender(Gender g) {
+	// em.remove(em.merge(g));
+	// }
+
+	public <T> List<T> findAllInstances(String query, Class<T> clazz) {
+		TypedQuery<T> typedQuery = em.createNamedQuery(query, clazz);
+		return typedQuery.getResultList();
 	}
 
-	public List<Jury> findAllJuries() {
-		TypedQuery<Jury> query = em.createNamedQuery("Jury.findAll", Jury.class);
-		return query.getResultList();
+	// public List<Jury> findAllJuries() {
+	// TypedQuery<Jury> query = em.createNamedQuery("Jury.findAll", Jury.class);
+	// return query.getResultList();
+	// }
+	//
+	// public List<Participant> findAllParticipants() {
+	// TypedQuery<Participant> query =
+	// em.createNamedQuery("Participant.findAll", Participant.class);
+	// return query.getResultList();
+	// }
+	//
+	// public List<Song> findAllSongs() {
+	// TypedQuery<Song> query = em.createNamedQuery("Song.findAll", Song.class);
+	// return query.getResultList();
+	// }
+	//
+	// public List<Gender> findAllGenders() {
+	// TypedQuery<Gender> query = em.createNamedQuery("Gender.findAll",
+	// Gender.class);
+	// return query.getResultList();
+	// }
+
+	public <T> T findInstanceById(Class<T> clazz, Object id) {
+		return em.find(clazz, id);
 	}
 
-	public List<Participant> findAllParticipants() {
-		TypedQuery<Participant> query = em.createNamedQuery("Participant.findAll", Participant.class);
-		return query.getResultList();
-	}
-
-	public Jury findJuryById(Long id) {
-		return em.find(Jury.class, id);
-	}
-
-	public Participant findParticipantById(Long id) {
-		return em.find(Participant.class, id);
-	}
-
-	public Jury getJury() {
-		return jury;
-	}
-
-	public List<Jury> getJuryList() {
-		return juryList;
-	}
-
-	public Participant getParticipant() {
-		return participant;
-	}
-
-	public List<Participant> getParticipantList() {
-		return participantList;
-	}
+	// public Jury findJuryById(String id) {
+	// return em.find(Jury.class, id);
+	// }
+	//
+	// public Participant findParticipantById(String id) {
+	// return em.find(Participant.class, id);
+	// }
+	//
+	// public Song findSongById(String id) {
+	// return em.find(Song.class, id);
+	// }
+	//
+	// public Gender findGenderById(String id) {
+	// return em.find(Gender.class, id);
+	// }
 
 	public String registerJury() {
 		this.jury.setGroup("jury");
 		em.persist(this.jury);
-		juryList = this.findAllJuries();
+		juryList = this.findAllInstances("Jury.findAll", Jury.class);
 		return "registerJury.xhtml";
 	}
 
@@ -96,32 +136,35 @@ public class AdminBean {
 		score.setUsername(participant.getUsername());
 		participant.setScoreMatrix(score);
 		em.persist(participant);
-		participantList = this.findAllParticipants();
+		participantList = this.findAllInstances("Participant.findAll", Participant.class);
 		return "registerParticipant.xhtml";
 	}
 
-	public void setJury(Jury jury) {
-		this.jury = jury;
+	public String registerSong() throws NotSupportedException {
+		throw new NotSupportedException("Método no implementado");
 	}
 
-	public void setJuryList(List<Jury> juryList) {
-		this.juryList = juryList;
+	public String registerGender() throws NotSupportedException {
+		throw new NotSupportedException("Método no implementado");
 	}
 
-	public void setParticipant(Participant participant) {
-		this.participant = participant;
+	public <T> T updateInstance(T instance) {
+		return em.merge(instance);
 	}
 
-	public void setParticipantList(List<Participant> participantList) {
-		this.participantList = participantList;
-	}
-
-	public Jury updateJury(Jury jury) {
-		return em.merge(jury);
-	}
-
-	public Participant updateParticipant(Participant participant) {
-		return em.merge(participant);
-	}
-
+	// public Jury updateJury(Jury j) {
+	// return em.merge(j);
+	// }
+	//
+	// public Participant updateParticipant(Participant p) {
+	// return em.merge(p);
+	// }
+	//
+	// public Song updateParticipant(Song s) {
+	// return em.merge(s);
+	// }
+	//
+	// public Gender updateGender(Gender g) {
+	// return em.merge(g);
+	// }
 }

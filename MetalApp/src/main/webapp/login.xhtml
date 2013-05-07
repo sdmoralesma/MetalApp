@@ -7,20 +7,15 @@
 		<h:form id="login" styleClass="loginPanelStyle" prependId="false" onsubmit="document.login.action='j_security_check';">
 
 			<p:growl id="msgs" showDetail="true" sticky="false" />
-
 			<p:panelGrid columns="2">
 
 				<f:facet name="header">Login Panel</f:facet>
 
 				<h:outputLabel value="Username : " />
-				<p:inputText id="j_username" required="true" requiredMessage="Please Enter Username!" message="fc">
-					<f:validateLength minimum="1" />
-				</p:inputText>
+				<p:inputText id="j_username" required="true" requiredMessage="Please Enter Username!" message="fc" />
 
 				<h:outputLabel value="Password : " />
-				<p:password id="j_password" required="true" requiredMessage="Please Enter Password!">
-					<f:validateLength minimum="1" />
-				</p:password>
+				<p:password id="j_password" required="true" requiredMessage="Please Enter Password!" />
 
 				<f:facet name="footer">
 					<p:commandButton value="Login" id="submit" ajax="false" update="msgs" type="submit" icon="ui-icon-check"
@@ -28,7 +23,6 @@
 				</f:facet>
 
 			</p:panelGrid>
-
 		</h:form>
 	</ui:define>
 
