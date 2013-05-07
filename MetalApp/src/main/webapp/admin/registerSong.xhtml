@@ -1,31 +1,27 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
 	template="/WEB-INF/templates/template.xhtml">
 
 	<ui:define name="content">
 		<h3>Register Song</h3>
 		<h:form>
 			<h:panelGrid columns="2">
-				<h:outputText value="id Artist" />
-				<h:inputText value="#{beanSong.artist.idArtist}" />
-
-				<h:outputText value="id Gender" />
-				<h:inputText value="#{beanSong.gender.idGender}" />
+				<h:outputText value="Artist Name" />
+				<h:inputText id="artistName" />
+				
+				<h:outputText value="Gender Name" />
+				<h:inputText value="#{adminBean.song.gender.name}" />
 
 				<h:outputText value="Title of the Song" />
-				<h:inputText value="#{beanSong.song.title}" />
+				<h:inputText value="#{adminBean.song.title}" />
 
-				<h:commandButton value="Add Song"
-					action="#{beanSong.doCreateSong}" />
+				<h:commandButton value="Add Song" action="#{adminBean.registerSong}" />
 			</h:panelGrid>
 		</h:form>
 
 		<h2>List of Songs</h2>
 		<h:form>
-			<p:dataTable value="#{beanSong.songList}" var="song">
+			<p:dataTable value="#{adminBean.songList}" var="song">
 
 				<p:column headerText="Id">
 					<h:outputText value="#{song.idSong}" />

@@ -36,97 +36,43 @@ public class AdminBean {
 	@Inject
 	private Gender gender;
 
-	@Named
 	private List<Jury> juryList;
-	@Named
 	private List<Participant> participantList;
-	@Named
 	private List<Song> songList;
-	@Named
 	private List<Gender> genderList;
 
 	public AdminBean() {
 	}
 
 	@PostConstruct
-	public void populateJuryList() {
+	public void populateLists() {
 		this.juryList = this.findAllInstances("Jury.findAll", Jury.class);
 		this.participantList = this.findAllInstances("Participant.findAll", Participant.class);
 		this.songList = this.findAllInstances("Song.findAll", Song.class);
 		this.genderList = this.findAllInstances("Gender.findAll", Gender.class);
 	}
 
-	public <T> void deleteInstance(T instance) {
-		em.remove(em.merge(instance));
-	}
-
-	// public void deleteJury(Jury j) {
-	// em.remove(em.merge(j));
-	// }
-	//
-	// public void deleteParticipant(Participant p) {
-	// em.remove(em.merge(p));
-	// }
-	//
-	// public void deleteSong(Song s) {
-	// em.remove(em.merge(s));
-	// }
-	//
-	// public void deleteGender(Gender g) {
-	// em.remove(em.merge(g));
-	// }
-
 	public <T> List<T> findAllInstances(String query, Class<T> clazz) {
 		TypedQuery<T> typedQuery = em.createNamedQuery(query, clazz);
 		return typedQuery.getResultList();
 	}
 
-	// public List<Jury> findAllJuries() {
-	// TypedQuery<Jury> query = em.createNamedQuery("Jury.findAll", Jury.class);
-	// return query.getResultList();
-	// }
-	//
-	// public List<Participant> findAllParticipants() {
-	// TypedQuery<Participant> query =
-	// em.createNamedQuery("Participant.findAll", Participant.class);
-	// return query.getResultList();
-	// }
-	//
-	// public List<Song> findAllSongs() {
-	// TypedQuery<Song> query = em.createNamedQuery("Song.findAll", Song.class);
-	// return query.getResultList();
-	// }
-	//
-	// public List<Gender> findAllGenders() {
-	// TypedQuery<Gender> query = em.createNamedQuery("Gender.findAll",
-	// Gender.class);
-	// return query.getResultList();
-	// }
-
 	public <T> T findInstanceById(Class<T> clazz, Object id) {
 		return em.find(clazz, id);
 	}
 
-	// public Jury findJuryById(String id) {
-	// return em.find(Jury.class, id);
-	// }
-	//
-	// public Participant findParticipantById(String id) {
-	// return em.find(Participant.class, id);
-	// }
-	//
-	// public Song findSongById(String id) {
-	// return em.find(Song.class, id);
-	// }
-	//
-	// public Gender findGenderById(String id) {
-	// return em.find(Gender.class, id);
-	// }
+	public <T> T updateInstance(T instance) {
+		return em.merge(instance);
+	}
+
+	public <T> void deleteInstance(T instance) {
+		em.remove(em.merge(instance));
+	}
 
 	public String registerJury() {
 		this.jury.setGroup("jury");
 		em.persist(this.jury);
-		juryList = this.findAllInstances("Jury.findAll", Jury.class);
+		this.juryList = this.findAllInstances("Jury.findAll", Jury.class);
 		return "registerJury.xhtml";
 	}
 
@@ -136,7 +82,7 @@ public class AdminBean {
 		score.setUsername(participant.getUsername());
 		participant.setScoreMatrix(score);
 		em.persist(participant);
-		participantList = this.findAllInstances("Participant.findAll", Participant.class);
+		this.participantList = this.findAllInstances("Participant.findAll", Participant.class);
 		return "registerParticipant.xhtml";
 	}
 
@@ -148,23 +94,70 @@ public class AdminBean {
 		throw new NotSupportedException("Método no implementado");
 	}
 
-	public <T> T updateInstance(T instance) {
-		return em.merge(instance);
+	// Getters & Setters
+	// --------------------------------------------------------------
+
+	public List<Jury> getJuryList() {
+		return juryList;
 	}
 
-	// public Jury updateJury(Jury j) {
-	// return em.merge(j);
-	// }
-	//
-	// public Participant updateParticipant(Participant p) {
-	// return em.merge(p);
-	// }
-	//
-	// public Song updateParticipant(Song s) {
-	// return em.merge(s);
-	// }
-	//
-	// public Gender updateGender(Gender g) {
-	// return em.merge(g);
-	// }
+	public void setJuryList(List<Jury> juryList) {
+		this.juryList = juryList;
+	}
+
+	public List<Participant> getParticipantList() {
+		return participantList;
+	}
+
+	public void setParticipantList(List<Participant> participantList) {
+		this.participantList = participantList;
+	}
+
+	public List<Song> getSongList() {
+		return songList;
+	}
+
+	public void setSongList(List<Song> songList) {
+		this.songList = songList;
+	}
+
+	public List<Gender> getGenderList() {
+		return genderList;
+	}
+
+	public void setGenderList(List<Gender> genderList) {
+		this.genderList = genderList;
+	}
+
+	public Jury getJury() {
+		return jury;
+	}
+
+	public void setJury(Jury jury) {
+		this.jury = jury;
+	}
+
+	public Participant getParticipant() {
+		return participant;
+	}
+
+	public void setParticipant(Participant participant) {
+		this.participant = participant;
+	}
+
+	public Song getSong() {
+		return song;
+	}
+
+	public void setSong(Song song) {
+		this.song = song;
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
 }

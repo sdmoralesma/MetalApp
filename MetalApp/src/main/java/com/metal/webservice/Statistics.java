@@ -7,7 +7,7 @@ import javax.jws.WebParam;
 import javax.jws.WebService;
 
 import com.metal.ejb.AdminBean;
-import com.metal.ejb.ScoreBean;
+import com.metal.ejb.VoteBean;
 import com.metal.model.Participant;
 import com.metal.model.Song;
 
@@ -18,7 +18,7 @@ public class Statistics implements StatisticsWs {
 	AdminBean adminEJB;
 	
 	@EJB
-	ScoreBean scoreEJB;
+	VoteBean scoreEJB;
 
 	@Override
 	public List<Participant> getRatingParticipants() {

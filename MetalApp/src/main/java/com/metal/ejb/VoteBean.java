@@ -19,7 +19,7 @@ import com.metal.model.Song;
  */
 @Named
 @Stateless
-public class ScoreBean {
+public class VoteBean {
 
 	@PersistenceContext(unitName = "MetalApp")
 	private EntityManager em;
@@ -34,7 +34,7 @@ public class ScoreBean {
 	private List<Song> songList;
 	private List<Gender> genderList;
 
-	public ScoreBean() {
+	public VoteBean() {
 	}
 
 	@PostConstruct

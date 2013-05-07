@@ -18,7 +18,6 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * The persistent class for the artist database table.
- * 
  */
 @Entity
 @Table(name = "artist")
@@ -83,14 +82,12 @@ public class Artist implements Serializable {
 	public Song addSong(Song song) {
 		getSongs().add(song);
 		song.setArtist(this);
-
 		return song;
 	}
 
 	public Song removeSong(Song song) {
 		getSongs().remove(song);
 		song.setArtist(null);
-
 		return song;
 	}
 
@@ -98,5 +95,4 @@ public class Artist implements Serializable {
 	public String toString() {
 		return "Artist [idArtist=" + idArtist + ", description=" + description + ", name=" + name + "]";
 	}
-
 }
