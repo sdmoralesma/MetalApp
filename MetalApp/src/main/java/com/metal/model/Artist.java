@@ -29,8 +29,8 @@ public class Artist implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_artist", unique = true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id_artist", unique = true)
 	private int idArtist;
 
 	@Column(nullable = false, length = 50)
@@ -80,13 +80,13 @@ public class Artist implements Serializable {
 	}
 
 	public Song addSong(Song song) {
-		getSongs().add(song);
+		this.songs.add(song);
 		song.setArtist(this);
 		return song;
 	}
 
 	public Song removeSong(Song song) {
-		getSongs().remove(song);
+		this.songs.remove(song);
 		song.setArtist(null);
 		return song;
 	}

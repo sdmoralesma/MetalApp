@@ -19,7 +19,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * The persistent class for the song database table.
- * 
  */
 @Entity
 @Table(name = "song")
@@ -86,16 +85,14 @@ public class Song implements Serializable {
 	}
 
 	public Presentation addPresentation(Presentation presentation) {
-		getPresentations().add(presentation);
+		this.presentations.add(presentation);
 		presentation.setSong(this);
-
 		return presentation;
 	}
 
 	public Presentation removePresentation(Presentation presentation) {
-		getPresentations().remove(presentation);
+		this.presentations.remove(presentation);
 		presentation.setSong(null);
-
 		return presentation;
 	}
 
@@ -128,5 +125,4 @@ public class Song implements Serializable {
 		return "Song [idSong=" + idSong + ", title=" + title + ", presentations=" + presentations + ", artist="
 				+ artist + ", gender=" + gender + ", songMatrix=" + songMatrix + "]";
 	}
-
 }

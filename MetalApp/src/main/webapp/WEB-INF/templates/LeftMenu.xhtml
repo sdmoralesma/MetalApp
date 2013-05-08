@@ -19,6 +19,8 @@
 					icon="ui-icon-volume-on" />
 				<p:menuitem value="Add Gender" action="/admin/registerGender.xhtml?faces-redirect=true" ajax="false"
 					icon="ui-icon-heart" />
+				<p:menuitem value="Add Artist" action="/admin/registerArtist.xhtml?faces-redirect=true" ajax="false"
+					icon="ui-icon-star" />	
 			</c:if>
 
 			<c:if test="#{request.isUserInRole('jury')}">

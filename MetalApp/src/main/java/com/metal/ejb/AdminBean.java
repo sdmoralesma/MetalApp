@@ -11,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.resource.NotSupportedException;
 
+import com.metal.model.Artist;
 import com.metal.model.Gender;
 import com.metal.model.Jury;
 import com.metal.model.Participant;
@@ -35,11 +36,14 @@ public class AdminBean {
 	private Song song;
 	@Inject
 	private Gender gender;
+	@Inject
+	private Artist artist;
 
 	private List<Jury> juryList;
 	private List<Participant> participantList;
 	private List<Song> songList;
 	private List<Gender> genderList;
+	private List<Artist> artistList;
 
 	public AdminBean() {
 	}
@@ -87,11 +91,17 @@ public class AdminBean {
 	}
 
 	public String registerSong() throws NotSupportedException {
-		throw new NotSupportedException("Método no implementado");
+		throw new NotSupportedException("Metodo no implementado");
+	}
+
+	public String registerArtist() throws NotSupportedException {
+		em.persist(this.artist);
+		this.artistList = this.findAllInstances("Artist.findAll", Artist.class);
+		return "registerArtist.xhtml";
 	}
 
 	public String registerGender() throws NotSupportedException {
-		throw new NotSupportedException("Método no implementado");
+		throw new NotSupportedException("Metodo no implementado");
 	}
 
 	// Getters & Setters
@@ -159,5 +169,21 @@ public class AdminBean {
 
 	public void setGender(Gender gender) {
 		this.gender = gender;
+	}
+
+	public Artist getArtist() {
+		return artist;
+	}
+
+	public void setArtist(Artist artist) {
+		this.artist = artist;
+	}
+
+	public List<Artist> getArtistList() {
+		return artistList;
+	}
+
+	public void setArtistList(List<Artist> artistList) {
+		this.artistList = artistList;
 	}
 }
