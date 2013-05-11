@@ -47,7 +47,7 @@ public class Song implements Serializable {
 	private Gender gender;
 
 	// bi-directional one-to-one association to SongMatrix
-	@OneToOne(mappedBy = "song")
+	@OneToOne(mappedBy = "songTitle")
 	private SongMatrix songMatrix;
 
 	public Song() {

@@ -2,7 +2,6 @@ package com.metal.data;
 
 import java.util.ArrayList;
 
-import javax.ejb.EJB;
 import javax.resource.NotSupportedException;
 
 import org.junit.After;
@@ -11,6 +10,7 @@ import org.junit.Test;
 
 import com.metal.ejb.AdminBean;
 import com.metal.model.Participant;
+import com.metal.model.Presentation;
 import com.metal.model.ScoreMatrix;
 
 public class DummyData {
@@ -28,8 +28,8 @@ public class DummyData {
 
 	@Test()
 	public void shouldCreateAdmins() throws NotSupportedException {
-		Participant participant = new Participant(31, "myhouse", "FEMALE", "asdf", "asdf", new ArrayList(),
-				new ScoreMatrix());
+		Participant participant = new Participant(31, "myhouse", "FEMALE", "asdf", "asdf",
+				new ArrayList<Presentation>(), new ScoreMatrix());
 		bean.setParticipant(participant);
 		bean.registerParticipant();
 

@@ -11,18 +11,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "song_matrix")
 @XmlRootElement
-@NamedQueries({ @NamedQuery(name = "SongMatrix.findAll", query = "SELECT s FROM SongMatrix s"),
-		@NamedQuery(name = "SongMatrix.findByIdSong", query = "SELECT s FROM SongMatrix s WHERE s.idSong = :idSong") })
+@NamedQueries({
+		@NamedQuery(name = "SongMatrix.findAll", query = "SELECT s FROM SongMatrix s"),
+		@NamedQuery(name = "SongMatrix.findByIdSong", query = "SELECT s FROM SongMatrix s WHERE s.idSong = :idSong"),
+		@NamedQuery(name = "SongMatrix.findBySongTitle", query = "SELECT s FROM SongMatrix s WHERE s.songTitle = :songTitle") })
 public class SongMatrix implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_song", unique = true, nullable = false)
+	@Column(name = "id_song")
 	private int idSong;
-
-	@Column(name = "composition_score")
-	private float compositionScore;
 
 	private int composition1;
 
@@ -43,9 +42,6 @@ public class SongMatrix implements Serializable {
 	private int composition8;
 
 	private int composition9;
-
-	@Column(name = "musicality_score")
-	private float musicalityScore;
 
 	private int musicality1;
 
@@ -72,10 +68,39 @@ public class SongMatrix implements Serializable {
 
 	// bi-directional one-to-one association to Song
 	@OneToOne
-	@JoinColumn(name = "id_song", nullable = false, insertable = false, updatable = false)
-	private Song song;
+	@JoinColumn(name = "title", nullable = false, insertable = false, updatable = false)
+	private Song songTitle;
 
 	public SongMatrix() {
+	}
+
+	public SongMatrix(int composition1, int composition10, int composition2, int composition3, int composition4,
+			int composition5, int composition6, int composition7, int composition8, int composition9, int musicality1,
+			int musicality10, int musicality2, int musicality3, int musicality4, int musicality5, int musicality6,
+			int musicality7, int musicality8, int musicality9, float totalScore, Song songTitle) {
+		super();
+		this.composition1 = composition1;
+		this.composition10 = composition10;
+		this.composition2 = composition2;
+		this.composition3 = composition3;
+		this.composition4 = composition4;
+		this.composition5 = composition5;
+		this.composition6 = composition6;
+		this.composition7 = composition7;
+		this.composition8 = composition8;
+		this.composition9 = composition9;
+		this.musicality1 = musicality1;
+		this.musicality10 = musicality10;
+		this.musicality2 = musicality2;
+		this.musicality3 = musicality3;
+		this.musicality4 = musicality4;
+		this.musicality5 = musicality5;
+		this.musicality6 = musicality6;
+		this.musicality7 = musicality7;
+		this.musicality8 = musicality8;
+		this.musicality9 = musicality9;
+		this.totalScore = totalScore;
+		this.songTitle = songTitle;
 	}
 
 	public int getIdSong() {
@@ -84,14 +109,6 @@ public class SongMatrix implements Serializable {
 
 	public void setIdSong(int idSong) {
 		this.idSong = idSong;
-	}
-
-	public float getCompositionScore() {
-		return this.compositionScore;
-	}
-
-	public void setCompositionScore(float compositionScore) {
-		this.compositionScore = compositionScore;
 	}
 
 	public int getComposition1() {
@@ -172,14 +189,6 @@ public class SongMatrix implements Serializable {
 
 	public void setComposition9(int composition9) {
 		this.composition9 = composition9;
-	}
-
-	public float getMusicalityScore() {
-		return this.musicalityScore;
-	}
-
-	public void setMusicalityScore(float musicalityScore) {
-		this.musicalityScore = musicalityScore;
 	}
 
 	public int getMusicality1() {
@@ -270,12 +279,11 @@ public class SongMatrix implements Serializable {
 		this.totalScore = totalScore;
 	}
 
-	public Song getSong() {
-		return this.song;
+	public Song getSongTitle() {
+		return songTitle;
 	}
 
-	public void setSong(Song song) {
-		this.song = song;
+	public void setSongTitle(Song songTitle) {
+		this.songTitle = songTitle;
 	}
-
 }
