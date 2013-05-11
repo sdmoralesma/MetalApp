@@ -6,10 +6,10 @@ import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.management.RuntimeErrorException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.resource.NotSupportedException;
 
 import com.metal.model.Artist;
 import com.metal.model.Gender;
@@ -44,6 +44,9 @@ public class AdminBean {
 	private List<Song> songList;
 	private List<Gender> genderList;
 	private List<Artist> artistList;
+
+	private String selectedArtistName;
+	private String selectedGenderName;
 
 	public AdminBean() {
 	}
@@ -91,8 +94,16 @@ public class AdminBean {
 		return "registerParticipant.xhtml";
 	}
 
-	public String registerSong() throws NotSupportedException {
-		throw new NotSupportedException("Metodo no implementado");
+	public String registerSong() {
+		Artist selectedArtist = em.find(Artist.class, selectedArtistName);
+		Gender selectedGender = em.find(Gender.class, selectedGenderName);
+		if (selectedArtist == null || selectedGender == null)
+			throw new RuntimeErrorException(null, "Alguna referencia es Null: " + "\nArtist: " + selectedArtist
+					+ "\nGender: " + selectedGender);
+		this.song = new Song(this.song.getTitle(), selectedArtist, selectedGender);
+		em.persist(this.song);
+		this.songList = this.findAllInstances("Song.findAll", Song.class);
+		return "registerSong";
 	}
 
 	public String registerArtist() {
@@ -188,5 +199,21 @@ public class AdminBean {
 
 	public void setArtistList(List<Artist> artistList) {
 		this.artistList = artistList;
+	}
+
+	public String getSelectedGenderName() {
+		return selectedGenderName;
+	}
+
+	public void setSelectedGenderName(String selectedGenderName) {
+		this.selectedGenderName = selectedGenderName;
+	}
+
+	public String getSelectedArtistName() {
+		return selectedArtistName;
+	}
+
+	public void setSelectedArtistName(String selectedArtistName) {
+		this.selectedArtistName = selectedArtistName;
 	}
 }

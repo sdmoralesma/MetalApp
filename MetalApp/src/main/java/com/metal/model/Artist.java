@@ -26,11 +26,11 @@ public class Artist implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(length = 50)
-	private String description;
-
 	@Column(nullable = false, length = 50)
 	private String name;
+
+	@Column(length = 50)
+	private String description;
 
 	// bi-directional many-to-one association to Song
 	@OneToMany(mappedBy = "artist", cascade = CascadeType.ALL)

@@ -3,6 +3,7 @@ package com.metal.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -29,7 +30,7 @@ public class Song implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(nullable = false, length = 100)
+	@Column(length = 100)
 	private String title;
 
 	// bi-directional many-to-one association to Presentation
@@ -47,10 +48,16 @@ public class Song implements Serializable {
 	private Gender gender;
 
 	// bi-directional one-to-one association to SongMatrix
-	@OneToOne(mappedBy = "songTitle")
+	@OneToOne(mappedBy = "songTitle", cascade = CascadeType.PERSIST)
 	private SongMatrix songMatrix;
 
 	public Song() {
+	}
+
+	public Song(String title, Artist artist, Gender gender) {
+		this.title = title;
+		this.artist = artist;
+		this.gender = gender;
 	}
 
 	public Song(String title, List<Presentation> presentations, Artist artist, Gender gender, SongMatrix songMatrix) {

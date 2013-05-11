@@ -74,11 +74,14 @@ public class SongMatrix implements Serializable {
 	public SongMatrix() {
 	}
 
+	public SongMatrix(Song song) {
+		this.songTitle = song;
+	}
+
 	public SongMatrix(int composition1, int composition10, int composition2, int composition3, int composition4,
 			int composition5, int composition6, int composition7, int composition8, int composition9, int musicality1,
 			int musicality10, int musicality2, int musicality3, int musicality4, int musicality5, int musicality6,
 			int musicality7, int musicality8, int musicality9, float totalScore, Song songTitle) {
-		super();
 		this.composition1 = composition1;
 		this.composition10 = composition10;
 		this.composition2 = composition2;
@@ -285,5 +288,18 @@ public class SongMatrix implements Serializable {
 
 	public void setSongTitle(Song songTitle) {
 		this.songTitle = songTitle;
+	}
+
+	@Override
+	public String toString() {
+		return "SongMatrix [idSong=" + idSong + ", composition1=" + composition1 + ", composition10=" + composition10
+				+ ", composition2=" + composition2 + ", composition3=" + composition3 + ", composition4="
+				+ composition4 + ", composition5=" + composition5 + ", composition6=" + composition6
+				+ ", composition7=" + composition7 + ", composition8=" + composition8 + ", composition9="
+				+ composition9 + ", musicality1=" + musicality1 + ", musicality10=" + musicality10 + ", musicality2="
+				+ musicality2 + ", musicality3=" + musicality3 + ", musicality4=" + musicality4 + ", musicality5="
+				+ musicality5 + ", musicality6=" + musicality6 + ", musicality7=" + musicality7 + ", musicality8="
+				+ musicality8 + ", musicality9=" + musicality9 + ", totalScore=" + totalScore + ", songTitle="
+				+ songTitle + "]";
 	}
 }

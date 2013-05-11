@@ -25,8 +25,8 @@
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 			<version>6.0</version>
-			<type>jar</type>
-			<scope>provided</scope>
+<!-- 			<type>jar</type> -->
+<!-- 			<scope>provided</scope> -->
 		</dependency>
 
 		<!-- Primefaces and BootStrap Theme -->
@@ -55,6 +55,11 @@
 			<version>1.2.1</version>
 		</dependency>
 
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-web-api</artifactId>
+			<version>6.0</version>
+		</dependency>
 	</dependencies>
 
 	<repositories>

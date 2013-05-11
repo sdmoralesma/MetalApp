@@ -23,16 +23,16 @@ import com.metal.model.Participant;
 /**
  * Permite a un participante ver su propio perfil y modificarlo
  */
-@Named("participantBean")
+@Named
 @Stateless
-public class ServiceParticipantEJB {
+public class ParticipantBean {
 
 	@PersistenceContext(unitName = "MetalApp")
 	private EntityManager em;
 
 	private Participant participant;
 
-	public ServiceParticipantEJB() {
+	public ParticipantBean() {
 	}
 
 	@PostConstruct

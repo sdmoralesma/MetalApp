@@ -6,37 +6,26 @@
 		<h3>Register Song</h3>
 		<h:form>
 			<h:panelGrid columns="2">
-				<h:outputText value="Artist Name" />
-				<h:inputText id="artistName" />
-
-				<h:outputText value="Gender Name" />
-				<h:inputText value="#{adminBean.song.gender.name}" />
 
 				<h:outputText value="Title of the Song" />
 				<h:inputText value="#{adminBean.song.title}" />
 
-
-
-				<h:outputText value="Artist Name:" />
-				<p:selectOneMenu panelStyle="width:150px" effect="fade" var="p" style="width:160px" filter="true"
-					filterMatchMode="startsWith">
+				<h:outputText value="Gender Name:" />
+				<p:selectOneMenu value="#{adminBean.selectedGenderName}" panelStyle="width:150px" effect="fade" style="width:175px"
+					filter="true" filterMatchMode="startsWith">
 					<f:selectItem itemLabel="Select One" itemValue="" />
-					<f:selectItems value="#{adminBean.artistList}" var="artist" itemLabel="#{partist.name}"
-						itemValue="#{adminBean.artist}" />
-
-					<p:column>  
-                #{p.name} 
-            </p:column>
+					<f:selectItems value="#{adminBean.genderList}" var="gender" itemLabel="#{gender.name}" itemValue="#{gender.name}" />
 				</p:selectOneMenu>
 
-
-
-
-
-
-
+				<h:outputText value="Artist Name:" />
+				<p:selectOneMenu value="#{adminBean.selectedArtistName}" panelStyle="width:150px" effect="fade" style="width:175px"
+					filter="true" filterMatchMode="startsWith">
+					<f:selectItem itemLabel="Select One" itemValue="" />
+					<f:selectItems value="#{adminBean.artistList}" var="artist" itemLabel="#{artist.name}" itemValue="#{artist.name}" />
+				</p:selectOneMenu>
 
 				<h:commandButton value="Add Song" action="#{adminBean.registerSong}" />
+				<h:messages />
 			</h:panelGrid>
 		</h:form>
 
@@ -44,20 +33,16 @@
 		<h:form>
 			<p:dataTable value="#{adminBean.songList}" var="song">
 
-				<p:column headerText="Id">
-					<h:outputText value="#{song.idSong}" />
-				</p:column>
-
 				<p:column headerText="Title">
 					<h:outputText value="#{song.title}" />
 				</p:column>
 
 				<p:column headerText="IdArtist">
-					<h:outputText value="#{song.artist.idArtist}" />
+					<h:outputText value="#{song.artist.name}" />
 				</p:column>
 
 				<p:column headerText="IdGender">
-					<h:outputText value="#{song.gender.idGender}" />
+					<h:outputText value="#{song.gender.name}" />
 				</p:column>
 
 			</p:dataTable>
