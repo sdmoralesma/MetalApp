@@ -31,6 +31,13 @@ public class User implements Serializable {
 	public User() {
 	}
 
+	public User(String username, String group_name, String password) {
+		super();
+		this.username = username;
+		this.group_name = group_name;
+		this.password = password;
+	}
+
 	public String getUsername() {
 		return this.username;
 	}

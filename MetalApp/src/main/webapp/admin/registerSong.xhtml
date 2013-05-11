@@ -8,12 +8,33 @@
 			<h:panelGrid columns="2">
 				<h:outputText value="Artist Name" />
 				<h:inputText id="artistName" />
-				
+
 				<h:outputText value="Gender Name" />
 				<h:inputText value="#{adminBean.song.gender.name}" />
 
 				<h:outputText value="Title of the Song" />
 				<h:inputText value="#{adminBean.song.title}" />
+
+
+
+				<h:outputText value="Artist Name:" />
+				<p:selectOneMenu panelStyle="width:150px" effect="fade" var="p" style="width:160px" filter="true"
+					filterMatchMode="startsWith">
+					<f:selectItem itemLabel="Select One" itemValue="" />
+					<f:selectItems value="#{adminBean.artistList}" var="artist" itemLabel="#{partist.name}"
+						itemValue="#{adminBean.artist}" />
+
+					<p:column>  
+                #{p.name} 
+            </p:column>
+				</p:selectOneMenu>
+
+
+
+
+
+
+
 
 				<h:commandButton value="Add Song" action="#{adminBean.registerSong}" />
 			</h:panelGrid>

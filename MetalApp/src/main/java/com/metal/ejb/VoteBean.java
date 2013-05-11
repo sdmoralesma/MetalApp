@@ -47,10 +47,10 @@ public class VoteBean {
 		song.setArtist(artist);
 		song.setGender(gender);
 		Artist artist = new Artist();
-		artist.setIdArtist(song.getArtist().getIdArtist());
+		artist.setName(song.getArtist().getName());
 
 		Gender gender = new Gender();
-		gender.setIdGender(song.getGender().getIdGender());
+		gender.setName(song.getGender().getName());
 
 		song.setArtist(artist);
 		song.setGender(gender);

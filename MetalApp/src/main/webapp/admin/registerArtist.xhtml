@@ -20,10 +20,6 @@
 		<h:form>
 			<p:dataTable value="#{adminBean.artistList}" var="artist">
 
-				<p:column headerText="Id">
-					<h:outputText value="#{artist.idArtist}" />
-				</p:column>
-
 				<p:column headerText="Name">
 					<h:outputText value="#{artist.name}" />
 				</p:column>
@@ -31,7 +27,7 @@
 				<p:column headerText="Description">
 					<h:outputText value="#{artist.description}" />
 				</p:column>
-
+				
 			</p:dataTable>
 		</h:form>
 

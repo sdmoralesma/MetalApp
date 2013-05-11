@@ -45,6 +45,19 @@ public class Presentation implements Serializable {
 	public Presentation() {
 	}
 
+	
+	public Presentation(int idPresentation, float handScore, float headScore, float totalScore,
+			Participant participant, Song song) {
+		super();
+		this.idPresentation = idPresentation;
+		this.handScore = handScore;
+		this.headScore = headScore;
+		this.totalScore = totalScore;
+		this.participant = participant;
+		this.song = song;
+	}
+
+
 	public int getIdPresentation() {
 		return this.idPresentation;
 	}

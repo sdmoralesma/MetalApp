@@ -23,7 +23,8 @@ import java.util.List;
 public class Participant extends User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Min(15) @Max(100)
+	@Min(15)
+	@Max(100)
 	@Column(nullable = false)
 	private int age;
 
@@ -50,6 +51,18 @@ public class Participant extends User implements Serializable {
 	private ScoreMatrix scoreMatrix;
 
 	public Participant() {
+	}
+
+	public Participant(int age, String country, String gender, String name, String image_url,
+			List<Presentation> presentations, ScoreMatrix scoreMatrix) {
+		super();
+		this.age = age;
+		this.country = country;
+		this.gender = gender;
+		this.name = name;
+		this.image_url = image_url;
+		this.presentations = presentations;
+		this.scoreMatrix = scoreMatrix;
 	}
 
 	public int getAge() {

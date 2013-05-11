@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,7 +22,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "song")
 @XmlRootElement
 @NamedQueries({ @NamedQuery(name = "Song.findAll", query = "SELECT s FROM Song s"),
-		@NamedQuery(name = "Song.findByIdSong", query = "SELECT s FROM Song s WHERE s.idSong = :idSong"),
 		@NamedQuery(name = "Song.findByTitle", query = "SELECT s FROM Song s WHERE s.title = :title"),
 		@NamedQuery(name = "Song.findByIdArtist", query = "SELECT s FROM Song s WHERE s.artist = :idArtist"),
 		@NamedQuery(name = "Song.findByIdGender", query = "SELECT s FROM Song s WHERE s.gender = :idGender") })
@@ -32,10 +29,6 @@ public class Song implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_song", unique = true, nullable = false)
-	private int idSong;
-
 	@Column(nullable = false, length = 100)
 	private String title;
 
@@ -60,12 +53,12 @@ public class Song implements Serializable {
 	public Song() {
 	}
 
-	public int getIdSong() {
-		return this.idSong;
-	}
-
-	public void setIdSong(int idSong) {
-		this.idSong = idSong;
+	public Song(String title, List<Presentation> presentations, Artist artist, Gender gender, SongMatrix songMatrix) {
+		this.title = title;
+		this.presentations = presentations;
+		this.artist = artist;
+		this.gender = gender;
+		this.songMatrix = songMatrix;
 	}
 
 	public String getTitle() {
@@ -122,7 +115,7 @@ public class Song implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Song [idSong=" + idSong + ", title=" + title + ", presentations=" + presentations + ", artist="
-				+ artist + ", gender=" + gender + ", songMatrix=" + songMatrix + "]";
+		return "Song [title=" + title + ", presentations=" + presentations + ", artist=" + artist + ", gender="
+				+ gender + ", songMatrix=" + songMatrix + "]";
 	}
 }

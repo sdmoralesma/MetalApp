@@ -6,8 +6,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -23,17 +21,12 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "artist")
 @XmlRootElement
 @NamedQueries({ @NamedQuery(name = "Artist.findAll", query = "SELECT a FROM Artist a"),
-		@NamedQuery(name = "Artist.findByIdArtist", query = "SELECT a FROM Artist a WHERE a.idArtist = :idArtist"),
 		@NamedQuery(name = "Artist.findByName", query = "SELECT a FROM Artist a WHERE a.name = :name") })
 public class Artist implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id_artist", unique = true)
-	private int idArtist;
-
-	@Column(nullable = false, length = 50)
+	@Column(length = 50)
 	private String description;
 
 	@Column(nullable = false, length = 50)
@@ -46,12 +39,10 @@ public class Artist implements Serializable {
 	public Artist() {
 	}
 
-	public int getIdArtist() {
-		return this.idArtist;
-	}
-
-	public void setIdArtist(int idArtist) {
-		this.idArtist = idArtist;
+	public Artist(String description, String name, List<Song> songs) {
+		this.description = description;
+		this.name = name;
+		this.songs = songs;
 	}
 
 	public String getDescription() {
@@ -93,6 +84,6 @@ public class Artist implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Artist [idArtist=" + idArtist + ", description=" + description + ", name=" + name + "]";
+		return "Artist [description=" + description + ", name=" + name + ", songs=" + songs + "]";
 	}
 }

@@ -54,6 +54,7 @@ public class AdminBean {
 		this.participantList = this.findAllInstances("Participant.findAll", Participant.class);
 		this.songList = this.findAllInstances("Song.findAll", Song.class);
 		this.genderList = this.findAllInstances("Gender.findAll", Gender.class);
+		this.artistList = this.findAllInstances("Artist.findAll", Artist.class);
 	}
 
 	public <T> List<T> findAllInstances(String query, Class<T> clazz) {
@@ -94,14 +95,16 @@ public class AdminBean {
 		throw new NotSupportedException("Metodo no implementado");
 	}
 
-	public String registerArtist() throws NotSupportedException {
+	public String registerArtist() {
 		em.persist(this.artist);
 		this.artistList = this.findAllInstances("Artist.findAll", Artist.class);
 		return "registerArtist.xhtml";
 	}
 
-	public String registerGender() throws NotSupportedException {
-		throw new NotSupportedException("Metodo no implementado");
+	public String registerGender() {
+		em.persist(this.gender);
+		this.genderList = this.findAllInstances("Gender.findAll", Gender.class);
+		return "registerGender.xhtml";
 	}
 
 	// Getters & Setters

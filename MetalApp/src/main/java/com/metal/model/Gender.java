@@ -15,24 +15,19 @@ import java.util.List;
 @Table(name = "gender")
 @XmlRootElement
 @NamedQueries({ @NamedQuery(name = "Gender.findAll", query = "SELECT g FROM Gender g"),
-		@NamedQuery(name = "Gender.findByIdGender", query = "SELECT g FROM Gender g WHERE g.idGender = :idGender"),
 		@NamedQuery(name = "Gender.findByName", query = "SELECT g FROM Gender g WHERE g.name = :name") })
 public class Gender implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_gender", unique = true, nullable = false)
-	private int idGender;
+	@Column(length = 50)
+	private String name;
 
 	@Column(name = "hand_value", nullable = false)
 	private int handValue;
 
 	@Column(name = "head_value", nullable = false)
 	private int headValue;
-
-	@Column(nullable = false, length = 50)
-	private String name;
 
 	// bi-directional many-to-one association to Song
 	@OneToMany(mappedBy = "gender", cascade = CascadeType.PERSIST)
@@ -41,12 +36,11 @@ public class Gender implements Serializable {
 	public Gender() {
 	}
 
-	public int getIdGender() {
-		return this.idGender;
-	}
-
-	public void setIdGender(int idGender) {
-		this.idGender = idGender;
+	public Gender(String name, int handValue, int headValue, List<Song> songs) {
+		this.name = name;
+		this.handValue = handValue;
+		this.headValue = headValue;
+		this.songs = songs;
 	}
 
 	public int getHandValue() {
@@ -85,20 +79,18 @@ public class Gender implements Serializable {
 	public Song addSong(Song song) {
 		getSongs().add(song);
 		song.setGender(this);
-
 		return song;
 	}
 
 	public Song removeSong(Song song) {
 		getSongs().remove(song);
 		song.setGender(null);
-
 		return song;
 	}
 
 	@Override
 	public String toString() {
-		return "Gender [idGender=" + idGender + ", handValue=" + handValue + ", headValue=" + headValue + ", name="
-				+ name + ", songs=" + songs + "]";
+		return "Gender [name=" + name + ", handValue=" + handValue + ", headValue=" + headValue + ", songs=" + songs
+				+ "]";
 	}
 }

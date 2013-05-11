@@ -29,6 +29,12 @@ public class Admin extends User implements Serializable {
 	public Admin() {
 	}
 
+	public Admin(String description, String name) {
+		super();
+		this.description = description;
+		this.name = name;
+	}
+
 	public String getDescription() {
 		return this.description;
 	}
