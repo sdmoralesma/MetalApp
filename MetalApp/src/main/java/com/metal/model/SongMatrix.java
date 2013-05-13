@@ -77,35 +77,7 @@ public class SongMatrix implements Serializable {
 	public SongMatrix(Song song) {
 		this.songTitle = song;
 	}
-
-	public SongMatrix(int composition1, int composition10, int composition2, int composition3, int composition4,
-			int composition5, int composition6, int composition7, int composition8, int composition9, int musicality1,
-			int musicality10, int musicality2, int musicality3, int musicality4, int musicality5, int musicality6,
-			int musicality7, int musicality8, int musicality9, float totalScore, Song songTitle) {
-		this.composition1 = composition1;
-		this.composition10 = composition10;
-		this.composition2 = composition2;
-		this.composition3 = composition3;
-		this.composition4 = composition4;
-		this.composition5 = composition5;
-		this.composition6 = composition6;
-		this.composition7 = composition7;
-		this.composition8 = composition8;
-		this.composition9 = composition9;
-		this.musicality1 = musicality1;
-		this.musicality10 = musicality10;
-		this.musicality2 = musicality2;
-		this.musicality3 = musicality3;
-		this.musicality4 = musicality4;
-		this.musicality5 = musicality5;
-		this.musicality6 = musicality6;
-		this.musicality7 = musicality7;
-		this.musicality8 = musicality8;
-		this.musicality9 = musicality9;
-		this.totalScore = totalScore;
-		this.songTitle = songTitle;
-	}
-
+	
 	public int getIdSong() {
 		return this.idSong;
 	}

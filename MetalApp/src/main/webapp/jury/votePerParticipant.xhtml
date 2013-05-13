@@ -6,18 +6,34 @@
 		<h2>Vote per Participant</h2>
 		<h:form>
 			<h:panelGrid columns="2">
-				<h:outputText value="Username del Participante a votar" />
+				<h:outputText value="Username of Participant" />
 				<h:inputText value="#{beanVotePerParticipant.participant.username}" />
 
 				<h:commandButton value="Vote per Participant!" action="#{beanVotePerParticipant.doVotePerParticipant}" />
 			</h:panelGrid>
 		</h:form>
 
-		<h3>List of Participants</h3>
-		<h:form>
-			<p:dataTable value="#{beanVotePerParticipant.participantList}" var="participant">
+		<h2>List of the Participants</h2>
+		<h:form id="table">
+			<p:dataTable value="#{adminBean.participantList}" var="participant">
 
-				<p:column headerText="username">
+				<p:column headerText="UserName">
+					<h:outputText value="#{participant.username}" />
+				</p:column>
+
+				<p:column headerText="Age">
+					<h:outputText value="#{participant.age}" />
+				</p:column>
+
+				<p:column headerText="Country">
+					<h:outputText value="#{participant.country}" />
+				</p:column>
+
+				<p:column headerText="Gender">
+					<h:outputText value="#{participant.gender}" />
+				</p:column>
+
+				<p:column headerText="Name">
 					<h:outputText value="#{participant.name}" />
 				</p:column>
 

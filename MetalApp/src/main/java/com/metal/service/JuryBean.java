@@ -1,4 +1,4 @@
-package com.metal.ejb;
+package com.metal.service;
 
 import java.util.List;
 
@@ -26,21 +26,36 @@ public class JuryBean {
 
 	@Inject
 	private Participant participant;
+	@Inject
+	private Song song;
+
 	private List<Participant> participantList;
+	private List<Song> songList;
 
 	public JuryBean() {
 	}
 
 	@PostConstruct
-	public void populateParticipantList() {
+	public void populateLists() {
+		this.songList = this.findAllInstances("Song.findAll", Song.class);
+		this.participantList = this.findAllInstances("Participant.findAll", Participant.class);
 	}
 
-	public Participant findParticipant(Long id) {
-		return em.find(Participant.class, id);
+	public <T> List<T> findAllInstances(String query, Class<T> clazz) {
+		TypedQuery<T> typedQuery = em.createNamedQuery(query, clazz);
+		return typedQuery.getResultList();
 	}
 
-	public Song findSong(Long id) {
-		return em.find(Song.class, id);
+	public <T> T findInstanceById(Class<T> clazz, Object id) {
+		return em.find(clazz, id);
+	}
+
+	public <T> T updateInstance(T instance) {
+		return em.merge(instance);
+	}
+
+	public <T> void deleteInstance(T instance) {
+		em.remove(em.merge(instance));
 	}
 
 	public void addVotePerParticipant(Participant participant) {
@@ -81,6 +96,17 @@ public class JuryBean {
 			System.out.println(songs.get(0));
 		}
 	}
+	
+	// Getters & Setters
+	// --------------------------------------------------------------
+
+	public Participant getParticipant() {
+		return participant;
+	}
+
+	public void setParticipant(Participant participant) {
+		this.participant = participant;
+	}
 
 	public List<Participant> getParticipantList() {
 		return participantList;
@@ -88,5 +114,21 @@ public class JuryBean {
 
 	public void setParticipantList(List<Participant> participantList) {
 		this.participantList = participantList;
+	}
+
+	public Song getSong() {
+		return song;
+	}
+
+	public void setSong(Song song) {
+		this.song = song;
+	}
+
+	public List<Song> getSongList() {
+		return songList;
+	}
+
+	public void setSongList(List<Song> songList) {
+		this.songList = songList;
 	}
 }

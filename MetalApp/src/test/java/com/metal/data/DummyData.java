@@ -8,10 +8,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.metal.ejb.AdminBean;
 import com.metal.model.Participant;
 import com.metal.model.Presentation;
 import com.metal.model.ScoreMatrix;
+import com.metal.service.AdminBean;
 
 public class DummyData {
 

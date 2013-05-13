@@ -7,26 +7,26 @@
 		<h:form>
 			<h:panelGrid columns="2">
 				<h:outputText value="Title of the Song" />
-				<h:inputText value="#{beanSong.song.title}" />
+				<h:inputText value="#{juryBean.song.title}" />
 
 				<h:commandButton value="Like this Song!" action="#{beanSong.doVotePerSong}" />
 			</h:panelGrid>
 		</h:form>
 
-		<h3>List of Songs</h3>
-		<h:form>
-			<p:dataTable value="#{beanSong.songList}" var="song">
+		<h2>List of Songs</h2>
+		<h:form id="table">
+			<p:dataTable value="#{juryBean.songList}" var="song">
 
 				<p:column headerText="Title">
 					<h:outputText value="#{song.title}" />
 				</p:column>
 
-				<p:column headerText="IdArtist">
-					<h:outputText value="#{song.artist.idArtist}" />
+				<p:column headerText="Artist">
+					<h:outputText value="#{song.artist.name}" />
 				</p:column>
 
-				<p:column headerText="IdGender">
-					<h:outputText value="#{song.gender.idGender}" />
+				<p:column headerText="Gender">
+					<h:outputText value="#{song.gender.name}" />
 				</p:column>
 
 			</p:dataTable>

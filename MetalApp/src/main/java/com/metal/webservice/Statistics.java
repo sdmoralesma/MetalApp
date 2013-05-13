@@ -6,10 +6,10 @@ import javax.ejb.EJB;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
-import com.metal.ejb.AdminBean;
-import com.metal.ejb.VoteBean;
 import com.metal.model.Participant;
 import com.metal.model.Song;
+import com.metal.service.AdminBean;
+import com.metal.service.VoteBean;
 
 @WebService
 public class Statistics implements StatisticsWs {

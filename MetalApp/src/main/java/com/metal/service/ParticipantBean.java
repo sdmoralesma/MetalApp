@@ -1,4 +1,4 @@
-package com.metal.ejb;
+package com.metal.service;
 
 import java.io.File;
 import java.io.FileOutputStream;
