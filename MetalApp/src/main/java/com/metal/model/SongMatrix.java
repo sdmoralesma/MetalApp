@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
 		@NamedQuery(name = "SongMatrix.findAll", query = "SELECT s FROM SongMatrix s"),
 		@NamedQuery(name = "SongMatrix.findByIdSong", query = "SELECT s FROM SongMatrix s WHERE s.idSong = :idSong"),
-		@NamedQuery(name = "SongMatrix.findBySongTitle", query = "SELECT s FROM SongMatrix s WHERE s.songTitle = :songTitle") })
+		@NamedQuery(name = "SongMatrix.findBySongTitle", query = "SELECT s FROM SongMatrix s WHERE s.song = :song") })
 public class SongMatrix implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -68,16 +68,58 @@ public class SongMatrix implements Serializable {
 
 	// bi-directional one-to-one association to Song
 	@OneToOne
-	@JoinColumn(name = "title", nullable = false, insertable = false, updatable = false)
-	private Song songTitle;
+	@JoinColumn(name = "title", nullable = false, insertable = false)
+	private Song song;
 
 	public SongMatrix() {
+		this.composition1 = 0;
+		this.composition2 = 0;
+		this.composition3 = 0;
+		this.composition4 = 0;
+		this.composition5 = 0;
+		this.composition6 = 0;
+		this.composition7 = 0;
+		this.composition8 = 0;
+		this.composition9 = 0;
+		this.composition10 = 0;
+		this.musicality1 = 0;
+		this.musicality2 = 0;
+		this.musicality3 = 0;
+		this.musicality4 = 0;
+		this.musicality5 = 0;
+		this.musicality6 = 0;
+		this.musicality7 = 0;
+		this.musicality8 = 0;
+		this.musicality9 = 0;
+		this.musicality10 = 0;
 	}
 
 	public SongMatrix(Song song) {
-		this.songTitle = song;
+		this.song = song;
+		this.composition1 = 0;
+		this.composition2 = 0;
+		this.composition3 = 0;
+		this.composition4 = 0;
+		this.composition5 = 0;
+		this.composition6 = 0;
+		this.composition7 = 0;
+		this.composition8 = 0;
+		this.composition9 = 0;
+		this.composition10 = 0;
+		this.musicality1 = 0;
+		this.musicality2 = 0;
+		this.musicality3 = 0;
+		this.musicality4 = 0;
+		this.musicality5 = 0;
+		this.musicality6 = 0;
+		this.musicality7 = 0;
+		this.musicality8 = 0;
+		this.musicality9 = 0;
+		this.musicality10 = 0;		
 	}
+
 	
+
 	public int getIdSong() {
 		return this.idSong;
 	}
@@ -254,12 +296,12 @@ public class SongMatrix implements Serializable {
 		this.totalScore = totalScore;
 	}
 
-	public Song getSongTitle() {
-		return songTitle;
+	public Song getSong() {
+		return song;
 	}
 
-	public void setSongTitle(Song songTitle) {
-		this.songTitle = songTitle;
+	public void setSong(Song song) {
+		this.song = song;
 	}
 
 	@Override
@@ -271,7 +313,7 @@ public class SongMatrix implements Serializable {
 				+ composition9 + ", musicality1=" + musicality1 + ", musicality10=" + musicality10 + ", musicality2="
 				+ musicality2 + ", musicality3=" + musicality3 + ", musicality4=" + musicality4 + ", musicality5="
 				+ musicality5 + ", musicality6=" + musicality6 + ", musicality7=" + musicality7 + ", musicality8="
-				+ musicality8 + ", musicality9=" + musicality9 + ", totalScore=" + totalScore + ", songTitle="
-				+ songTitle + "]";
+				+ musicality8 + ", musicality9=" + musicality9 + ", totalScore=" + totalScore + ", song="
+				+ song + "]";
 	}
 }

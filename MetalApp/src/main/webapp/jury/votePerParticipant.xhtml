@@ -5,17 +5,25 @@
 	<ui:define name="content">
 		<h2>Vote per Participant</h2>
 		<h:form>
+			<h:messages />
 			<h:panelGrid columns="2">
 				<h:outputText value="Username of Participant" />
-				<h:inputText value="#{beanVotePerParticipant.participant.username}" />
+				<h:inputText value="#{juryBean.participant.username}" />
 
-				<h:commandButton value="Vote per Participant!" action="#{beanVotePerParticipant.doVotePerParticipant}" />
+				<h:outputLabel value="Head Value" />
+				<p:rating id="compositionValue" value="#{juryBean.headPoints}" stars="10" cancel="false" />
+
+				<h:outputLabel value="Hand Value " />
+				<p:rating id="musicalityValue" value="#{juryBean.handPoints}" stars="10" cancel="false" />
+
+				<h:commandButton value="Vote per Participant!" action="#{juryBean.votePerParticipant}" />
+				<h:messages />
 			</h:panelGrid>
 		</h:form>
 
 		<h2>List of the Participants</h2>
 		<h:form id="table">
-			<p:dataTable value="#{adminBean.participantList}" var="participant">
+			<p:dataTable value="#{juryBean.participantList}" var="participant">
 
 				<p:column headerText="UserName">
 					<h:outputText value="#{participant.username}" />

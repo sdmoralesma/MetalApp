@@ -23,34 +23,44 @@ import java.util.List;
 public class Participant extends User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Column(nullable = false)
 	@Min(15)
 	@Max(100)
-	@Column(nullable = false)
 	private int age;
 
-	@Size(min = 5, max = 50)
 	@Column(nullable = false, length = 50)
+	@Size(min = 5, max = 50)
 	private String country;
 
 	@Column(nullable = false, length = 50)
 	private String gender;
 
-	@Size(min = 5, max = 50)
 	@Column(nullable = false, length = 100)
+	@Size(min = 5, max = 50)
 	private String name;
 
 	@Column(nullable = true, length = 100)
 	private String image_url;
 
 	// bi-directional many-to-one association to Presentation
-	@OneToMany(mappedBy = "participant", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "participant", cascade = CascadeType.ALL)
 	private List<Presentation> presentations;
 
 	// bi-directional one-to-one association to ScoreMatrix
-	@OneToOne(mappedBy = "participant", cascade = CascadeType.PERSIST)
+	@OneToOne(mappedBy = "participant", cascade = CascadeType.ALL)
 	private ScoreMatrix scoreMatrix;
 
 	public Participant() {
+	}
+
+	public Participant(String username, String group_name, String password, int age, String country, String gender,
+			String name, String image_url) {
+		super(username, group_name, password);
+		this.age = age;
+		this.country = country;
+		this.gender = gender;
+		this.name = name;
+		this.image_url = image_url;
 	}
 
 	public Participant(int age, String country, String gender, String name, String image_url,

@@ -48,7 +48,7 @@ public class Song implements Serializable {
 	private Gender gender;
 
 	// bi-directional one-to-one association to SongMatrix
-	@OneToOne(mappedBy = "songTitle", cascade = CascadeType.PERSIST)
+	@OneToOne(mappedBy = "song", cascade = CascadeType.ALL)
 	private SongMatrix songMatrix;
 
 	public Song() {
@@ -122,7 +122,6 @@ public class Song implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Song [title=" + title + ", presentations=" + presentations + ", artist=" + artist + ", gender="
-				+ gender + ", songMatrix=" + songMatrix + "]";
+		return "Song [title=" + title + ", artist=" + artist + ", gender=" + gender + "]";
 	}
 }

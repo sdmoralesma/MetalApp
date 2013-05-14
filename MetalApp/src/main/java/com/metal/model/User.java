@@ -17,15 +17,15 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Size(min = 5, max = 25)
 	@Column(unique = true, nullable = false, length = 50)
+	@Size(min = 5, max = 25)
 	private String username;
 
 	@Column(nullable = false, length = 50)
 	private String group_name;
 
-	@Size(min = 3, max = 20)
 	@Column(nullable = false, length = 50)
+	@Size(min = 3, max = 20)
 	private String password;
 
 	public User() {
