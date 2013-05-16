@@ -31,7 +31,7 @@ public class JuryBean {
 	private Participant participant;
 	@Inject
 	private Song song;
-	@Inject 
+	@Inject
 	private SongMatrix matrix;
 
 	private List<Participant> participantList;
@@ -68,7 +68,7 @@ public class JuryBean {
 		em.remove(em.merge(instance));
 	}
 
-	public void votePerParticipant() {
+	public String votePerParticipant() {
 		TypedQuery<Participant> query = em.createNamedQuery("Participant.findByUsername", Participant.class)
 				.setParameter("username", participant.getUsername());
 
@@ -76,32 +76,36 @@ public class JuryBean {
 		if (participants.isEmpty()) {
 			FacesMessage msg = new FacesMessage("The participant does not exists");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
-		}
-
-		System.out.println("The Participant: " + participants.get(0).getName());
-
-		TypedQuery<ScoreMatrix> scoreQuery = em.createNamedQuery("ScoreMatrix.findByUsername", ScoreMatrix.class)
-				.setParameter("username", participant.getUsername());
-
-		List<ScoreMatrix> scoreMatrix = scoreQuery.getResultList();
-		if (scoreMatrix.isEmpty()) {
-			FacesMessage msg = new FacesMessage("The participant does not exists");
-			FacesContext.getCurrentInstance().addMessage(null, msg);
-
 		} else {
-			
-		    ScoreMatrix score = scoreMatrix.get(0);
-			score.setTotalScore(score.getTotalScore() + 1);
-			participant.setScoreMatrix(score);
-			em.persist(participant);
+
+			Participant participantToVote = participants.get(0);
+			ScoreMatrix scoreMatrix = participantToVote.getScoreMatrix();
+			if (scoreMatrix == null) {
+				scoreMatrix = new ScoreMatrix();
+				scoreMatrix.setParticipant(participantToVote);
+			}
+
+			// ERASE ME!!!
+			// -------------------------------------------------------------
+			Integer totalPunctuation = (scoreMatrix.getHand1() + 1);
+			scoreMatrix.setHand1(totalPunctuation);
+
+			totalPunctuation = (scoreMatrix.getHead1() + 1);
+			scoreMatrix.setHead1(totalPunctuation);
+			// --------------------------------------------------------------
+
+			scoreMatrix.setTotalScore(scoreMatrix.getTotalScore() + 1);
+			participantToVote.setScoreMatrix(scoreMatrix);
+			em.persist(participantToVote);
 
 			FacesMessage msg = new FacesMessage("The Vote has been Registered, Thanks!");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
 
+		return "votePerParticipant.xhtml";
 	}
 
-	public void votePerSong() {
+	public String votePerSong() {
 		TypedQuery<Song> query = em.createNamedQuery("Song.findByTitle", Song.class).setParameter("title",
 				song.getTitle());
 		List<Song> songs = query.getResultList();
@@ -118,15 +122,17 @@ public class JuryBean {
 				songMatrix = new SongMatrix();
 				songMatrix.setSong(theSongToVote);
 			}
-			
+
 			songMatrix = addCompositionPointsToSongMatrix(songMatrix, compositionPoints);
-			songMatrix = addMusicalityPoinstToSongMatrix(songMatrix, musicalityPoints);			
+			songMatrix = addMusicalityPoinstToSongMatrix(songMatrix, musicalityPoints);
 			theSongToVote.setSongMatrix(songMatrix);
-			
 			em.persist(theSongToVote);
+
 			FacesMessage msg = new FacesMessage("The Vote has been Registered, Thanks!");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
+
+		return "votePerSong.xhtml";
 	}
 
 	private SongMatrix addCompositionPointsToSongMatrix(SongMatrix songMatrix, Integer points) {

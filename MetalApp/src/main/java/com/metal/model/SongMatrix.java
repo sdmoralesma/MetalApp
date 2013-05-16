@@ -13,15 +13,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
 		@NamedQuery(name = "SongMatrix.findAll", query = "SELECT s FROM SongMatrix s"),
-		@NamedQuery(name = "SongMatrix.findByIdSong", query = "SELECT s FROM SongMatrix s WHERE s.idSong = :idSong"),
+		@NamedQuery(name = "SongMatrix.findByIdSong", query = "SELECT s FROM SongMatrix s WHERE s.idSongMatrix = :idSong"),
 		@NamedQuery(name = "SongMatrix.findBySongTitle", query = "SELECT s FROM SongMatrix s WHERE s.song = :song") })
 public class SongMatrix implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_song")
-	private int idSong;
+	@Column(name = "id_song_matrix")
+	private int idSongMatrix;
 
 	private int composition1;
 
@@ -115,17 +115,15 @@ public class SongMatrix implements Serializable {
 		this.musicality7 = 0;
 		this.musicality8 = 0;
 		this.musicality9 = 0;
-		this.musicality10 = 0;		
+		this.musicality10 = 0;
 	}
 
-	
-
-	public int getIdSong() {
-		return this.idSong;
+	public int getIdSongMatrix() {
+		return idSongMatrix;
 	}
 
-	public void setIdSong(int idSong) {
-		this.idSong = idSong;
+	public void setIdSongMatrix(int idSongMatrix) {
+		this.idSongMatrix = idSongMatrix;
 	}
 
 	public int getComposition1() {
@@ -306,14 +304,13 @@ public class SongMatrix implements Serializable {
 
 	@Override
 	public String toString() {
-		return "SongMatrix [idSong=" + idSong + ", composition1=" + composition1 + ", composition10=" + composition10
-				+ ", composition2=" + composition2 + ", composition3=" + composition3 + ", composition4="
-				+ composition4 + ", composition5=" + composition5 + ", composition6=" + composition6
-				+ ", composition7=" + composition7 + ", composition8=" + composition8 + ", composition9="
-				+ composition9 + ", musicality1=" + musicality1 + ", musicality10=" + musicality10 + ", musicality2="
-				+ musicality2 + ", musicality3=" + musicality3 + ", musicality4=" + musicality4 + ", musicality5="
-				+ musicality5 + ", musicality6=" + musicality6 + ", musicality7=" + musicality7 + ", musicality8="
-				+ musicality8 + ", musicality9=" + musicality9 + ", totalScore=" + totalScore + ", song="
-				+ song + "]";
+		return "SongMatrix [idSongMatrix=" + idSongMatrix + ", composition1=" + composition1 + ", composition10="
+				+ composition10 + ", composition2=" + composition2 + ", composition3=" + composition3
+				+ ", composition4=" + composition4 + ", composition5=" + composition5 + ", composition6="
+				+ composition6 + ", composition7=" + composition7 + ", composition8=" + composition8
+				+ ", composition9=" + composition9 + ", musicality1=" + musicality1 + ", musicality10=" + musicality10
+				+ ", musicality2=" + musicality2 + ", musicality3=" + musicality3 + ", musicality4=" + musicality4
+				+ ", musicality5=" + musicality5 + ", musicality6=" + musicality6 + ", musicality7=" + musicality7
+				+ ", musicality8=" + musicality8 + ", musicality9=" + musicality9 + ", totalScore=" + totalScore + "]";
 	}
 }

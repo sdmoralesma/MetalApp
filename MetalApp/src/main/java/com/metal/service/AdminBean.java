@@ -87,7 +87,7 @@ public class AdminBean {
 	public String registerParticipant() {
 		participant.setGroup("participant");
 		ScoreMatrix score = new ScoreMatrix();
-		score.setUsername(participant.getUsername());
+		score.setParticipant(participant);
 		participant.setScoreMatrix(score);
 		em.persist(participant);
 		this.participantList = this.findAllInstances("Participant.findAll", Participant.class);
