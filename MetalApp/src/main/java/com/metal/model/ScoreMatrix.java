@@ -11,8 +11,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "score_matrix")
 @XmlRootElement
 @NamedQueries({
-		@NamedQuery(name = "ScoreMatrix.findAll", query = "SELECT s FROM ScoreMatrix s"),
-		@NamedQuery(name = "ScoreMatrix.findByUsername", query = "SELECT s FROM ScoreMatrix s WHERE s.idScoreMatrix = :username") })
+		@NamedQuery(name = ScoreMatrix.FIND_ALL, query = "SELECT s FROM ScoreMatrix s"),
+		@NamedQuery(name = ScoreMatrix.FIND_BY_USERNAME, query = "SELECT s FROM ScoreMatrix s WHERE s.idScoreMatrix = :username") })
 public class ScoreMatrix implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -20,46 +20,27 @@ public class ScoreMatrix implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_score_matrix")
 	private int idScoreMatrix;
-
 	private int hand1;
-
+	private int hand2;
+	private int hand3;
+	private int hand4;
+	private int hand5;
+	private int hand6;
+	private int hand7;
+	private int hand8;
+	private int hand9;
 	private int hand10;
 
-	private int hand2;
-
-	private int hand3;
-
-	private int hand4;
-
-	private int hand5;
-
-	private int hand6;
-
-	private int hand7;
-
-	private int hand8;
-
-	private int hand9;
-
 	private int head1;
-
-	private int head10;
-
 	private int head2;
-
 	private int head3;
-
 	private int head4;
-
 	private int head5;
-
 	private int head6;
-
 	private int head7;
-
 	private int head8;
-
 	private int head9;
+	private int head10;
 
 	@Column(name = "total_score")
 	private float totalScore;
@@ -68,6 +49,9 @@ public class ScoreMatrix implements Serializable {
 	@OneToOne
 	@JoinColumn(name = "username", nullable = false, insertable = false)
 	private Participant participant;
+
+	public static final String FIND_ALL = "ScoreMatrix.findAll";
+	public static final String FIND_BY_USERNAME = "ScoreMatrix.findByUsername";
 
 	public ScoreMatrix() {
 	}

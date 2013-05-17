@@ -9,13 +9,12 @@ import java.util.List;
 
 /**
  * The persistent class for the gender database table.
- * 
  */
 @Entity
 @Table(name = "gender")
 @XmlRootElement
-@NamedQueries({ @NamedQuery(name = "Gender.findAll", query = "SELECT g FROM Gender g"),
-		@NamedQuery(name = "Gender.findByName", query = "SELECT g FROM Gender g WHERE g.name = :name") })
+@NamedQueries({ @NamedQuery(name = Gender.FIND_ALL, query = "SELECT g FROM Gender g"),
+		@NamedQuery(name = Gender.FIND_BY_NAME, query = "SELECT g FROM Gender g WHERE g.name = :name") })
 public class Gender implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -32,6 +31,9 @@ public class Gender implements Serializable {
 	// bi-directional many-to-one association to Song
 	@OneToMany(mappedBy = "gender", cascade = CascadeType.ALL)
 	private List<Song> songs;
+
+	public static final String FIND_ALL = "Gender.findAll";
+	public static final String FIND_BY_NAME = "Gender.findByName";
 
 	public Gender() {
 	}

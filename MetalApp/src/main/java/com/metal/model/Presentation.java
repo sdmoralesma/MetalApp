@@ -6,15 +6,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * The persistent class for the presentation database table.
- * 
  */
 @Entity
 @Table(name = "presentation")
 @XmlRootElement
 @NamedQueries({
-		@NamedQuery(name = "Presentation.findAll", query = "SELECT p FROM Presentation p"),
-		@NamedQuery(name = "Presentation.findByIdPresentation", query = "SELECT p FROM Presentation p WHERE p.idPresentation = :idPresentation"),
-		@NamedQuery(name = "Presentation.findByIdParticipant", query = "SELECT p FROM Presentation p WHERE p.participant.username = :username") })
+		@NamedQuery(name = Presentation.FIND_ALL, query = "SELECT p FROM Presentation p"),
+		@NamedQuery(name = Presentation.FIND_BY_ID_PRESENTATION, query = "SELECT p FROM Presentation p WHERE p.idPresentation = :idPresentation"),
+		@NamedQuery(name = Presentation.FIND_BY_ID_PARTICIPANT, query = "SELECT p FROM Presentation p WHERE p.participant.username = :username") })
 public class Presentation implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -42,10 +41,13 @@ public class Presentation implements Serializable {
 	@JoinColumn(name = "id_song", nullable = false)
 	private Song song;
 
+	public static final String FIND_ALL = "Presentation.findAll";
+	public static final String FIND_BY_ID_PRESENTATION = "Presentation.findByIdPresentation";
+	public static final String FIND_BY_ID_PARTICIPANT = "Presentation.findByIdParticipant";
+
 	public Presentation() {
 	}
 
-	
 	public Presentation(int idPresentation, float handScore, float headScore, float totalScore,
 			Participant participant, Song song) {
 		super();
@@ -56,7 +58,6 @@ public class Presentation implements Serializable {
 		this.participant = participant;
 		this.song = song;
 	}
-
 
 	public int getIdPresentation() {
 		return this.idPresentation;

@@ -12,9 +12,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "jury")
 @DiscriminatorValue("JURY")
 @XmlRootElement
-@NamedQueries({ @NamedQuery(name = "Jury.findAll", query = "SELECT j FROM Jury j"),
-		@NamedQuery(name = "Jury.findByName", query = "SELECT j FROM Jury j WHERE j.name = :name"),
-		@NamedQuery(name = "Jury.findByUsername", query = "SELECT j FROM Jury j WHERE j.username = :username") })
+@NamedQueries({ @NamedQuery(name = Jury.FIND_ALL, query = "SELECT j FROM Jury j"),
+		@NamedQuery(name = Jury.FIND_BY_NAME, query = "SELECT j FROM Jury j WHERE j.name = :name"),
+		@NamedQuery(name = Jury.FIND__BY_USERNAME, query = "SELECT j FROM Jury j WHERE j.username = :username") })
 public class Jury extends User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -25,6 +25,10 @@ public class Jury extends User implements Serializable {
 	@Size(min = 5, max = 50)
 	@Column(nullable = false, length = 100)
 	private String name;
+
+	public static final String FIND_ALL = "Jury.findAll";
+	public static final String FIND_BY_NAME = "Jury.findByName";
+	public static final String FIND__BY_USERNAME = "Jury.findByUsername";
 
 	public Jury() {
 	}

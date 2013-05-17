@@ -11,9 +11,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "song_matrix")
 @XmlRootElement
 @NamedQueries({
-		@NamedQuery(name = "SongMatrix.findAll", query = "SELECT s FROM SongMatrix s"),
-		@NamedQuery(name = "SongMatrix.findByIdSong", query = "SELECT s FROM SongMatrix s WHERE s.idSongMatrix = :idSong"),
-		@NamedQuery(name = "SongMatrix.findBySongTitle", query = "SELECT s FROM SongMatrix s WHERE s.song = :song") })
+		@NamedQuery(name = SongMatrix.FIND_ALL, query = "SELECT s FROM SongMatrix s"),
+		@NamedQuery(name = SongMatrix.FIND_BY_ID_SONG, query = "SELECT s FROM SongMatrix s WHERE s.idSongMatrix = :idSong"),
+		@NamedQuery(name = SongMatrix.FIND_BY_SONG_TITLE, query = "SELECT s FROM SongMatrix s WHERE s.song = :song") })
 public class SongMatrix implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -21,46 +21,27 @@ public class SongMatrix implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_song_matrix")
 	private int idSongMatrix;
-
 	private int composition1;
-
+	private int composition2;
+	private int composition3;
+	private int composition4;
+	private int composition5;
+	private int composition6;
+	private int composition7;
+	private int composition8;
+	private int composition9;
 	private int composition10;
 
-	private int composition2;
-
-	private int composition3;
-
-	private int composition4;
-
-	private int composition5;
-
-	private int composition6;
-
-	private int composition7;
-
-	private int composition8;
-
-	private int composition9;
-
 	private int musicality1;
-
-	private int musicality10;
-
 	private int musicality2;
-
 	private int musicality3;
-
 	private int musicality4;
-
 	private int musicality5;
-
 	private int musicality6;
-
 	private int musicality7;
-
 	private int musicality8;
-
 	private int musicality9;
+	private int musicality10;
 
 	@Column(name = "total_score")
 	private float totalScore;
@@ -69,6 +50,10 @@ public class SongMatrix implements Serializable {
 	@OneToOne
 	@JoinColumn(name = "title", nullable = false, insertable = false)
 	private Song song;
+
+	public static final String FIND_ALL = "SongMatrix.findAll";
+	public static final String FIND_BY_ID_SONG = "SongMatrix.findByIdSong";
+	public static final String FIND_BY_SONG_TITLE = "SongMatrix.findBySongTitle";
 
 	public SongMatrix() {
 		this.composition1 = 0;

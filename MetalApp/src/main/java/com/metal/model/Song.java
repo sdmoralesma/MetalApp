@@ -23,10 +23,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "song")
 @XmlRootElement
-@NamedQueries({ @NamedQuery(name = "Song.findAll", query = "SELECT s FROM Song s"),
-		@NamedQuery(name = "Song.findByTitle", query = "SELECT s FROM Song s WHERE s.title = :title"),
-		@NamedQuery(name = "Song.findByIdArtist", query = "SELECT s FROM Song s WHERE s.artist = :idArtist"),
-		@NamedQuery(name = "Song.findByIdGender", query = "SELECT s FROM Song s WHERE s.gender = :idGender") })
+@NamedQueries({ @NamedQuery(name = Song.FIND_ALL, query = "SELECT s FROM Song s"),
+		@NamedQuery(name = Song.FIND_BY_TITLE, query = "SELECT s FROM Song s WHERE s.title = :title"),
+		@NamedQuery(name = Song.FIND_BY_ID_ARTIST, query = "SELECT s FROM Song s WHERE s.artist = :idArtist"),
+		@NamedQuery(name = Song.FIND_BY_ID_GENDER, query = "SELECT s FROM Song s WHERE s.gender = :idGender") })
 public class Song implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -51,6 +51,11 @@ public class Song implements Serializable {
 	// bi-directional one-to-one association to SongMatrix
 	@OneToOne(mappedBy = "song", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private SongMatrix songMatrix;
+
+	public static final String FIND_ALL = "Song.findAll";
+	public static final String FIND_BY_TITLE = "Song.findByTitle";
+	public static final String FIND_BY_ID_ARTIST = "Song.findByIdArtist";
+	public static final String FIND_BY_ID_GENDER = "Song.findByIdGender";
 
 	public Song() {
 	}

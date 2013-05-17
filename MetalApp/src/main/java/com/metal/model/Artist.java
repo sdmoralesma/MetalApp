@@ -20,8 +20,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "artist")
 @XmlRootElement
-@NamedQueries({ @NamedQuery(name = "Artist.findAll", query = "SELECT a FROM Artist a"),
-		@NamedQuery(name = "Artist.findByName", query = "SELECT a FROM Artist a WHERE a.name = :name") })
+@NamedQueries({ @NamedQuery(name = Artist.FIND_ALL, query = "SELECT a FROM Artist a"),
+		@NamedQuery(name = Artist.FIND_BY_NAME, query = "SELECT a FROM Artist a WHERE a.name = :name") })
 public class Artist implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -35,6 +35,9 @@ public class Artist implements Serializable {
 	// bi-directional many-to-one association to Song
 	@OneToMany(mappedBy = "artist", cascade = CascadeType.ALL)
 	private List<Song> songs;
+
+	public static final String FIND_ALL = "Artist.findAll";
+	public static final String FIND_BY_NAME = "Artist.findByName";
 
 	public Artist() {
 	}

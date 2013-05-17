@@ -11,8 +11,8 @@ import javax.validation.constraints.Size;
 @Table(name = "users")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "user_type")
-@NamedQueries({ @NamedQuery(name = "User.findAllUsers", query = "SELECT u FROM User u"),
-		@NamedQuery(name = "User.findAllByType", query = "SELECT u FROM User u WHERE TYPE(u) = :type") })
+@NamedQueries({ @NamedQuery(name = User.FIND_ALL, query = "SELECT u FROM User u"),
+		@NamedQuery(name = User.FIND_ALL_BY_TYPE, query = "SELECT u FROM User u WHERE TYPE(u) = :type") })
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -27,6 +27,9 @@ public class User implements Serializable {
 	@Column(nullable = false, length = 50)
 	@Size(min = 3, max = 20)
 	private String password;
+
+	public static final String FIND_ALL = "User.findAllUsers";
+	public static final String FIND_ALL_BY_TYPE = "User.findAllByType";
 
 	public User() {
 	}
