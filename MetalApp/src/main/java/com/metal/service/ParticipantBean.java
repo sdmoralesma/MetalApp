@@ -10,6 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -30,6 +31,7 @@ public class ParticipantBean {
 	@PersistenceContext(unitName = "MetalApp")
 	private EntityManager em;
 
+	@Inject
 	private Participant participant;
 
 	public ParticipantBean() {

@@ -51,7 +51,7 @@ public class StatisticsIT {
 		Service service = Service.create(wsdlDocumentLocation, serviceQN);
 		StatisticsWs statisticsWs = service.getPort(portQN, StatisticsWs.class);
 		String cadena = statisticsWs.getCadena();
-		assertEquals("Cadena Inv�lida", "TEST", cadena);
+		assertEquals("Invalid String", "TEST", cadena);
 	}
 
 	@Test

@@ -9,31 +9,34 @@ import javax.jws.WebService;
 import com.metal.model.Participant;
 import com.metal.model.Song;
 import com.metal.service.AdminBean;
-import com.metal.service.VoteBean;
+import com.metal.service.JuryBean;
+import com.metal.service.ParticipantBean;
 
 @WebService
 public class Statistics implements StatisticsWs {
 
 	@EJB
-	AdminBean adminEJB;
-	
+	AdminBean adminBean;
+
 	@EJB
-	VoteBean scoreEJB;
+	ParticipantBean participantBean;
+
+	@EJB
+	JuryBean juryBean;
 
 	@Override
 	public List<Participant> getRatingParticipants() {
-		return adminEJB.findAllInstances("Participant.findAll", Participant.class);
+		return adminBean.findAllInstances("Participant.findAll", Participant.class);
 	}
 
 	@Override
 	public List<Song> getRatingSongs() {
-		return scoreEJB.findAllSongs();
+		return juryBean.findAllInstances("Song.findAll", Song.class);
 	}
 
 	@Override
 	public Participant getRatingPerParticipant(@WebParam Participant participant) {
-		System.out.println("WS RatingPerParticipant");
-		return null;
+		return participantBean.findParticipantByPK();
 	}
 
 	@Override
