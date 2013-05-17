@@ -6,7 +6,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * The persistent class for the score_matrix database table.
- * 
  */
 @Entity
 @Table(name = "score_matrix")

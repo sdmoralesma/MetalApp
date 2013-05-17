@@ -6,7 +6,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * The persistent class for the song_matrix database table.
- * 
  */
 @Entity
 @Table(name = "song_matrix")

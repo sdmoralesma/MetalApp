@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -48,7 +49,7 @@ public class Song implements Serializable {
 	private Gender gender;
 
 	// bi-directional one-to-one association to SongMatrix
-	@OneToOne(mappedBy = "song", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "song", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private SongMatrix songMatrix;
 
 	public Song() {

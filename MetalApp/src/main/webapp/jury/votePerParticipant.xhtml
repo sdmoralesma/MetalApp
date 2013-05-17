@@ -43,6 +43,10 @@
 			<p:column headerText="Name">
 				<h:outputText value="#{participant.name}" />
 			</p:column>
+			
+			<p:column headerText="Score">
+				<h:outputText value="#{participant.scoreMatrix.totalScore}" />
+			</p:column>
 
 		</p:dataTable>
 	</ui:define>

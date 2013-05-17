@@ -47,7 +47,7 @@ public class Participant extends User implements Serializable {
 	private List<Presentation> presentations;
 
 	// bi-directional one-to-one association to ScoreMatrix
-	@OneToOne(mappedBy = "participant", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "participant", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private ScoreMatrix scoreMatrix;
 
 	public Participant() {
