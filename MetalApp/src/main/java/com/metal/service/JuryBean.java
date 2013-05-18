@@ -2,7 +2,6 @@ package com.metal.service;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -34,9 +33,6 @@ public class JuryBean {
 	@Inject
 	private SongMatrix matrix;
 
-	private List<Participant> participantList;
-	private List<Song> songList;
-	private List<SongMatrix> matrixList;
 	private Integer musicalityPoints;
 	private Integer compositionPoints;
 	private Integer handPoints;
@@ -45,10 +41,20 @@ public class JuryBean {
 	public JuryBean() {
 	}
 
-	@PostConstruct
-	public void populateLists() {
-		this.songList = this.findAllInstances("Song.findAll", Song.class);
-		this.participantList = this.findAllInstances("Participant.findAll", Participant.class);
+	public List<Song> songList() {
+		return this.findAllInstances(Song.FIND_ALL, Song.class);
+	}
+
+	public List<Participant> participatList() {
+		return this.findAllInstances(Participant.FIND_ALL, Participant.class);
+	}
+
+	public List<SongMatrix> matrixList() {
+		return this.findAllInstances(SongMatrix.FIND_ALL, SongMatrix.class);
+	}
+
+	public List<Participant> participantList() {
+		return this.findAllInstances(Participant.FIND_ALL, Participant.class);
 	}
 
 	public <T> List<T> findAllInstances(String query, Class<T> clazz) {
@@ -69,7 +75,7 @@ public class JuryBean {
 	}
 
 	public String votePerParticipant() {
-		TypedQuery<Participant> query = em.createNamedQuery("Participant.findByUsername", Participant.class)
+		TypedQuery<Participant> query = em.createNamedQuery(Participant.FIND_BY_USERNAME, Participant.class)
 				.setParameter("username", participant.getUsername());
 
 		List<Participant> participants = query.getResultList();
@@ -100,7 +106,7 @@ public class JuryBean {
 	}
 
 	public String votePerSong() {
-		TypedQuery<Song> query = em.createNamedQuery("Song.findByTitle", Song.class).setParameter("title",
+		TypedQuery<Song> query = em.createNamedQuery(Song.FIND_BY_TITLE, Song.class).setParameter("title",
 				song.getTitle());
 		List<Song> songs = query.getResultList();
 		if (songs.isEmpty()) {
@@ -383,28 +389,12 @@ public class JuryBean {
 		this.participant = participant;
 	}
 
-	public List<Participant> getParticipantList() {
-		return participantList;
-	}
-
-	public void setParticipantList(List<Participant> participantList) {
-		this.participantList = participantList;
-	}
-
 	public Song getSong() {
 		return song;
 	}
 
 	public void setSong(Song song) {
 		this.song = song;
-	}
-
-	public List<Song> getSongList() {
-		return songList;
-	}
-
-	public void setSongList(List<Song> songList) {
-		this.songList = songList;
 	}
 
 	public Integer getMusicalityPoints() {
@@ -445,13 +435,5 @@ public class JuryBean {
 
 	public void setMatrix(SongMatrix matrix) {
 		this.matrix = matrix;
-	}
-
-	public List<SongMatrix> getMatrixList() {
-		return matrixList;
-	}
-
-	public void setMatrixList(List<SongMatrix> matrixList) {
-		this.matrixList = matrixList;
 	}
 }

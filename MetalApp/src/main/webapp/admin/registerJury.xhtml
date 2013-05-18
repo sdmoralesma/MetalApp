@@ -31,7 +31,7 @@
 
 		<h2>List of Juries</h2>
 		<h:form>
-			<p:dataTable value="#{adminBean.juryList}" var="jury">
+			<p:dataTable value="#{adminBean.juryList()}" var="jury">
 
 				<p:column headerText="Username">
 					<h:outputText value="#{jury.username}" />

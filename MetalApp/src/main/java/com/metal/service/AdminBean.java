@@ -2,7 +2,6 @@ package com.metal.service;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -39,25 +38,30 @@ public class AdminBean {
 	@Inject
 	private Artist artist;
 
-	private List<Jury> juryList;
-	private List<Participant> participantList;
-	private List<Song> songList;
-	private List<Gender> genderList;
-	private List<Artist> artistList;
-
 	private String selectedArtistName;
 	private String selectedGenderName;
 
 	public AdminBean() {
 	}
 
-	@PostConstruct
-	public void populateLists() {
-		this.juryList = this.findAllInstances("Jury.findAll", Jury.class);
-		this.participantList = this.findAllInstances("Participant.findAll", Participant.class);
-		this.songList = this.findAllInstances("Song.findAll", Song.class);
-		this.genderList = this.findAllInstances("Gender.findAll", Gender.class);
-		this.artistList = this.findAllInstances("Artist.findAll", Artist.class);
+	public List<Song> songList() {
+		return this.findAllInstances(Song.FIND_ALL, Song.class);
+	}
+
+	public List<Participant> participantList() {
+		return this.findAllInstances(Participant.FIND_ALL, Participant.class);
+	}
+
+	public List<Gender> genderList() {
+		return this.findAllInstances(Gender.FIND_ALL, Gender.class);
+	}
+
+	public List<Artist> artistList() {
+		return this.findAllInstances(Artist.FIND_ALL, Artist.class);
+	}
+
+	public List<Jury> juryList() {
+		return this.findAllInstances(Jury.FIND_ALL, Jury.class);
 	}
 
 	public <T> List<T> findAllInstances(String query, Class<T> clazz) {
@@ -80,7 +84,6 @@ public class AdminBean {
 	public String registerJury() {
 		this.jury.setGroup("jury");
 		em.persist(this.jury);
-		this.juryList = this.findAllInstances("Jury.findAll", Jury.class);
 		return "registerJury.xhtml";
 	}
 
@@ -90,7 +93,6 @@ public class AdminBean {
 		score.setParticipant(participant);
 		participant.setScoreMatrix(score);
 		em.persist(participant);
-		this.participantList = this.findAllInstances("Participant.findAll", Participant.class);
 		return "registerParticipant.xhtml";
 	}
 
@@ -102,56 +104,21 @@ public class AdminBean {
 					+ "\nGender: " + selectedGender);
 		this.song = new Song(this.song.getTitle(), selectedArtist, selectedGender);
 		em.persist(this.song);
-		this.songList = this.findAllInstances("Song.findAll", Song.class);
 		return "registerSong";
 	}
 
 	public String registerArtist() {
 		em.persist(this.artist);
-		this.artistList = this.findAllInstances("Artist.findAll", Artist.class);
 		return "registerArtist.xhtml";
 	}
 
 	public String registerGender() {
 		em.persist(this.gender);
-		this.genderList = this.findAllInstances("Gender.findAll", Gender.class);
 		return "registerGender.xhtml";
 	}
 
 	// Getters & Setters
 	// --------------------------------------------------------------
-
-	public List<Jury> getJuryList() {
-		return juryList;
-	}
-
-	public void setJuryList(List<Jury> juryList) {
-		this.juryList = juryList;
-	}
-
-	public List<Participant> getParticipantList() {
-		return participantList;
-	}
-
-	public void setParticipantList(List<Participant> participantList) {
-		this.participantList = participantList;
-	}
-
-	public List<Song> getSongList() {
-		return songList;
-	}
-
-	public void setSongList(List<Song> songList) {
-		this.songList = songList;
-	}
-
-	public List<Gender> getGenderList() {
-		return genderList;
-	}
-
-	public void setGenderList(List<Gender> genderList) {
-		this.genderList = genderList;
-	}
 
 	public Jury getJury() {
 		return jury;
@@ -191,14 +158,6 @@ public class AdminBean {
 
 	public void setArtist(Artist artist) {
 		this.artist = artist;
-	}
-
-	public List<Artist> getArtistList() {
-		return artistList;
-	}
-
-	public void setArtistList(List<Artist> artistList) {
-		this.artistList = artistList;
 	}
 
 	public String getSelectedGenderName() {

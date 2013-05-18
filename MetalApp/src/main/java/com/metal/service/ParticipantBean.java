@@ -34,6 +34,8 @@ public class ParticipantBean {
 	@Inject
 	private Participant participant;
 
+	public static final String PATH_TO_SAVE_IMAGES = "/home/sergio/uploaded/images";
+
 	public ParticipantBean() {
 	}
 
@@ -42,13 +44,9 @@ public class ParticipantBean {
 		this.participant = this.findParticipantByPK();
 	}
 
-	public void deleteParticipant() {
-		em.remove(em.merge(this.participant));
-	}
-
 	public Participant findParticipantByPK() {
 		String nameLoggedUser = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
-		TypedQuery<Participant> query = em.createNamedQuery("Participant.findByUsername", Participant.class);
+		TypedQuery<Participant> query = em.createNamedQuery(Participant.FIND_BY_USERNAME, Participant.class);
 		query.setParameter("username", nameLoggedUser);
 		return query.getSingleResult();
 	}
@@ -70,11 +68,21 @@ public class ParticipantBean {
 		this.participant = participant;
 	}
 
+	public void updateParticipant() {
+		em.merge(this.participant);
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Info: ", "Updated Participant"));
+	}
+
+	public void deleteParticipant() {
+		em.remove(em.merge(this.participant));
+	}
+
 	public void handleFileUpload(FileUploadEvent event) {
 
 		try {
 			String nameLoggedUser = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
-			File targetFolder = new File("/home/sergio/uploaded/images");
+			File targetFolder = new File(PATH_TO_SAVE_IMAGES);
 			UploadedFile inImage = event.getFile();
 			InputStream inputStream = inImage.getInputstream();
 
@@ -109,11 +117,5 @@ public class ParticipantBean {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public void updateParticipant() {
-		em.merge(this.participant);
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Info: ", "Updated Participant"));
 	}
 }

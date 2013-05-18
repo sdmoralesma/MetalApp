@@ -22,7 +22,7 @@
 		</h:form>
 
 		<h2>List of the Participants</h2>
-		<p:dataTable value="#{juryBean.participantList}" var="participant">
+		<p:dataTable value="#{juryBean.participantList()}" var="participant">
 
 			<p:column headerText="UserName">
 				<h:outputText value="#{participant.username}" />

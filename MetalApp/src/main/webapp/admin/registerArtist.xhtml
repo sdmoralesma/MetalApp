@@ -18,7 +18,7 @@
 
 		<h2>List of Artist</h2>
 		<h:form>
-			<p:dataTable value="#{adminBean.artistList}" var="artist">
+			<p:dataTable value="#{adminBean.artistList()}" var="artist">
 
 				<p:column headerText="Name">
 					<h:outputText value="#{artist.name}" />

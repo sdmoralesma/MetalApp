@@ -22,7 +22,7 @@
 
 		<h2>List of Genders</h2>
 		<h:form>
-			<p:dataTable value="#{adminBean.genderList}" var="gender">
+			<p:dataTable value="#{adminBean.genderList()}" var="gender">
 
 				<p:column headerText="Name">
 					<h:outputText value="#{gender.name}" />
