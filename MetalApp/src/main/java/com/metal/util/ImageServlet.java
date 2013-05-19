@@ -24,11 +24,8 @@ public class ImageServlet extends HttpServlet {
 	// Constants
 	// ----------------------------------------------------------------------------------
 
-	/**
-	 * 
-	 */
+	/***/
 	private static final long serialVersionUID = 1L;
-
 	private static final int DEFAULT_BUFFER_SIZE = 10240; // 10KB.
 
 	// Properties

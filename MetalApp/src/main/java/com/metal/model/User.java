@@ -3,6 +3,7 @@ package com.metal.model;
 import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * The persistent class for the Users database table.
@@ -11,6 +12,7 @@ import javax.validation.constraints.Size;
 @Table(name = "users")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "user_type")
+@XmlRootElement
 @NamedQueries({ @NamedQuery(name = User.FIND_ALL, query = "SELECT u FROM User u"),
 		@NamedQuery(name = User.FIND_ALL_BY_TYPE, query = "SELECT u FROM User u WHERE TYPE(u) = :type") })
 public class User implements Serializable {
