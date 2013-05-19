@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import com.metal.model.Admin;
 import com.metal.model.Artist;
 import com.metal.model.Gender;
 import com.metal.model.Jury;
@@ -27,6 +28,8 @@ public class AdminBean {
 	@PersistenceContext(unitName = "MetalApp")
 	private EntityManager em;
 
+	@Inject
+	private Admin admin;
 	@Inject
 	private Jury jury;
 	@Inject
@@ -64,6 +67,10 @@ public class AdminBean {
 		return this.findAllInstances(Jury.FIND_ALL, Jury.class);
 	}
 
+	public List<Admin> adminList() {
+		return this.findAllInstances(Admin.FIND_ALL, Admin.class);
+	}
+
 	public <T> List<T> findAllInstances(String query, Class<T> clazz) {
 		TypedQuery<T> typedQuery = em.createNamedQuery(query, clazz);
 		return typedQuery.getResultList();
@@ -79,6 +86,12 @@ public class AdminBean {
 
 	public <T> void deleteInstance(T instance) {
 		em.remove(em.merge(instance));
+	}
+
+	public String registerAdmin() {
+		this.admin.setGroup("admin");
+		em.persist(this.admin);
+		return "registerAdmin.xhtml";
 	}
 
 	public String registerJury() {
@@ -119,6 +132,14 @@ public class AdminBean {
 
 	// Getters & Setters
 	// --------------------------------------------------------------
+
+	public Admin getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
+	}
 
 	public Jury getJury() {
 		return jury;

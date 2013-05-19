@@ -35,16 +35,6 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/sergio/.m2/repository/javax/javaee-web-api/6.0/javaee-web-api-6.0.jar">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="maven.groupId" value="javax"/>
-			<attribute name="maven.artifactId" value="javaee-web-api"/>
-			<attribute name="maven.version" value="6.0"/>
-			<attribute name="maven.scope" value="compile"/>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/EclipseLink 2.4.1 - Juno">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>

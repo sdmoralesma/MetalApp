@@ -39,6 +39,12 @@ public class Jury extends User implements Serializable {
 		this.name = name;
 	}
 
+	public Jury(String username, String group_name, String password, String description, String name) {
+		super(username, group_name, password);
+		this.description = description;
+		this.name = name;
+	}
+
 	public String getDescription() {
 		return this.description;
 	}

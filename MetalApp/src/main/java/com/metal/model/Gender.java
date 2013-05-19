@@ -38,6 +38,12 @@ public class Gender implements Serializable {
 	public Gender() {
 	}
 
+	public Gender(String name, int handValue, int headValue) {
+		this.name = name;
+		this.handValue = handValue;
+		this.headValue = headValue;
+	}
+
 	public Gender(String name, int handValue, int headValue, List<Song> songs) {
 		this.name = name;
 		this.handValue = handValue;

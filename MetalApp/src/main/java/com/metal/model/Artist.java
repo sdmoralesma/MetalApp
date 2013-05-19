@@ -42,9 +42,14 @@ public class Artist implements Serializable {
 	public Artist() {
 	}
 
-	public Artist(String description, String name, List<Song> songs) {
-		this.description = description;
+	public Artist(String name, String description) {
 		this.name = name;
+		this.description = description;
+	}
+
+	public Artist(String name, String description, List<Song> songs) {
+		this.name = name;
+		this.description = description;
 		this.songs = songs;
 	}
 
