@@ -36,6 +36,11 @@
 					<h:outputText for="country" value="Country *" />
 					<p:inputText id="country" value="#{participantBean.participant.country}" />
 					<p:message for="country" />
+
+					<h:outputText for="currentImage" value="Presentation" />
+					<p:graphicImage id="currentImage" url="../resources/images/participants/cat.gif" width="70" height="70"/>
+					<p:message for="currentImage" />
+
 				</h:panelGrid>
 				<p:commandButton update="form" value="Update Info" actionListener="#{participantBean.updateParticipant}"
 					icon="ui-icon-disk" />
@@ -44,7 +49,7 @@
 			<p:panel header="Improve Your Presentation!">
 				<h:form enctype="multipart/form-data">
 					<h:panelGroup id="fileUploadGroup">
-						<h:graphicImage value="/image/#{participantBean.participant.image_url}" width="150" height="150" />
+						<h:graphicImage value="/image/#{participantBean.participant.image_url}" width="80" height="80" />
 
 						<p:fileUpload fileUploadListener="#{participantBean.handleFileUpload}" update="fileUploadGroup"
 							sizeLimit="1500000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />

@@ -20,7 +20,7 @@ public class User implements Serializable {
 
 	@Id
 	@Column(unique = true, nullable = false, length = 50)
-	@Size(min = 5, max = 25)
+	@Size(min = 3, max = 25)
 	private String username;
 
 	@Column(nullable = false, length = 50)
@@ -37,7 +37,6 @@ public class User implements Serializable {
 	}
 
 	public User(String username, String group_name, String password) {
-		super();
 		this.username = username;
 		this.group_name = group_name;
 		this.password = password;
