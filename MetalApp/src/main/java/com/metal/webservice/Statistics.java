@@ -3,8 +3,6 @@ package com.metal.webservice;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.ejb.Local;
-import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.jws.WebParam;
 import javax.jws.WebService;
@@ -13,11 +11,8 @@ import com.metal.model.Participant;
 import com.metal.model.Song;
 import com.metal.service.AdminBean;
 import com.metal.service.JuryBean;
-import com.metal.service.ParticipantBean;
 
 @Stateless
-@Local(StatisticsWs.class)
-@Remote(StatisticsWs.class)
 @WebService
 public class Statistics implements StatisticsWs {
 

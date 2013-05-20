@@ -1,18 +1,17 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
 	template="/WEB-INF/templates/template.xhtml">
 
 	<ui:define name="content">
 		<h3>Welcome Jury</h3>
 		<div>
-			<h3>JURY SECTION</h3>
-			<h:link outcome="/jury/votePerParticipant.xhtml"
-				value="Vote Participant" />
+			<h:link outcome="/jury/votePerParticipant.xhtml" value="Vote Participant" />
 			<br />
 			<h:link outcome="/jury/votePerSong.xhtml" value="Vote Song" />
+
+			<h3>Welcome Jury!</h3>
+			<p>You are logged like a Jury, now you can vote per Participants and Songs!. Please select an option of the left
+				panel</p>
 		</div>
 	</ui:define>
 </ui:composition>

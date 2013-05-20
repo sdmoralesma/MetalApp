@@ -1,17 +1,14 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
 	template="/WEB-INF/templates/template.xhtml">
 
 	<ui:define name="content">
 		<h3>Facelets Hello Response</h3>
 		<h:form>
 			<h:graphicImage url="duke.waving.gif" alt="Duke waving his hand" />
-			<h2>Hello #{helloService.name}!, </h2>
+			<h2>Hello #{helloService.name}!,</h2>
 			<p>This was a little demonstration of the managed beans, we will now focus in CDI</p>
-			<h:commandButton id="back" value="Back" action="index" />
+			<p:commandButton id="back" value="Back" action="index" />
 		</h:form>
 	</ui:define>
 </ui:composition>
