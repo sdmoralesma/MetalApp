@@ -9,8 +9,8 @@
 		<h3>Facelets Hello Response</h3>
 		<h:form>
 			<h:graphicImage url="duke.waving.gif" alt="Duke waving his hand" />
-			<h2>Hello, #{hello.name}!</h2>
-			<p></p>
+			<h2>Hello #{helloService.name}!, </h2>
+			<p>This was a little demonstration of the managed beans, we will now focus in CDI</p>
 			<h:commandButton id="back" value="Back" action="index" />
 		</h:form>
 	</ui:define>

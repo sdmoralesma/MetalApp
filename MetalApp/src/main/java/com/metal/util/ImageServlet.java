@@ -40,14 +40,16 @@ public class ImageServlet extends HttpServlet {
 
 		// Define base path somehow. You can define it as init-param of the
 		// servlet.
-		this.imagePath = "/home/sergio/uploaded/images/";
+
+		// this.imagePath = "/home/sergio/uploaded/images/"; //Unix
+		this.imagePath = "C:/Users/sergio/Documents/images/"; // Win7
 
 		// In a Windows environment with the Applicationserver running on the
 		// c: volume, the above path is exactly the same as "c:\images".
 		// In UNIX, it is just straightforward "/images".
 		// If you have stored files in the WebContent of a WAR, for example in
-		// the
-		// "/WEB-INF/images" folder, then you can retrieve the absolute path by:
+		// the "/WEB-INF/images" folder, then you can retrieve the absolute path
+		// by:
 		// this.imagePath = getServletContext().getRealPath("/WEB-INF/images");
 	}
 
@@ -66,6 +68,7 @@ public class ImageServlet extends HttpServlet {
 
 		// Decode the file name (might contain spaces and on) and prepare file
 		// object.
+
 		File image = new File(imagePath, URLDecoder.decode(requestedImage, "UTF-8"));
 
 		// Check if file actually exists in filesystem.
@@ -122,7 +125,7 @@ public class ImageServlet extends HttpServlet {
 	}
 
 	// Helpers (can be refactored to public utility class)
-	// ----------------------------------------
+	// ---------------------------------------------------
 
 	private static void close(Closeable resource) {
 		if (resource != null) {
@@ -135,5 +138,4 @@ public class ImageServlet extends HttpServlet {
 			}
 		}
 	}
-
 }

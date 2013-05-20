@@ -1,4 +1,4 @@
-package hello1;
+package com.metal.service;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -6,10 +6,10 @@ import javax.faces.bean.RequestScoped;
 
 @ManagedBean
 @RequestScoped
-public class Hello {
+public class HelloService {
     private String name;
 
-    public Hello() {
+    public HelloService() {
     }
 
     public String getName() {

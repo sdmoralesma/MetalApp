@@ -28,7 +28,7 @@ public class StatisticsIT {
 
 	@BeforeClass
 	public static void setUp() throws MalformedURLException {
-		endpoint = Endpoint.publish("http://localhost:1234/Statistics", new Statistics());
+		endpoint = Endpoint.publish("http://localhost:8080/Statistics", new Statistics());
 		assertTrue(endpoint.isPublished());
 		assertEquals("http://schemas.xmlsoap.org/wsdl/soap/http", endpoint.getBinding().getBindingID());
 
@@ -74,7 +74,12 @@ public class StatisticsIT {
 
 	@Test
 	public void testGetRatingPerParticipant() {
-		fail("Not yet implemented");
+		Service service = Service.create(wsdlDocumentLocation, serviceQN);
+		StatisticsWs statisticsWs = service.getPort(portQN, StatisticsWs.class);
+
+		Participant participant = statisticsWs.getRatingPerParticipant(new Participant("pepe1", "participant", "", 30,
+				"", "", "", ""));
+		assertTrue("Participant does Not exists", participant.getName().equalsIgnoreCase("pepe1"));
 	}
 
 }

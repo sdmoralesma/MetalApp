@@ -37,10 +37,6 @@
 					<p:inputText id="country" value="#{participantBean.participant.country}" />
 					<p:message for="country" />
 
-					<h:outputText for="currentImage" value="Presentation" />
-					<p:graphicImage id="currentImage" url="../resources/images/participants/cat.gif" width="70" height="70"/>
-					<p:message for="currentImage" />
-
 				</h:panelGrid>
 				<p:commandButton update="form" value="Update Info" actionListener="#{participantBean.updateParticipant}"
 					icon="ui-icon-disk" />

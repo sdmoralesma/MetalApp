@@ -34,7 +34,9 @@ public class ParticipantBean {
 	@Inject
 	private Participant participant;
 
-	public static final String PATH_TO_SAVE_IMAGES = "/home/sergio/uploaded/images";
+	// public static final String PATH_TO_SAVE_IMAGES =
+	// "/home/sergio/uploaded/images"; //Unix
+	public static final String PATH_TO_SAVE_IMAGES = "C:/Users/sergio/Documents/images/"; // Win7
 
 	public ParticipantBean() {
 	}
@@ -49,15 +51,6 @@ public class ParticipantBean {
 		TypedQuery<Participant> query = em.createNamedQuery(Participant.FIND_BY_USERNAME, Participant.class);
 		query.setParameter("username", nameLoggedUser);
 		return query.getSingleResult();
-	}
-
-	private String getFileName(String fileName, String userName) {
-		String extension = "";
-		int i = fileName.lastIndexOf('.');
-		if (i > 0) {
-			extension = fileName.substring(i + 1);
-		}
-		return userName + "." + extension;
 	}
 
 	public Participant getParticipant() {
@@ -92,7 +85,7 @@ public class ParticipantBean {
 
 			File currentImage = new File(targetFolder.getPath() + "/" + participant.getImage_url());
 
-			// Si la imagen que llega tiene una extension distinta a la actual,
+			// Si la nueva imagen tiene una extension distinta a la actual,
 			// entonces, borra la imagen actual
 			if (currentImage.getName().equalsIgnoreCase(newImage.getName()) == false) {
 				currentImage.delete();
@@ -117,5 +110,14 @@ public class ParticipantBean {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private String getFileName(String fileName, String userName) {
+		String extension = "";
+		int i = fileName.lastIndexOf('.');
+		if (i > 0) {
+			extension = fileName.substring(i + 1);
+		}
+		return userName + "." + extension;
 	}
 }

@@ -76,10 +76,10 @@ public class DBPopulator {
 	}
 
 	private void initParticipants() {
-		participant1 = new Participant("pepe1", "participant", "pepe", 35, "Colombia", "Male", "Peperoni1", "resources/images/participants/cat.gif");
+		participant1 = new Participant("pepe1", "participant", "pepe", 35, "Colombia", "Male", "Peperoni1", "headBee.gif");		
 		adminBean.setParticipant(participant1);
 		adminBean.registerParticipant();
-		participant2 = new Participant("pepe2", "participant", "pepe", 42, "Chile", "Female", "Peperoni2", "resources/images/participants/beavis.gif");
+		participant2 = new Participant("pepe2", "participant", "pepe", 42, "Chile", "Female", "Peperoni2", "mario.gif");
 		adminBean.setParticipant(participant2);
 		adminBean.registerParticipant();
 	}

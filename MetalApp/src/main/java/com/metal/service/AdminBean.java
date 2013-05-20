@@ -102,7 +102,9 @@ public class AdminBean {
 
 	public String registerParticipant() {
 		participant.setGroup("participant");
-		participant.setImage_url("resources/images/participants/default.jpg");
+		if (participant.getImage_url() == null || participant.getImage_url().compareToIgnoreCase("") == 0) {
+			participant.setImage_url("default.jpg");
+		}
 		ScoreMatrix score = new ScoreMatrix();
 		score.setParticipant(participant);
 		participant.setScoreMatrix(score);
