@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
@@ -13,13 +14,15 @@ import com.metal.service.AdminBean;
 import com.metal.service.JuryBean;
 
 @Stateless
-@WebService
+//@WebService
 public class Statistics implements StatisticsWs {
 
 //	@EJB
-	AdminBean adminBean = new AdminBean();
+	@Inject
+	AdminBean adminBean;
 
 //	@EJB
+	@Inject
 	JuryBean juryBean;
 
 	@Override
