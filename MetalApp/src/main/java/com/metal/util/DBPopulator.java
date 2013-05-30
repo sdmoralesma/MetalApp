@@ -16,8 +16,8 @@ import com.metal.service.AdminBean;
 import com.metal.service.JuryBean;
 import com.metal.service.ParticipantBean;
 
-@Singleton
-@Startup
+//@Singleton
+//@Startup
 public class DBPopulator {
 
 	@Inject

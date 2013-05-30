@@ -63,16 +63,16 @@ public class StatisticsIT {
 		assertTrue("Invalid resultList", participants.size() > 0);
 	}
 
-//	@Test
+	// @Test
 	public void testGetRatingSongs() {
 		Service service = Service.create(wsdlDocumentLocation, serviceQN);
 		StatisticsWs statisticsWs = service.getPort(portQN, StatisticsWs.class);
 
-		List<Song> songs = statisticsWs.getRatingSongs();
-		assertTrue("Invalid resultList", songs.size() > 0);
+		// List<Song> songs = statisticsWs.getRatingSongs();
+		// assertTrue("Invalid resultList", songs.size() > 0);
 	}
 
-//	@Test
+	// @Test
 	public void testGetRatingPerParticipant() {
 		Service service = Service.create(wsdlDocumentLocation, serviceQN);
 		StatisticsWs statisticsWs = service.getPort(portQN, StatisticsWs.class);

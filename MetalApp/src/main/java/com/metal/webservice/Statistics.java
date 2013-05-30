@@ -3,6 +3,7 @@ package com.metal.webservice;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.jws.WebParam;
@@ -14,16 +15,17 @@ import com.metal.service.AdminBean;
 import com.metal.service.JuryBean;
 
 @Stateless
-//@WebService
+// @WebService
+//@LocalBean
 public class Statistics implements StatisticsWs {
 
-//	@EJB
+	// @EJB
 	@Inject
 	AdminBean adminBean;
 
-//	@EJB
-	@Inject
-	JuryBean juryBean;
+	// @EJB
+//	@Inject
+//	JuryBean juryBean;
 
 	@Override
 	public List<Participant> getRatingParticipants() {
@@ -31,11 +33,11 @@ public class Statistics implements StatisticsWs {
 		return adminBean.findAllInstances(Participant.FIND_ALL, Participant.class);
 	}
 
-	@Override
-	public List<Song> getRatingSongs() {
-		System.out.println("------->>  Call Started");
-		return juryBean.findAllInstances(Song.FIND_ALL, Song.class);
-	}
+	// @Override
+	// public List<Song> getRatingSongs() {
+	// System.out.println("------->>  Call Started");
+	// return juryBean.findAllInstances(Song.FIND_ALL, Song.class);
+	// }
 
 	@Override
 	public Participant getRatingPerParticipant(@WebParam Participant participant) {

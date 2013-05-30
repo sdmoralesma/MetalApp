@@ -2,6 +2,7 @@ package com.metal.service;
 
 import java.util.List;
 
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;

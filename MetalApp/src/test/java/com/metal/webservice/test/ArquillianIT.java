@@ -27,16 +27,16 @@ public class ArquillianIT {
 	@Inject
 	Statistics statistics;
 
-	@EJB
-	AdminBean adminBean;
+	// @EJB
+	// AdminBean adminBean;
 
 	@Test
 	public void shouldPrintCadena() {
 		Assert.assertEquals("Hello, Earthling!", statistics.getCadena());
 	}
 
-	@Test
-	public void sholdGetSongList() {
-		Assert.assertEquals("hey", adminBean.songList().get(0).getTitle());
-	}
+	// @Test
+	// public void sholdGetSongList() {
+	// Assert.assertEquals("hey", adminBean.songList().get(0).getTitle());
+	// }
 }

@@ -13,7 +13,7 @@ public interface StatisticsWs {
 
 	public List<Participant> getRatingParticipants();
 
-	public List<Song> getRatingSongs();
+//	public List<Song> getRatingSongs();
 
 	public Participant getRatingPerParticipant(@WebParam Participant participant);
 

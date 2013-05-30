@@ -2,6 +2,7 @@ package com.metal.service;
 
 import java.util.List;
 
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;

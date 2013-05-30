@@ -51,11 +51,11 @@
 		</dependency>
 
 		<!-- LOG4J MAYBE NOT NEEDED! -->
-		<!-- <dependency> -->
-		<!-- <groupId>log4j</groupId> -->
-		<!-- <artifactId>log4j</artifactId> -->
-		<!-- <version>1.2.17</version> -->
-		<!-- </dependency> -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
 
 		<!-- ARQUILLIAN JUNIT -->
 		<dependency>
@@ -93,10 +93,11 @@
 			<id>prime-repo</id>
 			<name>PrimeFaces Maven Repository</name>
 			<url>http://repository.primefaces.org</url>
+			<layout>default</layout>
 		</repository>
 
 		<repository>
-			<id>JBoss</id>
+			<id>JBoss REPO</id>
 			<name>JBoss Repository</name>
 			<url>https://repository.jboss.org/nexus/content/groups/public/</url>
 		</repository>
@@ -147,6 +148,13 @@
 				<scope>import</scope>
 				<type>pom</type>
 			</dependency>
+
+			<dependency>
+				<groupId>org.primefaces</groupId>
+				<artifactId>primefaces</artifactId>
+				<version>3.5</version>
+			</dependency>
+			
 		</dependencies>
 	</dependencyManagement>
 
