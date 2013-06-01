@@ -39,4 +39,5 @@ public class ArquillianIT {
 	// public void sholdGetSongList() {
 	// Assert.assertEquals("hey", adminBean.songList().get(0).getTitle());
 	// }
+
 }
