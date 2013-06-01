@@ -5,12 +5,13 @@
 * *Technologies* : Java EE 6 (JPA 2.0, CDI 1.0, EJB Lite 3.1, JSF 2.0 (+ Primefaces), JAX-RS 1.1, JAX WS, JAAS)
 * *Application Servers* : GlassFish 3.x
 * *DataBase* : MySQL 5.x
-* *Summary* : An application for recognize the best headbanging in the history of the metal music, using Java EE 6
+* *Summary* : An application for recognize the best headbanging in the history of the music, using Java EE 6
 
 
-Musical Contest > The Best Headbanging in the History 
-=====================================================
+Musical Contest > The Best Headbanging 
+======================================
 
+/ ** Under development ... this could explode in anytime */
 El metalero más metalero es un reallity donde una serie de concursantes con amplios
 conocimientos musicales seleccionan las canciones más perfectas del metal y hacen una
 presentación de la misma mediante su representación histriónica, algo similar a un baile, conocido como headbanging.
@@ -119,7 +120,7 @@ a. 8, 9 y 10
 </div>
 
 ##TODO
-Future Releases will include:
-- A MongoDB fork
-- PAAS implementation + Instructions.
-- Add more Application Servers (TomEE, JBoss, Spring)
+- Add Arquillian Integration
+- Add web service JaxWS
+- Add web service JaxRS
+- Add more application servers -profiles- (TomEE, JBoss)

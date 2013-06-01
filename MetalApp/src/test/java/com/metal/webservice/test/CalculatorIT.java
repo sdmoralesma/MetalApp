@@ -1,64 +1,44 @@
 package com.metal.webservice.test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 import java.net.MalformedURLException;
-import java.net.URL;
-
-import javax.xml.namespace.QName;
-import javax.xml.ws.Endpoint;
-import javax.xml.ws.Service;
-
-import org.junit.After;
-import org.junit.Before;
+import javax.inject.Inject;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import com.metal.webservice.Calculator;
 import com.metal.webservice.CalculatorWs;
 
+@RunWith(Arquillian.class)
 public class CalculatorIT {
 
-	private Endpoint endpoint;
-	private URL wsdlDocumentLocation;
-	private QName serviceQN;
-	private QName portQN;
+	@Deployment
+	public static JavaArchive createDeployment() {
+		return ShrinkWrap.create(JavaArchive.class).addClass(Calculator.class).addClass(CalculatorWs.class)
+				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+	}
 
-	@Before
-	public void setUp() throws MalformedURLException {		
-		// Publishes the SOAP Web Service
-		endpoint = Endpoint.publish("http://localhost:8080/Calculator", new Calculator());
-		assertTrue(endpoint.isPublished());
-		assertEquals("http://schemas.xmlsoap.org/wsdl/soap/http", endpoint.getBinding().getBindingID());
-		
-		// Data to access the web service
-		wsdlDocumentLocation = new URL("http://localhost:8080/CalculatorService/Calculator?wsdl");
-		String namespaceURI = "http://webservice.metal.com/";
-		String serviceName = "CalculatorService";
-		String portName = "CalculatorPort";
-		serviceQN = new QName(namespaceURI, serviceName);
-		portQN = new QName(namespaceURI, portName);
-	}
-	
-	@After
-	public void tearDown() {
-		// Unpublishes the SOAP Web Service
-		endpoint.stop();
-		assertFalse(endpoint.isPublished());
-	}
-	
+	@Inject
+	CalculatorWs calculator;
+
 	@Test
 	public void shouldCheckSumAndMultiply() throws MalformedURLException {
-		// Creates a service instance
-		Service service = Service.create(wsdlDocumentLocation, serviceQN);
-		CalculatorWs calculatorWs = service.getPort(portQN, CalculatorWs.class);
-
-		// Invokes the web service
 		int a = 1;
 		int b = 2;
 
-		assertEquals("Sum must be valid", 3, calculatorWs.sum(a, b));
-		assertEquals("Multiply must be valid", 2, calculatorWs.multiply(a, b));
+		assertEquals("Sum must be valid", 3, calculator.sum(a, b));
+	}
+
+	@Test
+	public void shouldCheckMultiply() {
+		int a = 1;
+		int b = 2;
+
+		assertEquals("Multiply must be valid", 2, calculator.multiply(a, b));
 	}
 }
