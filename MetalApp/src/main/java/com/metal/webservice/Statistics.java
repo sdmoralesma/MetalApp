@@ -12,7 +12,7 @@ import com.metal.model.Song;
 import com.metal.service.AdminBean;
 import com.metal.service.JuryBean;
 
-@WebService(endpointInterface = "com.metal.webservice.Statistics")
+//@WebService(endpointInterface = "com.metal.webservice.Statistics")
 @Stateless
 public class Statistics implements StatisticsWs {
 

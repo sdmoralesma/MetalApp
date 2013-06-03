@@ -8,7 +8,7 @@
 	<name>Rock App</name>
 
 	<properties>
-		<version.java>1.6</version.java>
+		<version.java>1.7</version.java>
 		<version.javaee.jboss>1.0.0.Final</version.javaee.jboss>
 		<version.derby>10.9.1.0</version.derby>
 		<version.junit>4.10</version.junit>

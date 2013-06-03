@@ -23,7 +23,6 @@ import com.metal.model.SongMatrix;
 @Stateless
 public class JuryBean {
 
-	// @PersistenceContext(unitName = "MetalApp")
 	@PersistenceContext
 	private EntityManager em;
 

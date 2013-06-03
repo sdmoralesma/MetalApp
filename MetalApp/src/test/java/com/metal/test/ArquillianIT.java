@@ -7,7 +7,6 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.persistence.PersistenceTest;
 import org.jboss.arquillian.persistence.TransactionMode;
 import org.jboss.arquillian.persistence.Transactional;
-import org.jboss.arquillian.persistence.UsingDataSet;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -25,7 +24,7 @@ public class ArquillianIT {
 
 	@Deployment
 	public static Archive<?> createDeployment() {
-		return ShrinkWrap.create(WebArchive.class, "test.war").addPackages(true, "com.metal")
+		return ShrinkWrap.create(WebArchive.class, "test.war").addPackage(Statistics.class.getPackage())
 				.addAsResource("test-persistence.xml", "META-INF/persistence.xml")
 				.addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
 	}
@@ -34,9 +33,7 @@ public class ArquillianIT {
 	Statistics statistics;
 
 	@Test
-//	@UsingDataSet("datasets/metalTesting.xml")
 	public void findAll() {
 		Assert.assertEquals(0, statistics.getRatingParticipants());
 	}
-
 }
