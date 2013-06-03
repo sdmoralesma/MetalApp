@@ -28,7 +28,8 @@ import com.metal.model.Participant;
 @Stateless
 public class ParticipantBean {
 
-	@PersistenceContext(unitName = "MetalApp")
+	// @PersistenceContext(unitName = "MetalApp")
+	@PersistenceContext
 	private EntityManager em;
 
 	@Inject

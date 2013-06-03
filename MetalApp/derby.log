@@ -1,0 +1,10 @@
+----------------------------------------------------------------
+Mon Jun 03 12:22:38 COT 2013:
+ Arrancando Derby versión The Apache Software Foundation - Apache Derby - 10.8.1.2 - (1095077): instancia a816c00e-013f-0b0f-e4e9-000004c396d0 
+en el directorio de base de datos C:\Users\sergio\git\MetalApp\MetalApp\target\databases\derby  con el cargador de clases sun.misc.Launcher$AppClassLoader@1bab2a6
+
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_21-b11
+user.dir=C:\Users\sergio\git\MetalApp\MetalApp
+derby.system.home=null
+Cargador de clases de base de datos iniciado - derby.database.classpath=''

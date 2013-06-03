@@ -25,7 +25,8 @@ import com.metal.model.Song;
 @Stateless
 public class AdminBean {
 
-	@PersistenceContext(unitName = "MetalApp")
+//	@PersistenceContext(unitName = "MetalApp")
+	@PersistenceContext
 	private EntityManager em;
 
 	@Inject

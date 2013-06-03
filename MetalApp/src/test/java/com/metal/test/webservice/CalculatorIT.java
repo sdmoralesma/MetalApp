@@ -1,7 +1,8 @@
-package com.metal.webservice.test;
+package com.metal.test.webservice;
 
 import static org.junit.Assert.assertEquals;
 import java.net.MalformedURLException;
+
 import javax.inject.Inject;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -19,7 +20,7 @@ public class CalculatorIT {
 
 	@Deployment
 	public static JavaArchive createDeployment() {
-		return ShrinkWrap.create(JavaArchive.class).addClass(Calculator.class).addClass(CalculatorWs.class)
+		return ShrinkWrap.create(JavaArchive.class).addClasses(Calculator.class, CalculatorWs.class)
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
 	}
 
@@ -27,10 +28,9 @@ public class CalculatorIT {
 	CalculatorWs calculator;
 
 	@Test
-	public void shouldCheckSumAndMultiply() throws MalformedURLException {
+	public void shouldCheckSum() throws MalformedURLException {
 		int a = 1;
 		int b = 2;
-
 		assertEquals("Sum must be valid", 3, calculator.sum(a, b));
 	}
 
@@ -38,7 +38,6 @@ public class CalculatorIT {
 	public void shouldCheckMultiply() {
 		int a = 1;
 		int b = 2;
-
 		assertEquals("Multiply must be valid", 2, calculator.multiply(a, b));
 	}
 }

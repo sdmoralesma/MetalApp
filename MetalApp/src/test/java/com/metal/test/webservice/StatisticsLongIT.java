@@ -1,4 +1,4 @@
-package com.metal.webservice.test;
+package com.metal.test.webservice;
 
 import static org.junit.Assert.*;
 

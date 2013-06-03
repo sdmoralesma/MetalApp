@@ -1,4 +1,4 @@
-package com.metal.webservice.test;
+package com.metal.test;
 
 import javax.ejb.EJB;
 import javax.inject.Inject;
@@ -60,7 +60,7 @@ public class StatisticsIT {
 	// null);
 	// Assert.assertEquals("pepe1", statistics.getRatingPerParticipant(p));
 	// }
-	//
+
 
 	@Test
 	public void shouldGetStringTest() {

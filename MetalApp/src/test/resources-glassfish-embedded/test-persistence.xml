@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
 
-	<persistence-unit name="MetalApp" transaction-type="JTA">
-		<jta-data-source>jdbc/metal</jta-data-source>
+	<persistence-unit name="test">
+
+		<jta-data-source>jdbc/arquillian</jta-data-source>
 		<class>com.metal.model.Admin</class>
 		<class>com.metal.model.Artist</class>
 		<class>com.metal.model.Gender</class>
@@ -14,11 +16,12 @@
 		<class>com.metal.model.Song</class>
 		<class>com.metal.model.SongMatrix</class>
 		<class>com.metal.model.User</class>
-		
+
 		<properties>
 			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
-			<!-- <property name="eclipCselink.ddl-generation" value="create-tables" /> -->
-			<property name="eclipselink.logging.level" value="ALL" />
+			<property name="eclipselink.logging.level" value="FINE" />
+			<property name="eclipselink.logging.parameters" value="true" />
 		</properties>
+
 	</persistence-unit>
 </persistence>
