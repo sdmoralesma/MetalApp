@@ -16,8 +16,8 @@ import com.metal.service.AdminBean;
 import com.metal.service.JuryBean;
 import com.metal.service.ParticipantBean;
 
-//@Singleton
-//@Startup
+@Singleton
+@Startup
 public class DBPopulator {
 
 	@Inject
@@ -42,12 +42,12 @@ public class DBPopulator {
 
 	@PostConstruct
 	private void populateDb() {
-		initAdmins();
-		initJuries();
-		initParticipants();
-		initArtists();
-		initGenders();
-		initSongs();
+		// initAdmins();
+		// initJuries();
+		// initParticipants();
+		// initArtists();
+		// initGenders();
+		// initSongs();
 	}
 
 	@PreDestroy
@@ -76,7 +76,8 @@ public class DBPopulator {
 	}
 
 	private void initParticipants() {
-		participant1 = new Participant("pepe1", "participant", "pepe", 35, "Colombia", "Male", "Peperoni1", "headBee.gif");		
+		participant1 = new Participant("pepe1", "participant", "pepe", 35, "Colombia", "Male", "Peperoni1",
+				"headBee.gif");
 		adminBean.setParticipant(participant1);
 		adminBean.registerParticipant();
 		participant2 = new Participant("pepe2", "participant", "pepe", 42, "Chile", "Female", "Peperoni2", "mario.gif");

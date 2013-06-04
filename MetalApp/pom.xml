@@ -96,9 +96,9 @@
 	<profiles>
 		<profile>
 			<id>glassfish3-embedded</id>
-			<!-- <activation> -->
-			<!-- <activeByDefault>true</activeByDefault> -->
-			<!-- </activation> -->
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 			<dependencies>
 				<!--This has most of the needed dependencies : Derby, JPA, EJB, Java EE 6... -->
 				<dependency>
