@@ -28,96 +28,94 @@ import com.metal.model.Participant;
 @Stateless
 public class ParticipantBean {
 
-	@PersistenceContext
-	private EntityManager em;
+    @PersistenceContext
+    private EntityManager em;
+    @Inject
+    private Participant participant;
+    // public static final String PATH_TO_SAVE_IMAGES =
+    // "/home/sergio/uploaded/images"; //Unix
+    public static final String PATH_TO_SAVE_IMAGES = "C:/Users/sergio/Documents/images/"; // Win7
 
-	@Inject
-	private Participant participant;
+    public ParticipantBean() {
+    }
 
-	// public static final String PATH_TO_SAVE_IMAGES =
-	// "/home/sergio/uploaded/images"; //Unix
-	public static final String PATH_TO_SAVE_IMAGES = "C:/Users/sergio/Documents/images/"; // Win7
+    @PostConstruct
+    public void populateParticipant() {
+        this.participant = this.findParticipantByPK();
+    }
 
-	public ParticipantBean() {
-	}
+    public Participant findParticipantByPK() {
+        String nameLoggedUser = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+        TypedQuery<Participant> query = em.createNamedQuery(Participant.FIND_BY_USERNAME, Participant.class);
+        query.setParameter("username", nameLoggedUser);
+        return query.getSingleResult();
+    }
 
-	@PostConstruct
-	public void populateParticipant() {
-		this.participant = this.findParticipantByPK();
-	}
+    public Participant getParticipant() {
+        return this.participant;
+    }
 
-	public Participant findParticipantByPK() {
-		String nameLoggedUser = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
-		TypedQuery<Participant> query = em.createNamedQuery(Participant.FIND_BY_USERNAME, Participant.class);
-		query.setParameter("username", nameLoggedUser);
-		return query.getSingleResult();
-	}
+    public void setParticipant(Participant participant) {
+        this.participant = participant;
+    }
 
-	public Participant getParticipant() {
-		return this.participant;
-	}
+    public void updateParticipant() {
+        em.merge(this.participant);
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Info: ", "Updated Participant"));
+    }
 
-	public void setParticipant(Participant participant) {
-		this.participant = participant;
-	}
+    public void deleteParticipant() {
+        em.remove(em.merge(this.participant));
+    }
 
-	public void updateParticipant() {
-		em.merge(this.participant);
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Info: ", "Updated Participant"));
-	}
+    public void handleFileUpload(FileUploadEvent event) {
 
-	public void deleteParticipant() {
-		em.remove(em.merge(this.participant));
-	}
+        try {
+            String nameLoggedUser = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+            File targetFolder = new File(PATH_TO_SAVE_IMAGES);
+            UploadedFile inImage = event.getFile();
+            InputStream inputStream = inImage.getInputstream();
 
-	public void handleFileUpload(FileUploadEvent event) {
+            String newFileName = getFileName(inImage.getFileName(), nameLoggedUser);
+            File newImage = new File(targetFolder, newFileName);
+            OutputStream outStream = new FileOutputStream(newImage);
 
-		try {
-			String nameLoggedUser = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
-			File targetFolder = new File(PATH_TO_SAVE_IMAGES);
-			UploadedFile inImage = event.getFile();
-			InputStream inputStream = inImage.getInputstream();
+            File currentImage = new File(targetFolder.getPath() + "/" + participant.getImage_url());
 
-			String newFileName = getFileName(inImage.getFileName(), nameLoggedUser);
-			File newImage = new File(targetFolder, newFileName);
-			OutputStream outStream = new FileOutputStream(newImage);
+            // Si la nueva imagen tiene una extension distinta a la actual,
+            // entonces, borra la imagen actual
+            if (currentImage.getName().equalsIgnoreCase(newImage.getName()) == false) {
+                currentImage.delete();
+            }
 
-			File currentImage = new File(targetFolder.getPath() + "/" + participant.getImage_url());
+            int read = 0;
+            byte[] bytes = new byte[1024];
 
-			// Si la nueva imagen tiene una extension distinta a la actual,
-			// entonces, borra la imagen actual
-			if (currentImage.getName().equalsIgnoreCase(newImage.getName()) == false) {
-				currentImage.delete();
-			}
+            while ((read = inputStream.read(bytes)) != -1) {
+                outStream.write(bytes, 0, read);
+            }
+            inputStream.close();
+            outStream.flush();
+            outStream.close();
 
-			int read = 0;
-			byte[] bytes = new byte[1024];
+            this.participant.setImage_url(newFileName);
+            this.updateParticipant();
 
-			while ((read = inputStream.read(bytes)) != -1) {
-				outStream.write(bytes, 0, read);
-			}
-			inputStream.close();
-			outStream.flush();
-			outStream.close();
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Succesful", inImage.getFileName()
+                    + " is uploaded.");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-			this.participant.setImage_url(newFileName);
-			this.updateParticipant();
-
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Succesful", inImage.getFileName()
-					+ " is uploaded.");
-			FacesContext.getCurrentInstance().addMessage(null, msg);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private String getFileName(String fileName, String userName) {
-		String extension = "";
-		int i = fileName.lastIndexOf('.');
-		if (i > 0) {
-			extension = fileName.substring(i + 1);
-		}
-		return userName + "." + extension;
-	}
+    private String getFileName(String fileName, String userName) {
+        String extension = "";
+        int i = fileName.lastIndexOf('.');
+        if (i > 0) {
+            extension = fileName.substring(i + 1);
+        }
+        return userName + "." + extension;
+    }
 }

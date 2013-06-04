@@ -18,26 +18,25 @@ import com.metal.webservice.CalculatorWs;
 @RunWith(Arquillian.class)
 public class CalculatorIT {
 
-	@Deployment
-	public static JavaArchive createDeployment() {
-		return ShrinkWrap.create(JavaArchive.class).addClasses(Calculator.class, CalculatorWs.class)
-				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
-	}
+    @Deployment
+    public static JavaArchive createDeployment() {
+        return ShrinkWrap.create(JavaArchive.class).addClasses(Calculator.class, CalculatorWs.class)
+                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+    }
+    @Inject
+    CalculatorWs calculator;
 
-	@Inject
-	CalculatorWs calculator;
+    @Test
+    public void shouldCheckSum() throws MalformedURLException {
+        int a = 1;
+        int b = 2;
+        assertEquals("Sum must be valid", 3, calculator.sum(a, b));
+    }
 
-	@Test
-	public void shouldCheckSum() throws MalformedURLException {
-		int a = 1;
-		int b = 2;
-		assertEquals("Sum must be valid", 3, calculator.sum(a, b));
-	}
-
-	@Test
-	public void shouldCheckMultiply() {
-		int a = 1;
-		int b = 2;
-		assertEquals("Multiply must be valid", 2, calculator.multiply(a, b));
-	}
+    @Test
+    public void shouldCheckMultiply() {
+        int a = 1;
+        int b = 2;
+        assertEquals("Multiply must be valid", 2, calculator.multiply(a, b));
+    }
 }

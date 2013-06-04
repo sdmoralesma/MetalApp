@@ -17,18 +17,17 @@ import com.metal.webservice.Statistics;
 @RunWith(Arquillian.class)
 public class ArquillianIT {
 
-	@Deployment
-	public static Archive<?> createDeployment() {
-		return ShrinkWrap.create(WebArchive.class, "test.war").addPackage(Statistics.class.getPackage())
-				.addAsResource("test-persistence.xml", "META-INF/persistence.xml")
-				.addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
-	}
+    @Deployment
+    public static Archive<?> createDeployment() {
+        return ShrinkWrap.create(WebArchive.class, "test.war").addPackage(Statistics.class.getPackage())
+                .addAsResource("test-persistence.xml", "META-INF/persistence.xml")
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
+    }
+    @EJB
+    Statistics statistics;
 
-	@EJB
-	Statistics statistics;
-
-	@Test
-	public void findAll() {
-		Assert.assertEquals(0, statistics.getRatingParticipants());
-	}
+    @Test
+    public void findAll() {
+        Assert.assertEquals(0, statistics.getRatingParticipants());
+    }
 }

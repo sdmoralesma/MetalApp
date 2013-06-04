@@ -12,31 +12,33 @@ import javax.transaction.UserTransaction;
 //@RequiredTx
 //@Interceptor
 public class RequiredTransactionInterceptor implements Serializable {
-	/***/
-	private static final long serialVersionUID = 1L;
 
-	@Resource
-	private UserTransaction tx;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    @Resource
+    private UserTransaction tx;
 
-	@AroundInvoke
-	public Object beginTransactionIfNotActive(InvocationContext ic) throws Throwable {
-		boolean newTransaction = false;
-		if (tx.getStatus() != Status.STATUS_ACTIVE) {
-			tx.begin();
-			newTransaction = true;
-		}
-		Object retVal = null;
-		try {
-			retVal = ic.proceed();
-			if (newTransaction) {
-				tx.commit();
-			}
-		} catch (Throwable t) {
-			if (newTransaction) {
-				tx.rollback();
-			}
-			throw t;
-		}
-		return retVal;
-	}
+    @AroundInvoke
+    public Object beginTransactionIfNotActive(InvocationContext ic) throws Throwable {
+        boolean newTransaction = false;
+        if (tx.getStatus() != Status.STATUS_ACTIVE) {
+            tx.begin();
+            newTransaction = true;
+        }
+        Object retVal = null;
+        try {
+            retVal = ic.proceed();
+            if (newTransaction) {
+                tx.commit();
+            }
+        } catch (Throwable t) {
+            if (newTransaction) {
+                tx.rollback();
+            }
+            throw t;
+        }
+        return retVal;
+    }
 }

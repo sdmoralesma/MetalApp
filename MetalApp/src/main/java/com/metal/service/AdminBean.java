@@ -25,178 +25,176 @@ import com.metal.model.Song;
 @Stateless
 public class AdminBean {
 
-	@PersistenceContext
-	private EntityManager em;
+    @PersistenceContext
+    private EntityManager em;
+    @Inject
+    private Admin admin;
+    @Inject
+    private Jury jury;
+    @Inject
+    private Participant participant;
+    @Inject
+    private Song song;
+    @Inject
+    private Gender gender;
+    @Inject
+    private Artist artist;
+    private String selectedArtistName;
+    private String selectedGenderName;
 
-	@Inject
-	private Admin admin;
-	@Inject
-	private Jury jury;
-	@Inject
-	private Participant participant;
-	@Inject
-	private Song song;
-	@Inject
-	private Gender gender;
-	@Inject
-	private Artist artist;
+    public AdminBean() {
+    }
 
-	private String selectedArtistName;
-	private String selectedGenderName;
+    public List<Song> songList() {
+        return this.findAllInstances(Song.FIND_ALL, Song.class);
+    }
 
-	public AdminBean() {
-	}
+    public List<Participant> participantList() {
+        return this.findAllInstances(Participant.FIND_ALL, Participant.class);
+    }
 
-	public List<Song> songList() {
-		return this.findAllInstances(Song.FIND_ALL, Song.class);
-	}
+    public List<Gender> genderList() {
+        return this.findAllInstances(Gender.FIND_ALL, Gender.class);
+    }
 
-	public List<Participant> participantList() {
-		return this.findAllInstances(Participant.FIND_ALL, Participant.class);
-	}
+    public List<Artist> artistList() {
+        return this.findAllInstances(Artist.FIND_ALL, Artist.class);
+    }
 
-	public List<Gender> genderList() {
-		return this.findAllInstances(Gender.FIND_ALL, Gender.class);
-	}
+    public List<Jury> juryList() {
+        return this.findAllInstances(Jury.FIND_ALL, Jury.class);
+    }
 
-	public List<Artist> artistList() {
-		return this.findAllInstances(Artist.FIND_ALL, Artist.class);
-	}
+    public List<Admin> adminList() {
+        return this.findAllInstances(Admin.FIND_ALL, Admin.class);
+    }
 
-	public List<Jury> juryList() {
-		return this.findAllInstances(Jury.FIND_ALL, Jury.class);
-	}
+    public <T> List<T> findAllInstances(String query, Class<T> clazz) {
+        TypedQuery<T> typedQuery = em.createNamedQuery(query, clazz);
+        return typedQuery.getResultList();
+    }
 
-	public List<Admin> adminList() {
-		return this.findAllInstances(Admin.FIND_ALL, Admin.class);
-	}
+    public <T> T findInstanceById(Class<T> clazz, Object id) {
+        return em.find(clazz, id);
+    }
 
-	public <T> List<T> findAllInstances(String query, Class<T> clazz) {
-		TypedQuery<T> typedQuery = em.createNamedQuery(query, clazz);
-		return typedQuery.getResultList();
-	}
+    public <T> T updateInstance(T instance) {
+        return em.merge(instance);
+    }
 
-	public <T> T findInstanceById(Class<T> clazz, Object id) {
-		return em.find(clazz, id);
-	}
+    public <T> void deleteInstance(T instance) {
+        em.remove(em.merge(instance));
+    }
 
-	public <T> T updateInstance(T instance) {
-		return em.merge(instance);
-	}
+    public String registerAdmin() {
+        this.admin.setGroup("admin");
+        em.persist(this.admin);
+        return "registerAdmin.xhtml";
+    }
 
-	public <T> void deleteInstance(T instance) {
-		em.remove(em.merge(instance));
-	}
+    public String registerJury() {
+        this.jury.setGroup("jury");
+        em.persist(this.jury);
+        return "registerJury.xhtml";
+    }
 
-	public String registerAdmin() {
-		this.admin.setGroup("admin");
-		em.persist(this.admin);
-		return "registerAdmin.xhtml";
-	}
+    public String registerParticipant() {
+        participant.setGroup("participant");
+        if (participant.getImage_url() == null || participant.getImage_url().compareToIgnoreCase("") == 0) {
+            participant.setImage_url("default.jpg");
+        }
+        ScoreMatrix score = new ScoreMatrix();
+        score.setParticipant(participant);
+        participant.setScoreMatrix(score);
+        em.persist(participant);
+        return "registerParticipant.xhtml";
+    }
 
-	public String registerJury() {
-		this.jury.setGroup("jury");
-		em.persist(this.jury);
-		return "registerJury.xhtml";
-	}
+    public String registerSong() {
+        Artist selectedArtist = em.find(Artist.class, selectedArtistName);
+        Gender selectedGender = em.find(Gender.class, selectedGenderName);
+        if (selectedArtist == null || selectedGender == null) {
+            throw new RuntimeErrorException(null, "Alguna referencia es Null: " + "\nArtist: " + selectedArtist
+                    + "\nGender: " + selectedGender);
+        }
+        this.song = new Song(this.song.getTitle(), selectedArtist, selectedGender);
+        em.persist(this.song);
+        return "registerSong";
+    }
 
-	public String registerParticipant() {
-		participant.setGroup("participant");
-		if (participant.getImage_url() == null || participant.getImage_url().compareToIgnoreCase("") == 0) {
-			participant.setImage_url("default.jpg");
-		}
-		ScoreMatrix score = new ScoreMatrix();
-		score.setParticipant(participant);
-		participant.setScoreMatrix(score);
-		em.persist(participant);
-		return "registerParticipant.xhtml";
-	}
+    public String registerArtist() {
+        em.persist(this.artist);
+        return "registerArtist.xhtml";
+    }
 
-	public String registerSong() {
-		Artist selectedArtist = em.find(Artist.class, selectedArtistName);
-		Gender selectedGender = em.find(Gender.class, selectedGenderName);
-		if (selectedArtist == null || selectedGender == null)
-			throw new RuntimeErrorException(null, "Alguna referencia es Null: " + "\nArtist: " + selectedArtist
-					+ "\nGender: " + selectedGender);
-		this.song = new Song(this.song.getTitle(), selectedArtist, selectedGender);
-		em.persist(this.song);
-		return "registerSong";
-	}
+    public String registerGender() {
+        em.persist(this.gender);
+        return "registerGender.xhtml";
+    }
 
-	public String registerArtist() {
-		em.persist(this.artist);
-		return "registerArtist.xhtml";
-	}
+    // Getters & Setters
+    // --------------------------------------------------------------
+    public Admin getAdmin() {
+        return admin;
+    }
 
-	public String registerGender() {
-		em.persist(this.gender);
-		return "registerGender.xhtml";
-	}
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+    }
 
-	// Getters & Setters
-	// --------------------------------------------------------------
+    public Jury getJury() {
+        return jury;
+    }
 
-	public Admin getAdmin() {
-		return admin;
-	}
+    public void setJury(Jury jury) {
+        this.jury = jury;
+    }
 
-	public void setAdmin(Admin admin) {
-		this.admin = admin;
-	}
+    public Participant getParticipant() {
+        return participant;
+    }
 
-	public Jury getJury() {
-		return jury;
-	}
+    public void setParticipant(Participant participant) {
+        this.participant = participant;
+    }
 
-	public void setJury(Jury jury) {
-		this.jury = jury;
-	}
+    public Song getSong() {
+        return song;
+    }
 
-	public Participant getParticipant() {
-		return participant;
-	}
+    public void setSong(Song song) {
+        this.song = song;
+    }
 
-	public void setParticipant(Participant participant) {
-		this.participant = participant;
-	}
+    public Gender getGender() {
+        return gender;
+    }
 
-	public Song getSong() {
-		return song;
-	}
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
 
-	public void setSong(Song song) {
-		this.song = song;
-	}
+    public Artist getArtist() {
+        return artist;
+    }
 
-	public Gender getGender() {
-		return gender;
-	}
+    public void setArtist(Artist artist) {
+        this.artist = artist;
+    }
 
-	public void setGender(Gender gender) {
-		this.gender = gender;
-	}
+    public String getSelectedGenderName() {
+        return selectedGenderName;
+    }
 
-	public Artist getArtist() {
-		return artist;
-	}
+    public void setSelectedGenderName(String selectedGenderName) {
+        this.selectedGenderName = selectedGenderName;
+    }
 
-	public void setArtist(Artist artist) {
-		this.artist = artist;
-	}
+    public String getSelectedArtistName() {
+        return selectedArtistName;
+    }
 
-	public String getSelectedGenderName() {
-		return selectedGenderName;
-	}
-
-	public void setSelectedGenderName(String selectedGenderName) {
-		this.selectedGenderName = selectedGenderName;
-	}
-
-	public String getSelectedArtistName() {
-		return selectedArtistName;
-	}
-
-	public void setSelectedArtistName(String selectedArtistName) {
-		this.selectedArtistName = selectedArtistName;
-	}
+    public void setSelectedArtistName(String selectedArtistName) {
+        this.selectedArtistName = selectedArtistName;
+    }
 }

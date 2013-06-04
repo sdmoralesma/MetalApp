@@ -1,53 +1,53 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
-	template="/WEB-INF/templates/template.xhtml">
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/templates/template.xhtml">
 
-	<ui:define name="content">
-		<h2>Vote per Participant</h2>
-		<h:form>
-			<h:messages />
-			<h:panelGrid columns="2">
-				<h:outputText value="Username of Participant" />
-				<h:inputText value="#{juryBean.participant.username}" />
+    <ui:define name="content">
+        <h2>Vote per Participant</h2>
+        <h:form>
+            <h:messages />
+            <h:panelGrid columns="2">
+                <h:outputText value="Username of Participant" />
+                <h:inputText value="#{juryBean.participant.username}" />
 
-				<h:outputLabel value="Head Value" />
-				<p:rating id="compositionValue" value="#{juryBean.headPoints}" stars="10" cancel="false" />
+                <h:outputLabel value="Head Value" />
+                <p:rating id="compositionValue" value="#{juryBean.headPoints}" stars="10" cancel="false" />
 
-				<h:outputLabel value="Hand Value " />
-				<p:rating id="musicalityValue" value="#{juryBean.handPoints}" stars="10" cancel="false" />
+                <h:outputLabel value="Hand Value " />
+                <p:rating id="musicalityValue" value="#{juryBean.handPoints}" stars="10" cancel="false" />
 
-				<h:commandButton value="Vote per Participant!" action="#{juryBean.votePerParticipant}" />
-				<h:messages />
-			</h:panelGrid>
-		</h:form>
+                <h:commandButton value="Vote per Participant!" action="#{juryBean.votePerParticipant}" />
+                <h:messages />
+            </h:panelGrid>
+        </h:form>
 
-		<h2>List of the Participants</h2>
-		<p:dataTable value="#{juryBean.participantList()}" var="participant">
+        <h2>List of the Participants</h2>
+        <p:dataTable value="#{juryBean.participantList()}" var="participant">
 
-			<p:column headerText="UserName">
-				<h:outputText value="#{participant.username}" />
-			</p:column>
+            <p:column headerText="UserName">
+                <h:outputText value="#{participant.username}" />
+            </p:column>
 
-			<p:column headerText="Age">
-				<h:outputText value="#{participant.age}" />
-			</p:column>
+            <p:column headerText="Age">
+                <h:outputText value="#{participant.age}" />
+            </p:column>
 
-			<p:column headerText="Country">
-				<h:outputText value="#{participant.country}" />
-			</p:column>
+            <p:column headerText="Country">
+                <h:outputText value="#{participant.country}" />
+            </p:column>
 
-			<p:column headerText="Gender">
-				<h:outputText value="#{participant.gender}" />
-			</p:column>
+            <p:column headerText="Gender">
+                <h:outputText value="#{participant.gender}" />
+            </p:column>
 
-			<p:column headerText="Name">
-				<h:outputText value="#{participant.name}" />
-			</p:column>
-			
-			<p:column headerText="Score">
-				<h:outputText value="#{participant.scoreMatrix.totalScore}" />
-			</p:column>
+            <p:column headerText="Name">
+                <h:outputText value="#{participant.name}" />
+            </p:column>
 
-		</p:dataTable>
-	</ui:define>
+            <p:column headerText="Score">
+                <h:outputText value="#{participant.scoreMatrix.totalScore}" />
+            </p:column>
+
+        </p:dataTable>
+    </ui:define>
 </ui:composition>

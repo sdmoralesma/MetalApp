@@ -13,11 +13,11 @@ import com.metal.model.Song;
 @Stateless
 public interface StatisticsWs {
 
-	public List<Participant> getRatingParticipants();
+    public List<Participant> getRatingParticipants();
 
-	public List<Song> getRatingSongs();
+    public List<Song> getRatingSongs();
 
-	public Participant getRatingPerParticipant(@WebParam Participant participant);
+    public Participant getRatingPerParticipant(@WebParam Participant participant);
 
-	public String getStringTest();
+    public String getStringTest();
 }

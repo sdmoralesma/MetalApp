@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 
-	<persistence-unit name="MetalApp" transaction-type="JTA">
-		<jta-data-source>jdbc/metal</jta-data-source>
-		<class>com.metal.model.Admin</class>
-		<class>com.metal.model.Artist</class>
-		<class>com.metal.model.Gender</class>
-		<class>com.metal.model.Jury</class>
-		<class>com.metal.model.Participant</class>
-		<class>com.metal.model.Presentation</class>
-		<class>com.metal.model.ScoreMatrix</class>
-		<class>com.metal.model.Song</class>
-		<class>com.metal.model.SongMatrix</class>
-		<class>com.metal.model.User</class>
+    <persistence-unit name="MetalApp" transaction-type="JTA">
+        <jta-data-source>jdbc/metal</jta-data-source>
+        <class>com.metal.model.Admin</class>
+        <class>com.metal.model.Artist</class>
+        <class>com.metal.model.Gender</class>
+        <class>com.metal.model.Jury</class>
+        <class>com.metal.model.Participant</class>
+        <class>com.metal.model.Presentation</class>
+        <class>com.metal.model.ScoreMatrix</class>
+        <class>com.metal.model.Song</class>
+        <class>com.metal.model.SongMatrix</class>
+        <class>com.metal.model.User</class>
 
-		<properties>
-			<!-- <property name="eclipselink.ddl-generation" value="drop-and-create-tables" /> -->
-			<property name="eclipselink.ddl-generation" value="create-tables" />
-			<property name="eclipselink.logging.level" value="ALL" />
-		</properties>
-	</persistence-unit>
+        <properties>
+            <!-- <property name="eclipselink.ddl-generation" value="drop-and-create-tables" /> -->
+            <property name="eclipselink.ddl-generation" value="create-tables" />
+            <property name="eclipselink.logging.level" value="ALL" />
+        </properties>
+    </persistence-unit>
 </persistence>

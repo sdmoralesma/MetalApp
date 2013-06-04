@@ -20,78 +20,76 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "artist")
 @XmlRootElement
-@NamedQueries({ @NamedQuery(name = Artist.FIND_ALL, query = "SELECT a FROM Artist a"),
-		@NamedQuery(name = Artist.FIND_BY_NAME, query = "SELECT a FROM Artist a WHERE a.name = :name") })
+@NamedQueries({
+    @NamedQuery(name = Artist.FIND_ALL, query = "SELECT a FROM Artist a"),
+    @NamedQuery(name = Artist.FIND_BY_NAME, query = "SELECT a FROM Artist a WHERE a.name = :name")})
 public class Artist implements Serializable {
-	private static final long serialVersionUID = 1L;
 
-	@Id
-	@Column(nullable = false, length = 50)
-	private String name;
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Column(nullable = false, length = 50)
+    private String name;
+    @Column(length = 50)
+    private String description;
+    // bi-directional many-to-one association to Song
+    @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL)
+    private List<Song> songs;
+    public static final String FIND_ALL = "Artist.findAll";
+    public static final String FIND_BY_NAME = "Artist.findByName";
 
-	@Column(length = 50)
-	private String description;
+    public Artist() {
+    }
 
-	// bi-directional many-to-one association to Song
-	@OneToMany(mappedBy = "artist", cascade = CascadeType.ALL)
-	private List<Song> songs;
+    public Artist(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 
-	public static final String FIND_ALL = "Artist.findAll";
-	public static final String FIND_BY_NAME = "Artist.findByName";
+    public Artist(String name, String description, List<Song> songs) {
+        this.name = name;
+        this.description = description;
+        this.songs = songs;
+    }
 
-	public Artist() {
-	}
+    public String getDescription() {
+        return this.description;
+    }
 
-	public Artist(String name, String description) {
-		this.name = name;
-		this.description = description;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public Artist(String name, String description, List<Song> songs) {
-		this.name = name;
-		this.description = description;
-		this.songs = songs;
-	}
+    public String getName() {
+        return this.name;
+    }
 
-	public String getDescription() {
-		return this.description;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    @XmlTransient
+    public List<Song> getSongs() {
+        return this.songs;
+    }
 
-	public String getName() {
-		return this.name;
-	}
+    public void setSongs(List<Song> songs) {
+        this.songs = songs;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public Song addSong(Song song) {
+        this.songs.add(song);
+        song.setArtist(this);
+        return song;
+    }
 
-	@XmlTransient
-	public List<Song> getSongs() {
-		return this.songs;
-	}
+    public Song removeSong(Song song) {
+        this.songs.remove(song);
+        song.setArtist(null);
+        return song;
+    }
 
-	public void setSongs(List<Song> songs) {
-		this.songs = songs;
-	}
-
-	public Song addSong(Song song) {
-		this.songs.add(song);
-		song.setArtist(this);
-		return song;
-	}
-
-	public Song removeSong(Song song) {
-		this.songs.remove(song);
-		song.setArtist(null);
-		return song;
-	}
-
-	@Override
-	public String toString() {
-		return "Artist [description=" + description + ", name=" + name + ", songs=" + songs + "]";
-	}
+    @Override
+    public String toString() {
+        return "Artist [description=" + description + ", name=" + name + ", songs=" + songs + "]";
+    }
 }

@@ -1,39 +1,39 @@
 
 
 .ui-widget,.ui-widget .ui-widget {
-	font-size: 90% !important;
+    font-size: 90% !important;
 }
 
 .ui-datatable .ui-button {
-	float: left;
+    float: left;
 }
 
 .admin-dashboard-button {
-	width: 150px;
-	height: 150px;
-	margin: 10px;
+    width: 150px;
+    height: 150px;
+    margin: 10px;
 }
 
 .userDataTableStyle {
-	margin-left: 5px;
-	margin-right: 5px;
-	margin-top: 0;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 0;
 }
 
 .loginPanelStyle {
-	margin-left: auto;
-	margin-right: auto;
-	width: 300px;
-	margin-top: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    margin-top: 15%;
 }
 
 .userFormStyle {
-	margin-left: auto;
-	margin-right: auto;
-	width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
 }
 
 .ui-selectmanymenu {
-	width: 100% !important;
-	overflow: hidden !important;
+    width: 100% !important;
+    overflow: hidden !important;
 }

@@ -17,142 +17,135 @@ import java.util.List;
 @DiscriminatorValue("PARTICIPANT")
 @XmlRootElement
 @NamedQueries({
-		@NamedQuery(name = Participant.FIND_ALL, query = "SELECT p FROM Participant p"),
-		@NamedQuery(name = Participant.FIND_BY_NAME, query = "SELECT p FROM Participant p WHERE p.name = :name"),
-		@NamedQuery(name = Participant.FIND_BY_USERNAME, query = "SELECT p FROM Participant p WHERE p.username = :username") })
+    @NamedQuery(name = Participant.FIND_ALL, query = "SELECT p FROM Participant p"),
+    @NamedQuery(name = Participant.FIND_BY_NAME, query = "SELECT p FROM Participant p WHERE p.name = :name"),
+    @NamedQuery(name = Participant.FIND_BY_USERNAME, query = "SELECT p FROM Participant p WHERE p.username = :username")})
 public class Participant extends User implements Serializable {
-	private static final long serialVersionUID = 1L;
 
-	@Column(nullable = false)
-	@Min(15)
-	@Max(100)
-	private int age;
+    private static final long serialVersionUID = 1L;
+    @Column(nullable = false)
+    @Min(15)
+    @Max(100)
+    private int age;
+    @Column(nullable = false, length = 50)
+    @Size(min = 5, max = 50)
+    private String country;
+    @Column(nullable = false, length = 50)
+    private String gender;
+    @Column(nullable = false, length = 100)
+    @Size(min = 5, max = 50)
+    private String name;
+    @Column(nullable = true, length = 100)
+    private String image_url;
+    // bi-directional many-to-one association to Presentation
+    @OneToMany(mappedBy = "participant", cascade = CascadeType.ALL)
+    private List<Presentation> presentations;
+    // bi-directional one-to-one association to ScoreMatrix
+    @OneToOne(mappedBy = "participant", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private ScoreMatrix scoreMatrix;
+    public static final String FIND_ALL = "Participant.findAll";
+    public static final String FIND_BY_NAME = "Participant.findByName";
+    public static final String FIND_BY_USERNAME = "Participant.findByUsername";
 
-	@Column(nullable = false, length = 50)
-	@Size(min = 5, max = 50)
-	private String country;
+    public Participant() {
+    }
 
-	@Column(nullable = false, length = 50)
-	private String gender;
+    public Participant(String username, String group_name, String password, int age, String country, String gender,
+            String name, String image_url) {
+        super(username, group_name, password);
+        this.age = age;
+        this.country = country;
+        this.gender = gender;
+        this.name = name;
+        this.image_url = image_url;
+    }
 
-	@Column(nullable = false, length = 100)
-	@Size(min = 5, max = 50)
-	private String name;
+    public Participant(int age, String country, String gender, String name, String image_url,
+            List<Presentation> presentations, ScoreMatrix scoreMatrix) {
+        super();
+        this.age = age;
+        this.country = country;
+        this.gender = gender;
+        this.name = name;
+        this.image_url = image_url;
+        this.presentations = presentations;
+        this.scoreMatrix = scoreMatrix;
+    }
 
-	@Column(nullable = true, length = 100)
-	private String image_url;
+    public int getAge() {
+        return this.age;
+    }
 
-	// bi-directional many-to-one association to Presentation
-	@OneToMany(mappedBy = "participant", cascade = CascadeType.ALL)
-	private List<Presentation> presentations;
+    public void setAge(int age) {
+        this.age = age;
+    }
 
-	// bi-directional one-to-one association to ScoreMatrix
-	@OneToOne(mappedBy = "participant", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private ScoreMatrix scoreMatrix;
+    public String getCountry() {
+        return this.country;
+    }
 
-	public static final String FIND_ALL = "Participant.findAll";
-	public static final String FIND_BY_NAME = "Participant.findByName";
-	public static final String FIND_BY_USERNAME = "Participant.findByUsername";
+    public void setCountry(String country) {
+        this.country = country;
+    }
 
-	public Participant() {
-	}
+    public String getGender() {
+        return this.gender;
+    }
 
-	public Participant(String username, String group_name, String password, int age, String country, String gender,
-			String name, String image_url) {
-		super(username, group_name, password);
-		this.age = age;
-		this.country = country;
-		this.gender = gender;
-		this.name = name;
-		this.image_url = image_url;
-	}
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
-	public Participant(int age, String country, String gender, String name, String image_url,
-			List<Presentation> presentations, ScoreMatrix scoreMatrix) {
-		super();
-		this.age = age;
-		this.country = country;
-		this.gender = gender;
-		this.name = name;
-		this.image_url = image_url;
-		this.presentations = presentations;
-		this.scoreMatrix = scoreMatrix;
-	}
+    public String getName() {
+        return this.name;
+    }
 
-	public int getAge() {
-		return this.age;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setAge(int age) {
-		this.age = age;
-	}
+    public List<Presentation> getPresentations() {
+        return this.presentations;
+    }
 
-	public String getCountry() {
-		return this.country;
-	}
+    public void setPresentations(List<Presentation> presentations) {
+        this.presentations = presentations;
+    }
 
-	public void setCountry(String country) {
-		this.country = country;
-	}
+    public Presentation addPresentation(Presentation presentation) {
+        getPresentations().add(presentation);
+        presentation.setParticipant(this);
 
-	public String getGender() {
-		return this.gender;
-	}
+        return presentation;
+    }
 
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
+    public Presentation removePresentation(Presentation presentation) {
+        getPresentations().remove(presentation);
+        presentation.setParticipant(null);
 
-	public String getName() {
-		return this.name;
-	}
+        return presentation;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public ScoreMatrix getScoreMatrix() {
+        return this.scoreMatrix;
+    }
 
-	public List<Presentation> getPresentations() {
-		return this.presentations;
-	}
+    public void setScoreMatrix(ScoreMatrix scoreMatrix) {
+        this.scoreMatrix = scoreMatrix;
+    }
 
-	public void setPresentations(List<Presentation> presentations) {
-		this.presentations = presentations;
-	}
+    public String getImage_url() {
+        return image_url;
+    }
 
-	public Presentation addPresentation(Presentation presentation) {
-		getPresentations().add(presentation);
-		presentation.setParticipant(this);
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
+    }
 
-		return presentation;
-	}
-
-	public Presentation removePresentation(Presentation presentation) {
-		getPresentations().remove(presentation);
-		presentation.setParticipant(null);
-
-		return presentation;
-	}
-
-	public ScoreMatrix getScoreMatrix() {
-		return this.scoreMatrix;
-	}
-
-	public void setScoreMatrix(ScoreMatrix scoreMatrix) {
-		this.scoreMatrix = scoreMatrix;
-	}
-
-	public String getImage_url() {
-		return image_url;
-	}
-
-	public void setImage_url(String image_url) {
-		this.image_url = image_url;
-	}
-
-	@Override
-	public String toString() {
-		return "Participant [age=" + age + ", country=" + country + ", gender=" + gender + ", name=" + name
-				+ ", image_url=" + image_url + ", presentations=" + presentations + ", scoreMatrix=" + scoreMatrix
-				+ "]";
-	}
+    @Override
+    public String toString() {
+        return "Participant [age=" + age + ", country=" + country + ", gender=" + gender + ", name=" + name
+                + ", image_url=" + image_url + ", presentations=" + presentations + ", scoreMatrix=" + scoreMatrix
+                + "]";
+    }
 }
