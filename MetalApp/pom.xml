@@ -1,11 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<groupId>com.sdmoralesma.rockapp</groupId>
-	<artifactId>RockApp</artifactId>
-	<version>0.1-SNAPSHOT</version>
+	<artifactId>rock-app</artifactId>
+	<version>0.2-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>Rock App</name>
+
+	<name>RockApp</name>
 
 	<properties>
 		<version.java>1.7</version.java>
@@ -18,7 +20,7 @@
 		<version.arquillian.jboss.managed>7.1.1.Final</version.arquillian.jboss.managed>
 		<version.jacoco>0.5.7.201204190339</version.jacoco>
 		<!--GlassFish -->
-		<version.glassfish>3.1.2.2</version.glassfish>
+		<version.glassfish>3.1.2</version.glassfish>
 		<version.maven.embedded.glassfish.plugin>3.1.1</version.maven.embedded.glassfish.plugin>
 		<!--Maven Plugins & co -->
 		<version.maven.war.plugin>2.2</version.maven.war.plugin>
@@ -64,18 +66,6 @@
 			<artifactId>arquillian-junit-container</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.jboss.arquillian.extension</groupId>
-			<artifactId>arquillian-persistence-api</artifactId>
-			<version>1.0.0.Alpha5</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.arquillian.extension</groupId>
-			<artifactId>arquillian-persistence-impl</artifactId>
-			<version>1.0.0.Alpha5</version>
-			<scope>test</scope>
-		</dependency>
 
 		<!-- Primefaces and BootStrap Theme -->
 		<dependency>
@@ -105,10 +95,10 @@
 
 	<profiles>
 		<profile>
-			<id>glassfish3</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
+			<id>glassfish3-embedded</id>
+			<!-- <activation> -->
+			<!-- <activeByDefault>true</activeByDefault> -->
+			<!-- </activation> -->
 			<dependencies>
 				<!--This has most of the needed dependencies : Derby, JPA, EJB, Java EE 6... -->
 				<dependency>
@@ -154,6 +144,37 @@
 		</profile>
 
 		<profile>
+			<id>weld-embedded</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.jboss.spec</groupId>
+					<artifactId>jboss-javaee-6.0</artifactId>
+					<version>1.0.0.Final</version>
+					<type>pom</type>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.container</groupId>
+					<artifactId>arquillian-weld-ee-embedded-1.1</artifactId>
+					<version>1.0.0.CR5</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.weld</groupId>
+					<artifactId>weld-core</artifactId>
+					<version>2.0.0.SP1</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-simple</artifactId>
+					<version>1.6.4</version>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+
+		<profile>
 			<id>jbossas7-managed</id>
 			<dependencies>
 				<dependency>
@@ -180,6 +201,36 @@
 					<version>${version.derby}</version>
 				</dependency>
 			</dependencies>
+			<!-- This optional build configuration downloads and extracts JBoss AS automatically -->
+			<!-- Remove it if you want to use an existing installation defined by the JBOSS_HOME environment variable -->
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>unpack</id>
+								<phase>process-test-classes</phase>
+								<goals>
+									<goal>unpack</goal>
+								</goals>
+								<configuration>
+									<artifactItems>
+										<artifactItem>
+											<groupId>org.jboss.as</groupId>
+											<artifactId>jboss-as-dist</artifactId>
+											<version>7.1.1.Final</version>
+											<type>zip</type>
+											<overWrite>false</overWrite>
+											<outputDirectory>target</outputDirectory>
+										</artifactItem>
+									</artifactItems>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
 		</profile>
 
 	</profiles>
@@ -200,7 +251,6 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${version.maven.compiler.plugin}</version>
-				<inherited>true</inherited>
 				<configuration>
 					<source>${version.java}</source>
 					<target>${version.java}</target>

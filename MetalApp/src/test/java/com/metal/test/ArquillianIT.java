@@ -4,9 +4,6 @@ import javax.ejb.EJB;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.arquillian.persistence.PersistenceTest;
-import org.jboss.arquillian.persistence.TransactionMode;
-import org.jboss.arquillian.persistence.Transactional;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -18,8 +15,6 @@ import org.junit.runner.RunWith;
 import com.metal.webservice.Statistics;
 
 @RunWith(Arquillian.class)
-@PersistenceTest
-@Transactional(TransactionMode.ROLLBACK)
 public class ArquillianIT {
 
 	@Deployment

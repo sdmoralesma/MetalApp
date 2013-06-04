@@ -1,4 +1,4 @@
-activeProfiles=glassfish3
+activeProfiles=weld-embedded
 eclipse.preferences.version=1
 resolveWorkspaceProjects=true
 version=1
