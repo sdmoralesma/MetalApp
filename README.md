@@ -1,24 +1,21 @@
-﻿# Application - Metal Music Reality
+﻿# Application - Headbanging Reality
 
 * *Author* : [Sergio Morales](http://www.linkedin.com/profile/view?id=199182063)
 * *Level* : Intermediate
-* *Technologies* : Java EE 6 (JPA 2.0, CDI 1.0, EJB Lite 3.1, JSF 2.0 (+ Primefaces), JAX-RS 1.1, JAX WS, JAAS)
-* *Application Servers* : GlassFish 3.x
+* *Technologies* : Java EE 7 (JPA 2.1, CDI 1.1, Bean Validation 1.1, EJB Lite 3.2, JSF 2.2 (+ Primefaces 3.5), JAX-RS 2.0, JAX-WS 2.2)
+* *Application Servers* : GlassFish 4.x
 * *DataBase* : MySQL 5.x
-* *Summary* : An application for recognize the best headbanging in the history of the music, using Java EE 6
+* *Summary* : An application for recognize the best headbanging in the history of the music, using Java EE 7
 
 
 Musical Contest > The Best Headbanging 
 ======================================
 
-/ ** Under development ... this could explode in anytime */
-El metalero más metalero es un reallity donde una serie de concursantes con amplios
-conocimientos musicales seleccionan las canciones más perfectas del metal y hacen una
-presentación de la misma mediante su representación histriónica, algo similar a un baile, conocido como headbanging.
+* * Under development ... this could explode in anytime *
 
-Una serie de jurados votan al final cada presentación, colocando una puntuación del
-headbanging mostrado por el concursante. El headbanging se evalúa en dos partes el
-movimiento de las manos y el movimiento de la cabeza.
+Esta aplicaciòn es un reality donde una serie de concursantes con amplios conocimientos musicales seleccionan las canciones más perfectas del metal y hacen una presentación de la misma mediante su representación histriónica, algo similar a un baile, conocido como headbanging.
+
+Una serie de jurados votan al final cada presentación, colocando una puntuación del headbanging mostrado por el concursante. El headbanging se evalúa en dos partes el movimiento de las manos y el movimiento de la cabeza.
 
 El puntaje de un concursante en una participación por jurado será el número dado por el headbanging, multiplicado por el número de coherencia del genero con el headbanging desarrollado más los atributos de musicalidad y perfección de la composición de cada canción.
 
@@ -120,7 +117,7 @@ a. 8, 9 y 10
 </div>
 
 ##TODO
-- Add Arquillian Integration
+- Add Arquillian Integration (..in progress)
 - Add web service JaxWS
 - Add web service JaxRS
-- Add more application servers -profiles- (TomEE, JBoss)
+- Add more application servers Java EE 7 -profiles-.
