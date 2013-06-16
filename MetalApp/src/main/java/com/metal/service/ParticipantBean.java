@@ -34,8 +34,6 @@ public class ParticipantBean {
     private EntityManager em;
     @Inject
     private Participant participant;
-//    public static final String PATH_TO_SAVE_IMAGES = "/home/sergio/uploaded/images"; //Unix
-//    public static final String PATH_TO_SAVE_IMAGES = "C:/Users/sergio/Documents/images/"; // Win7
 
     public ParticipantBean() {
     }
@@ -74,7 +72,11 @@ public class ParticipantBean {
 
         try {
             String nameLoggedUser = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
-            File targetFolder = new File("/home/sergio/uploaded/images");
+
+            final String PATH_TO_SAVE_IMAGES = "/home/sergio/uploaded/images"; //Unix
+//            final String PATH_TO_SAVE_IMAGES = "C:/Users/sergio/Documents/images/"; // Win7
+
+            File targetFolder = new File(PATH_TO_SAVE_IMAGES);
             UploadedFile inImage = event.getFile();
             InputStream inputStream = inImage.getInputstream();
 

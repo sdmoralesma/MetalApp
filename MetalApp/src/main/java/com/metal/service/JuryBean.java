@@ -126,11 +126,6 @@ public class JuryBean {
             songMatrix = addMusicalityPoinstToSongMatrix(songMatrix, musicalityPoints);
             songMatrix = calculateTotalAverageSongScore(songMatrix);
             theSongToVote.setSongMatrix(songMatrix);
-            
-            System.out.println("THE SONG TO VOTE :: " + theSongToVote);
-            System.out.println("SONGMATRIX TO VOTE :: " + songMatrix);
-            
-            songMatrix.setSong(theSongToVote);
             em.persist(theSongToVote);
 
             FacesMessage msg = new FacesMessage("The Vote has been Registered, Thanks!");

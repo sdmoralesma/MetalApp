@@ -2,12 +2,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.sdmoralesma.rockapp</groupId>
-    <artifactId>rock-app</artifactId>
-    <version>0.3-SNAPSHOT</version>
+    <groupId>com.sdmoralesma.headbanging</groupId>
+    <artifactId>headbanging-app-ee7</artifactId>
+    <version>0.4-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>RockApp</name>
+    <name>HeadBanging App EE7</name>
     
     <properties>
         <version.java>1.7</version.java>
