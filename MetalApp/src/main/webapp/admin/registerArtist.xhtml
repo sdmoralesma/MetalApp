@@ -6,10 +6,10 @@
         <h3>Register Artist</h3>
         <h:form>
             <h:panelGrid columns="2">
-                <h:outputText value="Artist Name" />
+                <h:outputText value="Artist Name* :" />
                 <h:inputText id="name" value="#{adminBean.artist.name}" />
 
-                <h:outputText value="Description" />
+                <h:outputText value="Description :" />
                 <h:inputText value="#{adminBean.artist.description}" />
 
                 <h:commandButton value="Register Artist" action="#{adminBean.registerArtist}" />

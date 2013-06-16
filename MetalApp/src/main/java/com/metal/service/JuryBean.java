@@ -2,7 +2,6 @@ package com.metal.service;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -15,12 +14,15 @@ import com.metal.model.Participant;
 import com.metal.model.ScoreMatrix;
 import com.metal.model.Song;
 import com.metal.model.SongMatrix;
+import javax.enterprise.context.RequestScoped;
+import javax.transaction.Transactional;
 
 /**
  * Vota por Concursante y Vota por Cancion
  */
 @Named
-@Stateless
+@Transactional
+@RequestScoped
 public class JuryBean {
 
     @PersistenceContext
@@ -107,6 +109,7 @@ public class JuryBean {
         TypedQuery<Song> query = em.createNamedQuery(Song.FIND_BY_TITLE, Song.class).setParameter("title",
                 song.getTitle());
         List<Song> songs = query.getResultList();
+
         if (songs.isEmpty()) {
             FacesMessage msg = new FacesMessage("The song does not exists");
             FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -123,6 +126,11 @@ public class JuryBean {
             songMatrix = addMusicalityPoinstToSongMatrix(songMatrix, musicalityPoints);
             songMatrix = calculateTotalAverageSongScore(songMatrix);
             theSongToVote.setSongMatrix(songMatrix);
+            
+            System.out.println("THE SONG TO VOTE :: " + theSongToVote);
+            System.out.println("SONGMATRIX TO VOTE :: " + songMatrix);
+            
+            songMatrix.setSong(theSongToVote);
             em.persist(theSongToVote);
 
             FacesMessage msg = new FacesMessage("The Vote has been Registered, Thanks!");

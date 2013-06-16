@@ -4,11 +4,11 @@
 
     <groupId>com.sdmoralesma.rockapp</groupId>
     <artifactId>rock-app</artifactId>
-    <version>0.2-SNAPSHOT</version>
+    <version>0.3-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>RockApp</name>
-
+    
     <properties>
         <version.java>1.7</version.java>
         <version.javaee.jboss>1.0.0.Final</version.javaee.jboss>
@@ -16,7 +16,7 @@
         <version.junit>4.10</version.junit>
         <version.mockito>1.9.0</version.mockito>
         <version.arquillian>1.0.3.Final</version.arquillian>
-        <version.arquillian.glassfish.embedded>1.0.0.CR3</version.arquillian.glassfish.embedded>
+        <version.arquillian.glassfish.embedded>1.0.0.Final-SNAPSHOT</version.arquillian.glassfish.embedded>
         <version.arquillian.jboss.managed>7.1.1.Final</version.arquillian.jboss.managed>
         <version.jacoco>0.5.7.201204190339</version.jacoco>
         <!--GlassFish -->
@@ -24,7 +24,7 @@
         <version.maven.embedded.glassfish.plugin>3.1.1</version.maven.embedded.glassfish.plugin>
         <!--Maven Plugins & co -->
         <version.maven.war.plugin>2.2</version.maven.war.plugin>
-        <version.maven.compiler.plugin>2.5.1</version.maven.compiler.plugin>
+        <version.maven.compiler.plugin>3.1</version.maven.compiler.plugin>
         <version.maven.surefire.plugin>2.12.2</version.maven.surefire.plugin>
         <version.maven.failsafe.plugin>2.12</version.maven.failsafe.plugin>
         <version.jrebel>1.1.3</version.jrebel>
@@ -96,10 +96,68 @@
 
     <profiles>
         <profile>
-            <id>glassfish3-embedded</id>
+            <id>glassfish3-embedded-javaEE7</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
+            <dependencies>
+                <!--This has most of the needed dependencies : Derby, JPA, EJB, Java EE 6... -->
+                <dependency>
+                    <groupId>org.glassfish.main.extras</groupId>
+                    <artifactId>glassfish-embedded-all</artifactId>
+                    <version>4.0-b72</version>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.glassfish.main</groupId>
+                    <artifactId>simple-glassfish-api</artifactId>
+                    <version>4.0-b72</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.jboss.arquillian.container</groupId>
+                    <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
+                    <version>${version.arquillian.glassfish.embedded}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>javax</groupId>
+                    <artifactId>javaee-api</artifactId>
+                    <version>7.0</version>
+                    <scope>provided</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <testResources>
+                    <testResource>
+                        <directory>src/test/resources</directory>
+                    </testResource>
+                    <testResource>
+                        <directory>src/test/resources-glassfish-embedded</directory>
+                    </testResource>
+                </testResources>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>2.12</version>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <java.util.logging.config.file>
+                                    ${project.build.testOutputDirectory}/logging.properties
+                                </java.util.logging.config.file>
+                                <derby.stream.error.file>
+                                    ${project.build.directory}/derby.log
+                                </derby.stream.error.file>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
+        <!--JAVAEE6-->
+        <profile>
+            <id>glassfish3-embedded-javaEE6</id>
             <dependencies>
                 <!--This has most of the needed dependencies : Derby, JPA, EJB, Java EE 6... -->
                 <dependency>
@@ -145,7 +203,7 @@
         </profile>
 
         <profile>
-            <id>weld-embedded</id>
+            <id>weld-embedded-javaEE6</id>
             <dependencies>
                 <dependency>
                     <groupId>org.jboss.spec</groupId>
@@ -176,7 +234,7 @@
         </profile>
 
         <profile>
-            <id>jbossas7-managed</id>
+            <id>jbossas7-managed-javaEE6</id>
             <dependencies>
                 <dependency>
                     <groupId>org.jboss.spec</groupId>
@@ -242,9 +300,9 @@
         <plugins>
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>2.1.1</version>
+                <version>2.4-SNAPSHOT</version>
                 <configuration>
-                    <packagingExcludes>WEB-INF/web.xml</packagingExcludes>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
 
@@ -260,7 +318,7 @@
 
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.12</version>
+                <version>3.0-SNAPSHOT</version>
             </plugin>
         </plugins>
 

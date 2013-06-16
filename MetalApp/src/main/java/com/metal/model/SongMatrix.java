@@ -45,7 +45,7 @@ public class SongMatrix implements Serializable {
     private float totalScore;
     // bi-directional one-to-one association to Song
     @OneToOne
-    @JoinColumn(name = "title", nullable = false, insertable = false)
+    @JoinColumn(name = "title", nullable = false)
     private Song song;
     public static final String FIND_ALL = "SongMatrix.findAll";
     public static final String FIND_BY_ID_SONG = "SongMatrix.findByIdSong";

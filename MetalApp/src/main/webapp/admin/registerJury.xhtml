@@ -10,19 +10,19 @@
             <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
             <h:panelGrid columns="3">
 
-                <p:outputLabel for="username" value="Username *" />
+                <p:outputLabel for="username" value="Username : " />
                 <h:inputText id="username" value="#{adminBean.jury.username}" />
                 <p:message for="username" />
 
-                <p:outputLabel for="name" value="Name *" />
+                <p:outputLabel for="name" value="Name : " />
                 <h:inputText id="name" value="#{adminBean.jury.name}" required="true" label="Name" />
                 <p:message for="name" />
 
-                <p:outputLabel for="password" value="Password *" />
+                <p:outputLabel for="password" value="Password : " />
                 <h:inputSecret id="password" value="#{adminBean.jury.password}" required="true" label="Password" />
                 <p:message for="password" />
 
-                <p:outputLabel for="description" value="Description *" />
+                <p:outputLabel for="description" value="Description : " />
                 <h:inputText id="description" value="#{adminBean.jury.description}" />
                 <p:message for="description" />
 

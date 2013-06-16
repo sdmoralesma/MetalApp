@@ -1,7 +1,5 @@
 package com.metal.test;
 
-import javax.ejb.EJB;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
@@ -13,6 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.metal.webservice.Statistics;
+import javax.inject.Inject;
 
 @RunWith(Arquillian.class)
 public class ArquillianIT {
@@ -23,7 +22,8 @@ public class ArquillianIT {
                 .addAsResource("test-persistence.xml", "META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
-    @EJB
+    
+    @Inject
     Statistics statistics;
 
     @Test

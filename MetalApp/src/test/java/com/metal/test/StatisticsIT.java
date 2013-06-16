@@ -1,6 +1,5 @@
 package com.metal.test;
 
-import javax.ejb.EJB;
 import javax.inject.Inject;
 
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -36,9 +35,9 @@ public class StatisticsIT {
                 Artist.class).addClasses(JuryBean.class, SongMatrix.class)
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
-    @EJB
+    @Inject
     Statistics statistics;
-    @EJB
+    @Inject
     AdminBean bean;
 
     @Test

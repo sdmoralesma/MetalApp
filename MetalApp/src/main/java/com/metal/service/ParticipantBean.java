@@ -7,7 +7,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -20,21 +19,23 @@ import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
 import com.metal.model.Participant;
+import javax.enterprise.context.RequestScoped;
+import javax.transaction.Transactional;
 
 /**
  * Permite a un participante ver su propio perfil y modificarlo
  */
 @Named
-@Stateless
+@Transactional
+@RequestScoped
 public class ParticipantBean {
 
     @PersistenceContext
     private EntityManager em;
     @Inject
     private Participant participant;
-    // public static final String PATH_TO_SAVE_IMAGES =
-    // "/home/sergio/uploaded/images"; //Unix
-    public static final String PATH_TO_SAVE_IMAGES = "C:/Users/sergio/Documents/images/"; // Win7
+//    public static final String PATH_TO_SAVE_IMAGES = "/home/sergio/uploaded/images"; //Unix
+//    public static final String PATH_TO_SAVE_IMAGES = "C:/Users/sergio/Documents/images/"; // Win7
 
     public ParticipantBean() {
     }
@@ -73,7 +74,7 @@ public class ParticipantBean {
 
         try {
             String nameLoggedUser = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
-            File targetFolder = new File(PATH_TO_SAVE_IMAGES);
+            File targetFolder = new File("/home/sergio/uploaded/images");
             UploadedFile inImage = event.getFile();
             InputStream inputStream = inImage.getInputstream();
 

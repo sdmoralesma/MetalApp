@@ -44,7 +44,7 @@ public class ScoreMatrix implements Serializable {
     private float totalScore;
     // bi-directional one-to-one association to Participant
     @OneToOne
-    @JoinColumn(name = "username", nullable = false, insertable = false)
+    @JoinColumn(name = "username", nullable = false)
     private Participant participant;
     public static final String FIND_ALL = "ScoreMatrix.findAll";
     public static final String FIND_BY_USERNAME = "ScoreMatrix.findByUsername";

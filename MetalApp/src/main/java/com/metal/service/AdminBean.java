@@ -2,7 +2,6 @@ package com.metal.service;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.management.RuntimeErrorException;
@@ -17,12 +16,16 @@ import com.metal.model.Jury;
 import com.metal.model.Participant;
 import com.metal.model.ScoreMatrix;
 import com.metal.model.Song;
+import javax.enterprise.context.RequestScoped;
+
+import javax.transaction.Transactional;
 
 /**
  * Registra Usuarios y Administradores en el sistema
  */
 @Named
-@Stateless
+@Transactional
+@RequestScoped
 public class AdminBean {
 
     @PersistenceContext
@@ -89,13 +92,13 @@ public class AdminBean {
     public String registerAdmin() {
         this.admin.setGroup("admin");
         em.persist(this.admin);
-        return "registerAdmin.xhtml";
+        return "registerAdmin.xhtml?faces-redirect=true";
     }
 
     public String registerJury() {
         this.jury.setGroup("jury");
         em.persist(this.jury);
-        return "registerJury.xhtml";
+        return "registerJury.xhtml?faces-redirect=true";
     }
 
     public String registerParticipant() {
@@ -107,7 +110,7 @@ public class AdminBean {
         score.setParticipant(participant);
         participant.setScoreMatrix(score);
         em.persist(participant);
-        return "registerParticipant.xhtml";
+        return "registerParticipant.xhtml?faces-redirect=true";
     }
 
     public String registerSong() {
@@ -119,17 +122,17 @@ public class AdminBean {
         }
         this.song = new Song(this.song.getTitle(), selectedArtist, selectedGender);
         em.persist(this.song);
-        return "registerSong";
+        return "registerSong?faces-redirect=true";
     }
 
     public String registerArtist() {
         em.persist(this.artist);
-        return "registerArtist.xhtml";
+        return "registerArtist.xhtml?faces-redirect=true";
     }
 
     public String registerGender() {
         em.persist(this.gender);
-        return "registerGender.xhtml";
+        return "registerGender.xhtml?faces-redirect=true";
     }
 
     // Getters & Setters
