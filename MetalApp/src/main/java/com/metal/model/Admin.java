@@ -13,9 +13,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @DiscriminatorValue("ADMIN")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = Admin.FIND_ALL, query = "SELECT a FROM Admin a"),
-    @NamedQuery(name = Admin.FIND_BY_NAME, query = "SELECT a FROM Admin a WHERE a.name = :name"),
-    @NamedQuery(name = Admin.FIND_BY_USERNAME, query = "SELECT a FROM Admin a WHERE a.username = :username")})
+        @NamedQuery(name = Admin.FIND_ALL, query = "SELECT a FROM Admin a"),
+        @NamedQuery(name = Admin.FIND_BY_NAME, query = "SELECT a FROM Admin a WHERE a.name = :name"),
+        @NamedQuery(name = Admin.FIND_BY_USERNAME, query = "SELECT a FROM Admin a WHERE a.username = :username")})
 public class Admin extends User implements Serializable {
 
     private static final long serialVersionUID = 1L;

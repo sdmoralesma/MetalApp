@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.jboss.arquillian.container:arquillian-glassfish-embedded-3.1:1.0.0.Final-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jboss/arquillian/container/arquillian-glassfish-embedded-3.1/1.0.0.Final-SNAPSHOT/arquillian-glassfish-embedded-3.1-1.0.0.Final-20130308.161632-3.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jboss/arquillian/container/arquillian-glassfish-embedded-3.1/1.0.0.Final-SNAPSHOT/arquillian-glassfish-embedded-3.1-1.0.0.Final-20130308.161632-3-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jboss/arquillian/container/arquillian-glassfish-embedded-3.1/1.0.0.Final-SNAPSHOT/arquillian-glassfish-embedded-3.1-1.0.0.Final-20130308.161632-3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

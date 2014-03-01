@@ -32,9 +32,10 @@ public class StatisticsIT {
                 .create(JavaArchive.class)
                 .addClasses(StatisticsWs.class, Statistics.class)
                 .addClasses(AdminBean.class, Admin.class, Jury.class, Participant.class, Song.class, Gender.class,
-                Artist.class).addClasses(JuryBean.class, SongMatrix.class)
+                        Artist.class).addClasses(JuryBean.class, SongMatrix.class)
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
+
     @Inject
     Statistics statistics;
     @Inject

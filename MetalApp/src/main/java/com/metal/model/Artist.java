@@ -21,8 +21,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "artist")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = Artist.FIND_ALL, query = "SELECT a FROM Artist a"),
-    @NamedQuery(name = Artist.FIND_BY_NAME, query = "SELECT a FROM Artist a WHERE a.name = :name")})
+        @NamedQuery(name = Artist.FIND_ALL, query = "SELECT a FROM Artist a"),
+        @NamedQuery(name = Artist.FIND_BY_NAME, query = "SELECT a FROM Artist a WHERE a.name = :name")})
 public class Artist implements Serializable {
 
     private static final long serialVersionUID = 1L;
