@@ -1,12 +1,11 @@
 package com.metal.model;
 
-import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -17,9 +16,9 @@ import java.util.List;
 @DiscriminatorValue("PARTICIPANT")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = Participant.FIND_ALL, query = "SELECT p FROM Participant p"),
-    @NamedQuery(name = Participant.FIND_BY_NAME, query = "SELECT p FROM Participant p WHERE p.name = :name"),
-    @NamedQuery(name = Participant.FIND_BY_USERNAME, query = "SELECT p FROM Participant p WHERE p.username = :username")})
+        @NamedQuery(name = Participant.FIND_ALL, query = "SELECT p FROM Participant p"),
+        @NamedQuery(name = Participant.FIND_BY_NAME, query = "SELECT p FROM Participant p WHERE p.name = :name"),
+        @NamedQuery(name = Participant.FIND_BY_USERNAME, query = "SELECT p FROM Participant p WHERE p.username = :username")})
 public class Participant extends User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -51,7 +50,7 @@ public class Participant extends User implements Serializable {
     }
 
     public Participant(String username, String group_name, String password, int age, String country, String gender,
-            String name, String image_url) {
+                       String name, String image_url) {
         super(username, group_name, password);
         this.age = age;
         this.country = country;
@@ -61,7 +60,7 @@ public class Participant extends User implements Serializable {
     }
 
     public Participant(int age, String country, String gender, String name, String image_url,
-            List<Presentation> presentations, ScoreMatrix scoreMatrix) {
+                       List<Presentation> presentations, ScoreMatrix scoreMatrix) {
         super();
         this.age = age;
         this.country = country;

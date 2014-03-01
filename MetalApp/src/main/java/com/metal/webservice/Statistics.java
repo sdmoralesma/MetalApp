@@ -1,15 +1,14 @@
 package com.metal.webservice;
 
-import java.util.List;
-
-import javax.jws.WebParam;
-import javax.jws.WebService;
-
 import com.metal.model.Participant;
 import com.metal.model.Song;
 import com.metal.service.AdminBean;
 import com.metal.service.JuryBean;
+
 import javax.inject.Inject;
+import javax.jws.WebParam;
+import javax.jws.WebService;
+import java.util.List;
 
 @WebService(endpointInterface = "com.metal.webservice.Statistics")
 public class Statistics implements StatisticsWs {

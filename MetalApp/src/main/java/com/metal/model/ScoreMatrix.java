@@ -1,8 +1,8 @@
 package com.metal.model;
 
-import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
 /**
  * The persistent class for the score_matrix database table.
@@ -11,8 +11,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "score_matrix")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = ScoreMatrix.FIND_ALL, query = "SELECT s FROM ScoreMatrix s"),
-    @NamedQuery(name = ScoreMatrix.FIND_BY_USERNAME, query = "SELECT s FROM ScoreMatrix s WHERE s.idScoreMatrix = :username")})
+        @NamedQuery(name = ScoreMatrix.FIND_ALL, query = "SELECT s FROM ScoreMatrix s"),
+        @NamedQuery(name = ScoreMatrix.FIND_BY_USERNAME, query = "SELECT s FROM ScoreMatrix s WHERE s.idScoreMatrix = :username")})
 public class ScoreMatrix implements Serializable {
 
     private static final long serialVersionUID = 1L;

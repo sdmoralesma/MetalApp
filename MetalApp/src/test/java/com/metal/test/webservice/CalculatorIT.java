@@ -1,9 +1,7 @@
 package com.metal.test.webservice;
 
-import static org.junit.Assert.assertEquals;
-import java.net.MalformedURLException;
-
-import javax.inject.Inject;
+import com.metal.webservice.Calculator;
+import com.metal.webservice.CalculatorWs;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -12,8 +10,10 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.metal.webservice.Calculator;
-import com.metal.webservice.CalculatorWs;
+import javax.inject.Inject;
+import java.net.MalformedURLException;
+
+import static org.junit.Assert.assertEquals;
 
 @RunWith(Arquillian.class)
 public class CalculatorIT {
@@ -23,6 +23,7 @@ public class CalculatorIT {
         return ShrinkWrap.create(JavaArchive.class).addClasses(Calculator.class, CalculatorWs.class)
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
+
     @Inject
     CalculatorWs calculator;
 

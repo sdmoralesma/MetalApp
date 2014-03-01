@@ -1,5 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
                 template="/WEB-INF/templates/template.xhtml">
 
     <ui:define name="content">
@@ -7,25 +8,29 @@
         <h:form>
             <h:panelGrid columns="2">
 
-                <h:outputText value="Title of the Song" />
-                <h:inputText value="#{adminBean.song.title}" />
+                <h:outputText value="Title of the Song"/>
+                <h:inputText value="#{adminBean.song.title}"/>
 
-                <h:outputText value="Gender Name:" />
-                <p:selectOneMenu value="#{adminBean.selectedGenderName}" panelStyle="width:150px" effect="fade" style="width:175px"
+                <h:outputText value="Gender Name:"/>
+                <p:selectOneMenu value="#{adminBean.selectedGenderName}" panelStyle="width:150px" effect="fade"
+                                 style="width:175px"
                                  filter="true" filterMatchMode="startsWith">
-                    <f:selectItem itemLabel="Select One" itemValue="" />
-                    <f:selectItems value="#{adminBean.genderList()}" var="gender" itemLabel="#{gender.name}" itemValue="#{gender.name}" />
+                    <f:selectItem itemLabel="Select One" itemValue=""/>
+                    <f:selectItems value="#{adminBean.genderList()}" var="gender" itemLabel="#{gender.name}"
+                                   itemValue="#{gender.name}"/>
                 </p:selectOneMenu>
 
-                <h:outputText value="Artist Name:" />
-                <p:selectOneMenu value="#{adminBean.selectedArtistName}" panelStyle="width:150px" effect="fade" style="width:175px"
+                <h:outputText value="Artist Name:"/>
+                <p:selectOneMenu value="#{adminBean.selectedArtistName}" panelStyle="width:150px" effect="fade"
+                                 style="width:175px"
                                  filter="true" filterMatchMode="startsWith">
-                    <f:selectItem itemLabel="Select One" itemValue="" />
-                    <f:selectItems value="#{adminBean.artistList()}" var="artist" itemLabel="#{artist.name}" itemValue="#{artist.name}" />
+                    <f:selectItem itemLabel="Select One" itemValue=""/>
+                    <f:selectItems value="#{adminBean.artistList()}" var="artist" itemLabel="#{artist.name}"
+                                   itemValue="#{artist.name}"/>
                 </p:selectOneMenu>
 
-                <h:commandButton value="Add Song" action="#{adminBean.registerSong}" />
-                <h:messages />
+                <h:commandButton value="Add Song" action="#{adminBean.registerSong}"/>
+                <h:messages/>
             </h:panelGrid>
         </h:form>
 
@@ -34,15 +39,15 @@
             <p:dataTable value="#{adminBean.songList()}" var="song">
 
                 <p:column headerText="Title">
-                    <h:outputText value="#{song.title}" />
+                    <h:outputText value="#{song.title}"/>
                 </p:column>
 
                 <p:column headerText="IdArtist">
-                    <h:outputText value="#{song.artist.name}" />
+                    <h:outputText value="#{song.artist.name}"/>
                 </p:column>
 
                 <p:column headerText="IdGender">
-                    <h:outputText value="#{song.gender.name}" />
+                    <h:outputText value="#{song.gender.name}"/>
                 </p:column>
 
             </p:dataTable>

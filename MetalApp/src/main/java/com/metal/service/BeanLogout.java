@@ -1,10 +1,9 @@
 package com.metal.service;
 
-import java.io.Serializable;
-
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
+import java.io.Serializable;
 
 @Named
 public class BeanLogout implements Serializable {

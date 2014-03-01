@@ -1,24 +1,16 @@
 package com.metal.service;
 
-import java.util.List;
+import com.metal.model.*;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.management.RuntimeErrorException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-
-import com.metal.model.Admin;
-import com.metal.model.Artist;
-import com.metal.model.Gender;
-import com.metal.model.Jury;
-import com.metal.model.Participant;
-import com.metal.model.ScoreMatrix;
-import com.metal.model.Song;
-import javax.enterprise.context.RequestScoped;
-
 import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * Registra Usuarios y Administradores en el sistema

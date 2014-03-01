@@ -1,8 +1,8 @@
 package com.metal.model;
 
-import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
 /**
  * The persistent class for the presentation database table.
@@ -11,9 +11,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "presentation")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = Presentation.FIND_ALL, query = "SELECT p FROM Presentation p"),
-    @NamedQuery(name = Presentation.FIND_BY_ID_PRESENTATION, query = "SELECT p FROM Presentation p WHERE p.idPresentation = :idPresentation"),
-    @NamedQuery(name = Presentation.FIND_BY_ID_PARTICIPANT, query = "SELECT p FROM Presentation p WHERE p.participant.username = :username")})
+        @NamedQuery(name = Presentation.FIND_ALL, query = "SELECT p FROM Presentation p"),
+        @NamedQuery(name = Presentation.FIND_BY_ID_PRESENTATION, query = "SELECT p FROM Presentation p WHERE p.idPresentation = :idPresentation"),
+        @NamedQuery(name = Presentation.FIND_BY_ID_PARTICIPANT, query = "SELECT p FROM Presentation p WHERE p.participant.username = :username")})
 public class Presentation implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,7 +43,7 @@ public class Presentation implements Serializable {
     }
 
     public Presentation(int idPresentation, float handScore, float headScore, float totalScore,
-            Participant participant, Song song) {
+                        Participant participant, Song song) {
         super();
         this.idPresentation = idPresentation;
         this.handScore = handScore;

@@ -1,23 +1,21 @@
 package com.metal.test.webservice;
 
-import static org.junit.Assert.*;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.List;
-
-import javax.xml.namespace.QName;
-import javax.xml.ws.Endpoint;
-import javax.xml.ws.Service;
-
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import com.metal.model.Participant;
 import com.metal.model.Song;
 import com.metal.webservice.Statistics;
 import com.metal.webservice.StatisticsWs;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import javax.xml.namespace.QName;
+import javax.xml.ws.Endpoint;
+import javax.xml.ws.Service;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 public class StatisticsLongIT {
 

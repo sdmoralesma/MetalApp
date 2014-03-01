@@ -8,7 +8,7 @@
     <packaging>war</packaging>
 
     <name>HeadBanging App EE7</name>
-    
+
     <properties>
         <version.java>1.7</version.java>
         <version.javaee.jboss>1.0.0.Final</version.javaee.jboss>

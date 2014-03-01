@@ -1,5 +1,5 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/templates/template.xhtml">
 
     <ui:define name="content">
@@ -7,26 +7,26 @@
         <h3>Register Jury</h3>
         <h:form id="form">
 
-            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
             <h:panelGrid columns="3">
 
-                <p:outputLabel for="username" value="Username : " />
-                <h:inputText id="username" value="#{adminBean.jury.username}" />
-                <p:message for="username" />
+                <p:outputLabel for="username" value="Username : "/>
+                <h:inputText id="username" value="#{adminBean.jury.username}"/>
+                <p:message for="username"/>
 
-                <p:outputLabel for="name" value="Name : " />
-                <h:inputText id="name" value="#{adminBean.jury.name}" required="true" label="Name" />
-                <p:message for="name" />
+                <p:outputLabel for="name" value="Name : "/>
+                <h:inputText id="name" value="#{adminBean.jury.name}" required="true" label="Name"/>
+                <p:message for="name"/>
 
-                <p:outputLabel for="password" value="Password : " />
-                <h:inputSecret id="password" value="#{adminBean.jury.password}" required="true" label="Password" />
-                <p:message for="password" />
+                <p:outputLabel for="password" value="Password : "/>
+                <h:inputSecret id="password" value="#{adminBean.jury.password}" required="true" label="Password"/>
+                <p:message for="password"/>
 
-                <p:outputLabel for="description" value="Description : " />
-                <h:inputText id="description" value="#{adminBean.jury.description}" />
-                <p:message for="description" />
+                <p:outputLabel for="description" value="Description : "/>
+                <h:inputText id="description" value="#{adminBean.jury.description}"/>
+                <p:message for="description"/>
 
-                <p:commandButton value="Register Jury" action="#{adminBean.registerJury}" icon="ui-icon-disk" />
+                <p:commandButton value="Register Jury" action="#{adminBean.registerJury}" icon="ui-icon-disk"/>
             </h:panelGrid>
         </h:form>
 
@@ -35,15 +35,15 @@
             <p:dataTable value="#{adminBean.juryList()}" var="jury">
 
                 <p:column headerText="Username">
-                    <h:outputText value="#{jury.username}" />
+                    <h:outputText value="#{jury.username}"/>
                 </p:column>
 
                 <p:column headerText="Name">
-                    <h:outputText value="#{jury.name}" />
+                    <h:outputText value="#{jury.name}"/>
                 </p:column>
 
                 <p:column headerText="Description">
-                    <h:outputText value="#{jury.description}" />
+                    <h:outputText value="#{jury.description}"/>
                 </p:column>
             </p:dataTable>
         </h:form>

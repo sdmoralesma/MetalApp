@@ -1,7 +1,11 @@
 package com.metal.service;
 
-import java.util.List;
+import com.metal.model.Participant;
+import com.metal.model.ScoreMatrix;
+import com.metal.model.Song;
+import com.metal.model.SongMatrix;
 
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -9,13 +13,8 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-
-import com.metal.model.Participant;
-import com.metal.model.ScoreMatrix;
-import com.metal.model.Song;
-import com.metal.model.SongMatrix;
-import javax.enterprise.context.RequestScoped;
 import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * Vota por Concursante y Vota por Cancion

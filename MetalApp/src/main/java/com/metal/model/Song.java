@@ -1,21 +1,9 @@
 package com.metal.model;
 
+import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * The persistent class for the song database table.
@@ -24,10 +12,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "song")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = Song.FIND_ALL, query = "SELECT s FROM Song s"),
-    @NamedQuery(name = Song.FIND_BY_TITLE, query = "SELECT s FROM Song s WHERE s.title = :title"),
-    @NamedQuery(name = Song.FIND_BY_ID_ARTIST, query = "SELECT s FROM Song s WHERE s.artist = :idArtist"),
-    @NamedQuery(name = Song.FIND_BY_ID_GENDER, query = "SELECT s FROM Song s WHERE s.gender = :idGender")})
+        @NamedQuery(name = Song.FIND_ALL, query = "SELECT s FROM Song s"),
+        @NamedQuery(name = Song.FIND_BY_TITLE, query = "SELECT s FROM Song s WHERE s.title = :title"),
+        @NamedQuery(name = Song.FIND_BY_ID_ARTIST, query = "SELECT s FROM Song s WHERE s.artist = :idArtist"),
+        @NamedQuery(name = Song.FIND_BY_ID_GENDER, query = "SELECT s FROM Song s WHERE s.gender = :idGender")})
 public class Song implements Serializable {
 
     private static final long serialVersionUID = 1L;

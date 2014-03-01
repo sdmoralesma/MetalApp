@@ -1,12 +1,11 @@
 package com.metal.service;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import com.metal.model.Participant;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -14,13 +13,8 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-
-import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.UploadedFile;
-
-import com.metal.model.Participant;
-import javax.enterprise.context.RequestScoped;
 import javax.transaction.Transactional;
+import java.io.*;
 
 /**
  * Permite a un participante ver su propio perfil y modificarlo

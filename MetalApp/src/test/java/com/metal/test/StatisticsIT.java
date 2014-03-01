@@ -1,7 +1,10 @@
 package com.metal.test;
 
-import javax.inject.Inject;
-
+import com.metal.model.*;
+import com.metal.service.AdminBean;
+import com.metal.service.JuryBean;
+import com.metal.webservice.Statistics;
+import com.metal.webservice.StatisticsWs;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -11,17 +14,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.metal.model.Admin;
-import com.metal.model.Artist;
-import com.metal.model.Gender;
-import com.metal.model.Jury;
-import com.metal.model.Participant;
-import com.metal.model.Song;
-import com.metal.model.SongMatrix;
-import com.metal.service.AdminBean;
-import com.metal.service.JuryBean;
-import com.metal.webservice.Statistics;
-import com.metal.webservice.StatisticsWs;
+import javax.inject.Inject;
 
 @RunWith(Arquillian.class)
 public class StatisticsIT {

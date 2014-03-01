@@ -1,10 +1,9 @@
 package com.metal.model;
 
-import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -14,8 +13,8 @@ import java.util.List;
 @Table(name = "gender")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = Gender.FIND_ALL, query = "SELECT g FROM Gender g"),
-    @NamedQuery(name = Gender.FIND_BY_NAME, query = "SELECT g FROM Gender g WHERE g.name = :name")})
+        @NamedQuery(name = Gender.FIND_ALL, query = "SELECT g FROM Gender g"),
+        @NamedQuery(name = Gender.FIND_BY_NAME, query = "SELECT g FROM Gender g WHERE g.name = :name")})
 public class Gender implements Serializable {
 
     private static final long serialVersionUID = 1L;

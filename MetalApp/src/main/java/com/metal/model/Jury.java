@@ -1,9 +1,9 @@
 package com.metal.model;
 
-import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
 /**
  * The persistent class for the jury database table.
@@ -13,9 +13,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @DiscriminatorValue("JURY")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = Jury.FIND_ALL, query = "SELECT j FROM Jury j"),
-    @NamedQuery(name = Jury.FIND_BY_NAME, query = "SELECT j FROM Jury j WHERE j.name = :name"),
-    @NamedQuery(name = Jury.FIND__BY_USERNAME, query = "SELECT j FROM Jury j WHERE j.username = :username")})
+        @NamedQuery(name = Jury.FIND_ALL, query = "SELECT j FROM Jury j"),
+        @NamedQuery(name = Jury.FIND_BY_NAME, query = "SELECT j FROM Jury j WHERE j.name = :name"),
+        @NamedQuery(name = Jury.FIND__BY_USERNAME, query = "SELECT j FROM Jury j WHERE j.username = :username")})
 public class Jury extends User implements Serializable {
 
     private static final long serialVersionUID = 1L;

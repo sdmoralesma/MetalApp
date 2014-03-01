@@ -1,5 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
                 template="/WEB-INF/templates/template.xhtml">
 
     <ui:define name="content">
@@ -10,46 +11,46 @@
 
             <p:panel header="Modify your info and click 'Update'">
 
-                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
                 <h:panelGrid columns="3">
 
-                    <p:outputLabel for="username" value="Username" />
-                    <p:inputText id="username" value="#{participantBean.participant.username}" disabled="true" />
-                    <p:message for="username" />
+                    <p:outputLabel for="username" value="Username"/>
+                    <p:inputText id="username" value="#{participantBean.participant.username}" disabled="true"/>
+                    <p:message for="username"/>
 
-                    <p:outputLabel for="name" value="Name *" />
-                    <p:inputText id="name" value="#{participantBean.participant.name}" required="true" label="Name" />
-                    <p:message for="name" />
+                    <p:outputLabel for="name" value="Name *"/>
+                    <p:inputText id="name" value="#{participantBean.participant.name}" required="true" label="Name"/>
+                    <p:message for="name"/>
 
-                    <p:outputLabel for="age" value="Age *" />
-                    <p:inputText id="age" value="#{participantBean.participant.age}" required="true" label="Age" />
-                    <p:message for="age" />
+                    <p:outputLabel for="age" value="Age *"/>
+                    <p:inputText id="age" value="#{participantBean.participant.age}" required="true" label="Age"/>
+                    <p:message for="age"/>
 
-                    <p:outputLabel for="gender" value="Gender *" />
+                    <p:outputLabel for="gender" value="Gender *"/>
                     <p:selectOneMenu id="gender" value="#{participantBean.participant.gender}">
-                        <f:selectItem itemLabel="Female" itemValue="Female" />
-                        <f:selectItem itemLabel="Male" itemValue="Male" />
-                        <f:selectItem itemLabel="LGBT" itemValue="LGBT" />
+                        <f:selectItem itemLabel="Female" itemValue="Female"/>
+                        <f:selectItem itemLabel="Male" itemValue="Male"/>
+                        <f:selectItem itemLabel="LGBT" itemValue="LGBT"/>
                     </p:selectOneMenu>
-                    <p:message for="gender" />
+                    <p:message for="gender"/>
 
-                    <p:outputLabel for="country" value="Country *" />
-                    <p:inputText id="country" value="#{participantBean.participant.country}" />
-                    <p:message for="country" />
+                    <p:outputLabel for="country" value="Country *"/>
+                    <p:inputText id="country" value="#{participantBean.participant.country}"/>
+                    <p:message for="country"/>
 
                 </h:panelGrid>
                 <p:commandButton update="form" value="Update Info" actionListener="#{participantBean.updateParticipant}"
-                                 icon="ui-icon-disk" />
+                                 icon="ui-icon-disk"/>
             </p:panel>
 
             <p:panel header="Improve Your Presentation!">
                 <h:form enctype="multipart/form-data">
                     <h:panelGroup id="fileUploadGroup">
-                        <h:graphicImage value="/image/#{participantBean.participant.image_url}" width="80" height="80" />
+                        <h:graphicImage value="/image/#{participantBean.participant.image_url}" width="80" height="80"/>
 
                         <p:fileUpload fileUploadListener="#{participantBean.handleFileUpload}" update="fileUploadGroup"
-                                      sizeLimit="1500000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-                        <p:growl id="messages" showDetail="true" />
+                                      sizeLimit="1500000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+                        <p:growl id="messages" showDetail="true"/>
                     </h:panelGroup>
                 </h:form>
             </p:panel>
