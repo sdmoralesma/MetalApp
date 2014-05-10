@@ -14,28 +14,28 @@ The Best Headbanging
 <table border="2" align="center">
     <tr>
         <td>
-            <img src="https://cloud.githubusercontent.com/assets/1953226/2936924/579694ea-d87a-11e3-958f-0697302a5710.png" width="350px" height="200px" />
+            <img src="https://cloud.githubusercontent.com/assets/1953226/2936924/579694ea-d87a-11e3-958f-0697302a5710.png" width="400px" height="200px" />
         </td>
         <td>
-            <img src="https://cloud.githubusercontent.com/assets/1953226/2936919/577911f4-d87a-11e3-9339-19236a069dce.png"         width="350px" height="200px" />
-        </td>
-    </tr>
-    
-    <tr>
-        <td>
-            <img src="https://cloud.githubusercontent.com/assets/1953226/2936920/5781db18-d87a-11e3-96d5-9fe5c83cfd75.png" width="350px" height="200px" />
-        </td>
-        <td>
-            <img src="https://cloud.githubusercontent.com/assets/1953226/2936923/57953f46-d87a-11e3-8a84-d91d816147c5.png" width="350px" height="200px" />
+            <img src="https://cloud.githubusercontent.com/assets/1953226/2936919/577911f4-d87a-11e3-9339-19236a069dce.png"         width="400px" height="200px" />
         </td>
     </tr>
     
     <tr>
         <td>
-            <img src="https://cloud.githubusercontent.com/assets/1953226/2936922/578fa37e-d87a-11e3-9dd1-9a77fa59c2e7.png" width="350px" height="200px" />
+            <img src="https://cloud.githubusercontent.com/assets/1953226/2936920/5781db18-d87a-11e3-96d5-9fe5c83cfd75.png" width="400px" height="200px" />
         </td>
         <td>
-            <img src="https://cloud.githubusercontent.com/assets/1953226/2936921/578ae5f0-d87a-11e3-96dd-03e5dbabd463.png" width="350px" height="200px" />
+            <img src="https://cloud.githubusercontent.com/assets/1953226/2936923/57953f46-d87a-11e3-8a84-d91d816147c5.png" width="400px" height="200px" />
+        </td>
+    </tr>
+    
+    <tr>
+        <td>
+            <img src="https://cloud.githubusercontent.com/assets/1953226/2936922/578fa37e-d87a-11e3-9dd1-9a77fa59c2e7.png" width="400px" height="200px" />
+        </td>
+        <td>
+            <img src="https://cloud.githubusercontent.com/assets/1953226/2936921/578ae5f0-d87a-11e3-96dd-03e5dbabd463.png" width="400px" height="200px" />
         </td>
     </tr>
 </table>
