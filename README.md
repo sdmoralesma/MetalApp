@@ -40,7 +40,7 @@ The Best Headbanging
     </tr>
 </table>
 
-** Still Under development ... this could explode in anytime **
+**Still Under development ... this could explode in anytime**
 
 Esta aplicaciòn es un reality donde una serie de concursantes con amplios conocimientos musicales seleccionan las canciones más perfectas del metal y hacen una presentación de la misma mediante su representación histriónica, algo similar a un baile, conocido como headbanging.
 
