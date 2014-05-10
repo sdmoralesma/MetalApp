@@ -1,4 +1,4 @@
-﻿# Application - Headbanging Reality
+﻿# Application - Musical Contest
 
 * *Author* : [Sergio Morales](http://www.linkedin.com/profile/view?id=199182063)
 * *Level* : Intermediate
@@ -8,10 +8,39 @@
 * *Summary* : An application for recognize the best headbanging in the history of the music, using Java EE 7
 
 
-Musical Contest > The Best Headbanging 
+The Best Headbanging 
 ======================================
 
-* * Under development ... this could explode in anytime *
+<table border="2" align="center">
+    <tr>
+        <td>
+            <img src="https://cloud.githubusercontent.com/assets/1953226/2936924/579694ea-d87a-11e3-958f-0697302a5710.png" width="350px" height="200px" />
+        </td>
+        <td>
+            <img src="https://cloud.githubusercontent.com/assets/1953226/2936919/577911f4-d87a-11e3-9339-19236a069dce.png"         width="350px" height="200px" />
+        </td>
+    </tr>
+    
+    <tr>
+        <td>
+            <img src="https://cloud.githubusercontent.com/assets/1953226/2936920/5781db18-d87a-11e3-96d5-9fe5c83cfd75.png" width="350px" height="200px" />
+        </td>
+        <td>
+            <img src="https://cloud.githubusercontent.com/assets/1953226/2936923/57953f46-d87a-11e3-8a84-d91d816147c5.png" width="350px" height="200px" />
+        </td>
+    </tr>
+    
+    <tr>
+        <td>
+            <img src="https://cloud.githubusercontent.com/assets/1953226/2936922/578fa37e-d87a-11e3-9dd1-9a77fa59c2e7.png" width="350px" height="200px" />
+        </td>
+        <td>
+            <img src="https://cloud.githubusercontent.com/assets/1953226/2936921/578ae5f0-d87a-11e3-96dd-03e5dbabd463.png" width="350px" height="200px" />
+        </td>
+    </tr>
+</table>
+
+** Still Under development ... this could explode in anytime **
 
 Esta aplicaciòn es un reality donde una serie de concursantes con amplios conocimientos musicales seleccionan las canciones más perfectas del metal y hacen una presentación de la misma mediante su representación histriónica, algo similar a un baile, conocido como headbanging.
 
