@@ -1,11 +1,11 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="MetalApp:war exploded">
+  <artifact type="exploded-war" name="headbanging-app-ee7:war exploded">
     <output-path>$PROJECT_DIR$/target/HeadBanging-App</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="MetalApp/web/Web" />
+      <element id="javaee-facet-resources" facet="headbanging-app-ee7/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="MetalApp" />
+          <element id="module-output" name="headbanging-app-ee7" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.primefaces:primefaces:3.5" />

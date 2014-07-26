@@ -7,10 +7,10 @@
     <version>0.4-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>HeadBanging App EE7</name>
+    <name>HeadBanging App EE7 and Java 8</name>
 
     <properties>
-        <version.java>1.7</version.java>
+        <version.java>1.8</version.java>
         <version.javaee.jboss>1.0.0.Final</version.javaee.jboss>
         <version.derby>10.9.1.0</version.derby>
         <version.junit>4.10</version.junit>
@@ -32,18 +32,6 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <netbeans.hint.deploy.server>gfv3ee6</netbeans.hint.deploy.server>
     </properties>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.jboss.arquillian</groupId>
-                <artifactId>arquillian-bom</artifactId>
-                <version>${version.arquillian}</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <dependencies>
 
@@ -93,6 +81,19 @@
         </dependency>
 
     </dependencies>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>${version.arquillian}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <profiles>
         <profile>
@@ -169,10 +170,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${version.maven.compiler.plugin}</version>
+                <version>2.3.2</version>
                 <configuration>
-                    <source>${version.java}</source>
-                    <target>${version.java}</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
             <plugin>

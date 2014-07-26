@@ -20,7 +20,8 @@ public class CalculatorIT {
 
     @Deployment
     public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class).addClasses(Calculator.class, CalculatorWs.class)
+        return ShrinkWrap.create(JavaArchive.class)
+                .addClasses(Calculator.class, CalculatorWs.class)
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 

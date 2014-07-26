@@ -1,8 +1,8 @@
 <component name="ArtifactManager">
-  <artifact type="war" name="MetalApp:war">
+  <artifact type="war" name="headbanging-app-ee7:war">
     <output-path>$PROJECT_DIR$/target</output-path>
     <root id="archive" name="HeadBanging-App.war">
-      <element id="artifact" artifact-name="MetalApp:war exploded" />
+      <element id="artifact" artifact-name="headbanging-app-ee7:war exploded" />
     </root>
   </artifact>
 </component>

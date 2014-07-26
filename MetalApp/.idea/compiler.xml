@@ -22,11 +22,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="MetalApp" />
+        <module name="headbanging-app-ee7" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="MetalApp" target="1.7" />
+      <module name="headbanging-app-ee7" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
