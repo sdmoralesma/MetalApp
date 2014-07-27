@@ -1,4 +1,4 @@
-package com.metal.util;
+package com.headbanging.util.servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,23 +15,30 @@ import java.net.URLDecoder;
  */
 public class ImageServlet extends HttpServlet {
 
-    // Constants
-    // ----------------------------------------------------------------------------------
-    /**
-     *
-     */
+    // Constants --------------------------------------------------------------
     private static final long serialVersionUID = 1L;
     private static final int DEFAULT_BUFFER_SIZE = 10240; // 10KB.
-    // Properties
-    // ---------------------------------------------------------------------------------
+
+    // Properties -------------------------------------------------------------
     private String imagePath;
 
-    // Actions
-    // ------------------------------------------------------------------------------------
+    // Helpers ----------------------------------------------------------------
+    private static void close(Closeable resource) {
+        if (resource != null) {
+            try {
+                resource.close();
+            } catch (IOException e) {
+                // Do your thing with the exception. Print it, log it or mail
+                // it.
+                e.printStackTrace();
+            }
+        }
+    }
+
+    // Actions ----------------------------------------------------------------
     public void init() throws ServletException {
 
-        // Define base path somehow. You can define it as init-param of the
-        // servlet.
+        // Define base path somehow. You can define it as init-param of the servlet.
 
         // this.imagePath = "/home/sergio/uploaded/images/"; //Unix
         this.imagePath = "C:/Users/sergio/Documents/images/"; // Win7
@@ -58,9 +65,7 @@ public class ImageServlet extends HttpServlet {
             return;
         }
 
-        // Decode the file name (might contain spaces and on) and prepare file
-        // object.
-
+        // Decode the file name (might contain spaces and on) and prepare file object.
         File image = new File(imagePath, URLDecoder.decode(requestedImage, "UTF-8"));
 
         // Check if file actually exists in filesystem.
@@ -113,20 +118,6 @@ public class ImageServlet extends HttpServlet {
             // Gently close streams.
             close(output);
             close(input);
-        }
-    }
-
-    // Helpers (can be refactored to public utility class)
-    // ---------------------------------------------------
-    private static void close(Closeable resource) {
-        if (resource != null) {
-            try {
-                resource.close();
-            } catch (IOException e) {
-                // Do your thing with the exception. Print it, log it or mail
-                // it.
-                e.printStackTrace();
-            }
         }
     }
 }

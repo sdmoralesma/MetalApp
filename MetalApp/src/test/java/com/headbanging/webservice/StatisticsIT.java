@@ -1,10 +1,8 @@
-package com.metal.test;
+package com.headbanging.webservice;
 
-import com.metal.model.*;
-import com.metal.service.AdminBean;
-import com.metal.service.JuryBean;
-import com.metal.webservice.Statistics;
-import com.metal.webservice.StatisticsWs;
+import com.headbanging.boundary.AdminBean;
+import com.headbanging.boundary.JuryBean;
+import com.headbanging.entity.*;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -19,6 +17,11 @@ import javax.inject.Inject;
 @RunWith(Arquillian.class)
 public class StatisticsIT {
 
+    @Inject
+    Statistics statistics;
+    @Inject
+    AdminBean bean;
+
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap
@@ -29,27 +32,11 @@ public class StatisticsIT {
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
-    @Inject
-    Statistics statistics;
-    @Inject
-    AdminBean bean;
-
     @Test
     public void shouldGetRatingParticipants() {
         Assert.assertEquals("hey", statistics.getRatingParticipants());
     }
 
-    // @Test
-    // public void sholdGetRatingSongs() {
-    // Assert.assertEquals("hey", statistics.getRatingSongs());
-    // }
-    //
-    // @Test
-    // public void sholdGetRatingPerParticipant() {
-    // Participant p = new Participant("pepe1", null, null, 0, null, null, null,
-    // null);
-    // Assert.assertEquals("pepe1", statistics.getRatingPerParticipant(p));
-    // }
     @Test
     public void shouldGetStringTest() {
         Assert.assertEquals("This is a Test", statistics.getStringTest());
