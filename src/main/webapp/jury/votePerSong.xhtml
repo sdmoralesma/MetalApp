@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/template.xhtml">
+
+    <ui:define name="content">
+        <h2>Vote per Song</h2>
+        <h:form>
+            <h:messages/>
+            <h:panelGrid columns="2">
+                <h:outputText value="Title of the Song : "/>
+                <h:inputText value="#{juryBean.song.title}"/>
+
+                <h:outputLabel value="Musicality : "/>
+                <p:rating id="musicalityValue" value="#{juryBean.musicalityPoints}" stars="10" cancel="false"/>
+
+                <h:outputLabel value="Composition : "/>
+                <p:rating id="compositionValue" value="#{juryBean.compositionPoints}" stars="10" cancel="false"/>
+
+                <h:commandButton value="Like this Song!" action="#{juryBean.votePerSong}"/>
+            </h:panelGrid>
+        </h:form>
+
+        <h2>List of Songs</h2>
+        <p:dataTable value="#{juryBean.songList()}" var="song">
+
+            <p:column headerText="Title">
+                <h:outputText value="#{song.title}"/>
+            </p:column>
+
+            <p:column headerText="Artist">
+                <h:outputText value="#{song.artist.name}"/>
+            </p:column>
+
+            <p:column headerText="Gender">
+                <h:outputText value="#{song.gender.name}"/>
+            </p:column>
+
+            <p:column headerText="Score">
+                <h:outputText value="#{song.songMatrix.totalScore}"/>
+            </p:column>
+
+        </p:dataTable>
+
+    </ui:define>
+</ui:composition>

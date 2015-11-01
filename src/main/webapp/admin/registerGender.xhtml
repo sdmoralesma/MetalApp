@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/template.xhtml">
+
+    <ui:define name="content">
+        <h3>Register Gender</h3>
+        <h:form>
+            <h:panelGrid columns="2">
+
+                <h:outputText value="Name Gender: *"/>
+                <h:inputText value="#{adminBean.gender.name}"/>
+
+                <h:outputLabel for="handValue" value="Hand Value: *"/>
+                <p:spinner id="handValue" value="#{adminBean.gender.handValue}" min="1" max="10"/>
+
+                <h:outputLabel for="headValue" value="Head Value: *"/>
+                <p:spinner id="headValue" value="#{adminBean.gender.headValue}" min="1" max="10"/>
+
+                <h:commandButton value="Add Gender" action="#{adminBean.registerGender}"/>
+            </h:panelGrid>
+        </h:form>
+
+        <h2>List of Genders</h2>
+        <h:form>
+            <p:dataTable value="#{adminBean.genderList()}" var="gender">
+
+                <p:column headerText="Name">
+                    <h:outputText value="#{gender.name}"/>
+                </p:column>
+
+                <p:column headerText="Hand Value">
+                    <h:outputText value="#{gender.handValue}"/>
+                </p:column>
+
+                <p:column headerText="Head Value">
+                    <h:outputText value="#{gender.headValue}"/>
+                </p:column>
+
+            </p:dataTable>
+        </h:form>
+
+    </ui:define>
+</ui:composition>

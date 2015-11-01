@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/template.xhtml">
+
+    <ui:define name="content">
+
+        <h:form>
+            <p:graphicImage url="duke.waving.gif" alt="Duke waving his hand"/>
+
+            <p>Hello, my name is Duke. What's yours?</p>
+            <p:inputText id="username" title="My name is: " value="#{helloService.name}" required="true"
+                         requiredMessage="Error: A name is required." maxlength="25"/>
+
+            <p:commandButton id="submit" value="Submit" action="response"/>
+            <p:commandButton id="reset" value="Reset" type="reset"/>
+        </h:form>
+
+        <div class="messagecolor">
+            <h:messages showSummary="true" showDetail="false" errorStyle="color: #d20005" infoStyle="color: blue"/>
+        </div>
+
+        <h3>Welcome Admin!</h3>
+
+        <p>You are logged like an Admin, now you can register Juries and Participants. Also, you are
+            capable of register other kinds of musical genders, artists and songs. Please select an option of the left panel</p>
+    </ui:define>
+</ui:composition>
+

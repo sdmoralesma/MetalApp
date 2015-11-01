@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/template.xhtml">
+
+    <ui:define name="content">
+
+        <p:graphicImage url="resources/images/java-banner.jpg" alt="Welcome!" width="890"/>
+        <br/>
+        <br/>
+
+        <h3>Please select an option:</h3>
+        <p:button outcome="/admin/index" value="Go to Admin Section"/>
+        <br/>
+        <p:button outcome="/participant/index" value="Go to Participant section"/>
+        <br/>
+        <p:button outcome="/jury/index" value="Go to Jury section"/>
+
+        <h:form id="table">
+            <p:graphicImage url="resources/images/participants/cat.gif" height="80" width="80"
+                            style="position:absolute; top:180px; left:540px;"/>
+            <p:graphicImage url="resources/images/participants/animation.gif" height="80" width="80"
+                            style="position:absolute; top:180px; left:620px;"/>
+            <p:graphicImage url="resources/images/participants/bird.gif" height="80" width="80"
+                            style="position:absolute; top:180px; left:700px;"/>
+            <p:graphicImage url="resources/images/participants/beavis.gif" height="80" width="80"
+                            style="position:absolute; top:260px; left:540px;"/>
+            <p:graphicImage url="resources/images/participants/guy.gif" height="80" width="80"
+                            style="position:absolute; top:260px; left:620px;"/>
+            <p:graphicImage url="resources/images/participants/mega.gif" height="80" width="80"
+                            style="position:absolute; top:260px; left:700px;"/>
+            <p:graphicImage url="resources/images/participants/headBee.gif" height="80" width="80"
+                            style="position:absolute; top:340px; left:540px;"/>
+            <p:graphicImage url="resources/images/participants/headBangInCar.gif" height="80" width="80"
+                            style="position:absolute; top:340px; left:620px;"/>
+            <p:graphicImage url="resources/images/participants/partyDog.gif" height="80" width="80"
+                            style="position:absolute; top:340px; left:700px;"/>
+            <p:graphicImage url="resources/images/participants/king-julien.gif" height="80" width="80"
+                            style="position:absolute; top:420px; left:540px;"/>
+            <p:graphicImage url="resources/images/participants/mario.gif" height="80" width="80"
+                            style="position:absolute; top:420px; left:620px;"/>
+            <p:graphicImage url="resources/images/participants/metalBand.gif" height="80" width="80"
+                            style="position:absolute; top:420px; left:700px;"/>
+        </h:form>
+
+    </ui:define>
+</ui:composition>
