@@ -16,4 +16,18 @@ batch
 # Add Datasource
 data-source add --jndi-name=java:/headbanging-ds --name=headbanging-ds --connection-url=jdbc:mysql://headbanging-db:3306/headbanging-db --driver-name=mysql --user-name=mysql --password=mysql --enabled=true
 
+# Add security-domain
+/subsystem=security/security-domain=secureDomain/:add(cache-type=default)
+/subsystem=security/security-domain=secureDomain/authentication=classic:add(\
+    login-modules=[{"code"=>"Database", "flag"=>"required",\
+        "module-options"=>[\
+            ("dsJndiName"=>"java:/headbanging-ds"),\
+            ("principalsQuery"=>"select PASSWORD from users where username=?"),\
+            ("rolesQuery"=>"select GROUP_NAME, 'Roles' from users where USERNAME=?"),\
+            ("hashAlgorithm"=>"SHA-256"),\
+            ("hashEncoding"=>"base64")]\
+    }]\
+)
+
+
 run-batch

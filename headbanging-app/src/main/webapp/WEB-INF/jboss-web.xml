@@ -6,5 +6,18 @@
     <!-- let access the app at / and override default welcome-page -->
     <context-root>/</context-root>
 
-    <security-domain>java:/jaas/other</security-domain>
+    <security-domain>secureDomain</security-domain>
+    <security-role>
+        <principal-name>admin</principal-name>
+        <role-name>admin</role-name>
+    </security-role>
+    <security-role>
+        <principal-name>jury</principal-name>
+        <role-name>jury</role-name>
+    </security-role>
+    <security-role>
+        <principal-name>participant</principal-name>
+        <role-name>participant</role-name>
+    </security-role>
+    
 </jboss-web>

@@ -2,37 +2,39 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-<h:head>
-    <title>MetalApp</title>
-    <link rel="icon" type="image/x-icon" href="#{request.contextPath}/resources/images/favicon.ico"/>
-    <h:outputStylesheet library="css" name="default.css"/>
-</h:head>
-<h:body>
-    <p:layout fullPage="true">
-        <p:layoutUnit position="north" size="75" header="Metal App" resizable="false" closable="false"
-                      collapsible="false"
-                      style="text-align: center;">
-            <h:outputText value="The Best Headbanging in the History" style="font-size: 170%;"/>
-        </p:layoutUnit>
 
-        <p:layoutUnit position="south" size="30" resizable="true" closable="true" collapsible="true"
-                      style="text-align: center;">
-            <h:outputText value="Powered By Java EE 7, Developed By: Sergio Morales" style="font-weight:bold"/>
-        </p:layoutUnit>
+    <h:head>
+        <title>Headbanging App</title>
+        <link rel="icon" type="image/x-icon" href="#{request.contextPath}/resources/images/favicon.ico"/>
+        <h:outputStylesheet library="css" name="default.css"/>
+    </h:head>
 
-        <p:layoutUnit position="west" size="170" header="Menu" resizable="false" closable="false" collapsible="false">
-            <ui:include src="../templates/leftMenu.xhtml"/>
-        </p:layoutUnit>
+    <h:body>
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="75" header="Headbanging App" resizable="false" closable="false"
+                          collapsible="false"
+                          style="text-align: center;">
+                <h:outputText value="The Best Headbanging in the History" style="font-size: 170%;"/>
+            </p:layoutUnit>
 
-        <p:layoutUnit position="east" size="280" header="Help" resizable="true" closable="true" collapsible="true"
-                      effect="drop">
-            <h:outputText value="Welcome, Please enjoy learning Java EE"/>
-        </p:layoutUnit>
+            <p:layoutUnit position="south" size="30" resizable="true" closable="true" collapsible="true"
+                          style="text-align: center;">
+                <h:outputText value="Powered By Java EE 7, Developed By: Sergio Morales" style="font-weight:bold"/>
+            </p:layoutUnit>
 
-        <p:layoutUnit position="center">
-            <ui:insert name="content">Default content here, if any.</ui:insert>
-        </p:layoutUnit>
+            <p:layoutUnit position="west" size="170" header="Menu" resizable="false" closable="false" collapsible="false">
+                <ui:include src="../templates/leftMenu.xhtml"/>
+            </p:layoutUnit>
 
-    </p:layout>
-</h:body>
+            <p:layoutUnit position="east" size="280" header="Help" resizable="true" closable="true" collapsible="true"
+                          effect="drop">
+                <h:outputText value="Welcome, Please enjoy learning Java EE"/>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+                <ui:insert name="content">Default content here, if any.</ui:insert>
+            </p:layoutUnit>
+
+        </p:layout>
+    </h:body>
 </html>
