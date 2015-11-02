@@ -1,0 +1,23 @@
+# Development Environment
+app:
+  build: headbanging-app/
+#  image: payaradocker/payara-micro:4.1.152.1.micro.oraclejdk8
+  command: java -jar payara-micro-4.1.152.1.jar --deploymentDir /opt/payara-micro-wars
+  ports:
+    - "49990:9990"
+    - "48080:8080"
+    - "44848:4848"
+  volumes:
+    - ./headbanging-app/target/:/opt/payara-micro-wars/
+  links:
+    - headbanging-db:headbanging-db
+headbanging-db:
+  build: database/
+  #Will override values of Dockerfile
+  environment:
+    MYSQL_DATABASE: headbanging-db
+    MYSQL_USER: mysql
+    MYSQL_PASSWORD: mysql
+    MYSQL_ROOT_PASSWORD: admin123
+  ports:
+    - "43306:3306"

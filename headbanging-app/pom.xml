@@ -59,7 +59,7 @@
     </dependencies>
 
     <build>
-        <finalName>HeadBanging-App</finalName>
+        <finalName>headbanging-app</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
