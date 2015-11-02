@@ -7,14 +7,15 @@ import com.smorales.headbanging.entity.Song;
 
 import javax.inject.Inject;
 import javax.jws.WebParam;
-import javax.jws.WebService;
+//import javax.jws.WebService;
 import java.util.List;
 
-@WebService(endpointInterface = "com.headbanging.webservice.Statistics")
+//@WebService(endpointInterface = "com.headbanging.webservice.Statistics")
 public class Statistics implements StatisticsWs {
 
     @Inject
     AdminBean adminBean;
+  
     @Inject
     JuryBean juryBean;
 

@@ -5,7 +5,7 @@
              version="2.1">
 
     <persistence-unit name="MetalApp" transaction-type="JTA">
-        <jta-data-source>jdbc/headbanging-ds</jta-data-source>
+        <jta-data-source>java:/headbanging-ds</jta-data-source>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
 <!--            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
@@ -19,8 +19,8 @@
             <property name="javax.persistence.schema-generation.create-script-source" value="META-INF/create.sql"/>
             <property name="javax.persistence.sql-load-script-source" value="META-INF/load.sql"/>-->
 
-            <property name="eclipselink.logging.exceptions" value="true"/>
-            <property name="eclipselink.logging.level" value="FINE"/>
+            <property name = "hibernate.show_sql" value = "true" />
+            
         </properties>
     </persistence-unit>
 </persistence>

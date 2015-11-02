@@ -1,16 +1,11 @@
 # Development Environment
 app:
-  build: headbanging-app/
-  command: java -jar payara-micro.jar --domainConfig headbanging-domain.xml
-#  build: headbanging-app/
-#  command: "/opt/payara41/glassfish/bin/asadmin start-domain payaradomain"
-#  command: ls /opt/payara41/glassfish/domains/payaradomain/autodeploy/
+  build: .
+  command: /opt/wildfly/bin/standalone.sh --debug 8787 -b 0.0.0.0 -bmanagement 0.0.0.0
   ports:
-    - "49009:9009"
+    - "49990:9990"
     - "48080:8080"
-    - "44848:4848"
-  volumes:
-    - ./headbanging-app/target/:/opt/payara-micro-wars/
+    - "48787:8787"
   links:
     - headbanging-db:headbanging-db
 headbanging-db:

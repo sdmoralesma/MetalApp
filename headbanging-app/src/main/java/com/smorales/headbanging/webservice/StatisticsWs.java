@@ -4,10 +4,10 @@ import com.smorales.headbanging.entity.Participant;
 import com.smorales.headbanging.entity.Song;
 
 import javax.jws.WebParam;
-import javax.jws.WebService;
+//import javax.jws.WebService;
 import java.util.List;
 
-@WebService
+//@WebService
 public interface StatisticsWs {
 
     public List<Participant> getRatingParticipants();
