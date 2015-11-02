@@ -1,10 +1,12 @@
 # Development Environment
 app:
   build: headbanging-app/
-#  image: payaradocker/payara-micro:4.1.152.1.micro.oraclejdk8
-  command: java -jar payara-micro-4.1.152.1.jar --deploymentDir /opt/payara-micro-wars
+  command: java -jar payara-micro.jar --domainConfig headbanging-domain.xml
+#  build: headbanging-app/
+#  command: "/opt/payara41/glassfish/bin/asadmin start-domain payaradomain"
+#  command: ls /opt/payara41/glassfish/domains/payaradomain/autodeploy/
   ports:
-    - "49990:9990"
+    - "49009:9009"
     - "48080:8080"
     - "44848:4848"
   volumes:
