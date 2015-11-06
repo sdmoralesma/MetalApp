@@ -3,7 +3,7 @@
 * *Author* : [Sergio Morales](http://www.linkedin.com/profile/view?id=199182063)
 * *Level* : Intermediate
 * *Technologies* : Java EE 7 (JPA 2.1, CDI 1.1, Bean Validation 1.1, EJB Lite 3.2, JSF 2.2 (+ Primefaces 3.5), JAX-RS 2.0, JAX-WS 2.2)
-* *Application Servers* : GlassFish 4.x
+* *Application Servers* : Wildfly 9.x.x
 * *DataBase* : MySQL 5.x
 * *Summary* : An application for recognize the best headbanging in the history of the music, using Java EE 7
 
@@ -144,9 +144,3 @@ a. 8, 9 y 10
 <div class="footer">
     <span class="footerTitle"><span class="uc">S</span>ergio <span class="uc">M</span>orales</span>
 </div>
-
-##TODO
-- Add Arquillian Integration (..in progress)
-- Add web service JaxWS
-- Add web service JaxRS
-- Add more application servers Java EE 7 -profiles-.
