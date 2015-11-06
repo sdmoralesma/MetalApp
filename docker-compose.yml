@@ -2,6 +2,8 @@
 app:
   build: .
   command: /opt/wildfly/bin/standalone.sh --debug 8787 -b 0.0.0.0 -bmanagement 0.0.0.0
+  volumes:
+    - ./headbanging-app/target/headbanging-app.war:/opt/wildfly/standalone/deployments/headbanging-app.war:ro
   ports:
     - "49990:9990"
     - "48080:8080"

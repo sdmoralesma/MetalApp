@@ -7,6 +7,11 @@
 * *DataBase* : MySQL 5.x
 * *Summary* : An application for recognize the best headbanging in the history of the music, using Java EE 7
 
+## Installation and Running
+
+1. install docker engine and docker-compose
+2. download source code and go to project folder
+3. run containers : ``` docker-compose up ```
 
 The Best Headbanging 
 ======================================
