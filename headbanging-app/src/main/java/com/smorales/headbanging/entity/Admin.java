@@ -15,10 +15,11 @@ import java.io.Serializable;
         @NamedQuery(name = Admin.FIND_BY_USERNAME, query = "SELECT a FROM Admin a WHERE a.username = :username")})
 public class Admin extends User implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     public static final String FIND_ALL = "Admin.findAll";
     public static final String FIND_BY_NAME = "Admin.findByName";
     public static final String FIND_BY_USERNAME = "Admin.findByUsername";
-    private static final long serialVersionUID = 1L;
 
     @Size(max = 50)
     @Column(nullable = false, length = 100)

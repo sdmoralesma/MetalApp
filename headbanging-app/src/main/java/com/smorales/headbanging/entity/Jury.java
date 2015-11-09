@@ -15,10 +15,11 @@ import java.io.Serializable;
         @NamedQuery(name = Jury.FIND__BY_USERNAME, query = "SELECT j FROM Jury j WHERE j.username = :username")})
 public class Jury extends User implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     public static final String FIND_ALL = "Jury.findAll";
     public static final String FIND_BY_NAME = "Jury.findByName";
     public static final String FIND__BY_USERNAME = "Jury.findByUsername";
-    private static final long serialVersionUID = 1L;
 
     @Size(max = 50)
     @Column(nullable = false, length = 100)

@@ -12,14 +12,16 @@ import java.io.Serializable;
         @NamedQuery(name = ScoreMatrix.FIND_BY_USERNAME, query = "SELECT s FROM ScoreMatrix s WHERE s.idScoreMatrix = :username")})
 public class ScoreMatrix implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     public static final String FIND_ALL = "ScoreMatrix.findAll";
     public static final String FIND_BY_USERNAME = "ScoreMatrix.findByUsername";
-    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_score_matrix")
     private int idScoreMatrix;
+
     private int hand1;
     private int hand2;
     private int hand3;

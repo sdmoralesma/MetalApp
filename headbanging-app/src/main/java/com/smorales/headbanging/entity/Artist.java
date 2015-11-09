@@ -14,9 +14,10 @@ import java.util.List;
         @NamedQuery(name = Artist.FIND_BY_NAME, query = "SELECT a FROM Artist a WHERE a.name = :name")})
 public class Artist implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     public static final String FIND_ALL = "Artist.findAll";
     public static final String FIND_BY_NAME = "Artist.findByName";
-    private static final long serialVersionUID = 1L;
 
     @Id
     @Column(nullable = false, length = 50)

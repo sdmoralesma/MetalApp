@@ -18,10 +18,11 @@ import java.util.List;
         @NamedQuery(name = Participant.FIND_BY_USERNAME, query = "SELECT p FROM Participant p WHERE p.username = :username")})
 public class Participant extends User implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     public static final String FIND_ALL = "Participant.findAll";
     public static final String FIND_BY_NAME = "Participant.findByName";
     public static final String FIND_BY_USERNAME = "Participant.findByUsername";
-    private static final long serialVersionUID = 1L;
 
     @Column(nullable = false)
     @Min(15)

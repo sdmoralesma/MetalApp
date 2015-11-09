@@ -5,7 +5,7 @@ import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -13,24 +13,17 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 import java.io.*;
 
-/**
- * Permite a un participante ver su propio perfil y modificarlo
- */
 @Named
-@Transactional
-@RequestScoped
+@Stateless
 public class ParticipantBean {
 
     @PersistenceContext
-    private EntityManager em;
-    @Inject
-    private Participant participant;
+    EntityManager em;
 
-    public ParticipantBean() {
-    }
+    @Inject
+    Participant participant;
 
     @PostConstruct
     public void populateParticipant() {
@@ -82,13 +75,14 @@ public class ParticipantBean {
 
             // Si la nueva imagen tiene una extension distinta a la actual,
             // entonces, borra la imagen actual
-            if (currentImage.getName().equalsIgnoreCase(newImage.getName()) == false) {
-                currentImage.delete();
+            if (!currentImage.getName().equalsIgnoreCase(newImage.getName())) {
+                boolean delete = currentImage.delete();
+                System.out.println("deleted: " + currentImage.toString());
             }
 
-            int read = 0;
             byte[] bytes = new byte[1024];
 
+            int read;
             while ((read = inputStream.read(bytes)) != -1) {
                 outStream.write(bytes, 0, read);
             }

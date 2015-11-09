@@ -13,10 +13,11 @@ import java.io.Serializable;
         @NamedQuery(name = Presentation.FIND_BY_ID_PARTICIPANT, query = "SELECT p FROM Presentation p WHERE p.participant.username = :username")})
 public class Presentation implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     public static final String FIND_ALL = "Presentation.findAll";
     public static final String FIND_BY_ID_PRESENTATION = "Presentation.findByIdPresentation";
     public static final String FIND_BY_ID_PARTICIPANT = "Presentation.findByIdParticipant";
-    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

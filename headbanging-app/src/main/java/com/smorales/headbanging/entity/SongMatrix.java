@@ -13,15 +13,17 @@ import java.io.Serializable;
         @NamedQuery(name = SongMatrix.FIND_BY_SONG_TITLE, query = "SELECT s FROM SongMatrix s WHERE s.song = :song")})
 public class SongMatrix implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     public static final String FIND_ALL = "SongMatrix.findAll";
     public static final String FIND_BY_ID_SONG = "SongMatrix.findByIdSong";
     public static final String FIND_BY_SONG_TITLE = "SongMatrix.findBySongTitle";
-    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_song_matrix")
     private int idSongMatrix;
+
     private int composition1;
     private int composition2;
     private int composition3;

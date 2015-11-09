@@ -127,7 +127,7 @@
     <!-- ############################################# -->
     <servlet>
         <servlet-name>imageServlet</servlet-name>
-        <servlet-class>com.smorales.headbanging.util.servlet.ImageServlet</servlet-class>
+        <servlet-class>com.smorales.headbanging.control.ImageServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>imageServlet</servlet-name>

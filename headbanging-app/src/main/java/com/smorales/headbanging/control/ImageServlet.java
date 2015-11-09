@@ -1,4 +1,4 @@
-package com.smorales.headbanging.util.servlet;
+package com.smorales.headbanging.control;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

@@ -1,39 +1,41 @@
 package com.smorales.headbanging.boundary;
 
 import com.smorales.headbanging.entity.*;
-import javax.enterprise.context.RequestScoped;
+
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.management.RuntimeErrorException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 import java.util.List;
 
-/**
- * Registra Usuarios y Administradores en el sistema
- */
 @Named
-@Transactional
-@RequestScoped
+@Stateless
 public class AdminBean {
 
     @PersistenceContext
-    private EntityManager em;
+    EntityManager em;
+
     @Inject
-    private Admin admin;
+    Admin admin;
+
     @Inject
-    private Jury jury;
+    Jury jury;
+
     @Inject
-    private Participant participant;
+    Participant participant;
+
     @Inject
-    private Song song;
+    Song song;
+
     @Inject
-    private Gender gender;
+    Gender gender;
+
     @Inject
-    private Artist artist;
-    
+    Artist artist;
+
     private String selectedArtistName;
     private String selectedGenderName;
 

@@ -15,11 +15,12 @@ import java.util.List;
         @NamedQuery(name = Song.FIND_BY_ID_GENDER, query = "SELECT s FROM Song s WHERE s.gender = :idGender")})
 public class Song implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     public static final String FIND_ALL = "Song.findAll";
     public static final String FIND_BY_TITLE = "Song.findByTitle";
     public static final String FIND_BY_ID_ARTIST = "Song.findByIdArtist";
     public static final String FIND_BY_ID_GENDER = "Song.findByIdGender";
-    private static final long serialVersionUID = 1L;
 
     @Id
     @Column(length = 100)

@@ -14,9 +14,10 @@ import java.util.List;
         @NamedQuery(name = Gender.FIND_BY_NAME, query = "SELECT g FROM Gender g WHERE g.name = :name")})
 public class Gender implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     public static final String FIND_ALL = "Gender.findAll";
     public static final String FIND_BY_NAME = "Gender.findByName";
-    private static final long serialVersionUID = 1L;
 
     @Id
     @Column(length = 50)

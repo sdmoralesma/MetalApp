@@ -15,9 +15,10 @@ import java.io.Serializable;
         @NamedQuery(name = User.FIND_ALL_BY_TYPE, query = "SELECT u FROM User u WHERE TYPE(u) = :type")})
 public class User implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     public static final String FIND_ALL = "User.findAllUsers";
     public static final String FIND_ALL_BY_TYPE = "User.findAllByType";
-    private static final long serialVersionUID = 1L;
 
     @Id
     @Column(unique = true, nullable = false, length = 50)

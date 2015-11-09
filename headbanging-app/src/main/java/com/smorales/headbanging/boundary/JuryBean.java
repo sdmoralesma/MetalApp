@@ -5,7 +5,7 @@ import com.smorales.headbanging.entity.ScoreMatrix;
 import com.smorales.headbanging.entity.Song;
 import com.smorales.headbanging.entity.SongMatrix;
 
-import javax.enterprise.context.RequestScoped;
+import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -13,29 +13,29 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 import java.util.List;
 
-/**
- * Vota por Concursante y Vota por Cancion
- */
 @Named
-@Transactional
-@RequestScoped
+@Stateless
 public class JuryBean {
 
-    @PersistenceContext
-    private EntityManager em;
-    @Inject
-    private Participant participant;
-    @Inject
-    private Song song;
-    @Inject
-    private SongMatrix matrix;
     private Integer musicalityPoints;
     private Integer compositionPoints;
     private Integer handPoints;
     private Integer headPoints;
+
+    @PersistenceContext
+    EntityManager em;
+
+    @Inject
+    Participant participant;
+
+    @Inject
+    Song song;
+
+    @Inject
+    SongMatrix matrix;
+
 
     public JuryBean() {
     }
