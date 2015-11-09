@@ -6,55 +6,40 @@ import javax.ejb.Stateless;
 import javax.management.RuntimeErrorException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Stateless
-public class AdministratorDAO {
+public class AdminDAO {
 
     @PersistenceContext
     EntityManager em;
 
     public List<Song> songList() {
-        TypedQuery<Song> typedQuery = em.createNamedQuery(Song.FIND_ALL, Song.class);
-        return typedQuery.getResultList();
+        return em.createNamedQuery(Song.FIND_ALL, Song.class).getResultList();
     }
 
-    public List<ParticipantDAO> participantList() {
-        TypedQuery<ParticipantDAO> typedQuery = em.createNamedQuery(Participant.FIND_ALL, ParticipantDAO.class);
-        return typedQuery.getResultList();
+    public List<Participant> participantList() {
+        return em.createNamedQuery(Participant.FIND_ALL, Participant.class).getResultList();
     }
 
     public List<Gender> genderList() {
-        TypedQuery<Gender> typedQuery = em.createNamedQuery(Gender.FIND_ALL, Gender.class);
-        return typedQuery.getResultList();
+        return em.createNamedQuery(Gender.FIND_ALL, Gender.class).getResultList();
     }
 
     public List<Artist> artistList() {
-        TypedQuery<Artist> typedQuery = em.createNamedQuery(Artist.FIND_ALL, Artist.class);
-        return typedQuery.getResultList();
+        return em.createNamedQuery(Artist.FIND_ALL, Artist.class).getResultList();
     }
 
-    public List<JuryDAO> juryList() {
-        TypedQuery<JuryDAO> typedQuery = em.createNamedQuery(Jury.FIND_ALL, JuryDAO.class);
-        return typedQuery.getResultList();
+    public List<Jury> juryList() {
+        return em.createNamedQuery(Jury.FIND_ALL, Jury.class).getResultList();
     }
 
     public List<Admin> adminList() {
-        TypedQuery<Admin> typedQuery = em.createNamedQuery(Admin.FIND_ALL, Admin.class);
-        return typedQuery.getResultList();
+        return em.createNamedQuery(Admin.FIND_ALL, Admin.class).getResultList();
     }
 
     public <T> T findInstanceById(Class<T> clazz, Object id) {
         return em.find(clazz, id);
-    }
-
-    public <T> T updateInstance(T instance) {
-        return em.merge(instance);
-    }
-
-    public <T> void deleteInstance(T instance) {
-        em.remove(em.merge(instance));
     }
 
     public String registerAdmin(Admin admin) {

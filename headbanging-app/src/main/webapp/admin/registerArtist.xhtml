@@ -12,13 +12,13 @@
                 <h:outputText value="Description :"/>
                 <h:inputText value="#{adminModel.artist.description}"/>
 
-                <h:commandButton value="Register Artist" action="#{administratorDAO.registerArtist}"/>
+                <h:commandButton value="Register Artist" action="#{adminController.registerArtist}"/>
             </h:panelGrid>
         </h:form>
 
         <h2>List of Artist</h2>
         <h:form>
-            <p:dataTable value="#{administratorDAO.artistList()}" var="artist">
+            <p:dataTable value="#{adminController.artistList()}" var="artist">
 
                 <p:column headerText="Name">
                     <h:outputText value="#{artist.name}"/>

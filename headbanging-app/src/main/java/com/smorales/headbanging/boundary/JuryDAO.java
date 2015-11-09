@@ -10,7 +10,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Stateless
@@ -23,33 +22,12 @@ public class JuryDAO {
         return this.findAllInstances(Song.FIND_ALL, Song.class);
     }
 
-    public List<Participant> participatList() {
-        return this.findAllInstances(Participant.FIND_ALL, Participant.class);
-    }
-
     public List<SongMatrix> matrixList() {
         return this.findAllInstances(SongMatrix.FIND_ALL, SongMatrix.class);
     }
 
-    public List<Participant> participantList() {
-        return this.findAllInstances(Participant.FIND_ALL, Participant.class);
-    }
-
     public <T> List<T> findAllInstances(String query, Class<T> clazz) {
-        TypedQuery<T> typedQuery = em.createNamedQuery(query, clazz);
-        return typedQuery.getResultList();
-    }
-
-    public <T> T findInstanceById(Class<T> clazz, Object id) {
-        return em.find(clazz, id);
-    }
-
-    public <T> T updateInstance(T instance) {
-        return em.merge(instance);
-    }
-
-    public <T> void deleteInstance(T instance) {
-        em.remove(em.merge(instance));
+        return em.createNamedQuery(query, clazz).getResultList();
     }
 
     public String votePerParticipant(Participant participant, Integer handPoints, Integer headPoints) {

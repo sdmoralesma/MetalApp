@@ -66,7 +66,6 @@ public class Participant extends User implements Serializable {
 
     public Participant(int age, String country, String gender, String name, String image_url,
                        List<Presentation> presentations, ScoreMatrix scoreMatrix) {
-        super();
         this.age = age;
         this.country = country;
         this.gender = gender;
@@ -119,14 +118,12 @@ public class Participant extends User implements Serializable {
     public Presentation addPresentation(Presentation presentation) {
         getPresentations().add(presentation);
         presentation.setParticipant(this);
-
         return presentation;
     }
 
     public Presentation removePresentation(Presentation presentation) {
         getPresentations().remove(presentation);
         presentation.setParticipant(null);
-
         return presentation;
     }
 

@@ -8,7 +8,7 @@
             <p:graphicImage url="duke.waving.gif" alt="Duke waving his hand"/>
 
             <p>Hello, my name is Duke. What's yours?</p>
-            <p:inputText id="username" title="My name is: " value="#{helloService.name}" required="true"
+            <p:inputText id="username" title="My name is: " value="#{helloModel.name}" required="true"
                          requiredMessage="Error: A name is required." maxlength="25"/>
 
             <p:commandButton id="submit" value="Submit" action="response"/>

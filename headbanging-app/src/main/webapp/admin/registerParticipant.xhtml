@@ -39,14 +39,14 @@
                 <h:inputText id="country" value="#{adminModel.participant.country}"/>
                 <p:message for="country"/>
 
-                <p:commandButton value="Register Participant" action="#{administratorDAO.registerParticipant}"
+                <p:commandButton value="Register Participant" action="#{adminController.registerParticipant}"
                                  icon="ui-icon-disk"/>
             </h:panelGrid>
         </h:form>
 
         <h2>List of the Participants</h2>
         <h:form id="table">
-            <p:dataTable value="#{juryDAO.participantList()}" var="participant">
+            <p:dataTable value="#{adminController.participantList}" var="participant">
 
                 <p:column headerText="UserName">
                     <h:outputText value="#{participant.username}"/>

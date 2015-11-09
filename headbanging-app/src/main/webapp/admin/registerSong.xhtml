@@ -16,7 +16,7 @@
                                  style="width:175px"
                                  filter="true" filterMatchMode="startsWith">
                     <f:selectItem itemLabel="Select One" itemValue=""/>
-                    <f:selectItems value="#{administratorDAO.genderList()}" var="gender" itemLabel="#{gender.name}"
+                    <f:selectItems value="#{adminController.genderList()}" var="gender" itemLabel="#{gender.name}"
                                    itemValue="#{gender.name}"/>
                 </p:selectOneMenu>
 
@@ -25,18 +25,18 @@
                                  style="width:175px"
                                  filter="true" filterMatchMode="startsWith">
                     <f:selectItem itemLabel="Select One" itemValue=""/>
-                    <f:selectItems value="#{administratorDAO.artistList()}" var="artist" itemLabel="#{artist.name}"
+                    <f:selectItems value="#{adminController.artistList()}" var="artist" itemLabel="#{artist.name}"
                                    itemValue="#{artist.name}"/>
                 </p:selectOneMenu>
 
-                <h:commandButton value="Add Song" action="#{administratorDAO.registerSong}"/>
+                <h:commandButton value="Add Song" action="#{adminController.registerSong}"/>
                 <h:messages/>
             </h:panelGrid>
         </h:form>
 
         <h2>List of Songs</h2>
         <h:form>
-            <p:dataTable value="#{administratorDAO.songList()}" var="song">
+            <p:dataTable value="#{adminController.songList()}" var="song">
 
                 <p:column headerText="Title">
                     <h:outputText value="#{song.title}"/>

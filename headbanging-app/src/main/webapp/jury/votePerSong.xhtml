@@ -16,12 +16,12 @@
                 <h:outputLabel value="Composition : "/>
                 <p:rating id="compositionValue" value="#{juryModel.compositionPoints}" stars="10" cancel="false"/>
 
-                <h:commandButton value="Like this Song!" action="#{juryDAO.votePerSong}"/>
+                <h:commandButton value="Like this Song!" action="#{juryController.votePerSong}"/>
             </h:panelGrid>
         </h:form>
 
         <h2>List of Songs</h2>
-        <p:dataTable value="#{juryDAO.songList()}" var="song">
+        <p:dataTable value="#{adminController.songList}" var="song">
 
             <p:column headerText="Title">
                 <h:outputText value="#{song.title}"/>

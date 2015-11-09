@@ -26,13 +26,13 @@
                 <h:inputText id="description" value="#{adminModel.jury.description}"/>
                 <p:message for="description"/>
 
-                <p:commandButton value="Register Jury" action="#{administratorDAO.registerJury}" icon="ui-icon-disk"/>
+                <p:commandButton value="Register Jury" action="#{adminController.registerJury}" icon="ui-icon-disk"/>
             </h:panelGrid>
         </h:form>
 
         <h2>List of Juries</h2>
         <h:form>
-            <p:dataTable value="#{administratorDAO.juryList()}" var="jury">
+            <p:dataTable value="#{adminController.juryList()}" var="jury">
 
                 <p:column headerText="Username">
                     <h:outputText value="#{jury.username}"/>

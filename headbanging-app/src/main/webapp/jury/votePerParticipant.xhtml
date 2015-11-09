@@ -16,13 +16,13 @@
                 <h:outputLabel value="Hand Value "/>
                 <p:rating id="musicalityValue" value="#{juryModel.handPoints}" stars="10" cancel="false"/>
 
-                <h:commandButton value="Vote per Participant!" action="#{juryDAO.votePerParticipant}"/>
+                <h:commandButton value="Vote per Participant!" action="#{juryController.votePerParticipant}"/>
                 <h:messages/>
             </h:panelGrid>
         </h:form>
 
         <h2>List of the Participants</h2>
-        <p:dataTable value="#{juryDAO.participantList()}" var="participant">
+        <p:dataTable value="#{adminController.participantList}" var="participant">
 
             <p:column headerText="UserName">
                 <h:outputText value="#{participant.username}"/>
