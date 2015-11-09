@@ -8,22 +8,15 @@ import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.io.*;
 
-@Named
 @Stateless
 public class ParticipantDAO {
 
     @PersistenceContext
     EntityManager em;
-
-    @PostConstruct//TODO: what is this doing here!
-    public void populateParticipant(Participant participant) {
-        participant = this.findParticipantByPK();
-    }
 
     public Participant findParticipantByPK() {
         String nameLoggedUser = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();

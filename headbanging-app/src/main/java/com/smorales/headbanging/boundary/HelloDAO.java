@@ -13,8 +13,8 @@ public class HelloDAO {
         return name;
     }
 
-    public void setName(String user_name) {
-        this.name = user_name;
+    public void setName(String name) {
+        this.name = name;
     }
 }
 

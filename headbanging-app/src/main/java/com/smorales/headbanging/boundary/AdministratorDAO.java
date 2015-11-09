@@ -3,14 +3,12 @@ package com.smorales.headbanging.boundary;
 import com.smorales.headbanging.entity.*;
 
 import javax.ejb.Stateless;
-import javax.inject.Named;
 import javax.management.RuntimeErrorException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-@Named
 @Stateless
 public class AdministratorDAO {
 
