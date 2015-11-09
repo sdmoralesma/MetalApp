@@ -8,21 +8,21 @@
             <h:messages/>
             <h:panelGrid columns="2">
                 <h:outputText value="Username of Participant"/>
-                <h:inputText value="#{juryBean.participant.username}"/>
+                <h:inputText value="#{juryModel.participant.username}"/>
 
                 <h:outputLabel value="Head Value"/>
-                <p:rating id="compositionValue" value="#{juryBean.headPoints}" stars="10" cancel="false"/>
+                <p:rating id="compositionValue" value="#{juryModel.headPoints}" stars="10" cancel="false"/>
 
                 <h:outputLabel value="Hand Value "/>
-                <p:rating id="musicalityValue" value="#{juryBean.handPoints}" stars="10" cancel="false"/>
+                <p:rating id="musicalityValue" value="#{juryModel.handPoints}" stars="10" cancel="false"/>
 
-                <h:commandButton value="Vote per Participant!" action="#{juryBean.votePerParticipant}"/>
+                <h:commandButton value="Vote per Participant!" action="#{juryDAO.votePerParticipant}"/>
                 <h:messages/>
             </h:panelGrid>
         </h:form>
 
         <h2>List of the Participants</h2>
-        <p:dataTable value="#{juryBean.participantList()}" var="participant">
+        <p:dataTable value="#{juryDAO.participantList()}" var="participant">
 
             <p:column headerText="UserName">
                 <h:outputText value="#{participant.username}"/>

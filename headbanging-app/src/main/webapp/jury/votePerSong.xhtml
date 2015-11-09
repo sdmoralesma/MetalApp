@@ -8,20 +8,20 @@
             <h:messages/>
             <h:panelGrid columns="2">
                 <h:outputText value="Title of the Song : "/>
-                <h:inputText value="#{juryBean.song.title}"/>
+                <h:inputText value="#{juryModel.song.title}"/>
 
                 <h:outputLabel value="Musicality : "/>
-                <p:rating id="musicalityValue" value="#{juryBean.musicalityPoints}" stars="10" cancel="false"/>
+                <p:rating id="musicalityValue" value="#{juryModel.musicalityPoints}" stars="10" cancel="false"/>
 
                 <h:outputLabel value="Composition : "/>
-                <p:rating id="compositionValue" value="#{juryBean.compositionPoints}" stars="10" cancel="false"/>
+                <p:rating id="compositionValue" value="#{juryModel.compositionPoints}" stars="10" cancel="false"/>
 
-                <h:commandButton value="Like this Song!" action="#{juryBean.votePerSong}"/>
+                <h:commandButton value="Like this Song!" action="#{juryDAO.votePerSong}"/>
             </h:panelGrid>
         </h:form>
 
         <h2>List of Songs</h2>
-        <p:dataTable value="#{juryBean.songList()}" var="song">
+        <p:dataTable value="#{juryDAO.songList()}" var="song">
 
             <p:column headerText="Title">
                 <h:outputText value="#{song.title}"/>

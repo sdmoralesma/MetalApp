@@ -9,34 +9,34 @@
             <h:panelGrid columns="2">
 
                 <h:outputText value="Title of the Song"/>
-                <h:inputText value="#{adminBean.song.title}"/>
+                <h:inputText value="#{adminModel.song.title}"/>
 
                 <h:outputText value="Gender Name:"/>
-                <p:selectOneMenu value="#{adminBean.selectedGenderName}" panelStyle="width:150px" effect="fade"
+                <p:selectOneMenu value="#{adminModel.selectedGenderName}" panelStyle="width:150px" effect="fade"
                                  style="width:175px"
                                  filter="true" filterMatchMode="startsWith">
                     <f:selectItem itemLabel="Select One" itemValue=""/>
-                    <f:selectItems value="#{adminBean.genderList()}" var="gender" itemLabel="#{gender.name}"
+                    <f:selectItems value="#{administratorDAO.genderList()}" var="gender" itemLabel="#{gender.name}"
                                    itemValue="#{gender.name}"/>
                 </p:selectOneMenu>
 
                 <h:outputText value="Artist Name:"/>
-                <p:selectOneMenu value="#{adminBean.selectedArtistName}" panelStyle="width:150px" effect="fade"
+                <p:selectOneMenu value="#{adminModel.selectedArtistName}" panelStyle="width:150px" effect="fade"
                                  style="width:175px"
                                  filter="true" filterMatchMode="startsWith">
                     <f:selectItem itemLabel="Select One" itemValue=""/>
-                    <f:selectItems value="#{adminBean.artistList()}" var="artist" itemLabel="#{artist.name}"
+                    <f:selectItems value="#{administratorDAO.artistList()}" var="artist" itemLabel="#{artist.name}"
                                    itemValue="#{artist.name}"/>
                 </p:selectOneMenu>
 
-                <h:commandButton value="Add Song" action="#{adminBean.registerSong}"/>
+                <h:commandButton value="Add Song" action="#{administratorDAO.registerSong}"/>
                 <h:messages/>
             </h:panelGrid>
         </h:form>
 
         <h2>List of Songs</h2>
         <h:form>
-            <p:dataTable value="#{adminBean.songList()}" var="song">
+            <p:dataTable value="#{administratorDAO.songList()}" var="song">
 
                 <p:column headerText="Title">
                     <h:outputText value="#{song.title}"/>

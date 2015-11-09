@@ -19,5 +19,5 @@
         <principal-name>participant</principal-name>
         <role-name>participant</role-name>
     </security-role>
-    
+
 </jboss-web>

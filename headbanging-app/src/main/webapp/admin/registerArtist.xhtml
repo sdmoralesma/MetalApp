@@ -7,18 +7,18 @@
         <h:form>
             <h:panelGrid columns="2">
                 <h:outputText value="Artist Name* :"/>
-                <h:inputText id="name" value="#{adminBean.artist.name}"/>
+                <h:inputText id="name" value="#{adminModel.artist.name}"/>
 
                 <h:outputText value="Description :"/>
-                <h:inputText value="#{adminBean.artist.description}"/>
+                <h:inputText value="#{adminModel.artist.description}"/>
 
-                <h:commandButton value="Register Artist" action="#{adminBean.registerArtist}"/>
+                <h:commandButton value="Register Artist" action="#{administratorDAO.registerArtist}"/>
             </h:panelGrid>
         </h:form>
 
         <h2>List of Artist</h2>
         <h:form>
-            <p:dataTable value="#{adminBean.artistList()}" var="artist">
+            <p:dataTable value="#{administratorDAO.artistList()}" var="artist">
 
                 <p:column headerText="Name">
                     <h:outputText value="#{artist.name}"/>

@@ -8,7 +8,6 @@ import com.smorales.headbanging.entity.SongMatrix;
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,28 +16,10 @@ import java.util.List;
 
 @Named
 @Stateless
-public class JuryBean {
-
-    private Integer musicalityPoints;
-    private Integer compositionPoints;
-    private Integer handPoints;
-    private Integer headPoints;
+public class JuryDAO {
 
     @PersistenceContext
     EntityManager em;
-
-    @Inject
-    Participant participant;
-
-    @Inject
-    Song song;
-
-    @Inject
-    SongMatrix matrix;
-
-
-    public JuryBean() {
-    }
 
     public List<Song> songList() {
         return this.findAllInstances(Song.FIND_ALL, Song.class);
@@ -73,11 +54,11 @@ public class JuryBean {
         em.remove(em.merge(instance));
     }
 
-    public String votePerParticipant() {
-        TypedQuery<Participant> query = em.createNamedQuery(Participant.FIND_BY_USERNAME, Participant.class)
-                .setParameter("username", participant.getUsername());
+    public String votePerParticipant(Participant participant, Integer handPoints, Integer headPoints) {
+        List<Participant> participants = em.createNamedQuery(Participant.FIND_BY_USERNAME, Participant.class)
+                .setParameter("username", participant.getUsername())
+                .getResultList();
 
-        List<Participant> participants = query.getResultList();
         if (participants.isEmpty()) {
             FacesMessage msg = new FacesMessage("The participant does not exists");
             FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -104,10 +85,10 @@ public class JuryBean {
         return "votePerParticipant.xhtml";
     }
 
-    public String votePerSong() {
-        TypedQuery<Song> query = em.createNamedQuery(Song.FIND_BY_TITLE, Song.class).setParameter("title",
-                song.getTitle());
-        List<Song> songs = query.getResultList();
+    public String votePerSong(Song song, Integer compositionPoints, Integer musicalityPoints) {
+        List<Song> songs = em.createNamedQuery(Song.FIND_BY_TITLE, Song.class)
+                .setParameter("title", song.getTitle())
+                .getResultList();
 
         if (songs.isEmpty()) {
             FacesMessage msg = new FacesMessage("The song does not exists");
@@ -378,61 +359,4 @@ public class JuryBean {
         return songMatrix;
     }
 
-    // Getters & Setters
-    // --------------------------------------------------------------
-    public Participant getParticipant() {
-        return participant;
-    }
-
-    public void setParticipant(Participant participant) {
-        this.participant = participant;
-    }
-
-    public Song getSong() {
-        return song;
-    }
-
-    public void setSong(Song song) {
-        this.song = song;
-    }
-
-    public Integer getMusicalityPoints() {
-        return musicalityPoints;
-    }
-
-    public void setMusicalityPoints(Integer musicalityPoints) {
-        this.musicalityPoints = musicalityPoints;
-    }
-
-    public Integer getCompositionPoints() {
-        return compositionPoints;
-    }
-
-    public void setCompositionPoints(Integer compositionPoints) {
-        this.compositionPoints = compositionPoints;
-    }
-
-    public Integer getHandPoints() {
-        return handPoints;
-    }
-
-    public void setHandPoints(Integer handPoints) {
-        this.handPoints = handPoints;
-    }
-
-    public Integer getHeadPoints() {
-        return headPoints;
-    }
-
-    public void setHeadPoints(Integer headPoints) {
-        this.headPoints = headPoints;
-    }
-
-    public SongMatrix getMatrix() {
-        return matrix;
-    }
-
-    public void setMatrix(SongMatrix matrix) {
-        this.matrix = matrix;
-    }
 }

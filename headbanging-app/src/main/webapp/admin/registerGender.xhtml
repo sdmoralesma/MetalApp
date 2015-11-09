@@ -8,21 +8,21 @@
             <h:panelGrid columns="2">
 
                 <h:outputText value="Name Gender: *"/>
-                <h:inputText value="#{adminBean.gender.name}"/>
+                <h:inputText value="#{adminModel.gender.name}"/>
 
                 <h:outputLabel for="handValue" value="Hand Value: *"/>
-                <p:spinner id="handValue" value="#{adminBean.gender.handValue}" min="1" max="10"/>
+                <p:spinner id="handValue" value="#{adminModel.gender.handValue}" min="1" max="10"/>
 
                 <h:outputLabel for="headValue" value="Head Value: *"/>
-                <p:spinner id="headValue" value="#{adminBean.gender.headValue}" min="1" max="10"/>
+                <p:spinner id="headValue" value="#{adminModel.gender.headValue}" min="1" max="10"/>
 
-                <h:commandButton value="Add Gender" action="#{adminBean.registerGender}"/>
+                <h:commandButton value="Add Gender" action="#{administratorDAO.registerGender}"/>
             </h:panelGrid>
         </h:form>
 
         <h2>List of Genders</h2>
         <h:form>
-            <p:dataTable value="#{adminBean.genderList()}" var="gender">
+            <p:dataTable value="#{administratorDAO.genderList()}" var="gender">
 
                 <p:column headerText="Name">
                     <h:outputText value="#{gender.name}"/>

@@ -1,12 +1,15 @@
 package com.smorales.headbanging.boundary.rest;
 
-import com.smorales.headbanging.boundary.AdminBean;
-import com.smorales.headbanging.boundary.JuryBean;
+import com.smorales.headbanging.boundary.AdministratorDAO;
+import com.smorales.headbanging.boundary.JuryDAO;
 import com.smorales.headbanging.entity.Participant;
 import com.smorales.headbanging.entity.Song;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -18,11 +21,14 @@ import java.util.List;
 @Consumes({MediaType.APPLICATION_JSON})
 public class Statistics {
 
-    @Inject
-    AdminBean adminBean;
+    @PersistenceContext
+    EntityManager em;
 
     @Inject
-    JuryBean juryBean;
+    AdministratorDAO administratorDAO;
+
+    @Inject
+    JuryDAO juryDAO;
 
     @GET
     @Path("/ping")
@@ -33,19 +39,20 @@ public class Statistics {
     @GET
     @Path("/ratings/participants")
     public List<Participant> getRatingParticipants() {
-        return adminBean.findAllInstances(Participant.FIND_ALL, Participant.class);
+        TypedQuery<Participant> typedQuery = em.createNamedQuery(Participant.FIND_ALL, Participant.class);
+        return typedQuery.getResultList();
     }
 
     @GET
     @Path("/ratings/songs")
     public List<Song> getRatingSongs() {
-        return juryBean.findAllInstances(Song.FIND_ALL, Song.class);
+        return juryDAO.findAllInstances(Song.FIND_ALL, Song.class);
     }
 
     @GET
     @Path("/ratings/participants/{idParticipant}")
     public Participant getRatingPerParticipant(@PathParam("idParticipant") Participant participant) {
-        return adminBean.findInstanceById(Participant.class, participant.getUsername());
+        return administratorDAO.findInstanceById(Participant.class, participant.getUsername());
     }
 
 }

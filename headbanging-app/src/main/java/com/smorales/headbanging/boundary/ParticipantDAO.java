@@ -8,60 +8,46 @@ import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.io.*;
 
 @Named
 @Stateless
-public class ParticipantBean {
+public class ParticipantDAO {
 
     @PersistenceContext
     EntityManager em;
 
-    @Inject
-    Participant participant;
-
-    @PostConstruct
-    public void populateParticipant() {
-        this.participant = this.findParticipantByPK();
+    @PostConstruct//TODO: what is this doing here!
+    public void populateParticipant(Participant participant) {
+        participant = this.findParticipantByPK();
     }
 
     public Participant findParticipantByPK() {
         String nameLoggedUser = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
-        TypedQuery<Participant> query = em.createNamedQuery(Participant.FIND_BY_USERNAME, Participant.class);
-        query.setParameter("username", nameLoggedUser);
-        return query.getSingleResult();
+        return em.createNamedQuery(Participant.FIND_BY_USERNAME, Participant.class)
+                .setParameter("username", nameLoggedUser)
+                .getSingleResult();
     }
 
-    public Participant getParticipant() {
-        return this.participant;
-    }
-
-    public void setParticipant(Participant participant) {
-        this.participant = participant;
-    }
-
-    public void updateParticipant() {
-        em.merge(this.participant);
+    public void updateParticipant(Participant participant) {
+        em.merge(participant);
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Info: ", "Updated Participant"));
     }
 
-    public void deleteParticipant() {
-        em.remove(em.merge(this.participant));
+    public void deleteParticipant(Participant participant) {
+        em.remove(em.merge(participant));
     }
 
-    public void handleFileUpload(FileUploadEvent event) {
+    public void handleFileUpload(FileUploadEvent event, Participant participant) {
 
         try {
             String nameLoggedUser = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
 
             final String PATH_TO_SAVE_IMAGES = "/home/sergio/uploaded/images"; //Unix
-//            final String PATH_TO_SAVE_IMAGES = "C:/Users/sergio/Documents/images/"; // Win7
 
             File targetFolder = new File(PATH_TO_SAVE_IMAGES);
             UploadedFile inImage = event.getFile();
@@ -90,8 +76,8 @@ public class ParticipantBean {
             outStream.flush();
             outStream.close();
 
-            this.participant.setImage_url(newFileName);
-            this.updateParticipant();
+            participant.setImage_url(newFileName);
+            updateParticipant(participant);
 
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Succesful", inImage.getFileName()
                     + " is uploaded.");

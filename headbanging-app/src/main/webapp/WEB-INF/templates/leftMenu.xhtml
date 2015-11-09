@@ -44,7 +44,7 @@
             </c:if>
 
             <c:if test="#{request.getUserPrincipal() != null}">
-                <p:menuitem value="Logout" action="#{beanLogout.doLogout}" icon="ui-icon-power"/>
+                <p:menuitem value="Logout" action="#{logout.doLogout}" icon="ui-icon-power"/>
             </c:if>
             <c:if test="#{request.getUserPrincipal() == null}">
                 <p:menuitem value="Home" action="/index.xhtml?faces-redirect=true" icon="ui-icon-home"/>

@@ -1,4 +1,4 @@
-package com.smorales.headbanging.boundary;
+package com.smorales.headbanging.control;
 
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 
 @Named
-public class BeanLogout implements Serializable {
+public class Logout implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

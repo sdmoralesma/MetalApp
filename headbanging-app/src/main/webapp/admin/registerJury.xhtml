@@ -11,28 +11,28 @@
             <h:panelGrid columns="3">
 
                 <p:outputLabel for="username" value="Username : "/>
-                <h:inputText id="username" value="#{adminBean.jury.username}"/>
+                <h:inputText id="username" value="#{adminModel.jury.username}"/>
                 <p:message for="username"/>
 
                 <p:outputLabel for="name" value="Name : "/>
-                <h:inputText id="name" value="#{adminBean.jury.name}" required="true" label="Name"/>
+                <h:inputText id="name" value="#{adminModel.jury.name}" required="true" label="Name"/>
                 <p:message for="name"/>
 
                 <p:outputLabel for="password" value="Password : "/>
-                <h:inputSecret id="password" value="#{adminBean.jury.password}" required="true" label="Password"/>
+                <h:inputSecret id="password" value="#{adminModel.jury.password}" required="true" label="Password"/>
                 <p:message for="password"/>
 
                 <p:outputLabel for="description" value="Description : "/>
-                <h:inputText id="description" value="#{adminBean.jury.description}"/>
+                <h:inputText id="description" value="#{adminModel.jury.description}"/>
                 <p:message for="description"/>
 
-                <p:commandButton value="Register Jury" action="#{adminBean.registerJury}" icon="ui-icon-disk"/>
+                <p:commandButton value="Register Jury" action="#{administratorDAO.registerJury}" icon="ui-icon-disk"/>
             </h:panelGrid>
         </h:form>
 
         <h2>List of Juries</h2>
         <h:form>
-            <p:dataTable value="#{adminBean.juryList()}" var="jury">
+            <p:dataTable value="#{administratorDAO.juryList()}" var="jury">
 
                 <p:column headerText="Username">
                     <h:outputText value="#{jury.username}"/>

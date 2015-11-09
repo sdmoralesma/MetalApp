@@ -11,24 +11,24 @@
             <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
             <h:panelGrid columns="3">
                 <p:outputLabel for="username" value="Username *"/>
-                <h:inputText id="username" value="#{adminBean.participant.username}"/>
+                <h:inputText id="username" value="#{adminModel.participant.username}"/>
                 <p:message for="username"/>
 
                 <p:outputLabel for="name" value="Name *"/>
-                <p:inputText id="name" value="#{adminBean.participant.name}" required="true" label="Name"/>
+                <p:inputText id="name" value="#{adminModel.participant.name}" required="true" label="Name"/>
                 <p:message for="name"/>
 
                 <p:outputLabel for="password" value="Password *"/>
-                <h:inputSecret id="password" value="#{adminBean.participant.password}" required="true"
+                <h:inputSecret id="password" value="#{adminModel.participant.password}" required="true"
                                label="Password"/>
                 <p:message for="password"/>
 
                 <p:outputLabel for="age" value="Age *"/>
-                <h:inputText id="age" value="#{adminBean.participant.age}"/>
+                <h:inputText id="age" value="#{adminModel.participant.age}"/>
                 <p:message for="age"/>
 
                 <p:outputLabel for="gender" value="Gender *"/>
-                <p:selectOneMenu id="gender" value="#{adminBean.participant.gender}">
+                <p:selectOneMenu id="gender" value="#{adminModel.participant.gender}">
                     <f:selectItem itemLabel="Female" itemValue="Female"/>
                     <f:selectItem itemLabel="Male" itemValue="Male"/>
                     <f:selectItem itemLabel="LGBT" itemValue="LGBT"/>
@@ -36,17 +36,17 @@
                 <p:message for="gender"/>
 
                 <p:outputLabel for="country" value="Country *"/>
-                <h:inputText id="country" value="#{adminBean.participant.country}"/>
+                <h:inputText id="country" value="#{adminModel.participant.country}"/>
                 <p:message for="country"/>
 
-                <p:commandButton value="Register Participant" action="#{adminBean.registerParticipant}"
+                <p:commandButton value="Register Participant" action="#{administratorDAO.registerParticipant}"
                                  icon="ui-icon-disk"/>
             </h:panelGrid>
         </h:form>
 
         <h2>List of the Participants</h2>
         <h:form id="table">
-            <p:dataTable value="#{juryBean.participantList()}" var="participant">
+            <p:dataTable value="#{juryDAO.participantList()}" var="participant">
 
                 <p:column headerText="UserName">
                     <h:outputText value="#{participant.username}"/>
