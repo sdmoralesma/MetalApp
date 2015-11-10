@@ -21,7 +21,7 @@
         </h:form>
 
         <h2>List of Songs</h2>
-        <p:dataTable value="#{adminController.songList}" var="song">
+        <p:dataTable value="#{adminController.songList()}" var="song">
 
             <p:column headerText="Title">
                 <h:outputText value="#{song.title}"/>

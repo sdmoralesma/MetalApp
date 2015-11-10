@@ -4,43 +4,42 @@
 
     <ui:define name="content">
 
-        <p:graphicImage url="resources/images/java-banner.jpg" alt="Welcome!" width="890"/>
-        <br/>
-        <br/>
+        <div style="background-color:lightgray">
+            <p:graphicImage url="resources/images/java-banner.jpg" style="display: block; margin: auto"/>
+        </div>
+        <p:spacer/>
+        <p:spacer/>
 
-        <h3>Please select an option:</h3>
-        <p:button outcome="/admin/index" value="Go to Admin Section"/>
-        <br/>
-        <p:button outcome="/participant/index" value="Go to Participant section"/>
-        <br/>
-        <p:button outcome="/jury/index" value="Go to Jury section"/>
+        <p:panelGrid columns="3" styleClass="table-no-border" layout="grid">
+            <p:panelGrid columns="1" styleClass="table-no-border">
+                <h2>Please select an option:</h2>
+                <p:button outcome="/admin/index" value="Go to Admin Section"/>
+                <p:button outcome="/participant/index" value="Go to Participant section"/>
+                <p:button outcome="/jury/index" value="Go to Jury section"/>
+            </p:panelGrid>
 
-        <h:form id="table">
-            <p:graphicImage url="resources/images/participants/cat.gif" height="80" width="80"
-                            style="position:absolute; top:180px; left:540px;"/>
-            <p:graphicImage url="resources/images/participants/animation.gif" height="80" width="80"
-                            style="position:absolute; top:180px; left:620px;"/>
-            <p:graphicImage url="resources/images/participants/bird.gif" height="80" width="80"
-                            style="position:absolute; top:180px; left:700px;"/>
-            <p:graphicImage url="resources/images/participants/beavis.gif" height="80" width="80"
-                            style="position:absolute; top:260px; left:540px;"/>
-            <p:graphicImage url="resources/images/participants/guy.gif" height="80" width="80"
-                            style="position:absolute; top:260px; left:620px;"/>
-            <p:graphicImage url="resources/images/participants/mega.gif" height="80" width="80"
-                            style="position:absolute; top:260px; left:700px;"/>
-            <p:graphicImage url="resources/images/participants/headBee.gif" height="80" width="80"
-                            style="position:absolute; top:340px; left:540px;"/>
-            <p:graphicImage url="resources/images/participants/headBangInCar.gif" height="80" width="80"
-                            style="position:absolute; top:340px; left:620px;"/>
-            <p:graphicImage url="resources/images/participants/partyDog.gif" height="80" width="80"
-                            style="position:absolute; top:340px; left:700px;"/>
-            <p:graphicImage url="resources/images/participants/king-julien.gif" height="80" width="80"
-                            style="position:absolute; top:420px; left:540px;"/>
-            <p:graphicImage url="resources/images/participants/mario.gif" height="80" width="80"
-                            style="position:absolute; top:420px; left:620px;"/>
-            <p:graphicImage url="resources/images/participants/metalBand.gif" height="80" width="80"
-                            style="position:absolute; top:420px; left:700px;"/>
-        </h:form>
+            <h:panelGroup>
+                <div></div>
+            </h:panelGroup>
+
+            <p:panelGrid columns="3" styleClass="table-no-border">
+                <p:spacer/>
+                <p:spacer/>
+                <p:spacer/>
+                <p:graphicImage url="resources/images/participants/cat.gif" height="80" width="80"/>
+                <p:graphicImage url="resources/images/participants/animation.gif" height="80" width="80"/>
+                <p:graphicImage url="resources/images/participants/bird.gif" height="80" width="80"/>
+                <p:graphicImage url="resources/images/participants/beavis.gif" height="80" width="80"/>
+                <p:graphicImage url="resources/images/participants/guy.gif" height="80" width="80"/>
+                <p:graphicImage url="resources/images/participants/mega.gif" height="80" width="80"/>
+                <p:graphicImage url="resources/images/participants/headBee.gif" height="80" width="80"/>
+                <p:graphicImage url="resources/images/participants/headBangInCar.gif" height="80" width="80"/>
+                <p:graphicImage url="resources/images/participants/partyDog.gif" height="80" width="80"/>
+                <p:graphicImage url="resources/images/participants/king-julien.gif" height="80" width="80"/>
+                <p:graphicImage url="resources/images/participants/mario.gif" height="80" width="80"/>
+                <p:graphicImage url="resources/images/participants/metalBand.gif" height="80" width="80"/>
+            </p:panelGrid>
+        </p:panelGrid>
 
     </ui:define>
 </ui:composition>

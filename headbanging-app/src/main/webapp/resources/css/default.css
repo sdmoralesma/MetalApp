@@ -36,3 +36,8 @@
     width: 100% !important;
     overflow: hidden !important;
 }
+
+.table-no-border.ui-panelgrid>*>tr,
+.table-no-border.ui-panelgrid .ui-panelgrid-cell {
+    border: none;
+}
