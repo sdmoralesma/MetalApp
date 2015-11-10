@@ -1,7 +1,6 @@
 package com.smorales.headbanging.boundary.rest;
 
 import com.smorales.headbanging.boundary.AdminDAO;
-import com.smorales.headbanging.entity.Participant;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
