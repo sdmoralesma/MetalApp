@@ -6,8 +6,6 @@ import com.smorales.headbanging.entity.Song;
 import com.smorales.headbanging.entity.SongMatrix;
 
 import javax.ejb.Stateless;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
@@ -18,77 +16,51 @@ public class JuryDAO {
     @PersistenceContext
     EntityManager em;
 
-    public List<Song> songList() {
-        return this.findAllInstances(Song.FIND_ALL, Song.class);
-    }
-
-    public List<SongMatrix> matrixList() {
-        return this.findAllInstances(SongMatrix.FIND_ALL, SongMatrix.class);
-    }
-
-    public <T> List<T> findAllInstances(String query, Class<T> clazz) {
-        return em.createNamedQuery(query, clazz).getResultList();
-    }
-
-    public String votePerParticipant(Participant participant, Integer handPoints, Integer headPoints) {
+    public void votePerParticipant(Participant participant, Integer handPoints, Integer headPoints) {
         List<Participant> participants = em.createNamedQuery(Participant.FIND_BY_USERNAME, Participant.class)
                 .setParameter("username", participant.getUsername())
                 .getResultList();
 
         if (participants.isEmpty()) {
-            FacesMessage msg = new FacesMessage("The participant does not exists");
-            FacesContext.getCurrentInstance().addMessage(null, msg);
-        } else {
-
-            Participant participantToVote = participants.get(0);
-            ScoreMatrix scoreMatrix = participantToVote.getScoreMatrix();
-            if (scoreMatrix == null) {
-                scoreMatrix = new ScoreMatrix();
-                scoreMatrix.setParticipant(participantToVote);
-            }
-
-            scoreMatrix = addHandPointsToScoreMatrix(scoreMatrix, handPoints);
-            scoreMatrix = addHeadPointsToScoreMatrix(scoreMatrix, headPoints);
-            scoreMatrix = calculateTotalAverageScoreMatrix(scoreMatrix);
-            scoreMatrix.setTotalScore(scoreMatrix.getTotalScore() + 1);
-            participantToVote.setScoreMatrix(scoreMatrix);
-            em.persist(participantToVote);
-
-            FacesMessage msg = new FacesMessage("The Vote has been Registered, Thanks!");
-            FacesContext.getCurrentInstance().addMessage(null, msg);
+            throw new IllegalArgumentException("participant not found" + participant);
         }
 
-        return "votePerParticipant.xhtml";
+        Participant participantToVote = participants.get(0);
+        ScoreMatrix scoreMatrix = participantToVote.getScoreMatrix();
+        if (scoreMatrix == null) {
+            scoreMatrix = new ScoreMatrix();
+            scoreMatrix.setParticipant(participantToVote);
+        }
+
+        scoreMatrix = addHandPointsToScoreMatrix(scoreMatrix, handPoints);
+        scoreMatrix = addHeadPointsToScoreMatrix(scoreMatrix, headPoints);
+        scoreMatrix = calculateTotalAverageScoreMatrix(scoreMatrix);
+        scoreMatrix.setTotalScore(scoreMatrix.getTotalScore() + 1);
+        participantToVote.setScoreMatrix(scoreMatrix);
+        em.persist(participantToVote);
     }
 
-    public String votePerSong(Song song, Integer compositionPoints, Integer musicalityPoints) {
+    public void votePerSong(Song song, Integer compositionPoints, Integer musicalityPoints) {
         List<Song> songs = em.createNamedQuery(Song.FIND_BY_TITLE, Song.class)
                 .setParameter("title", song.getTitle())
                 .getResultList();
 
         if (songs.isEmpty()) {
-            FacesMessage msg = new FacesMessage("The song does not exists");
-            FacesContext.getCurrentInstance().addMessage(null, msg);
-        } else {
-
-            Song theSongToVote = songs.get(0);
-            SongMatrix songMatrix = theSongToVote.getSongMatrix();
-            if (songMatrix == null) {
-                songMatrix = new SongMatrix();
-                songMatrix.setSong(theSongToVote);
-            }
-
-            songMatrix = addCompositionPointsToSongMatrix(songMatrix, compositionPoints);
-            songMatrix = addMusicalityPoinstToSongMatrix(songMatrix, musicalityPoints);
-            songMatrix = calculateTotalAverageSongScore(songMatrix);
-            theSongToVote.setSongMatrix(songMatrix);
-            em.persist(theSongToVote);
-
-            FacesMessage msg = new FacesMessage("The Vote has been Registered, Thanks!");
-            FacesContext.getCurrentInstance().addMessage(null, msg);
+            throw new IllegalArgumentException("song not found" + song);
         }
 
-        return "votePerSong.xhtml";
+        Song theSongToVote = songs.get(0);
+        SongMatrix songMatrix = theSongToVote.getSongMatrix();
+        if (songMatrix == null) {
+            songMatrix = new SongMatrix();
+            songMatrix.setSong(theSongToVote);
+        }
+
+        songMatrix = addCompositionPointsToSongMatrix(songMatrix, compositionPoints);
+        songMatrix = addMusicalityPoinstToSongMatrix(songMatrix, musicalityPoints);
+        songMatrix = calculateTotalAverageSongScore(songMatrix);
+        theSongToVote.setSongMatrix(songMatrix);
+        em.persist(theSongToVote);
     }
 
     private ScoreMatrix calculateTotalAverageScoreMatrix(ScoreMatrix matrix) {

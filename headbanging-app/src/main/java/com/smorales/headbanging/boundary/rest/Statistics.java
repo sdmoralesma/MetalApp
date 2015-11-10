@@ -39,7 +39,7 @@ public class Statistics {
     @GET
     @Path("/ratings/participants/{username}")
     public Response getRatingPerParticipant(@PathParam("username") String username) {
-        return Response.ok(adminDAO.findInstanceById(Participant.class, username)).build();
+        return Response.ok(adminDAO.findParticipantByUsername(username)).build();
     }
 
 }

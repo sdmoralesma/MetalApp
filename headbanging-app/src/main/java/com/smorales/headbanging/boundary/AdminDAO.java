@@ -3,10 +3,10 @@ package com.smorales.headbanging.boundary;
 import com.smorales.headbanging.entity.*;
 
 import javax.ejb.Stateless;
-import javax.management.RuntimeErrorException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.Objects;
 
 @Stateless
 public class AdminDAO {
@@ -38,54 +38,48 @@ public class AdminDAO {
         return em.createNamedQuery(Admin.FIND_ALL, Admin.class).getResultList();
     }
 
-    public <T> T findInstanceById(Class<T> clazz, Object id) {
-        return em.find(clazz, id);
+    public Participant findParticipantByUsername(Object id) {
+        return em.find(Participant.class, id);
     }
 
-    public String registerAdmin(Admin admin) {
+    public void registerAdmin(Admin admin) {
         admin.setGroup("admin");
         em.persist(admin);
-        return "registerAdmin.xhtml?faces-redirect=true";
     }
 
-    public String registerJury(Jury jury) {
+    public void registerJury(Jury jury) {
         jury.setGroup("jury");
         em.persist(jury);
-        return "registerJury.xhtml?faces-redirect=true";
     }
 
-    public String registerParticipant(Participant participant) {
+    public void registerParticipant(Participant participant) {
         participant.setGroup("participant");
-        if (participant.getImage_url() == null || participant.getImage_url().compareToIgnoreCase("") == 0) {
+        if (participant.getImage_url() == null || participant.getImage_url().equals("")) {
             participant.setImage_url("default.jpg");
         }
         ScoreMatrix score = new ScoreMatrix();
         score.setParticipant(participant);
         participant.setScoreMatrix(score);
         em.persist(participant);
-        return "registerParticipant.xhtml?faces-redirect=true";
     }
 
-    public String registerSong(Song song, String selectedArtistName, String selectedGenderName) {
+    public void registerSong(Song song, String selectedArtistName, String selectedGenderName) {
         Artist selectedArtist = em.find(Artist.class, selectedArtistName);
         Gender selectedGender = em.find(Gender.class, selectedGenderName);
-        if (selectedArtist == null || selectedGender == null) {
-            throw new RuntimeErrorException(null, "Alguna referencia es Null: " + "\nArtist: " + selectedArtist
-                    + "\nGender: " + selectedGender);
-        }
+
+        Objects.requireNonNull(selectedArtist);
+        Objects.requireNonNull(selectedGender);
+
         song = new Song(song.getTitle(), selectedArtist, selectedGender);
         em.persist(song);
-        return "registerSong?faces-redirect=true";
     }
 
-    public String registerArtist(Artist artist) {
+    public void registerArtist(Artist artist) {
         em.persist(artist);
-        return "registerArtist.xhtml?faces-redirect=true";
     }
 
-    public String registerGender(Gender gender) {
+    public void registerGender(Gender gender) {
         em.persist(gender);
-        return "registerGender.xhtml?faces-redirect=true";
     }
 
 }

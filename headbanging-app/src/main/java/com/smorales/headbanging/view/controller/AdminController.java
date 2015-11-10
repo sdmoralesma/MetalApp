@@ -4,6 +4,7 @@ import com.smorales.headbanging.boundary.AdminDAO;
 import com.smorales.headbanging.entity.*;
 import com.smorales.headbanging.view.model.AdminModel;
 
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
@@ -17,8 +18,12 @@ public class AdminController {
     @Inject
     AdminDAO adminDAO;
 
+    @Inject
+    FacesContext facesContext;
+
     public String registerArtist() {
-        return adminDAO.registerArtist(adminModel.getArtist());
+        adminDAO.registerArtist(adminModel.getArtist());
+        return "registerArtist.xhtml?faces-redirect=true";
     }
 
     public List<Artist> artistList() {
@@ -26,7 +31,8 @@ public class AdminController {
     }
 
     public String registerGender() {
-        return adminDAO.registerGender(adminModel.getGender());
+        adminDAO.registerGender(adminModel.getGender());
+        return "registerGender.xhtml?faces-redirect=true";
     }
 
     public List<Gender> genderList() {
@@ -34,7 +40,8 @@ public class AdminController {
     }
 
     public String registerSong() {
-        return adminDAO.registerSong(adminModel.getSong(), adminModel.getSelectedArtistName(), adminModel.getSelectedGenderName());
+        adminDAO.registerSong(adminModel.getSong(), adminModel.getSelectedArtistName(), adminModel.getSelectedGenderName());
+        return "registerSong?faces-redirect=true";
     }
 
     public List<Song> songList() {
@@ -42,7 +49,8 @@ public class AdminController {
     }
 
     public String registerJury() {
-        return adminDAO.registerJury(adminModel.getJury());
+        adminDAO.registerJury(adminModel.getJury());
+        return "registerJury.xhtml?faces-redirect=true";
     }
 
     public List<Jury> juryList() {
@@ -50,11 +58,20 @@ public class AdminController {
     }
 
     public String registerParticipant() {
-        return adminDAO.registerParticipant(adminModel.getParticipant());
+        adminDAO.registerParticipant(adminModel.getParticipant());
+        return "registerParticipant.xhtml?faces-redirect=true";
     }
 
     public List<Participant> participantList() {
         return adminDAO.participantList();
     }
 
+    public String registerAdmin() {
+        adminDAO.registerAdmin(adminModel.getAdmin());
+        return "registerAdmin.xhtml?faces-redirect=true";
+    }
+
+    public List<Admin> adminList() {
+        return adminDAO.adminList();
+    }
 }

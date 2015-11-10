@@ -21,18 +21,24 @@ public class ParticipantController {
     @Inject
     ParticipantModel participantModel;
 
+    @Inject
+    FacesContext facesContext;
+
     @PostConstruct
     public void populateParticipant() {
-        participantModel.setParticipant(participantDAO.findParticipantByPK());
+        String nameLoggedUser = facesContext.getExternalContext().getRemoteUser();
+        participantModel.setParticipant(participantDAO.findParticipantByPK(nameLoggedUser));
     }
 
     public void updateParticipant() {
         participantDAO.updateParticipant(participantModel.getParticipant());
+        FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Info: ", "Updated Participant");
+        facesContext.addMessage(null, facesMessage);
     }
 
     public void handleFileUpload(FileUploadEvent event) {
         try {
-            String nameLoggedUser = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+            String nameLoggedUser = facesContext.getExternalContext().getRemoteUser();
 
             final String PATH_TO_SAVE_IMAGES = "/home/sergio/uploaded/images"; //Unix
 
@@ -46,8 +52,7 @@ public class ParticipantController {
 
             File currentImage = new File(targetFolder.getPath() + "/" + participantModel.getParticipant().getImage_url());
 
-            // Si la nueva imagen tiene una extension distinta a la actual,
-            // entonces, borra la imagen actual
+            // If the new image has an extension that is not equal to current, then, erase the current image
             if (!currentImage.getName().equalsIgnoreCase(newImage.getName())) {
                 boolean delete = currentImage.delete();
                 System.out.println("deleted: " + currentImage.toString());
@@ -66,9 +71,8 @@ public class ParticipantController {
             participantModel.getParticipant().setImage_url(newFileName);
             updateParticipant();
 
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Succesful", inImage.getFileName()
-                    + " is uploaded.");
-            FacesContext.getCurrentInstance().addMessage(null, msg);
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Succesful", inImage.getFileName() + " is uploaded.");
+            facesContext.addMessage(null, msg);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -81,5 +85,11 @@ public class ParticipantController {
             extension = fileName.substring(i + 1);
         }
         return userName + "." + extension;
+    }
+
+    public void deleteParticipant() {
+        participantDAO.deleteParticipant(participantModel.getParticipant());
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Succesful", "Removed Participant");
+        facesContext.addMessage(null, msg);
     }
 }

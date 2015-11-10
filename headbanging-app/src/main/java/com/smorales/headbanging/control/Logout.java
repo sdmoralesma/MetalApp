@@ -1,6 +1,7 @@
 package com.smorales.headbanging.control;
 
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import java.io.Serializable;
@@ -10,9 +11,11 @@ public class Logout implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @Inject
+    FacesContext facesContext;
+
     public String doLogout() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
         session.invalidate();
         return "/index.xhtml?faces-redirect=true";
     }
