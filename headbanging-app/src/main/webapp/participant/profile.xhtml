@@ -13,7 +13,6 @@
 
                 <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
                 <h:panelGrid columns="3">
-
                     <p:outputLabel for="username" value="Username"/>
                     <p:inputText id="username" value="#{participantModel.participant.username}" disabled="true"/>
                     <p:message for="username"/>
@@ -37,20 +36,21 @@
                     <p:outputLabel for="country" value="Country *"/>
                     <p:inputText id="country" value="#{participantModel.participant.country}"/>
                     <p:message for="country"/>
-
                 </h:panelGrid>
-                <p:commandButton update="form" value="Update Info" actionListener="#{participantController.updateParticipant}"
-                                 icon="ui-icon-disk"/>
+
+                <p:commandButton update="form" value="Update Info" icon="ui-icon-disk"
+                                 actionListener="#{participantController.updateParticipant}"/>
             </p:panel>
 
             <p:panel header="Improve Your Presentation!">
                 <h:form enctype="multipart/form-data">
                     <h:panelGroup id="fileUploadGroup">
-                        <h:graphicImage value="/image/#{participantModel.participant.image_url}" width="80"
-                                        height="80"/>
+                        <h:graphicImage value="/image/#{participantModel.participant.image_url}"
+                                        width="80" height="80"/>
 
-                        <p:fileUpload fileUploadListener="#{participantController.handleFileUpload}" update="fileUploadGroup"
-                                      sizeLimit="1500000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+                        <p:fileUpload fileUploadListener="#{participantController.handleFileUpload}"
+                                      update="fileUploadGroup" sizeLimit="1500000"
+                                      allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
 
                         <p:growl id="messagesGrowl" showDetail="true"/>
                     </h:panelGroup>
