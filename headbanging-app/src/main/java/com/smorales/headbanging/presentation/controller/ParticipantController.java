@@ -1,7 +1,7 @@
-package com.smorales.headbanging.view.controller;
+package com.smorales.headbanging.presentation.controller;
 
-import com.smorales.headbanging.boundary.ParticipantDAO;
-import com.smorales.headbanging.view.model.ParticipantModel;
+import com.smorales.headbanging.boundary.ParticipantService;
+import com.smorales.headbanging.presentation.model.ParticipantModel;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
@@ -16,7 +16,7 @@ import java.io.*;
 public class ParticipantController {
 
     @Inject
-    ParticipantDAO participantDAO;
+    ParticipantService participantService;
 
     @Inject
     ParticipantModel participantModel;
@@ -27,11 +27,11 @@ public class ParticipantController {
     @PostConstruct
     public void populateParticipant() {
         String nameLoggedUser = facesContext.getExternalContext().getRemoteUser();
-        participantModel.setParticipant(participantDAO.findParticipantByPK(nameLoggedUser));
+        participantModel.setParticipant(participantService.findParticipantByPK(nameLoggedUser));
     }
 
     public void updateParticipant() {
-        participantDAO.updateParticipant(participantModel.getParticipant());
+        participantService.updateParticipant(participantModel.getParticipant());
         FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Info: ", "Updated Participant");
         facesContext.addMessage(null, facesMessage);
     }
@@ -88,7 +88,7 @@ public class ParticipantController {
     }
 
     public void deleteParticipant() {
-        participantDAO.deleteParticipant(participantModel.getParticipant());
+        participantService.deleteParticipant(participantModel.getParticipant());
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Succesful", "Removed Participant");
         facesContext.addMessage(null, msg);
     }

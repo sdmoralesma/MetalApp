@@ -17,12 +17,6 @@
                                     action="/admin/registerJury.xhtml?faces-redirect=true"/>
                         <p:menuitem value="Add Participant" ajax="false" icon="ui-icon-person"
                                     action="/admin/registerParticipant.xhtml?faces-redirect=true"/>
-                        <p:menuitem value="Add Song" ajax="false" icon="ui-icon-volume-on"
-                                    action="/admin/registerSong.xhtml?faces-redirect=true"/>
-                        <p:menuitem value="Add Gender" ajax="false" icon="ui-icon-heart"
-                                    action="/admin/registerGender.xhtml?faces-redirect=true"/>
-                        <p:menuitem value="Add Artist" ajax="false" icon="ui-icon-star"
-                                    action="/admin/registerArtist.xhtml?faces-redirect=true"/>
                     </p:submenu>
                 </c:when>
                 <c:when test="#{request.isUserInRole('jury')}">
@@ -31,8 +25,6 @@
                                     action="/jury/index.xhtml?faces-redirect=true"/>
                         <p:menuitem value="Vote Participant" ajax="false" icon="ui-icon-check"
                                     action="/jury/votePerParticipant.xhtml?faces-redirect=true"/>
-                        <p:menuitem value="Vote Song" ajax="false" icon="ui-icon-check"
-                                    action="/jury/votePerSong.xhtml?faces-redirect=true"/>
                     </p:submenu>
                 </c:when>
                 <c:when test="#{request.isUserInRole('participant')}">

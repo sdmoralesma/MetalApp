@@ -1,8 +1,6 @@
-package com.smorales.headbanging.view.model;
+package com.smorales.headbanging.presentation.model;
 
 import com.smorales.headbanging.entity.Participant;
-import com.smorales.headbanging.entity.Song;
-import com.smorales.headbanging.entity.SongMatrix;
 
 import javax.inject.Named;
 
@@ -15,9 +13,6 @@ public class JuryModel {
     private Integer headPoints;
 
     private Participant participant;
-    private Song song;
-    private SongMatrix matrix;
-
 
     // Getters / Setters
     public Integer getMusicalityPoints() {
@@ -60,19 +55,4 @@ public class JuryModel {
         this.participant = participant;
     }
 
-    public Song getSong() {
-        return song;
-    }
-
-    public void setSong(Song song) {
-        this.song = song;
-    }
-
-    public SongMatrix getMatrix() {
-        return matrix;
-    }
-
-    public void setMatrix(SongMatrix matrix) {
-        this.matrix = matrix;
-    }
 }

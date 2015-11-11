@@ -1,6 +1,8 @@
-package com.smorales.headbanging.view.model;
+package com.smorales.headbanging.presentation.model;
 
-import com.smorales.headbanging.entity.*;
+import com.smorales.headbanging.entity.Admin;
+import com.smorales.headbanging.entity.Jury;
+import com.smorales.headbanging.entity.Participant;
 
 import javax.inject.Named;
 
@@ -10,9 +12,7 @@ public class AdminModel {
     private Admin admin;
     private Jury jury;
     private Participant participant;
-    private Song song;
-    private Gender gender;
-    private Artist artist;
+    private String song;
     private String selectedArtistName;
     private String selectedGenderName;
 
@@ -43,28 +43,12 @@ public class AdminModel {
         this.participant = participant;
     }
 
-    public Song getSong() {
+    public String getSong() {
         return song;
     }
 
-    public void setSong(Song song) {
+    public void setSong(String song) {
         this.song = song;
-    }
-
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
-
-    public Artist getArtist() {
-        return artist;
-    }
-
-    public void setArtist(Artist artist) {
-        this.artist = artist;
     }
 
     public String getSelectedArtistName() {

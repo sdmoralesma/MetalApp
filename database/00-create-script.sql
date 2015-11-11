@@ -1,12 +1,8 @@
 -- MySQL Workbench Forward Engineering
-
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
--- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
 -- -----------------------------------------------------
 -- Schema headbanging-db
 -- -----------------------------------------------------
@@ -17,6 +13,7 @@ DROP SCHEMA IF EXISTS `headbanging-db` ;
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `headbanging-db` DEFAULT CHARACTER SET latin1 ;
 USE `headbanging-db` ;
+
 
 -- -----------------------------------------------------
 -- Table `headbanging-db`.`users`
@@ -47,33 +44,6 @@ CREATE TABLE IF NOT EXISTS `headbanging-db`.`admin` (
   CONSTRAINT `FK_admin_USERNAME`
   FOREIGN KEY (`USERNAME`)
   REFERENCES `headbanging-db`.`users` (`USERNAME`))
-  ENGINE = InnoDB
-  DEFAULT CHARACTER SET = latin1;
-
-
--- -----------------------------------------------------
--- Table `headbanging-db`.`artist`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `headbanging-db`.`artist` ;
-
-CREATE TABLE IF NOT EXISTS `headbanging-db`.`artist` (
-  `NAME` VARCHAR(50) NOT NULL,
-  `DESCRIPTION` VARCHAR(50) NULL DEFAULT NULL,
-  PRIMARY KEY (`NAME`))
-  ENGINE = InnoDB
-  DEFAULT CHARACTER SET = latin1;
-
-
--- -----------------------------------------------------
--- Table `headbanging-db`.`gender`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `headbanging-db`.`gender` ;
-
-CREATE TABLE IF NOT EXISTS `headbanging-db`.`gender` (
-  `NAME` VARCHAR(50) NOT NULL,
-  `hand_value` INT(11) NOT NULL,
-  `head_value` INT(11) NOT NULL,
-  PRIMARY KEY (`NAME`))
   ENGINE = InnoDB
   DEFAULT CHARACTER SET = latin1;
 
@@ -116,28 +86,6 @@ CREATE TABLE IF NOT EXISTS `headbanging-db`.`participant` (
 
 
 -- -----------------------------------------------------
--- Table `headbanging-db`.`song`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `headbanging-db`.`song` ;
-
-CREATE TABLE IF NOT EXISTS `headbanging-db`.`song` (
-  `TITLE` VARCHAR(100) NOT NULL,
-  `id_artist` VARCHAR(50) NOT NULL,
-  `id_gender` VARCHAR(50) NOT NULL,
-  PRIMARY KEY (`TITLE`),
-  INDEX `FK_song_id_gender` (`id_gender` ASC),
-  INDEX `FK_song_id_artist` (`id_artist` ASC),
-  CONSTRAINT `FK_song_id_artist`
-  FOREIGN KEY (`id_artist`)
-  REFERENCES `headbanging-db`.`artist` (`NAME`),
-  CONSTRAINT `FK_song_id_gender`
-  FOREIGN KEY (`id_gender`)
-  REFERENCES `headbanging-db`.`gender` (`NAME`))
-  ENGINE = InnoDB
-  DEFAULT CHARACTER SET = latin1;
-
-
--- -----------------------------------------------------
 -- Table `headbanging-db`.`presentation`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `headbanging-db`.`presentation` ;
@@ -148,14 +96,10 @@ CREATE TABLE IF NOT EXISTS `headbanging-db`.`presentation` (
   `head_score` FLOAT NOT NULL,
   `total_score` FLOAT NOT NULL,
   `username` VARCHAR(50) NOT NULL,
-  `id_song` VARCHAR(100) NOT NULL,
+  `song` VARCHAR(300) NOT NULL,
   PRIMARY KEY (`id_presentation`),
-  UNIQUE INDEX `id_presentation` (`id_presentation` ASC),
-  INDEX `FK_presentation_id_song` (`id_song` ASC),
-  INDEX `FK_presentation_username` (`username` ASC),
-  CONSTRAINT `FK_presentation_id_song`
-  FOREIGN KEY (`id_song`)
-  REFERENCES `headbanging-db`.`song` (`TITLE`),
+  UNIQUE INDEX `id_presentation` (`id_presentation` ASC),  
+  INDEX `FK_presentation_username` (`username` ASC),  
   CONSTRAINT `FK_presentation_username`
   FOREIGN KEY (`username`)
   REFERENCES `headbanging-db`.`users` (`USERNAME`))
@@ -197,44 +141,6 @@ CREATE TABLE IF NOT EXISTS `headbanging-db`.`score_matrix` (
   CONSTRAINT `FK_score_matrix_username`
   FOREIGN KEY (`username`)
   REFERENCES `headbanging-db`.`users` (`USERNAME`))
-  ENGINE = InnoDB
-  DEFAULT CHARACTER SET = latin1;
-
-
--- -----------------------------------------------------
--- Table `headbanging-db`.`song_matrix`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `headbanging-db`.`song_matrix` ;
-
-CREATE TABLE IF NOT EXISTS `headbanging-db`.`song_matrix` (
-  `id_song_matrix` INT(11) NOT NULL AUTO_INCREMENT,
-  `COMPOSITION1` INT(11) NULL DEFAULT NULL,
-  `COMPOSITION10` INT(11) NULL DEFAULT NULL,
-  `COMPOSITION2` INT(11) NULL DEFAULT NULL,
-  `COMPOSITION3` INT(11) NULL DEFAULT NULL,
-  `COMPOSITION4` INT(11) NULL DEFAULT NULL,
-  `COMPOSITION5` INT(11) NULL DEFAULT NULL,
-  `COMPOSITION6` INT(11) NULL DEFAULT NULL,
-  `COMPOSITION7` INT(11) NULL DEFAULT NULL,
-  `COMPOSITION8` INT(11) NULL DEFAULT NULL,
-  `COMPOSITION9` INT(11) NULL DEFAULT NULL,
-  `MUSICALITY1` INT(11) NULL DEFAULT NULL,
-  `MUSICALITY10` INT(11) NULL DEFAULT NULL,
-  `MUSICALITY2` INT(11) NULL DEFAULT NULL,
-  `MUSICALITY3` INT(11) NULL DEFAULT NULL,
-  `MUSICALITY4` INT(11) NULL DEFAULT NULL,
-  `MUSICALITY5` INT(11) NULL DEFAULT NULL,
-  `MUSICALITY6` INT(11) NULL DEFAULT NULL,
-  `MUSICALITY7` INT(11) NULL DEFAULT NULL,
-  `MUSICALITY8` INT(11) NULL DEFAULT NULL,
-  `MUSICALITY9` INT(11) NULL DEFAULT NULL,
-  `total_score` FLOAT NULL DEFAULT NULL,
-  `title` VARCHAR(100) NOT NULL,
-  PRIMARY KEY (`id_song_matrix`),
-  INDEX `FK_song_matrix_title` (`title` ASC),
-  CONSTRAINT `FK_song_matrix_title`
-  FOREIGN KEY (`title`)
-  REFERENCES `headbanging-db`.`song` (`TITLE`))
   ENGINE = InnoDB
   DEFAULT CHARACTER SET = latin1;
 

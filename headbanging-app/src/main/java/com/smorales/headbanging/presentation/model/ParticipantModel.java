@@ -1,4 +1,4 @@
-package com.smorales.headbanging.view.model;
+package com.smorales.headbanging.presentation.model;
 
 import com.smorales.headbanging.entity.Participant;
 

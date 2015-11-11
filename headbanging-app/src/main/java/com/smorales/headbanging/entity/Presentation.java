@@ -39,16 +39,13 @@ public class Presentation implements Serializable {
     private Participant participant;
 
     // bi-directional many-to-one association to Song
-    @ManyToOne
-    @JoinColumn(name = "id_song", nullable = false)
-    private Song song;
+    @Column
+    private String song;
 
     public Presentation() {
     }
 
-    public Presentation(int idPresentation, float handScore, float headScore, float totalScore,
-                        Participant participant, Song song) {
-        super();
+    public Presentation(int idPresentation, float handScore, float headScore, float totalScore, Participant participant, String song) {
         this.idPresentation = idPresentation;
         this.handScore = handScore;
         this.headScore = headScore;
@@ -97,11 +94,11 @@ public class Presentation implements Serializable {
         this.participant = participant;
     }
 
-    public Song getSong() {
+    public String getSong() {
         return this.song;
     }
 
-    public void setSong(Song song) {
+    public void setSong(String song) {
         this.song = song;
     }
 

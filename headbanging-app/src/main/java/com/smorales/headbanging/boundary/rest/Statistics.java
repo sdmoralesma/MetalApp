@@ -1,6 +1,6 @@
 package com.smorales.headbanging.boundary.rest;
 
-import com.smorales.headbanging.boundary.AdminDAO;
+import com.smorales.headbanging.boundary.AdminService;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -15,30 +15,24 @@ import javax.ws.rs.core.Response;
 public class Statistics {
 
     @Inject
-    AdminDAO adminDAO;
+    AdminService adminService;
 
     @GET
     @Path("/ping")
-    public Response getStringTest() {
+    public Response ping() {
         return Response.ok("pong").build();
     }
 
     @GET
     @Path("/ratings/participants")
     public Response getRatingParticipants() {
-        return Response.ok(adminDAO.participantList()).build();
-    }
-
-    @GET
-    @Path("/ratings/songs")
-    public Response getRatingSongs() {
-        return Response.ok(adminDAO.songList()).build();
+        return Response.ok(adminService.participantList()).build();
     }
 
     @GET
     @Path("/ratings/participants/{username}")
     public Response getRatingPerParticipant(@PathParam("username") String username) {
-        return Response.ok(adminDAO.findParticipantByUsername(username)).build();
+        return Response.ok(adminService.findParticipantByUsername(username)).build();
     }
 
 }

@@ -11,12 +11,3 @@ VALUES ('jury1', 'the great Jury1', 'Name jury1');
 
 INSERT INTO `participant` (`USERNAME`, `AGE`, `COUNTRY`, `GENDER`, `IMAGE_URL`, `NAME`)
 VALUES ('participant1', 53, 'Colombia', 'Male', 'hello', 'Pepe The First');
-
-INSERT INTO `artist` (`NAME`, `DESCRIPTION`) 
-VALUES ('Adagio', 'French Band'), ('Arch Enemy', 'Swedish Band');
-
-INSERT INTO `gender` (`NAME`, `hand_value`, `head_value`)
-VALUES ('Death Metal', 5, 5), ('Thrash Metal', 8, 5), ('Black Metal', 3, 8);
-
-INSERT INTO `song` (`TITLE`, `id_artist`, `id_gender`)
-VALUES ('Other title', 'Arch Enemy', 'Death Metal'), ('The Astral PathWay', 'Adagio', 'Death Metal');

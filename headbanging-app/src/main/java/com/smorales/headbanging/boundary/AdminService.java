@@ -1,33 +1,23 @@
 package com.smorales.headbanging.boundary;
 
-import com.smorales.headbanging.entity.*;
+import com.smorales.headbanging.entity.Admin;
+import com.smorales.headbanging.entity.Jury;
+import com.smorales.headbanging.entity.Participant;
+import com.smorales.headbanging.entity.ScoreMatrix;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-import java.util.Objects;
 
 @Stateless
-public class AdminDAO {
+public class AdminService {
 
     @PersistenceContext
     EntityManager em;
 
-    public List<Song> songList() {
-        return em.createNamedQuery(Song.FIND_ALL, Song.class).getResultList();
-    }
-
     public List<Participant> participantList() {
         return em.createNamedQuery(Participant.FIND_ALL, Participant.class).getResultList();
-    }
-
-    public List<Gender> genderList() {
-        return em.createNamedQuery(Gender.FIND_ALL, Gender.class).getResultList();
-    }
-
-    public List<Artist> artistList() {
-        return em.createNamedQuery(Artist.FIND_ALL, Artist.class).getResultList();
     }
 
     public List<Jury> juryList() {
@@ -61,25 +51,6 @@ public class AdminDAO {
         score.setParticipant(participant);
         participant.setScoreMatrix(score);
         em.persist(participant);
-    }
-
-    public void registerSong(Song song, String selectedArtistName, String selectedGenderName) {
-        Artist selectedArtist = em.find(Artist.class, selectedArtistName);
-        Gender selectedGender = em.find(Gender.class, selectedGenderName);
-
-        Objects.requireNonNull(selectedArtist);
-        Objects.requireNonNull(selectedGender);
-
-        song = new Song(song.getTitle(), selectedArtist, selectedGender);
-        em.persist(song);
-    }
-
-    public void registerArtist(Artist artist) {
-        em.persist(artist);
-    }
-
-    public void registerGender(Gender gender) {
-        em.persist(gender);
     }
 
 }
