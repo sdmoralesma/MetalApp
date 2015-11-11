@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
-        >
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <title>The Headbanging</title>
+    <title>Headbanging</title>
     <link rel="icon" type="image/x-icon" href="#{request.contextPath}/resources/images/favicon.ico"/>
-    <h:outputStylesheet library="css" name="default.css"/>
 </h:head>
-
 <h:body>
+    <h:outputStylesheet library="css" name="default.css"/>
+
     <p:layout fullPage="true">
-        <p:layoutUnit position="north" size="50" resizable="false" closable="false" collapsible="false">
-            <h1 style="text-align: center; margin: 0"> The Best Headbanging in the History </h1>
+        <p:layoutUnit position="north" size="65" resizable="false" closable="false" collapsible="false">
+            <h1 style="text-align: center; border: none; margin: 0;"> The Best Headbanging in the History </h1>
         </p:layoutUnit>
 
-        <p:layoutUnit position="south" size="30" resizable="true" closable="true" collapsible="true"
+        <p:layoutUnit position="south" size="50" resizable="true" closable="true" collapsible="true"
                       style="text-align: center;">
-            <h:outputText value="Powered By Java EE 7, Developed By: Sergio Morales" style="font-weight:bold;"/>
+            <h:outputText value="Powered By Java EE 7, Developed By:" style="font-weight:bold;"/>
+            <h:outputLink value="https://github.com/sdmoralesma" style="font-weight:bold;" target="_blank">
+                Sergio Morales
+            </h:outputLink>
         </p:layoutUnit>
 
-        <p:layoutUnit position="west" size="180" resizable="true" closable="false" collapsible="false">
+        <p:layoutUnit position="west" size="240" resizable="true" closable="false" collapsible="false">
             <ui:include src="../templates/leftMenu.xhtml"/>
         </p:layoutUnit>
 
-        <p:layoutUnit position="east" size="280" header="Help" resizable="true" collapsible="true" effect="drop">
-            <h:outputText value="Welcome, Please enjoy learning Java EE"/>
+        <p:layoutUnit position="east" size="300" header="Help" resizable="true" collapsible="true" effect="drop">
+            <h:outputText value="Welcome, enjoy learning Java EE!"/>
         </p:layoutUnit>
 
         <p:layoutUnit position="center">

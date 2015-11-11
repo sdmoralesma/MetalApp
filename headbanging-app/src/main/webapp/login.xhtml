@@ -4,28 +4,39 @@
 
     <ui:define name="content">
 
-        <h:form id="login" styleClass="loginPanelStyle" prependId="false"
-                onsubmit="document.login.action = 'j_security_check';">
+        <p:panelGrid columns="3" styleClass="responsive-table-no-border" layout="grid">
 
-            <p:growl id="msgs" showDetail="true" sticky="false"/>
-            <p:panelGrid columns="2">
+            <h:panelGroup>
+                <div></div>
+            </h:panelGroup>
 
-                <f:facet name="header">Login Panel</f:facet>
+            <h:form id="login" prependId="false" onsubmit="document.login.action = 'j_security_check';">
 
-                <h:outputLabel value="Username : "/>
-                <p:inputText id="j_username" required="true" requiredMessage="Please Enter Username!"/>
+                <p:growl id="msgs" showDetail="true" sticky="false"/>
+                <p:panelGrid columns="2">
 
-                <h:outputLabel value="Password : "/>
-                <p:password id="j_password" required="true" requiredMessage="Please Enter Password!"/>
+                    <f:facet name="header">Login Panel</f:facet>
 
-                <f:facet name="footer">
-                    <p:commandButton value="Login" id="submit" ajax="false" update="msgs" type="submit"
-                                     icon="ui-icon-check"
-                                     style="margin:0"/>
-                </f:facet>
+                    <h:outputLabel value="Username : "/>
+                    <p:inputText id="j_username" required="true" requiredMessage="Please Enter Username!"/>
 
-            </p:panelGrid>
-        </h:form>
+                    <h:outputLabel value="Password : "/>
+                    <p:password id="j_password" required="true" requiredMessage="Please Enter Password!"/>
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Login" id="submit" ajax="false" update="msgs" type="submit"
+                                         icon="ui-icon-check" style="margin:0"/>
+                    </f:facet>
+
+                </p:panelGrid>
+            </h:form>
+
+            <h:panelGroup>
+                <div></div>
+            </h:panelGroup>
+
+        </p:panelGrid>
+
     </ui:define>
 
 </ui:composition>
