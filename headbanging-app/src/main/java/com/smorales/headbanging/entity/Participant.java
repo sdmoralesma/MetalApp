@@ -33,7 +33,7 @@ public class Participant extends User implements Serializable {
     @Size(min = 5, max = 50)
     private String country;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 10)
     private String gender;
 
     @Column(nullable = false, length = 100)

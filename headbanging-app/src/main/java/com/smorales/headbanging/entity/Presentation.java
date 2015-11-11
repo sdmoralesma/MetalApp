@@ -1,6 +1,7 @@
 package com.smorales.headbanging.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
@@ -33,14 +34,16 @@ public class Presentation implements Serializable {
     @Column(name = "total_score", nullable = false)
     private float totalScore;
 
+    @Column
+    @Max(300)
+    private String song;
+
     // bi-directional many-to-one association to Participant
     @ManyToOne
     @JoinColumn(name = "username", nullable = false)
     private Participant participant;
 
     // bi-directional many-to-one association to Song
-    @Column
-    private String song;
 
     public Presentation() {
     }

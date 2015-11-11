@@ -20,6 +20,8 @@ public class User implements Serializable {
     public static final String FIND_ALL = "User.findAllUsers";
     public static final String FIND_ALL_BY_TYPE = "User.findAllByType";
 
+    private Integer id;
+
     @Id
     @Column(unique = true, nullable = false, length = 50)
     @Size(min = 3, max = 25)
