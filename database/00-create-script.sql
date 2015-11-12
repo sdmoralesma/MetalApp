@@ -5,6 +5,9 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
 -- Schema headbanging-db
 -- -----------------------------------------------------
 DROP SCHEMA IF EXISTS `headbanging-db` ;
@@ -16,11 +19,11 @@ CREATE SCHEMA IF NOT EXISTS `headbanging-db` DEFAULT CHARACTER SET latin1 ;
 USE `headbanging-db` ;
 
 -- -----------------------------------------------------
--- Table `headbanging-db`.`users`
+-- Table `headbanging-db`.`user`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `headbanging-db`.`users` ;
+DROP TABLE IF EXISTS `headbanging-db`.`user` ;
 
-CREATE TABLE IF NOT EXISTS `headbanging-db`.`users` (
+CREATE TABLE IF NOT EXISTS `headbanging-db`.`user` (
   `user_id` INT(11) NOT NULL COMMENT '',
   `username` VARCHAR(20) NOT NULL COMMENT '',
   `user_type` VARCHAR(20) NULL DEFAULT NULL COMMENT '',
@@ -42,10 +45,11 @@ CREATE TABLE IF NOT EXISTS `headbanging-db`.`admin` (
   `username` VARCHAR(20) NOT NULL COMMENT '',
   `description` VARCHAR(100) NOT NULL COMMENT '',
   `name` VARCHAR(100) NOT NULL COMMENT '',
+  `user_id` INT(11) NULL COMMENT '',
   PRIMARY KEY (`admin_id`)  COMMENT '',
   CONSTRAINT `FK_admin_USERNAME`
-    FOREIGN KEY (`admin_id`)
-    REFERENCES `headbanging-db`.`users` (`user_id`))
+    FOREIGN KEY (`user_id`)
+    REFERENCES `headbanging-db`.`user` (`user_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
@@ -60,10 +64,13 @@ CREATE TABLE IF NOT EXISTS `headbanging-db`.`jury` (
   `username` VARCHAR(20) NOT NULL COMMENT '',
   `description` VARCHAR(100) NOT NULL COMMENT '',
   `name` VARCHAR(100) NOT NULL COMMENT '',
+  `user_id` INT(11) NULL COMMENT '',
   PRIMARY KEY (`jury_id`)  COMMENT '',
   CONSTRAINT `FK_jury_USERNAME`
-    FOREIGN KEY (`jury_id`)
-    REFERENCES `headbanging-db`.`users` (`user_id`))
+    FOREIGN KEY (`user_id`)
+    REFERENCES `headbanging-db`.`user` (`user_id`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
@@ -80,10 +87,11 @@ CREATE TABLE IF NOT EXISTS `headbanging-db`.`participant` (
   `gender` VARCHAR(10) NOT NULL COMMENT '',
   `image_url` VARCHAR(100) NULL DEFAULT NULL COMMENT '',
   `name` VARCHAR(100) NOT NULL COMMENT '',
+  `user_id` INT(11) NULL COMMENT '',
   PRIMARY KEY (`participant_id`)  COMMENT '',
   CONSTRAINT `FK_participant_USERNAME`
-    FOREIGN KEY (`participant_id`)
-    REFERENCES `headbanging-db`.`users` (`user_id`))
+    FOREIGN KEY (`user_id`)
+    REFERENCES `headbanging-db`.`user` (`user_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
@@ -98,11 +106,15 @@ CREATE TABLE IF NOT EXISTS `headbanging-db`.`presentation` (
   `score` FLOAT NOT NULL COMMENT '',
   `username` VARCHAR(50) NOT NULL COMMENT '',
   `song` VARCHAR(300) NOT NULL COMMENT '',
+  `user_id` INT(11) NULL COMMENT '',
   PRIMARY KEY (`id_presentation`)  COMMENT '',
   UNIQUE INDEX `id_presentation` (`id_presentation` ASC)  COMMENT '',
+  INDEX `FK_presentation_username_idx` (`user_id` ASC)  COMMENT '',
   CONSTRAINT `FK_presentation_username`
-    FOREIGN KEY (`id_presentation`)
-    REFERENCES `headbanging-db`.`users` (`user_id`))
+    FOREIGN KEY (`user_id`)
+    REFERENCES `headbanging-db`.`user` (`user_id`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
@@ -116,10 +128,12 @@ CREATE TABLE IF NOT EXISTS `headbanging-db`.`score_matrix` (
   `id_score_matrix` INT(11) NOT NULL COMMENT '',
   `total_score` FLOAT NULL DEFAULT NULL COMMENT '',
   `username` VARCHAR(20) NOT NULL COMMENT '',
+  `user_id` INT(11) NULL COMMENT '',
   PRIMARY KEY (`id_score_matrix`)  COMMENT '',
+  INDEX `FK_score_matrix_username_idx` (`user_id` ASC)  COMMENT '',
   CONSTRAINT `FK_score_matrix_username`
-    FOREIGN KEY (`id_score_matrix`)
-    REFERENCES `headbanging-db`.`users` (`user_id`)
+    FOREIGN KEY (`user_id`)
+    REFERENCES `headbanging-db`.`user` (`user_id`)
     ON DELETE RESTRICT
     ON UPDATE RESTRICT)
 ENGINE = InnoDB
