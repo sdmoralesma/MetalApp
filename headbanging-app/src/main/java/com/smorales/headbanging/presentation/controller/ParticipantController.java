@@ -50,7 +50,7 @@ public class ParticipantController {
             File newImage = new File(targetFolder, newFileName);
             OutputStream outStream = new FileOutputStream(newImage);
 
-            File currentImage = new File(targetFolder.getPath() + "/" + participantModel.getParticipant().getImage_url());
+            File currentImage = new File(targetFolder.getPath() + "/" + participantModel.getParticipant().getImageUrl());
 
             // If the new image has an extension that is not equal to current, then, erase the current image
             if (!currentImage.getName().equalsIgnoreCase(newImage.getName())) {
@@ -68,7 +68,7 @@ public class ParticipantController {
             outStream.flush();
             outStream.close();
 
-            participantModel.getParticipant().setImage_url(newFileName);
+            participantModel.getParticipant().setImageUrl(newFileName);
             updateParticipant();
 
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Succesful", inImage.getFileName() + " is uploaded.");

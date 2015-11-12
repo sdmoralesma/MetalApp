@@ -21,11 +21,11 @@ public class AdminService {
     }
 
     public List<Jury> juryList() {
-        return em.createNamedQuery(Jury.FIND_ALL, Jury.class).getResultList();
+        return em.createNamedQuery(Jury.findAll, Jury.class).getResultList();
     }
 
     public List<Admin> adminList() {
-        return em.createNamedQuery(Admin.FIND_ALL, Admin.class).getResultList();
+        return em.createNamedQuery(Admin.findAll, Admin.class).getResultList();
     }
 
     public Participant findParticipantByUsername(Object id) {
@@ -33,19 +33,19 @@ public class AdminService {
     }
 
     public void registerAdmin(Admin admin) {
-        admin.setGroup("admin");
+        admin.setGroupName("admin");
         em.persist(admin);
     }
 
     public void registerJury(Jury jury) {
-        jury.setGroup("jury");
+        jury.setGroupName("jury");
         em.persist(jury);
     }
 
     public void registerParticipant(Participant participant) {
-        participant.setGroup("participant");
-        if (participant.getImage_url() == null || participant.getImage_url().equals("")) {
-            participant.setImage_url("default.jpg");
+        participant.setGroupName("participant");
+        if (participant.getImageUrl() == null || participant.getImageUrl().equals("")) {
+            participant.setImageUrl("default.jpg");
         }
         ScoreMatrix score = new ScoreMatrix();
         score.setParticipant(participant);

@@ -1,42 +1,51 @@
 package com.smorales.headbanging.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @Table(name = "presentation")
 @XmlRootElement
 @NamedQueries({
-        @NamedQuery(name = Presentation.FIND_ALL, query = "SELECT p FROM Presentation p"),
-        @NamedQuery(name = Presentation.FIND_BY_ID_PRESENTATION, query = "SELECT p FROM Presentation p WHERE p.idPresentation = :idPresentation"),
-        @NamedQuery(name = Presentation.FIND_BY_ID_PARTICIPANT, query = "SELECT p FROM Presentation p WHERE p.participant.username = :username")})
+        @NamedQuery(name = Presentation.findAll, query = "SELECT p FROM Presentation p"),
+        @NamedQuery(name = Presentation.findByPresentationId, query = "SELECT p FROM Presentation p WHERE p.idPresentation = :idPresentation"),
+        @NamedQuery(name = Presentation.findByParticipantId, query = "SELECT p FROM Presentation p WHERE p.participant.username = :username")
+})
 public class Presentation implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public static final String FIND_ALL = "Presentation.findAll";
-    public static final String FIND_BY_ID_PRESENTATION = "Presentation.findByIdPresentation";
-    public static final String FIND_BY_ID_PARTICIPANT = "Presentation.findByIdParticipant";
+    public static final String PREFIX = "Presentation";
+    public static final String findAll = PREFIX + ".findAll";
+    public static final String findByPresentationId = PREFIX + ".findByIdPresentation";
+    public static final String findByParticipantId = PREFIX + ".findByIdParticipant";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_presentation", unique = true, nullable = false)
-    private int idPresentation;
-
-    @Column(name = "hand_score", nullable = false)
-    private float handScore;
-
-    @Column(name = "head_score", nullable = false)
-    private float headScore;
-
-    @Column(name = "total_score", nullable = false)
-    private float totalScore;
-
     @Column
-    @Max(300)
+    @GeneratedValue
+    private Integer idPresentation;
+
+    @Basic(optional = false)
+    @NotNull
+    private float score;
+
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    private String username;
+
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 300)
     private String song;
+
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    @ManyToOne
+    private User userId;
 
     // bi-directional many-to-one association to Participant
     @ManyToOne
@@ -44,70 +53,85 @@ public class Presentation implements Serializable {
     private Participant participant;
 
     // bi-directional many-to-one association to Song
-
     public Presentation() {
     }
 
-    public Presentation(int idPresentation, float handScore, float headScore, float totalScore, Participant participant, String song) {
-        this.idPresentation = idPresentation;
-        this.handScore = handScore;
-        this.headScore = headScore;
-        this.totalScore = totalScore;
-        this.participant = participant;
-        this.song = song;
+    public Integer getIdPresentation() {
+        return idPresentation;
     }
 
-    public int getIdPresentation() {
-        return this.idPresentation;
-    }
-
-    public void setIdPresentation(int idPresentation) {
+    public void setIdPresentation(Integer idPresentation) {
         this.idPresentation = idPresentation;
     }
 
-    public float getHandScore() {
-        return this.handScore;
+    public float getScore() {
+        return score;
     }
 
-    public void setHandScore(float handScore) {
-        this.handScore = handScore;
+    public void setScore(float score) {
+        this.score = score;
     }
 
-    public float getHeadScore() {
-        return this.headScore;
+    public String getUsername() {
+        return username;
     }
 
-    public void setHeadScore(float headScore) {
-        this.headScore = headScore;
-    }
-
-    public float getTotalScore() {
-        return this.totalScore;
-    }
-
-    public void setTotalScore(float totalScore) {
-        this.totalScore = totalScore;
-    }
-
-    public Participant getParticipant() {
-        return this.participant;
-    }
-
-    public void setParticipant(Participant participant) {
-        this.participant = participant;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getSong() {
-        return this.song;
+        return song;
     }
 
     public void setSong(String song) {
         this.song = song;
     }
 
+    public User getUserId() {
+        return userId;
+    }
+
+    public void setUserId(User userId) {
+        this.userId = userId;
+    }
+
+    public Participant getParticipant() {
+        return participant;
+    }
+
+    public void setParticipant(Participant participant) {
+        this.participant = participant;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + Objects.hashCode(this.idPresentation);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Presentation other = (Presentation) obj;
+        if (!Objects.equals(this.idPresentation, other.idPresentation)) {
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public String toString() {
-        return "Presentation [idPresentation=" + idPresentation + ", handScore=" + handScore + ", headScore="
-                + headScore + ", totalScore=" + totalScore + ", participant=" + participant + ", song=" + song + "]";
+        return "Presentation{" + "idPresentation=" + idPresentation + '}';
     }
+
 }
