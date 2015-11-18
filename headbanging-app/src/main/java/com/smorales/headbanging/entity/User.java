@@ -1,66 +1,60 @@
 package com.smorales.headbanging.entity;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
-import java.util.Objects;
-import java.util.Set;
 
-@Entity
-@Table(name = "user")
-@Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "user_type")
-@NamedQueries({
-        @NamedQuery(name = User.findAll, query = "SELECT u FROM User u"),
-        @NamedQuery(name = User.findByUsername, query = "SELECT u FROM User u WHERE u.username = :username"),
-        @NamedQuery(name = User.findAllByType, query = "SELECT u FROM User u WHERE TYPE(u) = :type")
-})
-public class User implements Serializable {
+@MappedSuperclass
+public abstract class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public static final String PREFIX = "User";
-    public static final String findAll = PREFIX + ".findAllUsers";
-    public static final String findByUsername = PREFIX + ".findByUsername";
-    public static final String findAllByType = PREFIX + ".findAllByType";
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
     @Column(name = "user_id")
     private Integer userId;
 
-    @Column(unique = true, nullable = false)
+    @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
-    private String username;
-
-    @Size(max = 20)
     @Column(name = "user_type")
     private String userType;
 
+    @Basic(optional = false)
+    @NotNull
     @Size(min = 1, max = 20)
-    @Column(name = "group_name", nullable = false)
+    @Column(name = "group_name")
     private String groupName;
 
+    @Basic(optional = false)
+    @NotNull
     @Size(min = 1, max = 20)
-    @Column(nullable = false, length = 50)
+    @Column(name = "username")
+    private String username;
+
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
+    @Column(name = "password")
     private String password;
 
-    @OneToMany(mappedBy = "userId")
-    private Set<Presentation> presentationSet;
+    @Size(max = 100)
+    @Column(name = "description")
+    private String description;
 
-    @OneToMany(mappedBy = "userId")
-    private Set<ScoreMatrix> scoreMatrixSet;
+    @Size(max = 45)
+    @Column(name = "name")
+    private String name;
 
     public User() {
     }
 
-    public User(String username, String group_name, String password) {
-        this.username = username;
-        this.groupName = group_name;
-        this.password = password;
+    public User(Integer userId) {
+        this.userId = userId;
     }
 
     public Integer getUserId() {
@@ -69,14 +63,6 @@ public class User implements Serializable {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getUserType() {
@@ -95,6 +81,14 @@ public class User implements Serializable {
         this.groupName = groupName;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -103,52 +97,35 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    @XmlTransient
-    public Set<Presentation> getPresentationSet() {
-        return presentationSet;
+    public String getDescription() {
+        return description;
     }
 
-    public void setPresentationSet(Set<Presentation> presentationSet) {
-        this.presentationSet = presentationSet;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    @XmlTransient
-    public Set<ScoreMatrix> getScoreMatrixSet() {
-        return scoreMatrixSet;
+    public String getName() {
+        return name;
     }
 
-    public void setScoreMatrixSet(Set<ScoreMatrix> scoreMatrixSet) {
-        this.scoreMatrixSet = scoreMatrixSet;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        return userId.equals(user.userId);
+
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.userId);
-        return hash;
+        return userId.hashCode();
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final User other = (User) obj;
-        if (!Objects.equals(this.userId, other.userId)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "com.smorales.headbanging.entity.User[ userId=" + userId + " ]";
-    }
-
 }

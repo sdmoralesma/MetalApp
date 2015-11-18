@@ -4,11 +4,10 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name = "jury")
-@DiscriminatorValue("JURY")
-@PrimaryKeyJoinColumn(name = "jury_id", referencedColumnName = "user_id")
 @NamedQueries({
         @NamedQuery(name = Jury.findAll, query = "SELECT j FROM Jury j"),
         @NamedQuery(name = Jury.findByName, query = "SELECT j FROM Jury j WHERE j.name = :name"),
@@ -26,36 +25,26 @@ public class Jury extends User implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
-    private String description;
+    @Column(name = "jury_info")
+    private String juryInfo;
 
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    private String name;
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "juryId")
+    private Set<Presentation> presentationSet;
 
 
-    public Jury() {
+    public String getJuryInfo() {
+        return juryInfo;
     }
 
-    public Jury(String description, String name) {
-        this.description = description;
-        this.name = name;
+    public void setJuryInfo(String juryInfo) {
+        this.juryInfo = juryInfo;
     }
 
-    public String getDescription() {
-        return description;
+    public Set<Presentation> getPresentationSet() {
+        return presentationSet;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setPresentationSet(Set<Presentation> presentationSet) {
+        this.presentationSet = presentationSet;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
 }

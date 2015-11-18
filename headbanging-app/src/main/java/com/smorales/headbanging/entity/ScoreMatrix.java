@@ -1,13 +1,10 @@
 package com.smorales.headbanging.entity;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
 @Table(name = "score_matrix")
-@XmlRootElement
 @NamedQueries({
         @NamedQuery(name = ScoreMatrix.findAll, query = "SELECT s FROM ScoreMatrix s"),
         @NamedQuery(name = ScoreMatrix.findByUsername, query = "SELECT s FROM ScoreMatrix s WHERE s.idScoreMatrix = :username")
@@ -28,21 +25,9 @@ public class ScoreMatrix implements Serializable {
     @Column(name = "total_score")
     private Float totalScore;
 
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    @ManyToOne
-    private User userId;
-
-    // bi-directional one-to-one association to Participant
-    @OneToOne
-    @JoinColumn(name = "username", nullable = false)
-    private Participant participant;
-
-    public ScoreMatrix() {
-    }
-
-    public ScoreMatrix(Participant participant) {
-        this.participant = participant;
-    }
+    @JoinColumn(name = "participant_id", referencedColumnName = "user_id")
+    @OneToOne(optional = false)
+    private Participant participantId;
 
     public Integer getIdScoreMatrix() {
         return idScoreMatrix;
@@ -60,50 +45,11 @@ public class ScoreMatrix implements Serializable {
         this.totalScore = totalScore;
     }
 
-    public User getUserId() {
-        return userId;
+    public Participant getParticipantId() {
+        return participantId;
     }
 
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public void setParticipantId(Participant participantId) {
+        this.participantId = participantId;
     }
-
-    public Participant getParticipant() {
-        return participant;
-    }
-
-    public void setParticipant(Participant participant) {
-        this.participant = participant;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 17 * hash + Objects.hashCode(this.idScoreMatrix);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final ScoreMatrix other = (ScoreMatrix) obj;
-        if (!Objects.equals(this.idScoreMatrix, other.idScoreMatrix)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "ScoreMatrix{" + "idScoreMatrix=" + idScoreMatrix + '}';
-    }
-
 }

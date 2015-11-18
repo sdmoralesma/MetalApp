@@ -1,7 +1,7 @@
-INSERT INTO `user` (`username`, `user_type`, `group_name`, `password`)
-VALUES ('admin1', 'admin', 'admin', 'jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg='),
-  ('jury1', 'jury', 'jury', 'jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg='),
-  ('participant1', 'participant', 'participant', 'jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=');
+INSERT INTO `user` (`user_id`, `username`, `user_type`, `group_name`, `password`)
+VALUES (NULL, 'admin1', 'admin', 'admin', 'jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg='),
+  (NULL, 'jury1', 'jury', 'jury', 'jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg='),
+  (NULL, 'participant1', 'participant', 'participant', 'jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=');
 
 INSERT INTO `admin` (`username`, `description`, `name`)
 VALUES ('admin1', 'A great admin', 'the Admin N1 ');

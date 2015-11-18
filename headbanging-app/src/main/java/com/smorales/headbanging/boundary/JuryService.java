@@ -24,17 +24,17 @@ public class JuryService {
         }
 
         Participant participantToVote = participants.get(0);
-        ScoreMatrix scoreMatrix = participantToVote.getScoreMatrix();
+        ScoreMatrix scoreMatrix = participantToVote.getScoreMatrixSet();
         if (scoreMatrix == null) {
             scoreMatrix = new ScoreMatrix();
-            scoreMatrix.setParticipant(participantToVote);
+            scoreMatrix.setParticipantId(participantToVote);
         }
 
         scoreMatrix = addHandPointsToScoreMatrix(scoreMatrix, handPoints);
         scoreMatrix = addHeadPointsToScoreMatrix(scoreMatrix, headPoints);
         scoreMatrix = calculateTotalAverageScoreMatrix(scoreMatrix);
         scoreMatrix.setTotalScore(scoreMatrix.getTotalScore() + 1);
-        participantToVote.setScoreMatrix(scoreMatrix);
+        participantToVote.setScoreMatrixSet(scoreMatrix);
         em.persist(participantToVote);
     }
 
