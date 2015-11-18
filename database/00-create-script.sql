@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `headbanging-db`.`user` (
   `username` VARCHAR(20) NOT NULL COMMENT '',
   `user_type` VARCHAR(20) NULL DEFAULT NULL COMMENT '',
   `group_name` VARCHAR(20) NOT NULL COMMENT '',
-  `password` VARCHAR(20) NOT NULL COMMENT '',
+  `password` VARCHAR(50) NOT NULL COMMENT '',
   PRIMARY KEY (`user_id`)  COMMENT '',
   UNIQUE INDEX `USERNAME` (`username` ASC)  COMMENT '')
 ENGINE = InnoDB
