@@ -1,8 +1,6 @@
 package com.smorales.headbanging.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.Objects;
@@ -29,11 +27,6 @@ public class ScoreMatrix implements Serializable {
 
     @Column(name = "total_score")
     private Float totalScore;
-
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
-    private String username;
 
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     @ManyToOne
@@ -65,14 +58,6 @@ public class ScoreMatrix implements Serializable {
 
     public void setTotalScore(Float totalScore) {
         this.totalScore = totalScore;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public User getUserId() {

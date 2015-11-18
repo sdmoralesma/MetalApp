@@ -25,18 +25,13 @@ public class Presentation implements Serializable {
     public static final String findByParticipantId = PREFIX + ".findByIdParticipant";
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    @GeneratedValue
     private Integer idPresentation;
 
     @Basic(optional = false)
     @NotNull
     private float score;
-
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    private String username;
 
     @Basic(optional = false)
     @NotNull
@@ -70,14 +65,6 @@ public class Presentation implements Serializable {
 
     public void setScore(float score) {
         this.score = score;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getSong() {

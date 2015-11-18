@@ -1,8 +1,8 @@
 package com.smorales.headbanging.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Objects;
@@ -12,7 +12,6 @@ import java.util.Set;
 @Table(name = "user")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "user_type")
-@XmlRootElement
 @NamedQueries({
         @NamedQuery(name = User.findAll, query = "SELECT u FROM User u"),
         @NamedQuery(name = User.findByUsername, query = "SELECT u FROM User u WHERE u.username = :username"),
@@ -28,12 +27,12 @@ public class User implements Serializable {
     public static final String findAllByType = PREFIX + ".findAllByType";
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Integer userId;
 
-    @Id
     @Column(unique = true, nullable = false)
+    @NotNull
     @Size(min = 1, max = 20)
     private String username;
 
@@ -54,15 +53,6 @@ public class User implements Serializable {
 
     @OneToMany(mappedBy = "userId")
     private Set<ScoreMatrix> scoreMatrixSet;
-
-    @OneToOne(mappedBy = "userId")
-    private Jury jurySet;
-
-    @OneToOne(mappedBy = "userId")
-    private Admin adminSet;
-
-    @OneToOne(mappedBy = "userId")
-    private Participant participantSet;
 
     public User() {
     }
@@ -122,22 +112,6 @@ public class User implements Serializable {
         this.presentationSet = presentationSet;
     }
 
-    public Jury getJurySet() {
-        return jurySet;
-    }
-
-    public void setJurySet(Jury jurySet) {
-        this.jurySet = jurySet;
-    }
-
-    public Admin getAdminSet() {
-        return adminSet;
-    }
-
-    public void setAdminSet(Admin adminSet) {
-        this.adminSet = adminSet;
-    }
-
     @XmlTransient
     public Set<ScoreMatrix> getScoreMatrixSet() {
         return scoreMatrixSet;
@@ -145,14 +119,6 @@ public class User implements Serializable {
 
     public void setScoreMatrixSet(Set<ScoreMatrix> scoreMatrixSet) {
         this.scoreMatrixSet = scoreMatrixSet;
-    }
-
-    public Participant getParticipantSet() {
-        return participantSet;
-    }
-
-    public void setParticipantSet(Participant participantSet) {
-        this.participantSet = participantSet;
     }
 
     @Override
