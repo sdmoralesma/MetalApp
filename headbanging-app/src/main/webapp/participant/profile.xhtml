@@ -3,6 +3,10 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 template="/WEB-INF/templates/template.xhtml">
 
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{participantController.populateParticipant}" />
+    </f:metadata>
+
     <ui:define name="content">
 
         <h3>My Profile</h3>

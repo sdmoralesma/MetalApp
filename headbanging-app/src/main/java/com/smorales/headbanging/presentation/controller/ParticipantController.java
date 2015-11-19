@@ -5,7 +5,6 @@ import com.smorales.headbanging.presentation.model.ParticipantModel;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
-import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -24,10 +23,9 @@ public class ParticipantController {
     @Inject
     FacesContext facesContext;
 
-    @PostConstruct
     public void populateParticipant() {
         String nameLoggedUser = facesContext.getExternalContext().getRemoteUser();
-        participantModel.setParticipant(participantService.findParticipantByPK(nameLoggedUser));
+        participantModel.setParticipant(participantService.findParticipantByUsername(nameLoggedUser));
     }
 
     public void updateParticipant() {

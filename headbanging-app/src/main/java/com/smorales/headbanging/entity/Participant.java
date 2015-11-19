@@ -9,18 +9,9 @@ import java.io.Serializable;
 @Table(name = "participant")
 @DiscriminatorValue("PARTICIPANT")
 @PrimaryKeyJoinColumn(name = "participant_id", referencedColumnName = "user_id")
-@NamedQueries({
-        @NamedQuery(name = Participant.FIND_ALL, query = "SELECT p FROM Participant p"),
-        @NamedQuery(name = Participant.FIND_BY_NAME, query = "SELECT p FROM Participant p WHERE p.name = :name"),
-        @NamedQuery(name = Participant.FIND_BY_USERNAME, query = "SELECT p FROM Participant p WHERE p.username = :username")})
 public class Participant extends User implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    public static final String PREFIX = "Participant";
-    public static final String FIND_ALL = PREFIX + ".findAll";
-    public static final String FIND_BY_NAME = PREFIX + ".findByName";
-    public static final String FIND_BY_USERNAME = PREFIX + ".findByUsername";
 
     @Basic(optional = false)
     @NotNull

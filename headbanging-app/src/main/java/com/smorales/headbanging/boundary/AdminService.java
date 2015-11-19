@@ -14,7 +14,7 @@ public class AdminService {
     EntityManager em;
 
     public List<Participant> participantList() {
-        return em.createNamedQuery(Participant.FIND_ALL, Participant.class).getResultList();
+        return em.createNamedQuery(Participant.findAll, Participant.class).getResultList();
     }
 
     public List<Jury> juryList() {

@@ -15,7 +15,7 @@ public class JuryService {
     EntityManager em;
 
     public void votePerParticipant(Participant participant, Integer points) {
-        List<Participant> participants = em.createNamedQuery(Participant.FIND_BY_USERNAME, Participant.class)
+        List<Participant> participants = em.createNamedQuery(Participant.findByUsername, Participant.class)
                 .setParameter("username", participant.getUsername())
                 .getResultList();
 

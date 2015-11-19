@@ -1,10 +1,12 @@
 package com.smorales.headbanging.boundary;
 
 import com.smorales.headbanging.entity.Participant;
+import com.smorales.headbanging.entity.User;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Stateless
 public class ParticipantService {
@@ -12,10 +14,12 @@ public class ParticipantService {
     @PersistenceContext
     EntityManager em;
 
-    public Participant findParticipantByPK(String nameLoggedUser) {
-        return em.createNamedQuery(Participant.FIND_BY_USERNAME, Participant.class)
-                .setParameter("username", nameLoggedUser)
-                .getSingleResult();
+    public Participant findParticipantByUsername(String username) {
+        List<Participant> participants = em.createNamedQuery(User.findByParticipantByUsername, Participant.class)
+                .setParameter("username", username)
+                .getResultList();
+
+        return (Participant) participants.get(0);
     }
 
     public void updateParticipant(Participant participant) {
