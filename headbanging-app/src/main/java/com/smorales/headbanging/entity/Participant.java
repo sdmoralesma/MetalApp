@@ -39,11 +39,11 @@ public class Participant extends User implements Serializable {
 
     @JoinColumn(name = "presentation_id", referencedColumnName = "id_presentation")
     @ManyToOne(optional = false)
-    private Presentation presentationId;
+    private Presentation presentation;
 
     @JoinColumn(name = "score_matrix_id", referencedColumnName = "id_score_matrix")
     @ManyToOne(optional = false)
-    private ScoreMatrix scoreMatrixId;
+    private ScoreMatrix scoreMatrix;
 
     public int getAge() {
         return age;
@@ -69,20 +69,20 @@ public class Participant extends User implements Serializable {
         this.imageUrl = imageUrl;
     }
 
-    public Presentation getPresentationId() {
-        return presentationId;
+    public Presentation getPresentation() {
+        return presentation;
     }
 
-    public void setPresentationId(Presentation presentationId) {
-        this.presentationId = presentationId;
+    public void setPresentation(Presentation presentationId) {
+        this.presentation = presentationId;
     }
 
-    public ScoreMatrix getScoreMatrixId() {
-        return scoreMatrixId;
+    public ScoreMatrix getScoreMatrix() {
+        return scoreMatrix;
     }
 
-    public void setScoreMatrixId(ScoreMatrix scoreMatrixId) {
-        this.scoreMatrixId = scoreMatrixId;
+    public void setScoreMatrix(ScoreMatrix scoreMatrixId) {
+        this.scoreMatrix = scoreMatrixId;
     }
 
 }

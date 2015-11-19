@@ -38,7 +38,7 @@ public class Presentation implements Serializable {
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "presentationId")
     private List<Jury> juryList;
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "presentationId")
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "presentation")
     private List<Participant> participantList;
 
     public float getScore() {

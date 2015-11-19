@@ -26,7 +26,7 @@ public class ScoreMatrix implements Serializable {
     @Column(name = "total_score")
     private Float totalScore;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "scoreMatrixId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "scoreMatrix")
     private List<Participant> participantList;
 
     public Integer getIdScoreMatrix() {

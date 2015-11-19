@@ -1,0 +1,56 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/template.xhtml">
+
+    <ui:define name="content">
+
+        <h3>Register Admin</h3>
+        <h:form id="form">
+
+            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+            <h:panelGrid columns="3">
+
+                <p:outputLabel for="username" value="Username"/>
+                <h:inputText id="username" value="#{adminModel.admin.username}" required="true"/>
+                <p:message for="username"/>
+
+                <p:outputLabel for="name" value="Name"/>
+                <h:inputText id="name" value="#{adminModel.admin.name}" required="true"/>
+                <p:message for="name"/>
+
+                <p:outputLabel for="password" value="Password"/>
+                <h:inputSecret id="password" value="#{adminModel.admin.password}" required="true"/>
+                <p:message for="password"/>
+
+                <p:outputLabel for="description" value="Description"/>
+                <h:inputText id="description" value="#{adminModel.admin.description}"/>
+                <p:message for="description"/>
+
+                <p:outputLabel for="adminInfo" value="Admin Info"/>
+                <h:inputText id="adminInfo" value="#{adminModel.admin.adminInfo}"/>
+                <p:message for="adminInfo"/>
+
+                <p:commandButton value="Register admin" action="#{adminController.registerAdmin}" icon="ui-icon-disk"/>
+            </h:panelGrid>
+        </h:form>
+
+        <h2>List of Admins</h2>
+        <h:form>
+            <p:dataTable value="#{adminController.adminList()}" var="admin">
+
+                <p:column headerText="Username">
+                    <h:outputText value="#{admin.username}"/>
+                </p:column>
+
+                <p:column headerText="Name">
+                    <h:outputText value="#{admin.name}"/>
+                </p:column>
+
+                <p:column headerText="Description">
+                    <h:outputText value="#{admin.description}"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+
+    </ui:define>
+</ui:composition>
