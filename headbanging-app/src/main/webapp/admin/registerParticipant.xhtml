@@ -35,10 +35,6 @@
                 </p:selectOneMenu>
                 <p:message for="gender"/>
 
-                <p:outputLabel for="country" value="Country *"/>
-                <h:inputText id="country" value="#{adminModel.participant.country}"/>
-                <p:message for="country"/>
-
                 <p:commandButton value="Register Participant" action="#{adminController.registerParticipant}"
                                  icon="ui-icon-disk"/>
             </h:panelGrid>
@@ -48,16 +44,12 @@
         <h:form id="table">
             <p:dataTable value="#{adminController.participantList()}" var="participant">
 
-                <p:column headerText="UserName">
+                <p:column headerText="Username">
                     <h:outputText value="#{participant.username}"/>
                 </p:column>
 
                 <p:column headerText="Age">
                     <h:outputText value="#{participant.age}"/>
-                </p:column>
-
-                <p:column headerText="Country">
-                    <h:outputText value="#{participant.country}"/>
                 </p:column>
 
                 <p:column headerText="Gender">

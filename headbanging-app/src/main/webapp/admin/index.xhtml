@@ -4,7 +4,7 @@
 
     <ui:define name="content">
 
-        <h:form>
+        <h:form id="duke-form">
             <p:graphicImage url="/resources/images/duke-waving.gif" alt="Duke waving his hand"/>
 
             <p>Hello, my name is Duke. What's yours?</p>
@@ -12,7 +12,9 @@
                          requiredMessage="Error: A name is required." maxlength="25"/>
 
             <p:commandButton id="submit" value="Submit" action="response"/>
-            <p:commandButton id="reset" value="Reset" type="reset"/>
+            <p:commandButton id="reset" value="Reset" type="reset">
+                <p:ajax update="duke-form" resetValues="true" />
+            </p:commandButton>
         </h:form>
 
         <div class="messagecolor">

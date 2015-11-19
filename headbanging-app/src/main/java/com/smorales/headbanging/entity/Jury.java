@@ -8,6 +8,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "jury")
+@DiscriminatorValue("JURY")
 @NamedQueries({
         @NamedQuery(name = Jury.findAll, query = "SELECT j FROM Jury j"),
         @NamedQuery(name = Jury.findByName, query = "SELECT j FROM Jury j WHERE j.name = :name"),

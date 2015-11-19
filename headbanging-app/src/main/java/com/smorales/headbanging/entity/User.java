@@ -1,15 +1,15 @@
 package com.smorales.headbanging.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
-@MappedSuperclass
-public abstract class User implements Serializable {
+@Entity
+@Table(name = "user")
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "user_type")
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

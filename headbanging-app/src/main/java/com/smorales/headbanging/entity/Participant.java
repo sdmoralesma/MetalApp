@@ -35,7 +35,7 @@ public class Participant extends User implements Serializable {
     @OneToOne(cascade = CascadeType.PERSIST, mappedBy = "participantId")
     private ScoreMatrix scoreMatrixSet;
 
-    @Size(max = 100)
+    @Size(max = 300)
     @Column(name = "image_url")
     private String imageUrl;
 

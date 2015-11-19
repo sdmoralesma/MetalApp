@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `headbanging-db`.`participant` (
   `user_id` INT(11) NOT NULL COMMENT '',
   `age` INT(11) NOT NULL COMMENT '',
   `gender` VARCHAR(10) NOT NULL COMMENT '',
-  `image_url` VARCHAR(100) NULL DEFAULT NULL COMMENT '',
+  `image_url` VARCHAR(300) NULL DEFAULT NULL COMMENT '',
   PRIMARY KEY (`user_id`)  COMMENT '')
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
@@ -65,23 +65,22 @@ DEFAULT CHARACTER SET = latin1;
 DROP TABLE IF EXISTS `headbanging-db`.`presentation` ;
 
 CREATE TABLE IF NOT EXISTS `headbanging-db`.`presentation` (
-  `id_presentation` INT(11) NOT NULL COMMENT '',
+  `id_presentation` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
   `score` FLOAT NOT NULL COMMENT '',
   `song` VARCHAR(300) NOT NULL COMMENT '',
   `participant_id` INT(11) NOT NULL COMMENT '',
   `jury_id` INT(11) NOT NULL COMMENT '',
   PRIMARY KEY (`id_presentation`)  COMMENT '',
-  UNIQUE INDEX `id_presentation` (`id_presentation` ASC)  COMMENT '',
   INDEX `fk_presentation_participant1_idx` (`participant_id` ASC)  COMMENT '',
   INDEX `fk_presentation_jury1_idx` (`jury_id` ASC)  COMMENT '',
-  CONSTRAINT `fk_presentation_participant1`
-    FOREIGN KEY (`participant_id`)
-    REFERENCES `headbanging-db`.`participant` (`user_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_presentation_jury1`
     FOREIGN KEY (`jury_id`)
     REFERENCES `headbanging-db`.`jury` (`user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_presentation_participant1`
+    FOREIGN KEY (`participant_id`)
+    REFERENCES `headbanging-db`.`participant` (`user_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -94,7 +93,7 @@ DEFAULT CHARACTER SET = latin1;
 DROP TABLE IF EXISTS `headbanging-db`.`score_matrix` ;
 
 CREATE TABLE IF NOT EXISTS `headbanging-db`.`score_matrix` (
-  `id_score_matrix` INT(11) NOT NULL COMMENT '',
+  `id_score_matrix` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
   `total_score` FLOAT NULL DEFAULT NULL COMMENT '',
   `participant_id` INT(11) NOT NULL COMMENT '',
   PRIMARY KEY (`id_score_matrix`)  COMMENT '',
@@ -114,11 +113,11 @@ DEFAULT CHARACTER SET = latin1;
 DROP TABLE IF EXISTS `headbanging-db`.`user` ;
 
 CREATE TABLE IF NOT EXISTS `headbanging-db`.`user` (
-  `user_id` INT(11) NOT NULL COMMENT '',
+  `user_id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
   `user_type` VARCHAR(20) NOT NULL COMMENT '',
   `group_name` VARCHAR(20) NOT NULL COMMENT '',
   `username` VARCHAR(20) NOT NULL COMMENT '',
-  `password` VARCHAR(20) NOT NULL COMMENT '',
+  `password` VARCHAR(50) NOT NULL COMMENT '',
   `description` VARCHAR(100) NULL COMMENT '',
   `name` VARCHAR(45) NULL COMMENT '',
   PRIMARY KEY (`user_id`)  COMMENT '',
@@ -130,4 +129,3 @@ DEFAULT CHARACTER SET = latin1;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
