@@ -18,25 +18,16 @@ public class User implements Serializable {
     @Column(name = "user_id")
     private Integer userId;
 
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
-    @Column(name = "user_type")
-    private String userType;
-
-    @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "group_name")
     private String groupName;
 
-    @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "username")
     private String username;
 
-    @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "password")
@@ -63,14 +54,6 @@ public class User implements Serializable {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
-    }
-
-    public String getUserType() {
-        return userType;
-    }
-
-    public void setUserType(String userType) {
-        this.userType = userType;
     }
 
     public String getGroupName() {
@@ -112,7 +95,5 @@ public class User implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-
-
 
 }

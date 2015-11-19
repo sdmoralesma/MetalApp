@@ -81,7 +81,7 @@ DROP TABLE IF EXISTS `headbanging-db`.`jury` ;
 CREATE TABLE IF NOT EXISTS `headbanging-db`.`jury` (
   `jury_id` INT(11) NOT NULL COMMENT '',
   `jury_info` VARCHAR(100) NOT NULL COMMENT '',
-  `presentation_id` INT(11) NOT NULL COMMENT '',
+  `presentation_id` INT(11) NULL COMMENT '',
   `user_id` INT(11) NOT NULL COMMENT '',
   PRIMARY KEY (`jury_id`)  COMMENT '',
   INDEX `fk_jury_presentation1_idx` (`presentation_id` ASC)  COMMENT '',

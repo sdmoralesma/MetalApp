@@ -1,9 +1,6 @@
 package com.smorales.headbanging.boundary;
 
-import com.smorales.headbanging.entity.Admin;
-import com.smorales.headbanging.entity.Jury;
-import com.smorales.headbanging.entity.Participant;
-import com.smorales.headbanging.entity.ScoreMatrix;
+import com.smorales.headbanging.entity.*;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -34,13 +31,18 @@ public class AdminService {
 
     public void registerAdmin(Admin admin) {
         admin.setGroupName("admin");
-        admin.setUserType("admin");
         em.persist(admin);
     }
 
     public void registerJury(Jury jury) {
         jury.setGroupName("jury");
-        jury.setUserType("jury");
+        jury.setDescription("a description");
+        jury.setName("a name");
+        jury.setPassword("password");
+        jury.setUsername("username");
+        jury.setJuryInfo("info");
+        jury.setPresentationId(new Presentation());
+
         em.persist(jury);
     }
 

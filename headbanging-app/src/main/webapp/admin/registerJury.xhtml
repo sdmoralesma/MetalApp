@@ -26,6 +26,10 @@
                 <h:inputText id="description" value="#{adminModel.jury.description}"/>
                 <p:message for="description"/>
 
+                <p:outputLabel for="juryInfo" value="Jury Info"/>
+                <h:inputText id="juryInfo" value="#{adminModel.jury.juryInfo}"/>
+                <p:message for="juryInfo"/>
+
                 <p:commandButton value="Register Jury" action="#{adminController.registerJury}" icon="ui-icon-disk"/>
             </h:panelGrid>
         </h:form>

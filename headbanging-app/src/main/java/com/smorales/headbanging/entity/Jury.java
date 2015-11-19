@@ -1,7 +1,6 @@
 package com.smorales.headbanging.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
@@ -28,7 +27,7 @@ public class Jury extends User implements Serializable {
     private String juryInfo;
 
     @JoinColumn(name = "presentation_id", referencedColumnName = "id_presentation")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Presentation presentationId;
 
     public String getJuryInfo() {

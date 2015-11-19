@@ -99,4 +99,7 @@ public class Presentation implements Serializable {
         return "com.smorales.headbanging.entity.Presentation[ idPresentation=" + idPresentation + " ]";
     }
 
+    public Presentation() {
+    }
+
 }
