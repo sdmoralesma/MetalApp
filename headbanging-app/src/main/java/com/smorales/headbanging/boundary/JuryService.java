@@ -24,7 +24,7 @@ public class JuryService {
         }
 
         Participant participantToVote = participants.get(0);
-        List<ScoreMatrix> scoreMatrix = participantToVote.getScoreMatrixList();
+        ScoreMatrix scoreMatrix = participantToVote.getScoreMatrixId();
         if (scoreMatrix == null) {
 
         }

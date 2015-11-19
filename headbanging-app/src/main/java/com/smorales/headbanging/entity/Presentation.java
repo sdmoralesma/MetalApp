@@ -4,13 +4,13 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "presentation")
 @NamedQueries({
         @NamedQuery(name = Presentation.findAll, query = "SELECT p FROM Presentation p"),
-        @NamedQuery(name = Presentation.findByPresentationId, query = "SELECT p FROM Presentation p WHERE p.idPresentation = :idPresentation"),
-        @NamedQuery(name = Presentation.findByParticipantId, query = "SELECT p FROM Presentation p WHERE p.participantId.username = :username")
+        @NamedQuery(name = Presentation.findByPresentationId, query = "SELECT p FROM Presentation p WHERE p.idPresentation = :idPresentation")
 })
 public class Presentation implements Serializable {
 
@@ -23,7 +23,7 @@ public class Presentation implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
+    @Column(name = "id_presentation")
     private Integer idPresentation;
 
     @Basic(optional = false)
@@ -36,22 +36,11 @@ public class Presentation implements Serializable {
     @Column(name = "song")
     private String song;
 
-    @JoinColumn(name = "jury_id", referencedColumnName = "user_id")
-    @ManyToOne(optional = false)
-    private Jury juryId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "presentationId")
+    private List<Jury> juryList;
 
-    @JoinColumn(name = "participant_id", referencedColumnName = "user_id")
-    @ManyToOne(optional = false)
-    private Participant participantId;
-
-
-    public Integer getIdPresentation() {
-        return idPresentation;
-    }
-
-    public void setIdPresentation(Integer idPresentation) {
-        this.idPresentation = idPresentation;
-    }
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "presentationId")
+    private List<Participant> participantList;
 
     public float getScore() {
         return score;
@@ -69,19 +58,45 @@ public class Presentation implements Serializable {
         this.song = song;
     }
 
-    public Jury getJuryId() {
-        return juryId;
+    public List<Jury> getJuryList() {
+        return juryList;
     }
 
-    public void setJuryId(Jury juryId) {
-        this.juryId = juryId;
+    public void setJuryList(List<Jury> juryList) {
+        this.juryList = juryList;
     }
 
-    public Participant getParticipantId() {
-        return participantId;
+    public List<Participant> getParticipantList() {
+        return participantList;
     }
 
-    public void setParticipantId(Participant participantId) {
-        this.participantId = participantId;
-    }    
+    public void setParticipantList(List<Participant> participantList) {
+        this.participantList = participantList;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idPresentation != null ? idPresentation.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Presentation)) {
+            return false;
+        }
+        Presentation other = (Presentation) object;
+        if ((this.idPresentation == null && other.idPresentation != null) || (this.idPresentation != null && !this.idPresentation.equals(other.idPresentation))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.smorales.headbanging.entity.Presentation[ idPresentation=" + idPresentation + " ]";
+    }
+
 }

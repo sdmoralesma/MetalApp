@@ -32,34 +32,6 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `headbanging-db`.`jury`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `headbanging-db`.`jury` ;
-
-CREATE TABLE IF NOT EXISTS `headbanging-db`.`jury` (
-  `user_id` INT(11) NOT NULL COMMENT '',
-  `jury_info` VARCHAR(100) NOT NULL COMMENT '',
-  PRIMARY KEY (`user_id`)  COMMENT '')
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
-
-
--- -----------------------------------------------------
--- Table `headbanging-db`.`participant`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `headbanging-db`.`participant` ;
-
-CREATE TABLE IF NOT EXISTS `headbanging-db`.`participant` (
-  `user_id` INT(11) NOT NULL COMMENT '',
-  `age` INT(11) NOT NULL COMMENT '',
-  `gender` VARCHAR(10) NOT NULL COMMENT '',
-  `image_url` VARCHAR(300) NULL DEFAULT NULL COMMENT '',
-  PRIMARY KEY (`user_id`)  COMMENT '')
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
-
-
--- -----------------------------------------------------
 -- Table `headbanging-db`.`presentation`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `headbanging-db`.`presentation` ;
@@ -68,19 +40,25 @@ CREATE TABLE IF NOT EXISTS `headbanging-db`.`presentation` (
   `id_presentation` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
   `score` FLOAT NOT NULL COMMENT '',
   `song` VARCHAR(300) NOT NULL COMMENT '',
-  `participant_id` INT(11) NOT NULL COMMENT '',
-  `jury_id` INT(11) NOT NULL COMMENT '',
-  PRIMARY KEY (`id_presentation`)  COMMENT '',
-  INDEX `fk_presentation_participant1_idx` (`participant_id` ASC)  COMMENT '',
-  INDEX `fk_presentation_jury1_idx` (`jury_id` ASC)  COMMENT '',
-  CONSTRAINT `fk_presentation_jury1`
-    FOREIGN KEY (`jury_id`)
-    REFERENCES `headbanging-db`.`jury` (`user_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_presentation_participant1`
-    FOREIGN KEY (`participant_id`)
-    REFERENCES `headbanging-db`.`participant` (`user_id`)
+  PRIMARY KEY (`id_presentation`)  COMMENT '')
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `headbanging-db`.`jury`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `headbanging-db`.`jury` ;
+
+CREATE TABLE IF NOT EXISTS `headbanging-db`.`jury` (
+  `user_id` INT(11) NOT NULL COMMENT '',
+  `jury_info` VARCHAR(100) NOT NULL COMMENT '',
+  `presentation_id` INT(11) NOT NULL COMMENT '',
+  PRIMARY KEY (`user_id`)  COMMENT '',
+  INDEX `fk_jury_presentation1_idx` (`presentation_id` ASC)  COMMENT '',
+  CONSTRAINT `fk_jury_presentation1`
+    FOREIGN KEY (`presentation_id`)
+    REFERENCES `headbanging-db`.`presentation` (`id_presentation`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -95,12 +73,34 @@ DROP TABLE IF EXISTS `headbanging-db`.`score_matrix` ;
 CREATE TABLE IF NOT EXISTS `headbanging-db`.`score_matrix` (
   `id_score_matrix` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
   `total_score` FLOAT NULL DEFAULT NULL COMMENT '',
-  `participant_id` INT(11) NOT NULL COMMENT '',
-  PRIMARY KEY (`id_score_matrix`)  COMMENT '',
-  INDEX `fk_score_matrix_participant_idx` (`participant_id` ASC)  COMMENT '',
-  CONSTRAINT `fk_score_matrix_participant`
-    FOREIGN KEY (`participant_id`)
-    REFERENCES `headbanging-db`.`participant` (`user_id`)
+  PRIMARY KEY (`id_score_matrix`)  COMMENT '')
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `headbanging-db`.`participant`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `headbanging-db`.`participant` ;
+
+CREATE TABLE IF NOT EXISTS `headbanging-db`.`participant` (
+  `user_id` INT(11) NOT NULL COMMENT '',
+  `age` INT(11) NOT NULL COMMENT '',
+  `gender` VARCHAR(10) NOT NULL COMMENT '',
+  `image_url` VARCHAR(300) NULL DEFAULT NULL COMMENT '',
+  `score_matrix_id` INT(11) NOT NULL COMMENT '',
+  `presentation_id` INT(11) NOT NULL COMMENT '',
+  PRIMARY KEY (`user_id`)  COMMENT '',
+  INDEX `fk_participant_score_matrix1_idx` (`score_matrix_id` ASC)  COMMENT '',
+  INDEX `fk_participant_presentation1_idx` (`presentation_id` ASC)  COMMENT '',
+  CONSTRAINT `fk_participant_score_matrix1`
+    FOREIGN KEY (`score_matrix_id`)
+    REFERENCES `headbanging-db`.`score_matrix` (`id_score_matrix`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_participant_presentation1`
+    FOREIGN KEY (`presentation_id`)
+    REFERENCES `headbanging-db`.`presentation` (`id_presentation`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -129,3 +129,4 @@ DEFAULT CHARACTER SET = latin1;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+

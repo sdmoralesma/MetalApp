@@ -48,7 +48,6 @@ public class AdminService {
             participant.setImageUrl("default.jpg");
         }
         ScoreMatrix score = new ScoreMatrix();
-        score.setParticipantId(participant);
         em.persist(participant);
     }
 

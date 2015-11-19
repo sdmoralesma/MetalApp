@@ -4,15 +4,14 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Table(name = "participant")
 @DiscriminatorValue("PARTICIPANT")
 @NamedQueries({
-    @NamedQuery(name = Participant.FIND_ALL, query = "SELECT p FROM Participant p"),
-    @NamedQuery(name = Participant.FIND_BY_NAME, query = "SELECT p FROM Participant p WHERE p.name = :name"),
-    @NamedQuery(name = Participant.FIND_BY_USERNAME, query = "SELECT p FROM Participant p WHERE p.username = :username")})
+        @NamedQuery(name = Participant.FIND_ALL, query = "SELECT p FROM Participant p"),
+        @NamedQuery(name = Participant.FIND_BY_NAME, query = "SELECT p FROM Participant p WHERE p.name = :name"),
+        @NamedQuery(name = Participant.FIND_BY_USERNAME, query = "SELECT p FROM Participant p WHERE p.username = :username")})
 public class Participant extends User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,11 +36,13 @@ public class Participant extends User implements Serializable {
     @Column(name = "image_url")
     private String imageUrl;
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "participantId")
-    private List<Presentation> presentationList;
+    @JoinColumn(name = "presentation_id", referencedColumnName = "id_presentation")
+    @ManyToOne(optional = false)
+    private Presentation presentationId;
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "participantId")
-    private List<ScoreMatrix> scoreMatrixList;
+    @JoinColumn(name = "score_matrix_id", referencedColumnName = "id_score_matrix")
+    @ManyToOne(optional = false)
+    private ScoreMatrix scoreMatrixId;
 
     public int getAge() {
         return age;
@@ -67,20 +68,20 @@ public class Participant extends User implements Serializable {
         this.imageUrl = imageUrl;
     }
 
-    public List<Presentation> getPresentationList() {
-        return presentationList;
+    public Presentation getPresentationId() {
+        return presentationId;
     }
 
-    public void setPresentationList(List<Presentation> presentationList) {
-        this.presentationList = presentationList;
+    public void setPresentationId(Presentation presentationId) {
+        this.presentationId = presentationId;
     }
 
-    public List<ScoreMatrix> getScoreMatrixList() {
-        return scoreMatrixList;
+    public ScoreMatrix getScoreMatrixId() {
+        return scoreMatrixId;
     }
 
-    public void setScoreMatrixList(List<ScoreMatrix> scoreMatrixList) {
-        this.scoreMatrixList = scoreMatrixList;
+    public void setScoreMatrixId(ScoreMatrix scoreMatrixId) {
+        this.scoreMatrixId = scoreMatrixId;
     }
-    
+
 }

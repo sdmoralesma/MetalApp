@@ -4,7 +4,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Table(name = "jury")
@@ -28,9 +27,9 @@ public class Jury extends User implements Serializable {
     @Column(name = "jury_info")
     private String juryInfo;
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "juryId")
-    private List<Presentation> presentationList;
-
+    @JoinColumn(name = "presentation_id", referencedColumnName = "id_presentation")
+    @ManyToOne(optional = false)
+    private Presentation presentationId;
 
     public String getJuryInfo() {
         return juryInfo;
@@ -40,11 +39,12 @@ public class Jury extends User implements Serializable {
         this.juryInfo = juryInfo;
     }
 
-    public List<Presentation> getPresentationList() {
-        return presentationList;
+    public Presentation getPresentationId() {
+        return presentationId;
     }
 
-    public void setPresentationList(List<Presentation> presentationSet) {
-        this.presentationList = presentationSet;
+    public void setPresentationId(Presentation presentationId) {
+        this.presentationId = presentationId;
     }
+
 }

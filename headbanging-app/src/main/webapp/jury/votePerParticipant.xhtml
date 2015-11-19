@@ -24,16 +24,12 @@
         <h2>List of the Participants</h2>
         <p:dataTable value="#{adminController.participantList()}" var="participant">
 
-            <p:column headerText="UserName">
+            <p:column headerText="Username">
                 <h:outputText value="#{participant.username}"/>
             </p:column>
 
             <p:column headerText="Age">
                 <h:outputText value="#{participant.age}"/>
-            </p:column>
-
-            <p:column headerText="Country">
-                <h:outputText value="#{participant.country}"/>
             </p:column>
 
             <p:column headerText="Gender">
@@ -45,7 +41,7 @@
             </p:column>
 
             <p:column headerText="Score">
-                <h:outputText value="#{participant.scoreMatrix.totalScore}"/>
+                <h:outputText value="#{participant.scoreMatrixId.totalScore}"/>
             </p:column>
 
         </p:dataTable>

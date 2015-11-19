@@ -34,5 +34,5 @@ public class Admin extends User implements Serializable {
 
     public void setAdminInfo(String adminInfo) {
         this.adminInfo = adminInfo;
-    }   
+    }
 }
