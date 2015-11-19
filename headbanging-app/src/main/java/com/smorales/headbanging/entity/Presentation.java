@@ -19,7 +19,6 @@ public class Presentation implements Serializable {
     public static final String PREFIX = "Presentation";
     public static final String findAll = PREFIX + ".findAll";
     public static final String findByPresentationId = PREFIX + ".findByIdPresentation";
-    public static final String findByParticipantId = PREFIX + ".findByIdParticipant";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,10 +35,10 @@ public class Presentation implements Serializable {
     @Column(name = "song")
     private String song;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "presentationId")
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "presentationId")
     private List<Jury> juryList;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "presentationId")
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "presentationId")
     private List<Participant> participantList;
 
     public float getScore() {

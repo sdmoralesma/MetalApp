@@ -35,15 +35,15 @@ public class AdminService {
     }
 
     public void registerJury(Jury jury) {
-        jury.setGroupName("jury");
+        jury.setGroupName("jury");//TODO: remove hardcoded data
         jury.setDescription("a description");
         jury.setName("a name");
         jury.setPassword("password");
         jury.setUsername("username");
         jury.setJuryInfo("info");
-        jury.setPresentationId(new Presentation());
-
+        jury.setPresentationId(null);
         em.persist(jury);
+
     }
 
     public void registerParticipant(Participant participant) {
