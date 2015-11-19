@@ -8,6 +8,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "jury")
 @DiscriminatorValue("JURY")
+@PrimaryKeyJoinColumn(name = "jury_id", referencedColumnName = "user_id")
 @NamedQueries({
         @NamedQuery(name = Jury.findAll, query = "SELECT j FROM Jury j"),
         @NamedQuery(name = Jury.findByName, query = "SELECT j FROM Jury j WHERE j.name = :name"),
@@ -22,8 +23,7 @@ public class Jury extends User implements Serializable {
     public static final String findByName = PREFIX + ".findByName";
     public static final String findByUsername = PREFIX + ".findByUsername";
 
-    @NotNull
-    @Size(min = 1, max = 100)
+    @Size(max = 100)
     @Column(name = "jury_info")
     private String juryInfo;
 

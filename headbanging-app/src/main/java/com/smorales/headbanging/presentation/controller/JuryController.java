@@ -21,7 +21,7 @@ public class JuryController {
     FacesContext facesContext;
 
     public String votePerParticipant() {
-        juryService.votePerParticipant(juryModel.getParticipant(), juryModel.getHandPoints(), juryModel.getHeadPoints());
+        juryService.votePerParticipant(juryModel.getParticipant(), juryModel.getPoints());
 
         FacesMessage msg = new FacesMessage("The Vote has been Registered!");
         facesContext.addMessage(null, msg);

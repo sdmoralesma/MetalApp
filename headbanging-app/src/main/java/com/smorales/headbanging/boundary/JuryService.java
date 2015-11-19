@@ -14,7 +14,7 @@ public class JuryService {
     @PersistenceContext
     EntityManager em;
 
-    public void votePerParticipant(Participant participant, Integer handPoints, Integer headPoints) {
+    public void votePerParticipant(Participant participant, Integer points) {
         List<Participant> participants = em.createNamedQuery(Participant.FIND_BY_USERNAME, Participant.class)
                 .setParameter("username", participant.getUsername())
                 .getResultList();
@@ -28,7 +28,6 @@ public class JuryService {
         if (scoreMatrix == null) {
 
         }
-
 
         em.persist(participantToVote);
     }

@@ -4,18 +4,27 @@ import com.smorales.headbanging.entity.Admin;
 import com.smorales.headbanging.entity.Jury;
 import com.smorales.headbanging.entity.Participant;
 
+import javax.annotation.PostConstruct;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import java.io.Serializable;
 
 @Named
-public class AdminModel {
+@ViewScoped
+public class AdminModel implements Serializable{
+
+    private static final long serialVersionUID = 1L;
 
     private Admin admin;
     private Jury jury;
     private Participant participant;
-    private String song;
-    private String selectedArtistName;
-    private String selectedGenderName;
 
+    @PostConstruct
+    public void init() {
+        admin = new Admin();
+        jury = new Jury();
+        participant = new Participant();
+    }
 
     // Getters / Setters
 
@@ -43,27 +52,4 @@ public class AdminModel {
         this.participant = participant;
     }
 
-    public String getSong() {
-        return song;
-    }
-
-    public void setSong(String song) {
-        this.song = song;
-    }
-
-    public String getSelectedArtistName() {
-        return selectedArtistName;
-    }
-
-    public void setSelectedArtistName(String selectedArtistName) {
-        this.selectedArtistName = selectedArtistName;
-    }
-
-    public String getSelectedGenderName() {
-        return selectedGenderName;
-    }
-
-    public void setSelectedGenderName(String selectedGenderName) {
-        this.selectedGenderName = selectedGenderName;
-    }
 }

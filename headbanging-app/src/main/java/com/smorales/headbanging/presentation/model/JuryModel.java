@@ -2,49 +2,24 @@ package com.smorales.headbanging.presentation.model;
 
 import com.smorales.headbanging.entity.Participant;
 
+import javax.annotation.PostConstruct;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import java.io.Serializable;
 
 @Named
-public class JuryModel {
+@ViewScoped
+public class JuryModel implements Serializable {
 
-    private Integer musicalityPoints;
-    private Integer compositionPoints;
-    private Integer handPoints;
-    private Integer headPoints;
+    private static final long serialVersionUID = 1L;
 
     private Participant participant;
+    private Integer points;
 
-    // Getters / Setters
-    public Integer getMusicalityPoints() {
-        return musicalityPoints;
-    }
-
-    public void setMusicalityPoints(Integer musicalityPoints) {
-        this.musicalityPoints = musicalityPoints;
-    }
-
-    public Integer getCompositionPoints() {
-        return compositionPoints;
-    }
-
-    public void setCompositionPoints(Integer compositionPoints) {
-        this.compositionPoints = compositionPoints;
-    }
-
-    public Integer getHandPoints() {
-        return handPoints;
-    }
-
-    public void setHandPoints(Integer handPoints) {
-        this.handPoints = handPoints;
-    }
-
-    public Integer getHeadPoints() {
-        return headPoints;
-    }
-
-    public void setHeadPoints(Integer headPoints) {
-        this.headPoints = headPoints;
+    @PostConstruct
+    public void init() {
+        points = 1;
+        participant = new Participant();
     }
 
     public Participant getParticipant() {
@@ -55,4 +30,11 @@ public class JuryModel {
         this.participant = participant;
     }
 
+    public Integer getPoints() {
+        return points;
+    }
+
+    public void setPoints(Integer points) {
+        this.points = points;
+    }
 }

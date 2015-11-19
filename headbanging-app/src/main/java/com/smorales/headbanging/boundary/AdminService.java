@@ -34,11 +34,13 @@ public class AdminService {
 
     public void registerAdmin(Admin admin) {
         admin.setGroupName("admin");
+        admin.setUserType("admin");
         em.persist(admin);
     }
 
     public void registerJury(Jury jury) {
         jury.setGroupName("jury");
+        jury.setUserType("jury");
         em.persist(jury);
     }
 

@@ -10,13 +10,10 @@
                 <h:outputText value="Username of Participant"/>
                 <h:inputText value="#{juryModel.participant.username}"/>
 
-                <h:outputLabel value="Head Value"/>
-                <p:rating id="compositionValue" value="#{juryModel.headPoints}" stars="10" cancel="false"/>
+                <h:outputLabel value="Score"/>
+                <p:rating id="compositionValue" value="#{juryModel.points}" stars="10" cancel="false"/>
 
-                <h:outputLabel value="Hand Value "/>
-                <p:rating id="musicalityValue" value="#{juryModel.handPoints}" stars="10" cancel="false"/>
-
-                <h:commandButton value="Vote per Participant!" action="#{juryController.votePerParticipant}"/>
+                <h:commandButton value="Vote" action="#{juryController.votePerParticipant}"/>
                 <h:messages/>
             </h:panelGrid>
         </h:form>

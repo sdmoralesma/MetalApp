@@ -8,6 +8,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "admin")
 @DiscriminatorValue("ADMIN")
+@PrimaryKeyJoinColumn(name = "admin_id", referencedColumnName = "user_id")
 @NamedQueries({
         @NamedQuery(name = Admin.findAll, query = "SELECT a FROM Admin a"),
         @NamedQuery(name = Admin.findByName, query = "SELECT a FROM Admin a WHERE a.name = :name"),

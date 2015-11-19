@@ -10,24 +10,23 @@
 
             <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
             <h:panelGrid columns="3">
-                <p:outputLabel for="username" value="Username *"/>
-                <h:inputText id="username" value="#{adminModel.participant.username}"/>
+                <p:outputLabel for="username" value="Username"/>
+                <h:inputText id="username" value="#{adminModel.participant.username}" required="true"/>
                 <p:message for="username"/>
 
-                <p:outputLabel for="name" value="Name *"/>
-                <p:inputText id="name" value="#{adminModel.participant.name}" required="true" label="Name"/>
+                <p:outputLabel for="name" value="Name"/>
+                <p:inputText id="name" value="#{adminModel.participant.name}" required="true"/>
                 <p:message for="name"/>
 
-                <p:outputLabel for="password" value="Password *"/>
-                <h:inputSecret id="password" value="#{adminModel.participant.password}" required="true"
-                               label="Password"/>
+                <p:outputLabel for="password" value="Password"/>
+                <h:inputSecret id="password" value="#{adminModel.participant.password}" required="true"/>
                 <p:message for="password"/>
 
-                <p:outputLabel for="age" value="Age *"/>
+                <p:outputLabel for="age" value="Age"/>
                 <h:inputText id="age" value="#{adminModel.participant.age}"/>
                 <p:message for="age"/>
 
-                <p:outputLabel for="gender" value="Gender *"/>
+                <p:outputLabel for="gender" value="Gender"/>
                 <p:selectOneMenu id="gender" value="#{adminModel.participant.gender}">
                     <f:selectItem itemLabel="Female" itemValue="Female"/>
                     <f:selectItem itemLabel="Male" itemValue="Male"/>
@@ -35,8 +34,8 @@
                 </p:selectOneMenu>
                 <p:message for="gender"/>
 
-                <p:commandButton value="Register Participant" action="#{adminController.registerParticipant}"
-                                 icon="ui-icon-disk"/>
+                <p:commandButton value="Register Participant" icon="ui-icon-disk"
+                                 action="#{adminController.registerParticipant}"/>
             </h:panelGrid>
         </h:form>
 
