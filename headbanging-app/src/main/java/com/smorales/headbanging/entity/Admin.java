@@ -22,7 +22,6 @@ public class Admin extends User implements Serializable {
     public static final String findByName = PREFIX + ".findByName";
     public static final String findByUsername = PREFIX + ".findByUsername";
 
-    @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "admin_info")
@@ -35,5 +34,5 @@ public class Admin extends User implements Serializable {
 
     public void setAdminInfo(String adminInfo) {
         this.adminInfo = adminInfo;
-    }
+    }   
 }

@@ -49,7 +49,6 @@ public class AdminService {
         }
         ScoreMatrix score = new ScoreMatrix();
         score.setParticipantId(participant);
-        participant.setScoreMatrixSet(score);
         em.persist(participant);
     }
 

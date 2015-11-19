@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "jury")
@@ -23,14 +23,13 @@ public class Jury extends User implements Serializable {
     public static final String findByName = PREFIX + ".findByName";
     public static final String findByUsername = PREFIX + ".findByUsername";
 
-    @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "jury_info")
     private String juryInfo;
 
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "juryId")
-    private Set<Presentation> presentationSet;
+    private List<Presentation> presentationList;
 
 
     public String getJuryInfo() {
@@ -41,11 +40,11 @@ public class Jury extends User implements Serializable {
         this.juryInfo = juryInfo;
     }
 
-    public Set<Presentation> getPresentationSet() {
-        return presentationSet;
+    public List<Presentation> getPresentationList() {
+        return presentationList;
     }
 
-    public void setPresentationSet(Set<Presentation> presentationSet) {
-        this.presentationSet = presentationSet;
+    public void setPresentationList(List<Presentation> presentationSet) {
+        this.presentationList = presentationSet;
     }
 }

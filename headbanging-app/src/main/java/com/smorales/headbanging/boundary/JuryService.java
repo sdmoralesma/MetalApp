@@ -20,42 +20,18 @@ public class JuryService {
                 .getResultList();
 
         if (participants.isEmpty()) {
-            throw new IllegalArgumentException("participant not found" + participant);
+            throw new IllegalArgumentException("participant not found: " + participant.getUsername());
         }
 
         Participant participantToVote = participants.get(0);
-        ScoreMatrix scoreMatrix = participantToVote.getScoreMatrixSet();
+        List<ScoreMatrix> scoreMatrix = participantToVote.getScoreMatrixList();
         if (scoreMatrix == null) {
-            scoreMatrix = new ScoreMatrix();
-            scoreMatrix.setParticipantId(participantToVote);
+
         }
 
-        scoreMatrix = addHandPointsToScoreMatrix(scoreMatrix, handPoints);
-        scoreMatrix = addHeadPointsToScoreMatrix(scoreMatrix, headPoints);
-        scoreMatrix = calculateTotalAverageScoreMatrix(scoreMatrix);
-        scoreMatrix.setTotalScore(scoreMatrix.getTotalScore() + 1);
-        participantToVote.setScoreMatrixSet(scoreMatrix);
+
         em.persist(participantToVote);
     }
 
-    private ScoreMatrix calculateTotalAverageScoreMatrix(ScoreMatrix matrix) {
-        double totalHandSum = 0;
-
-        Float totalHandAverage = (float) (totalHandSum / 10.0);
-        Float totalHeadAverage = null;
-        Float totalAverage = totalHeadAverage + totalHandAverage;
-        matrix.setTotalScore(totalAverage);
-        return matrix;
-    }
-
-    private ScoreMatrix addHeadPointsToScoreMatrix(ScoreMatrix scoreMatrix, Integer points) {
-        Integer totalPunctuation;
-        return scoreMatrix;
-    }
-
-    private ScoreMatrix addHandPointsToScoreMatrix(ScoreMatrix scoreMatrix, Integer points) {
-        Integer totalPunctuation;
-        return scoreMatrix;
-    }
 
 }

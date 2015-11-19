@@ -41,7 +41,7 @@ public class Presentation implements Serializable {
     private Jury juryId;
 
     @JoinColumn(name = "participant_id", referencedColumnName = "user_id")
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     private Participant participantId;
 
 
@@ -83,5 +83,5 @@ public class Presentation implements Serializable {
 
     public void setParticipantId(Participant participantId) {
         this.participantId = participantId;
-    }
+    }    
 }

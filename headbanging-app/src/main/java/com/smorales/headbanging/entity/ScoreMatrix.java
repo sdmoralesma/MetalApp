@@ -26,7 +26,7 @@ public class ScoreMatrix implements Serializable {
     private Float totalScore;
 
     @JoinColumn(name = "participant_id", referencedColumnName = "user_id")
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     private Participant participantId;
 
     public Integer getIdScoreMatrix() {

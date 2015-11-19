@@ -4,14 +4,15 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "participant")
 @DiscriminatorValue("PARTICIPANT")
 @NamedQueries({
-        @NamedQuery(name = Participant.FIND_ALL, query = "SELECT p FROM Participant p"),
-        @NamedQuery(name = Participant.FIND_BY_NAME, query = "SELECT p FROM Participant p WHERE p.name = :name"),
-        @NamedQuery(name = Participant.FIND_BY_USERNAME, query = "SELECT p FROM Participant p WHERE p.username = :username")})
+    @NamedQuery(name = Participant.FIND_ALL, query = "SELECT p FROM Participant p"),
+    @NamedQuery(name = Participant.FIND_BY_NAME, query = "SELECT p FROM Participant p WHERE p.name = :name"),
+    @NamedQuery(name = Participant.FIND_BY_USERNAME, query = "SELECT p FROM Participant p WHERE p.username = :username")})
 public class Participant extends User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -32,16 +33,15 @@ public class Participant extends User implements Serializable {
     @Column(name = "gender")
     private String gender;
 
-    @OneToOne(cascade = CascadeType.PERSIST, mappedBy = "participantId")
-    private ScoreMatrix scoreMatrixSet;
-
     @Size(max = 300)
     @Column(name = "image_url")
     private String imageUrl;
 
-    // bi-directional many-to-one association to Presentation
-    @OneToOne(mappedBy = "participantId", cascade = CascadeType.PERSIST)
-    private Presentation presentations;
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "participantId")
+    private List<Presentation> presentationList;
+
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "participantId")
+    private List<ScoreMatrix> scoreMatrixList;
 
     public int getAge() {
         return age;
@@ -59,14 +59,6 @@ public class Participant extends User implements Serializable {
         this.gender = gender;
     }
 
-    public ScoreMatrix getScoreMatrixSet() {
-        return scoreMatrixSet;
-    }
-
-    public void setScoreMatrixSet(ScoreMatrix scoreMatrixSet) {
-        this.scoreMatrixSet = scoreMatrixSet;
-    }
-
     public String getImageUrl() {
         return imageUrl;
     }
@@ -75,11 +67,20 @@ public class Participant extends User implements Serializable {
         this.imageUrl = imageUrl;
     }
 
-    public Presentation getPresentations() {
-        return presentations;
+    public List<Presentation> getPresentationList() {
+        return presentationList;
     }
 
-    public void setPresentations(Presentation presentations) {
-        this.presentations = presentations;
+    public void setPresentationList(List<Presentation> presentationList) {
+        this.presentationList = presentationList;
     }
+
+    public List<ScoreMatrix> getScoreMatrixList() {
+        return scoreMatrixList;
+    }
+
+    public void setScoreMatrixList(List<ScoreMatrix> scoreMatrixList) {
+        this.scoreMatrixList = scoreMatrixList;
+    }
+    
 }

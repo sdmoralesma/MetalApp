@@ -119,7 +119,6 @@ public class User implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
 
         User user = (User) o;
-
         return userId.equals(user.userId);
 
     }
