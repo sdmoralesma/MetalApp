@@ -19,7 +19,7 @@ The Best Headbanging
 <table border="2" align="center">
     <tr>
         <td>
-            <img src="https://cloud.githubusercontent.com/assets/1953226/2936924/579694ea-d87a-11e3-958f-0697302a5710.png" width="800px" height="400px" />
+            <img src="https://cloud.githubusercontent.com/assets/1953226/11271216/a1c0c6b0-8e92-11e5-9b63-bbec03c7d192.png" width="800px" height="400px" />
         </td>
     <tr>
         <td>
