@@ -13,7 +13,7 @@ public class ParticipantService {
     EntityManager em;
 
     public Participant findParticipantByUsername(String username) {
-        return em.createNamedQuery(Participant.findByParticipantByUsername, Participant.class)
+        return em.createNamedQuery(Participant.findByUsername, Participant.class)
                 .setParameter("username", username)
                 .getSingleResult();
     }

@@ -6,7 +6,6 @@ import com.smorales.headbanging.entity.ScoreMatrix;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.List;
 
 @Stateless
 public class JuryService {
@@ -14,23 +13,19 @@ public class JuryService {
     @PersistenceContext
     EntityManager em;
 
-    public void votePerParticipant(Participant participant, Integer points) {
-        List<Participant> participants = em.createNamedQuery(Participant.findByUsername, Participant.class)
-                .setParameter("username", participant.getUsername())
-                .getResultList();
+    public void votePerParticipant(Participant p, Integer points) {
+        Participant participant = em.createNamedQuery(Participant.findByUsername, Participant.class)
+                .setParameter("username", p.getUsername())
+                .getSingleResult();
 
-        if (participants.isEmpty()) {
-            throw new IllegalArgumentException("participant not found: " + participant.getUsername());
-        }
-
-        Participant participantToVote = participants.get(0);
-        ScoreMatrix scoreMatrix = participantToVote.getScoreMatrix();
+        ScoreMatrix scoreMatrix = participant.getScoreMatrix();
         if (scoreMatrix == null) {
-
+            scoreMatrix = new ScoreMatrix();
+            scoreMatrix.setTotalScore((float) points);
+            participant.setScoreMatrix(scoreMatrix);
         }
 
-        em.persist(participantToVote);
+        em.persist(participant);
     }
-
 
 }

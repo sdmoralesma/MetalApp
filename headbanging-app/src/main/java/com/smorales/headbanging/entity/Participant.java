@@ -10,8 +10,8 @@ import java.io.Serializable;
 @DiscriminatorValue("PARTICIPANT")
 @PrimaryKeyJoinColumn(name = "participant_id", referencedColumnName = "user_id")
 @NamedQueries({
-
-        @NamedQuery(name = Participant.findByParticipantByUsername, query = "SELECT p FROM Participant p WHERE p.username=:username")
+        @NamedQuery(name = Participant.findByUsername, query = "SELECT p FROM Participant p WHERE p.username=:username"),
+        @NamedQuery(name = Participant.findAll, query = "SELECT p FROM Participant p")
 
 })
 public class Participant extends User implements Serializable {
@@ -19,19 +19,20 @@ public class Participant extends User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     public static final String PREFIX = "Participant";
-    public static final String findByParticipantByUsername = PREFIX + ".findByParticipantByUsername";
+    public static final String findAll = PREFIX + ".findAll";
+    public static final String findByUsername = PREFIX + ".findByUsername";
 
 
-    @Basic(optional = false)
     @NotNull
     @Column(name = "age")
+    @Size(min = 16, max = 100)
     private int age;
 
-    @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 10)
     @Column(name = "gender")
-    private String gender;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
     @Size(max = 300)
     @Column(name = "image_url")
@@ -53,11 +54,11 @@ public class Participant extends User implements Serializable {
         this.age = age;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 

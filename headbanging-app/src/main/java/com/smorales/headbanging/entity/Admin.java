@@ -9,9 +9,15 @@ import java.io.Serializable;
 @Table(name = "admin")
 @DiscriminatorValue("ADMIN")
 @PrimaryKeyJoinColumn(name = "admin_id", referencedColumnName = "user_id")
+@NamedQueries({
+        @NamedQuery(name = Admin.findAll, query = "Select a from Admin a")
+})
 public class Admin extends User implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    public static final String PREFIX = "Admin";
+    public static final String findAll = PREFIX + ".findAll";
 
     @NotNull
     @Size(min = 1, max = 100)

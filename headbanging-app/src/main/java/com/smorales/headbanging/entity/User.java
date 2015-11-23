@@ -9,21 +9,9 @@ import java.io.Serializable;
 @Table(name = "user")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "user_type")
-@NamedQueries({
-        @NamedQuery(name = User.findAll, query = "SELECT u FROM User u"),
-        @NamedQuery(name = User.findByUsername, query = "SELECT u FROM User u WHERE u.username = :username"),
-        @NamedQuery(name = User.findByParticipantByUsername, query = "SELECT u FROM User u WHERE u.username=:username")
-})
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    public static final String PREFIX = "User";
-    public static final String findAll = PREFIX + ".findAll";
-    public static final String findByName = PREFIX + ".findByName";
-    public static final String findByUserId = PREFIX + ".findByUserId";
-    public static final String findByUsername = PREFIX + ".findByUsername";
-    public static final String findByParticipantByUsername = PREFIX + ".findByParticipantByUsername";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,17 +19,17 @@ public class User implements Serializable {
     private Integer userId;
 
     @NotNull
-    @Size(min = 1, max = 20)
+    @Size(min = 1, max = 20, message = "group_name should be between 1 and 20")
     @Column(name = "group_name")
     private String groupName;
 
     @NotNull
-    @Size(min = 1, max = 20)
+    @Size(min = 1, max = 20, message = "username should be between 1 and 20")
     @Column(name = "username")
     private String username;
 
     @NotNull
-    @Size(min = 1, max = 20)
+    @Size(min = 1, max = 20, message = "password should be between 1 and 20")
     @Column(name = "password")
     private String password;
 

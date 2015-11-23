@@ -25,7 +25,6 @@ public class Presentation implements Serializable {
     @Column(name = "id_presentation")
     private Integer idPresentation;
 
-    @Basic(optional = false)
     @NotNull
     @Column(name = "score")
     private float score;
@@ -40,6 +39,9 @@ public class Presentation implements Serializable {
 
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "presentation")
     private List<Participant> participantList;
+
+    public Presentation() {
+    }
 
     public float getScore() {
         return score;
@@ -96,9 +98,6 @@ public class Presentation implements Serializable {
     @Override
     public String toString() {
         return "com.smorales.headbanging.entity.Presentation[ idPresentation=" + idPresentation + " ]";
-    }
-
-    public Presentation() {
     }
 
 }
