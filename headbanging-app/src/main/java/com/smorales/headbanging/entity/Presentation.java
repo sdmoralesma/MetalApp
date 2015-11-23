@@ -34,14 +34,11 @@ public class Presentation implements Serializable {
     @Column(name = "song")
     private String song;
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "presentationId")
+    @ManyToMany(mappedBy = "presentationList")
     private List<Jury> juryList;
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "presentation")
+    @OneToMany(mappedBy = "presentation")
     private List<Participant> participantList;
-
-    public Presentation() {
-    }
 
     public float getScore() {
         return score;

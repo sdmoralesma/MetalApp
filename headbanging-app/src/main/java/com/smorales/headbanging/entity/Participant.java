@@ -22,7 +22,6 @@ public class Participant extends User implements Serializable {
     public static final String findAll = PREFIX + ".findAll";
     public static final String findByUsername = PREFIX + ".findByUsername";
 
-
     @NotNull
     @Column(name = "age")
     @Size(min = 16, max = 100)

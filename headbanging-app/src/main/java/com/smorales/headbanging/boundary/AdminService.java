@@ -36,7 +36,7 @@ public class AdminService {
 
     public void registerJury(Jury jury) {
         jury.setGroupName("jury");
-        jury.setPresentationId(null);
+        jury.setPresentationList(null);
         em.persist(jury);
     }
 

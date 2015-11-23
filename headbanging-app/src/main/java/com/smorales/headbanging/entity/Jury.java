@@ -3,6 +3,7 @@ package com.smorales.headbanging.entity;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "jury")
@@ -22,9 +23,11 @@ public class Jury extends User implements Serializable {
     @Column(name = "jury_info")
     private String juryInfo;
 
-    @JoinColumn(name = "presentation_id", referencedColumnName = "id_presentation")
-    @ManyToOne
-    private Presentation presentationId;
+    @JoinTable(name = "jury_presentation", joinColumns = {
+            @JoinColumn(name = "jury_id", referencedColumnName = "jury_id")}, inverseJoinColumns = {
+            @JoinColumn(name = "presentation_id", referencedColumnName = "id_presentation")})
+    @ManyToMany
+    private List<Presentation> presentationList;
 
     public String getJuryInfo() {
         return juryInfo;
@@ -34,12 +37,12 @@ public class Jury extends User implements Serializable {
         this.juryInfo = juryInfo;
     }
 
-    public Presentation getPresentationId() {
-        return presentationId;
+    public List<Presentation> getPresentationList() {
+        return presentationList;
     }
 
-    public void setPresentationId(Presentation presentationId) {
-        this.presentationId = presentationId;
+    public void setPresentationList(List<Presentation> presentationList) {
+        this.presentationList = presentationList;
     }
 
 }
