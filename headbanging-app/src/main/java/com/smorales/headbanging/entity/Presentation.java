@@ -27,7 +27,7 @@ public class Presentation implements Serializable {
 
     @NotNull
     @Column(name = "score")
-    private float score;
+    private Float score;
 
     @NotNull
     @Size(min = 1, max = 300)
@@ -40,11 +40,19 @@ public class Presentation implements Serializable {
     @OneToMany(mappedBy = "presentation")
     private List<Participant> participantList;
 
-    public float getScore() {
+    public Integer getIdPresentation() {
+        return idPresentation;
+    }
+
+    public void setIdPresentation(Integer idPresentation) {
+        this.idPresentation = idPresentation;
+    }
+
+    public Float getScore() {
         return score;
     }
 
-    public void setScore(float score) {
+    public void setScore(Float score) {
         this.score = score;
     }
 

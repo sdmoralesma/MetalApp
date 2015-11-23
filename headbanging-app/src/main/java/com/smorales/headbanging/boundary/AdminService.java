@@ -1,6 +1,9 @@
 package com.smorales.headbanging.boundary;
 
-import com.smorales.headbanging.entity.*;
+import com.smorales.headbanging.entity.Admin;
+import com.smorales.headbanging.entity.Jury;
+import com.smorales.headbanging.entity.Participant;
+import com.smorales.headbanging.entity.ScoreMatrix;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -15,6 +18,12 @@ public class AdminService {
 
     public List<Participant> participantList() {
         return em.createNamedQuery(Participant.findAll, Participant.class).getResultList();
+    }
+
+    public List<Participant> participantsUsernameLike(String query) {
+        return em.createNamedQuery(Participant.findByUsernameLike, Participant.class)
+                .setParameter("query", "%" + query + "%")
+                .getResultList();
     }
 
     public List<Jury> juryList() {

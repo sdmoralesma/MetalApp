@@ -11,11 +11,11 @@
             <h:panelGrid columns="3">
 
                 <p:outputLabel for="username" value="Username"/>
-                <h:inputText id="username" value="#{adminModel.admin.username}" required="true"/>
+                <p:inputText id="username" value="#{adminModel.admin.username}" required="true"/>
                 <p:message for="username"/>
 
                 <p:outputLabel for="name" value="Name"/>
-                <h:inputText id="name" value="#{adminModel.admin.name}" required="true"/>
+                <p:inputText id="name" value="#{adminModel.admin.name}" required="true"/>
                 <p:message for="name"/>
 
                 <p:outputLabel for="password" value="Password"/>
@@ -23,11 +23,11 @@
                 <p:message for="password"/>
 
                 <p:outputLabel for="description" value="Description"/>
-                <h:inputText id="description" value="#{adminModel.admin.description}"/>
+                <p:inputText id="description" value="#{adminModel.admin.description}"/>
                 <p:message for="description"/>
 
                 <p:outputLabel for="adminInfo" value="Admin Info"/>
-                <h:inputText id="adminInfo" value="#{adminModel.admin.adminInfo}"/>
+                <p:inputText id="adminInfo" value="#{adminModel.admin.adminInfo}"/>
                 <p:message for="adminInfo"/>
 
                 <p:commandButton value="Register admin" action="#{adminController.registerAdmin}" icon="ui-icon-disk"/>

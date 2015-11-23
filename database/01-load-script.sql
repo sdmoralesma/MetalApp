@@ -9,7 +9,7 @@ INSERT INTO `score_matrix` (id_score_matrix, total_score) VALUES (NULL, 10);
 
 INSERT INTO `admin` (admin_id, admin_info) VALUES (1, 'A great admin');
 
-INSERT INTO `jury` (jury_id, jury_info, presentation_id) VALUES (2, 'the great Jury1', null);
+INSERT INTO `jury` (jury_id, jury_info) VALUES (2, 'the great Jury1');
 
 INSERT INTO `participant` (participant_id, age, gender, image_url, presentation_id, score_matrix_id)
-VALUES (3, 18, 'Male', 'http://www.oracle.com/ocom/groups/public/@ocom/documents/digitalasset/427163.jpg', null, null);
+VALUES (3, 18, 'MALE', 'http://www.oracle.com/ocom/groups/public/@ocom/documents/digitalasset/427163.jpg', null, null);

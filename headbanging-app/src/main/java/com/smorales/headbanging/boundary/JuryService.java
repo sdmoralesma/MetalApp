@@ -22,6 +22,7 @@ public class JuryService {
         if (scoreMatrix == null) {
             scoreMatrix = new ScoreMatrix();
             scoreMatrix.setTotalScore((float) points);
+            scoreMatrix.setParticipant(participant);
             participant.setScoreMatrix(scoreMatrix);
         }
 

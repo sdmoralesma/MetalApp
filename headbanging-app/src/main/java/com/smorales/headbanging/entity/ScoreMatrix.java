@@ -1,8 +1,8 @@
 package com.smorales.headbanging.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Table(name = "score_matrix")
@@ -23,11 +23,12 @@ public class ScoreMatrix implements Serializable {
     @Column(name = "id_score_matrix")
     private Integer idScoreMatrix;
 
+    @NotNull
     @Column(name = "total_score")
     private Float totalScore;
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "scoreMatrix")
-    private List<Participant> participantList;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "scoreMatrix")
+    private Participant participant;
 
     public Integer getIdScoreMatrix() {
         return idScoreMatrix;
@@ -48,12 +49,12 @@ public class ScoreMatrix implements Serializable {
     public ScoreMatrix() {
     }
 
-    public List<Participant> getParticipantList() {
-        return participantList;
+    public Participant getParticipant() {
+        return participant;
     }
 
-    public void setParticipantList(List<Participant> participantList) {
-        this.participantList = participantList;
+    public void setParticipant(Participant participant) {
+        this.participant = participant;
     }
 
 }

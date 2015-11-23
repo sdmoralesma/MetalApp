@@ -7,11 +7,13 @@
         <h:form>
             <h:messages/>
             <h:panelGrid columns="2">
-                <h:outputText value="Username of Participant"/>
-                <h:inputText value="#{juryModel.participant.username}"/>
+                <p:outputLabel value="Participant" for="username"/>
+                <p:autoComplete id="username" value="#{juryModel.participant.username}"
+                                forceSelection="true" dropdown="true"
+                                completeMethod="#{juryController.autocompleteParticipants}"/>
 
-                <h:outputLabel value="Score"/>
-                <p:rating id="compositionValue" value="#{juryModel.points}" stars="10" cancel="false"/>
+                <p:outputLabel value="Score" for="points"/>
+                <p:rating id="points" value="#{juryModel.points}" stars="10" cancel="false"/>
 
                 <h:commandButton value="Vote" action="#{juryController.votePerParticipant}"/>
                 <h:messages/>
