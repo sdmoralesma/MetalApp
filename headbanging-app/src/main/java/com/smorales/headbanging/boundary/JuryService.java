@@ -17,15 +17,7 @@ public class JuryService {
                 .setParameter("username", p.getUsername())
                 .getSingleResult();
 
-//        participant.getPresentation().get
-
-        ScoreMatrix scoreMatrix = participant.getScoreMatrix();
-        if (scoreMatrix == null) {
-            scoreMatrix = new ScoreMatrix();
-            scoreMatrix.setTotalScore((float) points);
-            scoreMatrix.setParticipant(participant);
-            participant.setScoreMatrix(scoreMatrix);
-        }
+        participant.setTotalScore((double) points);
 
         em.persist(participant);
     }

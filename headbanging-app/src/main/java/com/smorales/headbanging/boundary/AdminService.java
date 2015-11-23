@@ -44,18 +44,17 @@ public class AdminService {
 
     public void registerJury(Jury jury) {
         jury.setGroupName("jury");
-        jury.setPresentationList(null);
+        jury.setQualificationsList(null);
         em.persist(jury);
     }
 
     public void registerParticipant(Participant participant) {
         participant.setGroupName("participant");
-        participant.setPresentation(null);
-        participant.setScoreMatrix(null);
+        participant.setQualificationsList(null);
+        participant.setTotalScore(0.0);
         if (participant.getImageUrl() == null || participant.getImageUrl().equals("")) {
             participant.setImageUrl("default.jpg");
         }
-        ScoreMatrix score = new ScoreMatrix();
         em.persist(participant);
     }
 

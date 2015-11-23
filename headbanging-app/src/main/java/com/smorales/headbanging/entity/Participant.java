@@ -6,15 +6,16 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "participant")
 @DiscriminatorValue("PARTICIPANT")
 @PrimaryKeyJoinColumn(name = "participant_id", referencedColumnName = "user_id")
 @NamedQueries({
-        @NamedQuery(name = Participant.findAll, query = "SELECT p FROM Participant p"),
-        @NamedQuery(name = Participant.findByUsername, query = "SELECT p FROM Participant p WHERE p.username=:username"),
-        @NamedQuery(name = Participant.findByUsernameLike, query = "SELECT p FROM Participant p WHERE p.username LIKE :query")
+    @NamedQuery(name = Participant.findAll, query = "SELECT p FROM Participant p"),
+    @NamedQuery(name = Participant.findByUsername, query = "SELECT p FROM Participant p WHERE p.username=:username"),
+    @NamedQuery(name = Participant.findByUsernameLike, query = "SELECT p FROM Participant p WHERE p.username LIKE :query")
 
 })
 public class Participant extends User implements Serializable {
@@ -40,9 +41,12 @@ public class Participant extends User implements Serializable {
     @Column(name = "image_url")
     private String imageUrl;
 
-    @NotNull
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "total_score")
-    private Float totalScore;
+    private Double totalScore;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "participantId")
+    private List<Qualifications> qualificationsList;
 
     public Integer getAge() {
         return age;
@@ -68,13 +72,21 @@ public class Participant extends User implements Serializable {
         this.imageUrl = imageUrl;
     }
 
-    public Float getTotalScore() {
+    public Double getTotalScore() {
         return totalScore;
     }
 
-    public void setTotalScore(Float totalScore) {
+    public void setTotalScore(Double totalScore) {
         this.totalScore = totalScore;
     }
 
+    public List<Qualifications> getQualificationsList() {
+        return qualificationsList;
+    }
 
+    public void setQualificationsList(List<Qualifications> qualificationsList) {
+        this.qualificationsList = qualificationsList;
+    }
+
+    
 }
