@@ -18,6 +18,8 @@ public class JuryService {
                 .setParameter("username", p.getUsername())
                 .getSingleResult();
 
+//        participant.getPresentation().get
+
         ScoreMatrix scoreMatrix = participant.getScoreMatrix();
         if (scoreMatrix == null) {
             scoreMatrix = new ScoreMatrix();

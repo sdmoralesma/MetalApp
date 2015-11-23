@@ -37,8 +37,8 @@ public class Presentation implements Serializable {
     @ManyToMany(mappedBy = "presentationList")
     private List<Jury> juryList;
 
-    @OneToMany(mappedBy = "presentation")
-    private List<Participant> participantList;
+    @OneToOne(mappedBy = "presentation")
+    private Participant participant;
 
     public Integer getIdPresentation() {
         return idPresentation;
@@ -72,12 +72,12 @@ public class Presentation implements Serializable {
         this.juryList = juryList;
     }
 
-    public List<Participant> getParticipantList() {
-        return participantList;
+    public Participant getParticipant() {
+        return participant;
     }
 
-    public void setParticipantList(List<Participant> participantList) {
-        this.participantList = participantList;
+    public void setParticipant(Participant participantList) {
+        this.participant = participantList;
     }
 
     @Override

@@ -41,7 +41,7 @@ public class Participant extends User implements Serializable {
     private String imageUrl;
 
     @JoinColumn(name = "presentation_id", referencedColumnName = "id_presentation")
-    @ManyToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     private Presentation presentation;
 
     @JoinColumn(name = "score_matrix_id", referencedColumnName = "id_score_matrix")
