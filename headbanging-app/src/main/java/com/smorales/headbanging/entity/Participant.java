@@ -1,6 +1,8 @@
 package com.smorales.headbanging.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -24,8 +26,9 @@ public class Participant extends User implements Serializable {
     public static final String findByUsername = PREFIX + ".findByUsername";
     public static final String findByUsernameLike = PREFIX + ".findByUsernameLike";
 
+    @Min(16)
+    @Max(100)
     @Column(name = "age")
-//    @Size(min = 16, max = 100)
     private Integer age;
 
     @NotNull
