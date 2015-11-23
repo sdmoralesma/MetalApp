@@ -1,7 +1,6 @@
 package com.smorales.headbanging.boundary;
 
 import com.smorales.headbanging.entity.Participant;
-import com.smorales.headbanging.entity.ScoreMatrix;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

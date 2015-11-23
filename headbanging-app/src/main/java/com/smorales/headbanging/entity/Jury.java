@@ -23,26 +23,12 @@ public class Jury extends User implements Serializable {
     @Column(name = "jury_info")
     private String juryInfo;
 
-    @JoinTable(name = "jury_presentation", joinColumns = {
-            @JoinColumn(name = "jury_id", referencedColumnName = "jury_id")}, inverseJoinColumns = {
-            @JoinColumn(name = "presentation_id", referencedColumnName = "id_presentation")})
-    @ManyToMany
-    private List<Presentation> presentationList;
-
     public String getJuryInfo() {
         return juryInfo;
     }
 
     public void setJuryInfo(String juryInfo) {
         this.juryInfo = juryInfo;
-    }
-
-    public List<Presentation> getPresentationList() {
-        return presentationList;
-    }
-
-    public void setPresentationList(List<Presentation> presentationList) {
-        this.presentationList = presentationList;
     }
 
 }

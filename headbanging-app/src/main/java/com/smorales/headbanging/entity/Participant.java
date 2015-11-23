@@ -40,13 +40,9 @@ public class Participant extends User implements Serializable {
     @Column(name = "image_url")
     private String imageUrl;
 
-    @JoinColumn(name = "presentation_id", referencedColumnName = "id_presentation")
-    @OneToOne(cascade = CascadeType.ALL)
-    private Presentation presentation;
-
-    @JoinColumn(name = "score_matrix_id", referencedColumnName = "id_score_matrix")
-    @OneToOne(cascade = CascadeType.ALL)
-    private ScoreMatrix scoreMatrix;
+    @NotNull
+    @Column(name = "total_score")
+    private Float totalScore;
 
     public Integer getAge() {
         return age;
@@ -72,20 +68,13 @@ public class Participant extends User implements Serializable {
         this.imageUrl = imageUrl;
     }
 
-    public Presentation getPresentation() {
-        return presentation;
+    public Float getTotalScore() {
+        return totalScore;
     }
 
-    public void setPresentation(Presentation presentationId) {
-        this.presentation = presentationId;
+    public void setTotalScore(Float totalScore) {
+        this.totalScore = totalScore;
     }
 
-    public ScoreMatrix getScoreMatrix() {
-        return scoreMatrix;
-    }
-
-    public void setScoreMatrix(ScoreMatrix scoreMatrixId) {
-        this.scoreMatrix = scoreMatrixId;
-    }
 
 }

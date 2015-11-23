@@ -24,7 +24,6 @@ public class Admin extends User implements Serializable {
     @Column(name = "admin_info")
     private String adminInfo;
 
-
     public String getAdminInfo() {
         return adminInfo;
     }
