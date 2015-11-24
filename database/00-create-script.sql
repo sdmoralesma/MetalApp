@@ -68,7 +68,7 @@ DROP TABLE IF EXISTS `headbanging-db`.`qualifications` ;
 
 CREATE TABLE IF NOT EXISTS `headbanging-db`.`qualifications` (
   `id_qualification` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
-  `score` FLOAT NOT NULL COMMENT '',
+  `score` INT(11) NOT NULL COMMENT '',
   `participant_id` INT(11) NOT NULL COMMENT '',
   `jury_id` INT(11) NOT NULL COMMENT '',
   PRIMARY KEY (`id_qualification`)  COMMENT '',
