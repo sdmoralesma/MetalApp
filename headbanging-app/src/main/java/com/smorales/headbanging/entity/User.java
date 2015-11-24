@@ -41,13 +41,6 @@ public class User implements Serializable {
     @Column(name = "name")
     private String name;
 
-    public User() {
-    }
-
-    public User(Integer userId) {
-        this.userId = userId;
-    }
-
     public Integer getUserId() {
         return userId;
     }

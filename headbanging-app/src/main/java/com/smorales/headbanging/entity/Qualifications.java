@@ -29,18 +29,6 @@ public class Qualifications implements Serializable {
     @ManyToOne(optional = false)
     private Participant participantId;
 
-    public Qualifications() {
-    }
-
-    public Qualifications(Integer idQualification) {
-        this.idQualification = idQualification;
-    }
-
-    public Qualifications(Integer idQualification, Integer score) {
-        this.idQualification = idQualification;
-        this.score = score;
-    }
-
     public Integer getIdQualification() {
         return idQualification;
     }

@@ -36,9 +36,6 @@ public class Jury extends User implements Serializable {
         this.juryInfo = juryInfo;
     }
 
-    public Jury() {
-    }
-
     public List<Qualifications> getQualificationsList() {
         return qualificationsList;
     }
