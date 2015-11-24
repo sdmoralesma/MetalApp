@@ -1,22 +1,13 @@
 package com.smorales.headbanging.entity;
 
-import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "qualifications")
 @NamedQueries({
-    @NamedQuery(name = "Qualifications.findAll", query = "SELECT q FROM Qualifications q")})
+        @NamedQuery(name = "Qualifications.findAll", query = "SELECT q FROM Qualifications q")})
 public class Qualifications implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -28,7 +19,7 @@ public class Qualifications implements Serializable {
 
     @NotNull
     @Column(name = "score")
-    private Float score;
+    private Integer score;
 
     @JoinColumn(name = "jury_id", referencedColumnName = "jury_id")
     @ManyToOne(optional = false)
@@ -45,7 +36,7 @@ public class Qualifications implements Serializable {
         this.idQualification = idQualification;
     }
 
-    public Qualifications(Integer idQualification, float score) {
+    public Qualifications(Integer idQualification, Integer score) {
         this.idQualification = idQualification;
         this.score = score;
     }
@@ -58,11 +49,11 @@ public class Qualifications implements Serializable {
         this.idQualification = idQualification;
     }
 
-    public Float getScore() {
+    public Integer getScore() {
         return score;
     }
 
-    public void setScore(Float score) {
+    public void setScore(Integer score) {
         this.score = score;
     }
 

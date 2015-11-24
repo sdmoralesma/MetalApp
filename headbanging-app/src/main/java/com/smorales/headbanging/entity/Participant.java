@@ -13,10 +13,9 @@ import java.util.List;
 @DiscriminatorValue("PARTICIPANT")
 @PrimaryKeyJoinColumn(name = "participant_id", referencedColumnName = "user_id")
 @NamedQueries({
-    @NamedQuery(name = Participant.findAll, query = "SELECT p FROM Participant p"),
-    @NamedQuery(name = Participant.findByUsername, query = "SELECT p FROM Participant p WHERE p.username=:username"),
-    @NamedQuery(name = Participant.findByUsernameLike, query = "SELECT p FROM Participant p WHERE p.username LIKE :query")
-
+        @NamedQuery(name = Participant.findAll, query = "SELECT p FROM Participant p"),
+        @NamedQuery(name = Participant.findByUsername, query = "SELECT p FROM Participant p WHERE p.username=:username"),
+        @NamedQuery(name = Participant.findByUsernameLike, query = "SELECT p FROM Participant p WHERE p.username LIKE :query")
 })
 public class Participant extends User implements Serializable {
 
@@ -41,7 +40,6 @@ public class Participant extends User implements Serializable {
     @Column(name = "image_url")
     private String imageUrl;
 
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "total_score")
     private Double totalScore;
 
@@ -88,5 +86,4 @@ public class Participant extends User implements Serializable {
         this.qualificationsList = qualificationsList;
     }
 
-    
 }

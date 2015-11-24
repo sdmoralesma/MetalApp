@@ -1,10 +1,14 @@
 package com.smorales.headbanging.boundary;
 
+import com.smorales.headbanging.entity.Jury;
 import com.smorales.headbanging.entity.Participant;
+import com.smorales.headbanging.entity.Qualifications;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
+import java.util.OptionalDouble;
 
 @Stateless
 public class JuryService {
@@ -12,14 +16,39 @@ public class JuryService {
     @PersistenceContext
     EntityManager em;
 
-    public void votePerParticipant(Participant p, Integer points) {
+    public void votePerParticipant(String currentJury, Participant p, Integer points) {
         Participant participant = em.createNamedQuery(Participant.findByUsername, Participant.class)
                 .setParameter("username", p.getUsername())
                 .getSingleResult();
 
-        participant.setTotalScore((double) points);
+        Jury jury = em.createNamedQuery(Jury.findByUsername, Jury.class)
+                .setParameter("username", currentJury)
+                .getSingleResult();
 
+        if (alreadyVoted(jury, participant)) {
+            return;
+        }
+
+        Qualifications newQualification = new Qualifications();
+        newQualification.setJuryId(jury);
+        newQualification.setParticipantId(participant);
+        newQualification.setScore(points);
+
+        participant.getQualificationsList().add(newQualification);
+        participant.setTotalScore(calculateAverage(participant.getQualificationsList()));
         em.persist(participant);
+    }
+
+    private boolean alreadyVoted(Jury jury, Participant participant) {
+        return participant.getQualificationsList().stream()
+                .anyMatch(q -> q.getJuryId().getUserId().equals(jury.getUserId()));
+    }
+
+    private Double calculateAverage(List<Qualifications> qualifications) {
+        OptionalDouble average = qualifications.stream()
+                .mapToDouble(Qualifications::getScore)
+                .average();
+        return average.getAsDouble();
     }
 
 }
