@@ -9,12 +9,12 @@ app:
     - "48080:8080"
     - "48787:8787"
   links:
-    - headbanging-db:headbanging-db
-headbanging-db:
+    - localdb:localdb
+localdb:
   build: database/
   #Will override values of Dockerfile
   environment:
-    MYSQL_DATABASE: headbanging-db
+    MYSQL_DATABASE: localdb
     MYSQL_USER: mysql
     MYSQL_PASSWORD: mysql
     MYSQL_ROOT_PASSWORD: admin123

@@ -14,14 +14,14 @@ batch
 )
 
 # Add Datasource
-data-source add --jndi-name=java:/headbanging-ds --name=headbanging-ds --connection-url=jdbc:mysql://headbanging-db:3306/headbanging-db --driver-name=mysql --user-name=mysql --password=mysql --enabled=true
+data-source add --jndi-name=java:/localdb-ds --name=localdb-ds --connection-url=jdbc:mysql://localdb:3306/localdb --driver-name=mysql --user-name=mysql --password=mysql --enabled=true
 
 # Add security-domain
 /subsystem=security/security-domain=secureDomain/:add(cache-type=default)
 /subsystem=security/security-domain=secureDomain/authentication=classic:add(\
     login-modules=[{"code"=>"Database", "flag"=>"required",\
         "module-options"=>[\
-            ("dsJndiName"=>"java:/headbanging-ds"),\
+            ("dsJndiName"=>"java:/localdb-ds"),\
             ("principalsQuery"=>"select password from user where username=?"),\
             ("rolesQuery"=>"select group_name, 'Roles' from user where username=?"),\
             ("hashAlgorithm"=>"SHA-256"),\

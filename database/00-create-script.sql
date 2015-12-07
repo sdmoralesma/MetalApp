@@ -8,22 +8,22 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- Schema mydb
 -- -----------------------------------------------------
 -- -----------------------------------------------------
--- Schema headbanging-db
+-- Schema localdb
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `headbanging-db` ;
+DROP SCHEMA IF EXISTS `localdb` ;
 
 -- -----------------------------------------------------
--- Schema headbanging-db
+-- Schema localdb
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `headbanging-db` DEFAULT CHARACTER SET latin1 ;
-USE `headbanging-db` ;
+CREATE SCHEMA IF NOT EXISTS `localdb` DEFAULT CHARACTER SET latin1 ;
+USE `localdb` ;
 
 -- -----------------------------------------------------
--- Table `headbanging-db`.`admin`
+-- Table `localdb`.`admin`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `headbanging-db`.`admin` ;
+DROP TABLE IF EXISTS `localdb`.`admin` ;
 
-CREATE TABLE IF NOT EXISTS `headbanging-db`.`admin` (
+CREATE TABLE IF NOT EXISTS `localdb`.`admin` (
   `admin_id` INT(11) NOT NULL COMMENT '',
   `admin_info` VARCHAR(100) NOT NULL COMMENT '',
   PRIMARY KEY (`admin_id`)  COMMENT '')
@@ -32,11 +32,11 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `headbanging-db`.`jury`
+-- Table `localdb`.`jury`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `headbanging-db`.`jury` ;
+DROP TABLE IF EXISTS `localdb`.`jury` ;
 
-CREATE TABLE IF NOT EXISTS `headbanging-db`.`jury` (
+CREATE TABLE IF NOT EXISTS `localdb`.`jury` (
   `jury_id` INT(11) NOT NULL COMMENT '',
   `jury_info` VARCHAR(100) NOT NULL COMMENT '',
   PRIMARY KEY (`jury_id`)  COMMENT '')
@@ -45,11 +45,11 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `headbanging-db`.`participant`
+-- Table `localdb`.`participant`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `headbanging-db`.`participant` ;
+DROP TABLE IF EXISTS `localdb`.`participant` ;
 
-CREATE TABLE IF NOT EXISTS `headbanging-db`.`participant` (
+CREATE TABLE IF NOT EXISTS `localdb`.`participant` (
   `participant_id` INT(11) NOT NULL COMMENT '',
   `age` INT(11) NOT NULL COMMENT '',
   `gender` VARCHAR(10) NOT NULL COMMENT '',
@@ -62,11 +62,11 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `headbanging-db`.`qualifications`
+-- Table `localdb`.`qualifications`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `headbanging-db`.`qualifications` ;
+DROP TABLE IF EXISTS `localdb`.`qualifications` ;
 
-CREATE TABLE IF NOT EXISTS `headbanging-db`.`qualifications` (
+CREATE TABLE IF NOT EXISTS `localdb`.`qualifications` (
   `id_qualification` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
   `score` INT(11) NOT NULL COMMENT '',
   `participant_id` INT(11) NOT NULL COMMENT '',
@@ -76,12 +76,12 @@ CREATE TABLE IF NOT EXISTS `headbanging-db`.`qualifications` (
   INDEX `fk_qualifications_jury1_idx` (`jury_id` ASC)  COMMENT '',
   CONSTRAINT `fk_qualifications_participant1`
     FOREIGN KEY (`participant_id`)
-    REFERENCES `headbanging-db`.`participant` (`participant_id`)
+    REFERENCES `localdb`.`participant` (`participant_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_qualifications_jury1`
     FOREIGN KEY (`jury_id`)
-    REFERENCES `headbanging-db`.`jury` (`jury_id`)
+    REFERENCES `localdb`.`jury` (`jury_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -90,11 +90,11 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `headbanging-db`.`user`
+-- Table `localdb`.`user`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `headbanging-db`.`user` ;
+DROP TABLE IF EXISTS `localdb`.`user` ;
 
-CREATE TABLE IF NOT EXISTS `headbanging-db`.`user` (
+CREATE TABLE IF NOT EXISTS `localdb`.`user` (
   `user_id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
   `user_type` VARCHAR(20) NOT NULL COMMENT '',
   `group_name` VARCHAR(20) NOT NULL COMMENT '',
