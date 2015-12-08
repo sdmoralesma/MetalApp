@@ -29,29 +29,9 @@ RUN $JBOSS_HOME/scripts/execute.sh
 # Solves bug in history
 RUN rm -rf $JBOSS_HOME/standalone/configuration/standalone_xml_history/current
 
-# Install Maven
-ENV MAVEN_VERSION 3.3.3
-RUN wget --quiet -O /tmp/apache-maven-$MAVEN_VERSION.tar.gz http://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz && \
-    tar xzf /tmp/apache-maven-$MAVEN_VERSION.tar.gz -C /opt/ && \
-    ln -s /opt/apache-maven-$MAVEN_VERSION /opt/maven && \
-    ln -s /opt/maven/bin/mvn /usr/local/bin && \
-    rm -f /tmp/apache-maven-$MAVEN_VERSION.tar.gz
-ENV MAVEN_HOME /opt/maven
-ENV USER_HOME /home/wildfly
-ENV MAVEN_M2 $USER_HOME/.m2/repository
-
 # Create the wildfly user and group
 RUN groupadd -r wildfly-group -g 433 && \
     useradd -u 431 -r -g wildfly-group -s /bin/false wildfly -m
-
-# Cache dependencies
-ADD headbanging-app/pom.xml $USER_HOME/headbanging-app/
-RUN mvn verify clean --fail-never -f $USER_HOME/headbanging-app/pom.xml -Dmaven.repo.local=$MAVEN_M2
-
-# Auto-Deploy headbanging-app to Wildfly
-ADD headbanging-app/src $USER_HOME/headbanging-app/src
-RUN mvn package -f $USER_HOME/headbanging-app/pom.xml -Dmaven.repo.local=$MAVEN_M2 && \
-    cp $USER_HOME/headbanging-app/target/headbanging-app.war $JBOSS_HOME/standalone/deployments/
 
 # Run everything below as the wildfly user
 RUN chown -R wildfly:wildfly-group $JBOSS_HOME/* && \
