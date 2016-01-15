@@ -1,8 +1,8 @@
 package com.smorales.headbanging.presentation.model;
 
-import com.smorales.headbanging.entity.Admin;
-import com.smorales.headbanging.entity.Jury;
-import com.smorales.headbanging.entity.Participant;
+import com.smorales.headbanging.business.entity.Admin;
+import com.smorales.headbanging.business.entity.Jury;
+import com.smorales.headbanging.business.entity.Participant;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;

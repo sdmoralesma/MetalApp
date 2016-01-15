@@ -118,7 +118,7 @@
     <!-- # ImageServlet serving from absolute path   # -->
     <servlet>
         <servlet-name>imageServlet</servlet-name>
-        <servlet-class>com.smorales.headbanging.control.ImageServlet</servlet-class>
+        <servlet-class>com.smorales.headbanging.business.control.ImageServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>imageServlet</servlet-name>

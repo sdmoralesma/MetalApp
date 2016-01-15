@@ -1,6 +1,6 @@
 package com.smorales.headbanging.presentation.model;
 
-import com.smorales.headbanging.entity.Participant;
+import com.smorales.headbanging.business.entity.Participant;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;

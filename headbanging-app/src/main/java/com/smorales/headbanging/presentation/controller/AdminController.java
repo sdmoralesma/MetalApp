@@ -1,9 +1,9 @@
 package com.smorales.headbanging.presentation.controller;
 
-import com.smorales.headbanging.boundary.AdminService;
-import com.smorales.headbanging.entity.Admin;
-import com.smorales.headbanging.entity.Jury;
-import com.smorales.headbanging.entity.Participant;
+import com.smorales.headbanging.business.boundary.AdminService;
+import com.smorales.headbanging.business.entity.Admin;
+import com.smorales.headbanging.business.entity.Jury;
+import com.smorales.headbanging.business.entity.Participant;
 import com.smorales.headbanging.presentation.model.AdminModel;
 
 import javax.faces.context.FacesContext;

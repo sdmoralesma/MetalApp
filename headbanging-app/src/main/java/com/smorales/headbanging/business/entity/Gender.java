@@ -1,4 +1,4 @@
-package com.smorales.headbanging.entity;
+package com.smorales.headbanging.business.entity;
 
 public enum Gender {
 

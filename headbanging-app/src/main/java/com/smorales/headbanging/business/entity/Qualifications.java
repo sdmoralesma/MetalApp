@@ -1,4 +1,4 @@
-package com.smorales.headbanging.entity;
+package com.smorales.headbanging.business.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -83,7 +83,7 @@ public class Qualifications implements Serializable {
 
     @Override
     public String toString() {
-        return "com.smorales.headbanging.entity.Qualifications[ idQualification=" + idQualification + " ]";
+        return "com.smorales.headbanging.business.entity.Qualifications[ idQualification=" + idQualification + " ]";
     }
 
 }

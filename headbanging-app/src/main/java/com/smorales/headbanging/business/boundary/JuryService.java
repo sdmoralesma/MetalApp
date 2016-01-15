@@ -1,8 +1,8 @@
-package com.smorales.headbanging.boundary;
+package com.smorales.headbanging.business.boundary;
 
-import com.smorales.headbanging.entity.Jury;
-import com.smorales.headbanging.entity.Participant;
-import com.smorales.headbanging.entity.Qualifications;
+import com.smorales.headbanging.business.entity.Jury;
+import com.smorales.headbanging.business.entity.Participant;
+import com.smorales.headbanging.business.entity.Qualifications;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

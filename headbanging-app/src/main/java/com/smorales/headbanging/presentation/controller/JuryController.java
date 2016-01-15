@@ -1,8 +1,8 @@
 package com.smorales.headbanging.presentation.controller;
 
-import com.smorales.headbanging.boundary.AdminService;
-import com.smorales.headbanging.boundary.JuryService;
-import com.smorales.headbanging.entity.User;
+import com.smorales.headbanging.business.boundary.AdminService;
+import com.smorales.headbanging.business.boundary.JuryService;
+import com.smorales.headbanging.business.entity.User;
 import com.smorales.headbanging.presentation.model.JuryModel;
 
 import javax.faces.application.FacesMessage;

@@ -1,4 +1,4 @@
-package com.smorales.headbanging.control;
+package com.smorales.headbanging.business.control;
 
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;

@@ -1,6 +1,6 @@
-package com.smorales.headbanging.boundary.rest;
+package com.smorales.headbanging.business.boundary.rest;
 
-import com.smorales.headbanging.boundary.AdminService;
+import com.smorales.headbanging.business.boundary.AdminService;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;

@@ -1,4 +1,4 @@
-package com.smorales.headbanging.entity;
+package com.smorales.headbanging.business.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;

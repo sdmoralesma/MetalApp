@@ -1,6 +1,6 @@
 package com.smorales.headbanging.presentation.controller;
 
-import com.smorales.headbanging.boundary.ParticipantService;
+import com.smorales.headbanging.business.boundary.ParticipantService;
 import com.smorales.headbanging.presentation.model.ParticipantModel;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
